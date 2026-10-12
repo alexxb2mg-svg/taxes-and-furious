@@ -25,6 +25,7 @@
     }
   ],
   "parcours": [
+    "profil:vernissage",
     "tronc:avis",
     "profil:oeuvres",
     "tronc:fec",
@@ -38,13 +39,161 @@
   ],
   "chapitres": [
     {
+      "id": "vernissage",
+      "titre": "Le soir du vernissage",
+      "scenes": [
+        {
+          "id": "vernissage-s1",
+          "personnage": "narrateur",
+          "texte": "Soir de vernissage à la Galerie du Clou Rouillé, quelques semaines avant tout contrôle. Un collectionneur pressé vous glisse une enveloppe de billets pour la grande toile bleue : « Pas besoin de facture entre amateurs d'art, n'est-ce pas ? »",
+          "choix": [
+            {
+              "id": "vernissage-s1-a",
+              "texte": "Faire une facture et enregistrer la vente comme toutes les autres.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 0,
+                "stress": -5
+              },
+              "reaction": "Le collectionneur hausse les épaules et signe. La toile bleue part avec une belle facture, presque encadrable.",
+              "explication": "Une vente facturée et passée en comptabilité n'a rien à craindre du contrôle à venir : c'est la recette cachée exprès qui serait sanctionnée.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": "vernissage-s2"
+            },
+            {
+              "id": "vernissage-s1-b",
+              "texte": "Prendre l'enveloppe et oublier la vente : personne n'en saura rien.",
+              "juste": false,
+              "effets": {
+                "redressement": 55000,
+                "patience": 0,
+                "stress": 5
+              },
+              "reaction": "L'enveloppe file au fond d'un tiroir. Sur le livre d'or, le collectionneur a tout de même écrit, en grand : « Merci pour la toile bleue ! »",
+              "explication": "Taire volontairement une vente, ce n'est pas un oubli : si le contrôle la retrouve, l'impôt qui manque est majoré de 40 % pour manquement délibéré.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": "vernissage-s2"
+            },
+            {
+              "id": "vernissage-s1-c",
+              "texte": "Facturer la moitié du prix, et prendre le reste en billets.",
+              "juste": false,
+              "effets": {
+                "redressement": 6000,
+                "patience": 0,
+                "stress": 10
+              },
+              "reaction": "Le collectionneur sourit. Votre facture, elle, a soudain l'air d'une reproduction.",
+              "explication": "Une facture minorée pour couvrir des billets, c'est une pièce maquillée : on risque de passer de l'omission à la manœuvre frauduleuse, majorée de 80 %.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": "vernissage-s2"
+            },
+            {
+              "id": "vernissage-s1-d",
+              "texte": "Noter la vente au crayon dans un petit carnet à part, « pour plus tard ».",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": 0,
+                "stress": 10
+              },
+              "reaction": "Le carnet rejoint le tiroir. Plus tard arrive toujours plus tôt qu'on ne croit, surtout un lundi matin.",
+              "explication": "Un carnet à part ne remplace pas la comptabilité : tant que la vente n'y est pas passée, c'est une recette non déclarée, et la garder ainsi de propos délibéré coûte 40 % de majoration.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": "vernissage-s2"
+            }
+          ]
+        },
+        {
+          "id": "vernissage-s2",
+          "personnage": "livreur",
+          "texte": "Le livreur de toiles décharge une grande toile que la galerie vient d'acheter à une jeune peintre, bien vivante et très fière. « On l'accroche où, patron ? Et la facture de l'artiste, je la range où ? »",
+          "choix": [
+            {
+              "id": "vernissage-s2-a",
+              "texte": "L'inscrire à l'actif de la galerie et l'accrocher dans la salle d'exposition, face à l'entrée.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 0,
+                "stress": -10
+              },
+              "reaction": "Le livreur la suspend face à la porte. Les visiteurs s'arrêtent devant ; un enfant demande si le bleu est fait exprès.",
+              "explication": "Toile d'une peintre vivante, inscrite à l'actif et visible de chaque visiteur : la galerie pourra en étaler la déduction, à condition de la laisser là pendant toute la durée.",
+              "references": [
+                "R-238BAB"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "vernissage-s2-b",
+              "texte": "Passer tout le prix en charges cette année : ça fera un joli trou dans le bénéfice.",
+              "juste": false,
+              "effets": {
+                "redressement": 2000,
+                "patience": 0,
+                "stress": 5
+              },
+              "reaction": "Le livreur compte sur ses doigts. « Tout d'un coup ? Même moi, je sais que ça se paie en plusieurs fois. »",
+              "explication": "La déduction d'une œuvre ne se prend pas d'un bloc : elle se répartit à parts égales, cette année puis les quatre suivantes.",
+              "references": [
+                "R-238BAB"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "vernissage-s2-c",
+              "texte": "L'accrocher dans le bureau de votre assistante : elle adore le bleu.",
+              "juste": false,
+              "effets": {
+                "redressement": 1000,
+                "patience": 0,
+                "stress": 0
+              },
+              "reaction": "Votre assistante est ravie. La toile aussi, sans doute. Les visiteurs, eux, ne la verront jamais.",
+              "explication": "Le bureau d'une salariée est justement le lieu exclu : même vue chaque jour par l'équipe, la toile n'y ouvre aucun droit à déduction.",
+              "references": [
+                "R-238BAB"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "vernissage-s2-d",
+              "texte": "La garder emballée en réserve, pour qu'elle ne prenne pas la poussière.",
+              "juste": false,
+              "effets": {
+                "redressement": 1500,
+                "patience": 0,
+                "stress": 5
+              },
+              "reaction": "La toile passe l'hiver dans son papier bulle. Elle est très bien protégée, et parfaitement invisible.",
+              "explication": "Emballée en réserve, la toile n'est montrée à personne : sans exposition, son prix ne se déduit pas.",
+              "references": [
+                "R-238BAB"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "oeuvres",
       "titre": "Les tableaux voyageurs",
       "scenes": [
         {
           "id": "oeuvres-s1",
           "personnage": "poney",
-          "texte": "M. Lucien Poney feuillette l'actif de la galerie : une grande toile d'un peintre vivant, déduite « car exposée au public ». « Superbe acquisition. Et ce public, où la voit-il ? »",
+          "texte": "M. Lucien Poney feuillette l'actif de la galerie : une autre grande toile, déduite elle aussi « car exposée au public ». « Superbe acquisition. Et ce public, où la voit-il ? »",
           "choix": [
             {
               "id": "oeuvres-s1-a",
@@ -77,16 +226,131 @@
                 "R-238BAB"
               ],
               "suivant": "oeuvres-s2"
+            },
+            {
+              "id": "oeuvres-s1-c",
+              "texte": "« Elle tourne : un mois au mur de la salle, le reste de l'année au garde-meuble. »",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -10,
+                "stress": 5
+              },
+              "reaction": "M. Poney consulte le registre du garde-meuble. « Onze mois sur le banc de touche, ce n'est plus un titulaire. »",
+              "explication": "Une courte apparition au mur ne suffit pas : la toile doit rester visible tout au long des années où l'on déduit son prix, pas seulement le temps d'une saison.",
+              "references": [
+                "R-238BAB"
+              ],
+              "suivant": "oeuvres-s2"
             }
           ]
         },
         {
           "id": "oeuvres-s2",
+          "type": "tri",
+          "personnage": "poney",
+          "texte": "M. Poney étale les fiches d'inventaire sur la table, comme une composition d'équipe. « On fait le tri : quelles œuvres ouvrent droit à la déduction, et lesquelles restent sur le banc ? »",
+          "parametres": {
+            "bacs": [
+              "Déduction possible",
+              "Pas de déduction"
+            ],
+            "pieces": [
+              {
+                "texte": "Toile d'une peintre vivante, accrochée dans la salle d'exposition",
+                "bac_attendu": "Déduction possible"
+              },
+              {
+                "texte": "Toile d'un artiste vivant, accrochée dans la salle de pause de l'équipe",
+                "bac_attendu": "Déduction possible"
+              },
+              {
+                "texte": "Gravure d'un maître disparu depuis deux siècles, dans la vitrine",
+                "bac_attendu": "Pas de déduction"
+              },
+              {
+                "texte": "Sculpture d'un artiste vivant, posée dans votre chambre",
+                "bac_attendu": "Pas de déduction"
+              },
+              {
+                "texte": "Toile d'un artiste vivant, dans le bureau de votre assistante",
+                "bac_attendu": "Pas de déduction"
+              },
+              {
+                "texte": "Affiche imprimée en série, vendue à la boutique",
+                "bac_attendu": "Pas de déduction"
+              }
+            ]
+          },
+          "issues": [
+            {
+              "id": "oeuvres-tri-parfait",
+              "si": [
+                {
+                  "op": ">=",
+                  "valeur": 6
+                }
+              ],
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -5
+              },
+              "animation": "tampon",
+              "reaction": "M. Poney range les fiches en deux colonnes impeccables. « Sans faute. Même la VAR n'aurait rien trouvé. »",
+              "explication": "Bon tri : seules la toile de la salle d'exposition et celle de la salle de pause cochent toutes les cases. Le maître disparu, l'affiche en série, la chambre et le bureau de l'assistante restent sur le banc.",
+              "references": [
+                "R-238BAB"
+              ],
+              "suivant": "oeuvres-s3"
+            },
+            {
+              "id": "oeuvres-tri-presque",
+              "si": [
+                {
+                  "op": ">=",
+                  "valeur": 4
+                }
+              ],
+              "juste": false,
+              "effets": {
+                "redressement": 2000,
+                "patience": -5,
+                "stress": 5
+              },
+              "reaction": "M. Poney déplace deux fiches d'une colonne à l'autre, sans un mot. Le silence est pire qu'un coup de sifflet.",
+              "explication": "Presque. Il faut tout à la fois : une œuvre originale, un artiste vivant et un lieu où le public ou l'équipe la voient, hors des bureaux. Il suffit d'une case vide pour que la déduction tombe.",
+              "references": [
+                "R-238BAB"
+              ],
+              "suivant": "oeuvres-s3"
+            },
+            {
+              "id": "oeuvres-tri-rate",
+              "juste": false,
+              "effets": {
+                "redressement": 5000,
+                "patience": -10,
+                "stress": 10
+              },
+              "animation": "secousse",
+              "reaction": "M. Poney reprend toutes les fiches. « Je vais refaire le tri moi-même. Ce sera plus rapide, et surtout plus cher pour vous. »",
+              "explication": "Raté : une gravure ancienne, une affiche en série, une œuvre dans votre chambre ou dans un bureau ne donnent droit à rien. Seules les créations originales d'artistes vivants, montrées au public ou à l'équipe, comptent.",
+              "references": [
+                "R-238BAB"
+              ],
+              "suivant": "oeuvres-s3"
+            }
+          ]
+        },
+        {
+          "id": "oeuvres-s3",
           "personnage": "livreur",
           "texte": "Le livreur de toiles passe une tête : « Je remets les tableaux aux murs ? Vous m'aviez dit de tout charger dans la camionnette dès que le contrôleur sonnerait. »",
           "choix": [
             {
-              "id": "oeuvres-s2-a",
+              "id": "oeuvres-s3-a",
               "texte": "« Oui, tout aux murs, et on montre l'inventaire complet à M. Poney. »",
               "juste": true,
               "effets": {
@@ -102,7 +366,7 @@
               "suivant": null
             },
             {
-              "id": "oeuvres-s2-b",
+              "id": "oeuvres-s3-b",
               "texte": "« Quels tableaux ? Il n'y a jamais eu de tableaux. »",
               "juste": false,
               "effets": {
@@ -112,6 +376,38 @@
               },
               "reaction": "M. Poney montre du doigt les rectangles plus clairs sur le papier peint. « Il y avait des tableaux. Je les vois d'ici, à trente mètres. »",
               "explication": "Nier ce que l'inventaire montre, c'est transformer un oubli en dissimulation délibérée (40 % de majoration), et en manœuvre frauduleuse (80 %) si l'on maquille les comptes pour faire disparaître les œuvres.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "oeuvres-s3-c",
+              "texte": "« Dites-lui qu'ils sont prêtés à une exposition à l'étranger. »",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -15,
+                "stress": 10
+              },
+              "reaction": "M. Poney demande le nom de l'exposition, la ville et les dates. Le livreur regarde ses chaussures, longuement.",
+              "explication": "Inventer un prêt pour expliquer des murs vides, c'est tromper le contrôle en connaissance de cause : si cela couvre une déduction indue, le manquement délibéré se paie 40 % de majoration.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "oeuvres-s3-d",
+              "texte": "« Faites le tour du pâté de maisons jusqu'à ce qu'il reparte. »",
+              "juste": false,
+              "effets": {
+                "redressement": 2000,
+                "patience": -10,
+                "stress": 20
+              },
+              "reaction": "La camionnette passe sous la fenêtre. Une fois. Deux fois. À la troisième, M. Poney lui fait signe de revenir, comme à un ailier qui rentre sur le terrain.",
+              "explication": "Promener les toiles pendant le contrôle ne les fait pas sortir des comptes : elles restent à justifier, et cacher ainsi une déduction indue, c'est un manquement délibéré, majoré de 40 %.",
               "references": [
                 "R-1729"
               ],
@@ -140,7 +436,7 @@
                 "stress": -5
               },
               "reaction": "M. Poney hoche la tête. « Bon réflexe. On évite les prolongations. »",
-              "explication": "Les charges des résidences de plaisance sont exclues des charges déductibles, comme celles de la chasse et de la pêche non professionnelle.",
+              "explication": "Une maison où l'on passe ses week-ends reste une résidence de plaisance, même rebaptisée : la sortir vous-même des charges évite d'aggraver la note.",
               "references": [
                 "R-39-4"
               ],
@@ -156,10 +452,26 @@
                 "stress": 15
               },
               "reaction": "M. Poney examine la photo de la piscine, puis celle du barbecue. « Et le barbecue, c'est “Le Rouge” ? »",
-              "explication": "Les charges des résidences de plaisance sont exclues des charges déductibles ; en cas de manquement délibéré, les droits sont majorés de 40 %.",
+              "explication": "Rebaptiser une piscine en œuvre ne change rien : ses frais restent hors des charges déductibles, et ce déguisement volontaire peut y ajouter 40 % de majoration.",
               "references": [
                 "R-39-4",
                 "R-1729"
+              ],
+              "suivant": "campagne-s2"
+            },
+            {
+              "id": "campagne-s1-c",
+              "texte": "La garder en charges : vous y recevez parfois des artistes.",
+              "juste": false,
+              "effets": {
+                "redressement": 5000,
+                "patience": -10,
+                "stress": 5
+              },
+              "reaction": "M. Poney demande le livre d'or de la maison. Il y trouve surtout vos cousins, et le chien des voisins.",
+              "explication": "Quelques artistes invités le temps d'un week-end ne transforment pas une maison de vacances en atelier : ses frais restent exclus des charges de la galerie.",
+              "references": [
+                "R-39-4"
               ],
               "suivant": "campagne-s2"
             }
@@ -201,6 +513,22 @@
                 "R-39-4"
               ],
               "suivant": null
+            },
+            {
+              "id": "campagne-s2-c",
+              "texte": "Le laisser à l'actif, mais n'en déduire « que » la moitié de l'amortissement.",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -5,
+                "stress": 5
+              },
+              "reaction": "M. Poney sort sa calculette. « La moitié de quoi, exactement ? Moi, je ne connais qu'une limite. »",
+              "explication": "La règle n'est pas une moitié choisie au hasard : on ne déduit l'amortissement que sur la part du prix sous le plafond, 18 300 € en règle générale.",
+              "references": [
+                "R-39-4"
+              ],
+              "suivant": null
             }
           ]
         }
@@ -208,6 +536,18 @@
     }
   ],
   "fins": [
+    {
+      "id": "galeriste-fin-livre-or",
+      "titre": "Le livre d'or a parlé",
+      "texte": "Le contrôle remonte jusqu'au soir du vernissage : la toile bleue payée en billets figure sur le livre d'or, remerciements signés de l'acheteur lui-même. M. Poney n'a même pas eu besoin de revoir l'action au ralenti.",
+      "conditions": [
+        {
+          "jauge": "redressement",
+          "op": ">=",
+          "valeur": 55000
+        }
+      ]
+    },
     {
       "id": "galeriste-fin-chef-oeuvre",
       "titre": "Chef-d'œuvre de comptabilité",
