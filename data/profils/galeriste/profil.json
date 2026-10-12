@@ -14,7 +14,8 @@
       "role": "verificateur",
       "nom": "M. Lucien Poney",
       "description": "Vérificateur fan de football. Il repère un faux à trente mètres, comme un hors-jeu, et commente tout comme un match.",
-      "portrait": "img/poney.svg"
+      "portrait": "img/poney.webp",
+      "illustration": "img/poney-situation.webp"
     },
     {
       "id": "galeriste",
@@ -29,7 +30,8 @@
       "role": "second",
       "nom": "Le livreur de toiles",
       "description": "Transporte les tableaux entre la galerie, votre appartement et sa camionnette. Surtout quand quelqu'un sonne.",
-      "portrait": "img/livreur.svg"
+      "portrait": "img/livreur.webp",
+      "illustration": "img/livreur-situation.webp"
     }
   ],
   "parcours": [
@@ -40,6 +42,12 @@
     "profil:campagne",
     "tronc:rectification"
   ],
+  "decors": {
+    "vernissage": "decors/galerie-cadres-vides.webp",
+    "avis": "decors/galerie-cadres-vides.webp",
+    "oeuvres": "decors/galerie-cadres-vides.webp",
+    "campagne": "decors/maison-campagne.webp"
+  },
   "references_obligatoires": [
     "R-238BAB",
     "R-39-4",

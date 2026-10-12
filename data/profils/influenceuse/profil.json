@@ -15,28 +15,32 @@
       "role": "verificateur",
       "nom": "M. Jean-Marc Story",
       "description": "Contrôleur courtois qui vous suit sur les réseaux depuis deux ans. Il a tout vu, et même liké certaines publications.",
-      "portrait": "img/story.svg"
+      "portrait": "img/story.webp",
+      "illustration": "img/story-situation.webp"
     },
     {
       "id": "cindy",
       "role": "joueur",
       "nom": "@CindyFiltre",
       "description": "Vous. Lumière parfaite, sourire permanent, comptabilité floue.",
-      "portrait": "img/cindy.svg"
+      "portrait": "img/cindy.webp",
+      "illustration": "img/cindy-situation.webp"
     },
     {
       "id": "manager",
       "role": "second",
       "nom": "Le manager",
       "description": "Lunettes de soleil en intérieur, oreillette vissée, une idée géniale par minute.",
-      "portrait": "img/manager.svg"
+      "portrait": "img/manager.webp",
+      "illustration": "img/manager-situation.webp"
     },
     {
       "id": "chihuahua",
       "role": "second",
       "nom": "Le chihuahua",
       "description": "Gilet brodé, regard humide, figure dans la note de frais. Ne s'exprime qu'en silence.",
-      "portrait": "img/chihuahua.svg"
+      "portrait": "img/chihuahua.webp",
+      "illustration": "img/chihuahua-situation.webp"
     }
   ],
   "parcours": [
@@ -47,6 +51,12 @@
     "profil:residence",
     "tronc:rectification"
   ],
+  "decors": {
+    "tournage": "decors/villa-piscine.webp",
+    "avis": "decors/studio-tournage.webp",
+    "partenariats": "decors/studio-tournage.webp",
+    "residence": "decors/villa-piscine.webp"
+  },
   "references_obligatoires": [
     "R-92",
     "R-L169",

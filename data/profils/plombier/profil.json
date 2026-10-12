@@ -14,7 +14,8 @@
       "role": "verificateur",
       "nom": "M. Bernard Rectif",
       "description": "Vérificateur rigoureux. Il a une fuite chez lui et voudrait bien un devis, mais il ne le demandera pas. Enfin, pas tout de suite.",
-      "portrait": "img/rectif.svg"
+      "portrait": "img/rectif.webp",
+      "illustration": "img/rectif-situation.webp"
     },
     {
       "id": "artisan",
@@ -29,21 +30,24 @@
       "role": "second",
       "nom": "Kevin",
       "description": "Auto-entrepreneur depuis mardi. Arrive à 7 h, repart à 17 h, porte le tee-shirt de l'entreprise.",
-      "portrait": "img/kevin.svg"
+      "portrait": "img/kevin.webp",
+      "illustration": "img/kevin-situation.webp"
     },
     {
       "id": "tonton",
       "role": "second",
       "nom": "Tonton Robert",
       "description": "Retraité, casquette vissée, « aide juste le samedi ». Tous les samedis.",
-      "portrait": "img/tonton.svg"
+      "portrait": "img/tonton.webp",
+      "illustration": "img/tonton-situation.webp"
     },
     {
       "id": "bellemaman",
       "role": "second",
       "nom": "Belle-maman",
       "description": "Fait refaire sa salle de bains et attend un tarif « famille ».",
-      "portrait": "img/bellemaman.svg"
+      "portrait": "img/bellemaman.webp",
+      "illustration": "img/bellemaman-situation.webp"
     }
   ],
   "parcours": [
@@ -54,6 +58,12 @@
     "profil:chantier",
     "tronc:rectification"
   ],
+  "decors": {
+    "ouverture": "decors/camionnette-atelier.webp",
+    "avis": "decors/camionnette-atelier.webp",
+    "devis": "decors/salle-de-bains-chantier.webp",
+    "chantier": "decors/salle-de-bains-chantier.webp"
+  },
   "references_obligatoires": [
     "R-278",
     "R-279-0B",
