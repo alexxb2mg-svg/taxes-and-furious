@@ -65,16 +65,16 @@ for (const id of IDS) {
   });
 
   test(`${id} : exploration exhaustive, toutes les fins sont atteignables`, () => {
+    // Deux parties arrivees a la meme scene avec les memes jauges ont le meme avenir (la fin ne depend
+    // que des jauges et de la fin anticipee) : chaque etat distinct n'est explore qu'une fois, ce qui
+    // garde l'exploration complete et rapide avec 3 ou 4 choix par scene (EX-142).
     const atteintes = new Set();
-    const pile = [nouvellePartie(scenario)];
-    // La suite d'une partie ne depend que de la position et des jauges : deux etats identiques sur ces
-    // points menent aux memes fins. Les explorer une seule fois garde le test rapide avec 16 a 24 scenes
-    // a 3 ou 4 choix (EX-142, EX-143), ou le nombre de parties possibles depasse le milliard.
     const vus = new Set();
+    const pile = [nouvellePartie(scenario)];
     let parties = 0;
     while (pile.length) {
       const e = pile.pop();
-      const cle = JSON.stringify([e.chapitre, e.scene, e.jauges, e.terminee, e.anticipee]);
+      const cle = [e.chapitre, e.scene, e.jauges.redressement, e.jauges.patience, e.jauges.stress, e.terminee, e.anticipee].join('|');
       if (vus.has(cle)) continue;
       vus.add(cle);
       if (estTerminee(e)) {
