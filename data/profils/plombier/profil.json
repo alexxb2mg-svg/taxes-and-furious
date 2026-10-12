@@ -75,7 +75,7 @@
                 "stress": -5
               },
               "reaction": "Belle-maman signe en soupirant. Elle souligne deux fois sa signature, par principe.",
-              "explication": "Ce que dit vraiment la loi : la TVA est à 10 % pour les travaux d'amélioration, de transformation, d'aménagement et d'entretien de locaux d'habitation achevés depuis plus de 2 ans. Pour appliquer ce taux réduit, le client certifie sur le devis ou la facture que les locaux sont des locaux d'habitation achevés depuis plus de 2 ans et que les travaux ne relèvent pas des exceptions ; l'entreprise conserve ces éléments, et le client est solidairement tenu au complément de taxe si ses mentions sont inexactes de son fait.",
+              "explication": "Bon réflexe : pour cette maison de plus de 2 ans, le taux de 10 % tient, à condition que la cliente le certifie sur le devis. Si elle y écrit faux, elle répond avec vous du complément de TVA.",
               "references": [
                 "R-279-0B",
                 "R-279-0B-3"
@@ -92,7 +92,7 @@
                 "stress": 10
               },
               "reaction": "M. Bernard Rectif, qui lisait par-dessus votre épaule, toussote poliment.",
-              "explication": "Ce que dit vraiment la loi : le taux de 5,5 % vise la rénovation énergétique (isolation thermique, chauffage et ventilation, eau chaude sanitaire) de locaux d'habitation achevés depuis au moins 2 ans, selon la liste fixée par arrêté. Les autres travaux d'amélioration ou d'aménagement d'un logement achevé depuis plus de 2 ans relèvent du taux de 10 %.",
+              "explication": "Le 5,5 % n'a rien de familial : il est réservé à la rénovation énergétique. Pour une salle de bains classique dans ce logement, c'est 10 %.",
               "references": [
                 "R-278-0BA",
                 "R-279-0B"
@@ -109,7 +109,7 @@
                 "stress": 10
               },
               "reaction": "Belle-maman approuve. M. Rectif, beaucoup moins. Le gratin n'apparaît dans aucune comptabilité.",
-              "explication": "Ce que dit vraiment la loi : le taux normal de TVA est de 20 % ; le taux de 10 % s'applique aux travaux d'amélioration, de transformation, d'aménagement et d'entretien de locaux d'habitation achevés depuis plus de 2 ans.",
+              "explication": "Un gratin n'a jamais réglé la TVA : ces travaux restent taxés, à 10 % dans cette maison de plus de 2 ans.",
               "references": [
                 "R-278",
                 "R-279-0B"
@@ -133,7 +133,7 @@
                 "stress": -5
               },
               "reaction": "« Voilà. » Il marque une pause. « Et chez moi, un siphon qui goutte, ce serait quel taux ? Non, oubliez. »",
-              "explication": "Ce que dit vraiment la loi : l'installation d'une chaudière à combustible fossile revient au taux normal de 20 %. Le taux de 5,5 % vise la rénovation énergétique, dont l'isolation thermique, de locaux d'habitation achevés depuis au moins 2 ans, chaudière à combustible fossile exclue.",
+              "explication": "Bonne correction : la chaudière au fioul repasse à 20 %, et l'isolation garde son 5,5 % de rénovation énergétique.",
               "references": [
                 "R-279-0B",
                 "R-278-0BA",
@@ -151,7 +151,7 @@
                 "stress": 15
               },
               "reaction": "M. Rectif sourit poliment. Chez lui, le siphon goutte toujours, et sa patience aussi.",
-              "explication": "Ce que dit vraiment la loi : le taux de 5,5 % de la rénovation énergétique exclut la chaudière à combustible fossile ; son installation relève du taux normal de 20 %.",
+              "explication": "Le fioul n'est pas de l'eau chaude, et la loi l'a prévu : une chaudière à combustible fossile reste au taux normal de 20 %, sans taux réduit.",
               "references": [
                 "R-278-0BA",
                 "R-279-0B"
@@ -252,7 +252,7 @@
               },
               "animation": "secousse",
               "reaction": "Le vérificateur ramasse tout. « On recommence depuis le début. Avec les factures de l'an dernier, tant qu'on y est. »",
-              "explication": "Le taux normal est de 20 %. Le taux de 10 % ne vaut que pour les travaux dans un logement achevé depuis plus de 2 ans, hors neuf et hors chaudière à combustible fossile, et le taux de 5,5 % pour la rénovation énergétique de ces mêmes logements.",
+              "explication": "Trop de factures dans la mauvaise pile : le neuf, les locaux professionnels et la chaudière au fioul restent à 20 % ; l'entretien d'un logement de plus de 2 ans passe à 10 %, la rénovation énergétique à 5,5 %.",
               "references": [
                 "R-279-0B",
                 "R-278-0BA",
@@ -283,7 +283,7 @@
                 "stress": -5
               },
               "reaction": "M. Rectif hoche la tête. Même le tuyau sous l'évier semble soulagé.",
-              "explication": "Ce que dit vraiment la loi : pour des travaux de construction (y compris réparation, nettoyage, entretien, transformation et démolition) réalisés par une entreprise sous-traitante pour le compte d'un preneur assujetti, la TVA est acquittée par le preneur. C'est l'autoliquidation.",
+              "explication": "Bien vu : comme sous-traitant d'une entreprise générale assujettie, vous facturez hors taxe, et c'est elle qui acquitte la TVA de vos travaux.",
               "references": [
                 "R-283-2N"
               ],
@@ -299,7 +299,7 @@
                 "stress": 10
               },
               "reaction": "« Au chaud ? » M. Rectif sort une calculatrice. Elle, en revanche, est très froide.",
-              "explication": "Ce que dit vraiment la loi : pour des travaux de construction réalisés par une entreprise sous-traitante pour le compte d'un preneur assujetti, la TVA est acquittée par le preneur (autoliquidation), et non par le sous-traitant.",
+              "explication": "Cette TVA n'est pas à vous : en sous-traitance du bâtiment, c'est l'entreprise générale qui l'acquitte. La garder au chaud ne fait que créer un problème.",
               "references": [
                 "R-283-2N"
               ],
@@ -322,7 +322,7 @@
                 "stress": -5
               },
               "reaction": "Kevin enfile son tee-shirt avec une fierté nouvelle. Il demande s'il aura des tickets-restaurant.",
-              "explication": "Ce que dit vraiment la loi : une personne immatriculée comme indépendante est présumée ne pas être salariée ; mais un contrat de travail peut être établi si elle travaille dans un lien de subordination juridique permanente envers son donneur d'ordre. Il y a alors dissimulation d'emploi salarié si le donneur d'ordre a voulu ainsi échapper à ses obligations d'employeur.",
+              "explication": "Horaires fixés, consignes chaque matin, vos outils et votre tee-shirt : Kevin a tout d'un salarié. L'embaucher, c'est éviter qu'on vous reproche d'avoir dissimulé son emploi.",
               "references": [
                 "R-L8221-6"
               ],
@@ -338,7 +338,7 @@
                 "stress": 15
               },
               "reaction": "Kevin lève la main : « Je fais quoi, chef ? » M. Rectif note le mot « chef ».",
-              "explication": "Ce que dit vraiment la loi : un indépendant travaillant dans un lien de subordination juridique permanente envers son donneur d'ordre peut être reconnu salarié, avec dissimulation d'emploi salarié si le donneur d'ordre a voulu échapper à ses obligations d'employeur. Le travail dissimulé est interdit, ainsi que le fait de recourir sciemment aux services de celui qui l'exerce.",
+              "explication": "Un statut d'indépendant ne protège pas si Kevin obéit comme un salarié : un contrat de travail peut être reconnu, et vous auriez dissimulé un emploi salarié.",
               "references": [
                 "R-L8221-6",
                 "R-L8221-1"
@@ -362,7 +362,7 @@
                 "stress": -5
               },
               "reaction": "Tonton Robert découvre son premier bulletin de paie depuis longtemps. Il l'encadre.",
-              "explication": "Ce que dit vraiment la loi : est du travail dissimulé le fait pour un employeur de se soustraire intentionnellement à la déclaration préalable à l'embauche, à la remise du bulletin de paie ou aux déclarations sociales.",
+              "explication": "Exactement : avant tout retour sur le chantier, la déclaration à l'embauche et un bulletin de paie font de Tonton un salarié en règle.",
               "references": [
                 "R-L8221-5"
               ],
@@ -378,7 +378,7 @@
                 "stress": 10
               },
               "reaction": "Tonton Robert approuve vigoureusement. M. Rectif, lui, ne voit pas de clause « famille » dans son code.",
-              "explication": "Ce que dit vraiment la loi : est du travail dissimulé le fait pour un employeur de se soustraire intentionnellement à la déclaration préalable à l'embauche, à la remise du bulletin de paie ou aux déclarations sociales. Le travail dissimulé est interdit, ainsi que le fait de recourir sciemment aux services de celui qui l'exerce.",
+              "explication": "La famille n'est pas une exception : Tonton travaille, il doit être déclaré. Sinon, c'est du travail dissimulé, et vous en répondez.",
               "references": [
                 "R-L8221-5",
                 "R-L8221-1"

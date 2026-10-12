@@ -56,7 +56,7 @@
                 "stress": -5
               },
               "reaction": "« Merci. Pour une fois, je n'ai pas eu besoin de dictionnaire. »",
-              "explication": "Ce que dit vraiment la loi : l'amortissement d'un véhicule de tourisme n'est déductible que dans la limite d'un plafond de prix : 18 300 € en règle générale, 30 000 € ou 20 300 € pour les véhicules peu émetteurs, 9 900 € pour les plus émetteurs.",
+              "explication": "Exactement : la voiture peut rester à l'actif, mais l'amortissement déduit s'arrête au plafond, 18 300 € en règle générale. Au-delà, c'est pour vous.",
               "references": [
                 "R-39-4"
               ],
@@ -72,7 +72,7 @@
                 "stress": 10
               },
               "reaction": "« “Pitcher”. » M. Tableur écrit le mot, l'entoure, et ajoute un point d'interrogation.",
-              "explication": "Ce que dit vraiment la loi : même utilisé pour l'activité, un véhicule de tourisme n'est amortissable en déduction que dans la limite d'un plafond de prix : 18 300 € en règle générale, et seulement 9 900 € pour les véhicules les plus émetteurs.",
+              "explication": "Pitcher plus vite ne relève pas le plafond : même utile au travail, une voiture de sport n'est amortie en déduction que sur 18 300 € de son prix, voire 9 900 € si elle pollue beaucoup.",
               "references": [
                 "R-39-4"
               ],
@@ -95,7 +95,7 @@
                 "stress": -5
               },
               "reaction": "La pile de notes fond de moitié. M. Tableur la trouve beaucoup plus lisible.",
-              "explication": "Ce que dit vraiment la loi : le bénéfice imposable se calcule après déduction des charges, dont les frais généraux.",
+              "explication": "Seuls les repas pris pour l'entreprise viennent en déduction ; avec les justificatifs, chaque note se défend.",
               "references": [
                 "R-39-1"
               ],
@@ -111,7 +111,7 @@
                 "stress": 10
               },
               "reaction": "« Idéation. » M. Tableur demande poliment si le dessert faisait partie de la stratégie.",
-              "explication": "Ce que dit vraiment la loi : le bénéfice se calcule après déduction des charges, dont les frais généraux ; en cas de manquement délibéré, les droits sont majorés de 40 %.",
+              "explication": "Un nouveau nom ne fait pas un nouveau repas : un déjeuner privé reste privé, et l'habiller en atelier pour le déduire, c'est un manquement délibéré, majoré de 40 %.",
               "references": [
                 "R-39-1",
                 "R-1729"
@@ -243,7 +243,7 @@
                 "stress": -5
               },
               "reaction": "M. Tableur hoche la tête. Il a l'air d'apprécier les mots « sans excès ».",
-              "explication": "Ce que dit vraiment la loi : le bénéfice se calcule après déduction des charges, mais les rémunérations ne sont déductibles que si elles correspondent à un travail effectif et ne sont pas excessives.",
+              "explication": "Une rémunération qui suit le travail vraiment accompli se déduit ; c'est l'excès qui serait refusé.",
               "references": [
                 "R-39-1"
               ],
@@ -259,7 +259,7 @@
                 "stress": 10
               },
               "reaction": "« Visionner. » M. Tableur demande s'il existe une feuille de temps de vos visions.",
-              "explication": "Ce que dit vraiment la loi : les rémunérations ne sont déductibles que si elles correspondent à un travail effectif et ne sont pas excessives.",
+              "explication": "Visionner n'est pas travailler : la part du salaire qui dépasse le travail vraiment accompli ne vient pas en déduction.",
               "references": [
                 "R-39-1"
               ],
@@ -282,7 +282,7 @@
                 "stress": -10
               },
               "reaction": "Votre expert-comptable reprend sa lettre, la plie en deux et la range. Pour l'instant.",
-              "explication": "Ce que dit vraiment la loi : un manquement délibéré entraîne une majoration de 40 % des droits ; des manœuvres frauduleuses, une majoration de 80 %.",
+              "explication": "Avouer et retirer, c'est le seul moyen de limiter la casse : des factures fabriquées relèvent des manœuvres frauduleuses, majorées de 80 %.",
               "references": [
                 "R-1729"
               ],
@@ -298,7 +298,7 @@
                 "stress": 20
               },
               "reaction": "Votre expert-comptable enfile son manteau et sort sans un mot. M. Tableur, lui, reste. Longtemps.",
-              "explication": "Ce que dit vraiment la loi : la majoration est de 40 % en cas de manquement délibéré et de 80 % en cas de manœuvres frauduleuses.",
+              "explication": "« Prototype » ou pas, une facture inventée est une fausse facture : la majoration atteint 80 % des droits.",
               "references": [
                 "R-1729"
               ],

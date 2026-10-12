@@ -66,7 +66,7 @@
                 "stress": -5
               },
               "reaction": "Mme Frange ajuste sa frange, ce qui chez elle équivaut à un sourire.",
-              "explication": "Ce que dit vraiment la loi : un assujetti qui enregistre, au moyen d'un logiciel ou d'un système de caisse, des livraisons ou des prestations ne donnant pas lieu à facturation doit utiliser un système qui garantit l'inaltérabilité, la sécurisation, la conservation et l'archivage des données, attesté par un certificat d'un organisme accrédité ou par une attestation individuelle de l'éditeur.",
+              "explication": "Chaque coupe en espèces passée dans une caisse certifiée, c'est une recette qui ne peut plus disparaître : exactement ce qu'on attend d'un salon.",
               "references": [
                 "R-286"
               ],
@@ -82,7 +82,7 @@
                 "stress": 10
               },
               "reaction": "Mme Frange teste l'option. Le mois de décembre s'évapore. Elle aussi, presque.",
-              "explication": "Ce que dit vraiment la loi : le système de caisse doit garantir l'inaltérabilité, la sécurisation, la conservation et l'archivage des données. Ne pas pouvoir produire l'attestation ou le certificat entraîne une amende de 7 500 € par logiciel ou système, puis un délai de 60 jours pour se mettre en conformité, faute de quoi l'amende peut s'appliquer à nouveau.",
+              "explication": "Une « option suppression », c'est l'inverse d'une caisse inaltérable. Sans certificat ni attestation à montrer, l'amende est de 7 500 € par logiciel.",
               "references": [
                 "R-286",
                 "R-1770DUO"
@@ -106,7 +106,7 @@
                 "stress": -5
               },
               "reaction": "Les casques séchoirs hochent la tête en cadence. Mme Frange note : rien à noter.",
-              "explication": "Ce que dit vraiment la loi : le système de caisse qui enregistre les prestations ne donnant pas lieu à facturation doit garantir l'inaltérabilité, la sécurisation, la conservation et l'archivage des données.",
+              "explication": "Un ticket pour tout le monde, espèces comprises : chaque coupe laisse une trace qui ne s'efface pas, comme on l'attend d'une caisse.",
               "references": [
                 "R-286"
               ],
@@ -122,7 +122,7 @@
                 "stress": 15
               },
               "reaction": "Mme Frange a vu le clin d'œil. Les clientes aussi. Tout le quartier le saura avant midi.",
-              "explication": "Ce que dit vraiment la loi : le système de caisse doit garantir l'inaltérabilité, la sécurisation, la conservation et l'archivage des données ; sans attestation ni certificat, l'amende est de 7 500 € par logiciel ou système.",
+              "explication": "Un clin d'œil devant Mme Frange, c'est une recette qui risque de ne jamais entrer en caisse. Or la caisse doit tout garder, et sans attestation l'amende est de 7 500 €.",
               "references": [
                 "R-286",
                 "R-1770DUO"
@@ -152,7 +152,7 @@
                 "stress": -5
               },
               "reaction": "La locataire du fauteuil 3 choisit enfin la couleur de sa blouse : la même, mais avec un contrat.",
-              "explication": "Ce que dit vraiment la loi : une personne immatriculée comme indépendante est présumée ne pas être salariée ; mais un contrat de travail peut être établi si elle travaille dans un lien de subordination juridique permanente envers son donneur d'ordre, avec dissimulation d'emploi salarié si celui-ci a voulu échapper à ses obligations d'employeur.",
+              "explication": "Horaires, tarifs, rendez-vous, jusqu'à la blouse : c'est vous qui décidez, elle travaille comme une salariée. La salarier, c'est éviter qu'on vous reproche d'avoir dissimulé son emploi.",
               "references": [
                 "R-L8221-6"
               ],
@@ -168,7 +168,7 @@
                 "stress": 15
               },
               "reaction": "La locataire lève la main : « Patronne, je prends la permanente de 15 h ? » Mme Frange note le mot « patronne ».",
-              "explication": "Ce que dit vraiment la loi : un indépendant travaillant dans un lien de subordination juridique permanente envers son donneur d'ordre peut être reconnu salarié, avec dissimulation d'emploi salarié si le donneur d'ordre a voulu échapper à ses obligations d'employeur.",
+              "explication": "Louer un fauteuil n'empêche pas d'être salariée : quand vous décidez de ses horaires, de ses tarifs et de ses rendez-vous, un contrat de travail peut être reconnu, et vous l'auriez caché.",
               "references": [
                 "R-L8221-6"
               ],
@@ -191,7 +191,7 @@
                 "stress": -5
               },
               "reaction": "L'apprentie pose son balai et lit son premier bulletin de paie comme un roman.",
-              "explication": "Ce que dit vraiment la loi : est du travail dissimulé le fait pour un employeur de se soustraire intentionnellement à la déclaration préalable à l'embauche, à la remise du bulletin de paie ou aux déclarations sociales.",
+              "explication": "Bonne décision : la déclaration à l'embauche et les bulletins de paie la font sortir de l'ombre avant que ça coûte cher.",
               "references": [
                 "R-L8221-5"
               ],
@@ -207,7 +207,7 @@
                 "stress": 15
               },
               "reaction": "L'apprentie salue Mme Frange en l'appelant « madame la cliente ». Le balai tremble légèrement.",
-              "explication": "Ce que dit vraiment la loi : est du travail dissimulé le fait pour un employeur de se soustraire intentionnellement à la déclaration préalable à l'embauche, à la remise du bulletin de paie ou aux déclarations sociales.",
+              "explication": "Des années à « balayer », sans déclaration ni bulletin de paie, ce sont des années de travail dissimulé.",
               "references": [
                 "R-L8221-5"
               ],
@@ -230,7 +230,7 @@
                 "stress": -5
               },
               "reaction": "Le sèche-cheveux en or retourne à la maison. Il souffle, ce qui reste son seul talent.",
-              "explication": "Ce que dit vraiment la loi : le bénéfice imposable se calcule après déduction des charges, dont les frais généraux.",
+              "explication": "Seules les dépenses du salon viennent en déduction ; les vacances de la famille restent à la charge de la famille.",
               "references": [
                 "R-39-1"
               ],
@@ -246,7 +246,7 @@
                 "stress": 10
               },
               "reaction": "Mme Frange feuillette les photos de la thalasso. Pas un seul shampoing à l'horizon.",
-              "explication": "Ce que dit vraiment la loi : le bénéfice imposable se calcule après déduction des charges, dont les frais généraux.",
+              "explication": "Une thalasso n'est pas un test de shampooing : sans lien avec le salon, elle ne vient pas en déduction.",
               "references": [
                 "R-39-1"
               ],

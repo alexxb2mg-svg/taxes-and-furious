@@ -67,7 +67,7 @@
                 "stress": -10
               },
               "reaction": "« Inaltérable, sécurisé, archivé. Comme la recette de votre blanquette, j'imagine. » Elle range l'attestation avec soin.",
-              "explication": "Ce que dit vraiment la loi : un assujetti qui enregistre, au moyen d'un logiciel ou d'un système de caisse, des livraisons ou des prestations ne donnant pas lieu à facturation doit utiliser un système qui garantit l'inaltérabilité, la sécurisation, la conservation et l'archivage des données, attesté par un certificat d'un organisme accrédité ou par une attestation individuelle de l'éditeur.",
+              "explication": "C'est exactement la pièce attendue : pour une caisse qui encaisse des repas sans facture, l'attestation de l'éditeur prouve que les ventes ne peuvent être ni effacées ni retouchées.",
               "references": [
                 "R-286"
               ],
@@ -83,7 +83,7 @@
                 "stress": 15
               },
               "reaction": "Elle appuie une fois. Trois tables du samedi soir disparaissent de l'écran. « Fascinant. »",
-              "explication": "Ce que dit vraiment la loi : le système de caisse doit garantir l'inaltérabilité, la sécurisation, la conservation et l'archivage des données. Ne pas pouvoir produire l'attestation ou le certificat du logiciel est puni d'une amende de 7 500 € par logiciel ou système, puis il reste 60 jours pour se mettre en conformité, faute de quoi l'amende peut s'appliquer à nouveau.",
+              "explication": "Une touche qui efface des ventes, c'est précisément ce qu'une caisse inaltérable doit empêcher. Et sans attestation à montrer, l'amende est de 7 500 € par système.",
               "references": [
                 "R-286",
                 "R-1770DUO"
@@ -100,7 +100,7 @@
                 "stress": 10
               },
               "reaction": "« Et votre cousin a laissé un certificat ? Non ? Il a au moins laissé un numéro de téléphone ? »",
-              "explication": "Ce que dit vraiment la loi : ne pas pouvoir produire l'attestation ou le certificat du logiciel de caisse entraîne une amende de 7 500 € par logiciel ou système, puis un délai de 60 jours pour se mettre en conformité, faute de quoi l'amende peut s'appliquer à nouveau.",
+              "explication": "Le cousin ne paiera pas à votre place : sans attestation ni certificat à présenter, c'est vous qui risquez 7 500 € d'amende, puis 60 jours pour vous mettre en règle avant qu'elle puisse retomber.",
               "references": [
                 "R-1770DUO"
               ],
@@ -123,7 +123,7 @@
                 "stress": -5
               },
               "reaction": "Elle renoue son tablier, soulagée. Mme Addition note quelque chose, mais sans froncer les sourcils.",
-              "explication": "Ce que dit vraiment la loi : est du travail dissimulé le fait pour un employeur de se soustraire intentionnellement à la déclaration préalable à l'embauche, à la remise du bulletin de paie ou aux déclarations sociales.",
+              "explication": "La déclaration à l'embauche et les bulletins de paie, c'est justement ce qui fait de la belle-sœur une salariée en règle. Régulariser maintenant, c'est la sortir de l'ombre.",
               "references": [
                 "R-L8221-5"
               ],
@@ -139,7 +139,7 @@
                 "stress": 20
               },
               "reaction": "Un éternuement enfariné résonne dans la réserve. Mme Addition lève un sourcil, puis son stylo.",
-              "explication": "Ce que dit vraiment la loi : est du travail dissimulé le fait pour un employeur de se soustraire intentionnellement à la déclaration préalable à l'embauche, à la remise du bulletin de paie ou aux déclarations sociales. Cacher la personne ne change rien à l'obligation.",
+              "explication": "Cacher la belle-sœur derrière la farine n'efface pas son travail : sans déclaration ni bulletin de paie, c'est du travail dissimulé, qu'on la voie ou non.",
               "references": [
                 "R-L8221-5"
               ],
@@ -168,7 +168,7 @@
                 "stress": -5
               },
               "reaction": "Le chef hoche la tête et retourne à sa sauce, qui n'attend personne.",
-              "explication": "Ce que dit vraiment la loi : la TVA est à 10 % pour les ventes à consommer sur place et pour les ventes à emporter ou à livrer de produits alimentaires préparés en vue d'une consommation immédiate, sauf les boissons alcooliques, qui relèvent du taux normal.",
+              "explication": "Un plat préparé pour être mangé tout de suite suit le taux de la salle, 10 %, même emporté dans sa boîte en carton. Seul l'alcool fait exception.",
               "references": [
                 "R-279-MN"
               ],
@@ -184,7 +184,7 @@
                 "stress": 10
               },
               "reaction": "Mme Addition, de sa table, sans lever les yeux : « La boîte en carton ne change pas la recette. »",
-              "explication": "Ce que dit vraiment la loi : le taux de 5,5 % vise les denrées alimentaires destinées à la consommation humaine ; mais les produits alimentaires préparés en vue d'une consommation immédiate relèvent du taux de 10 %, à emporter comme sur place.",
+              "explication": "Le taux de 5,5 % vise les denrées alimentaires destinées à la consommation humaine ; mais les produits alimentaires préparés en vue d'une consommation immédiate relèvent du taux de 10 %, à emporter comme sur place.",
               "references": [
                 "R-278-0B-A1",
                 "R-279-MN"
@@ -208,7 +208,7 @@
                 "stress": -5
               },
               "reaction": "Mme Addition coche deux cases. Elle semble presque déçue de ne rien trouver.",
-              "explication": "Ce que dit vraiment la loi : le taux normal de TVA est de 20 %, et les boissons alcooliques en relèvent, même servies à table ; les denrées alimentaires destinées à la consommation humaine, comme des lentilles en sachet, relèvent du taux de 5,5 %.",
+              "explication": "Le vin reste à 20 %, même accompagné d'un bon plat ; les lentilles en sachet, simple denrée à cuisiner chez soi, passent à 5,5 %.",
               "references": [
                 "R-278",
                 "R-279-MN",
@@ -226,7 +226,7 @@
                 "stress": 10
               },
               "reaction": "« Plus simple, certainement. Plus juste, beaucoup moins. »",
-              "explication": "Ce que dit vraiment la loi : le taux de 10 % de la vente à consommer sur place exclut les boissons alcooliques, qui relèvent du taux normal de 20 %.",
+              "explication": "« Plus simple » ne suffit pas : le vin ne profite jamais du taux de la salle, il reste au taux normal de 20 %.",
               "references": [
                 "R-279-MN",
                 "R-278"
@@ -243,7 +243,7 @@
                 "stress": 15
               },
               "reaction": "« Une sauce servie en carafe, avec un verre à pied ? Votre chef saucier a de l'audace. »",
-              "explication": "Ce que dit vraiment la loi : les boissons alcooliques relèvent du taux normal de TVA, qui est de 20 %, même vendues à consommer sur place.",
+              "explication": "Changer le nom sur la carte ne change pas ce qu'il y a dans la carafe : c'est du vin, donc 20 %, servi à table ou non.",
               "references": [
                 "R-278",
                 "R-279-MN"
