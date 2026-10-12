@@ -33,6 +33,7 @@
     }
   ],
   "parcours": [
+    "profil:samedi",
     "tronc:avis",
     "profil:especes",
     "tronc:fec",
@@ -48,13 +49,129 @@
   ],
   "chapitres": [
     {
+      "id": "samedi",
+      "titre": "Un samedi au Bigoudi d'Or",
+      "scenes": [
+        {
+          "id": "samedi-s1",
+          "personnage": "clientes",
+          "texte": "Samedi, 9 h. Les casques séchoirs ronronnent, les bigoudis s'alignent et les clientes ont déjà un avis sur tout : « Votre caisse, elle fait des petits tickets, au moins ? Ma voisine dit que les caisses, maintenant, ça se surveille. »",
+          "choix": [
+            {
+              "id": "samedi-s1-a",
+              "texte": "Montrer la caisse et l'attestation de l'éditeur, punaisée derrière le comptoir.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 0,
+                "stress": -10
+              },
+              "reaction": "Les clientes hochent la tête sous les casques. « Une caisse avec un papier officiel ! On se croirait à la mairie. »",
+              "explication": "Toutes vos coupes sont payées sans facture : elles doivent donc passer par une caisse sécurisée, et avoir sa preuve de conformité sous la main vous évitera de la chercher le jour où on vous la demandera.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": "samedi-s2"
+            },
+            {
+              "id": "samedi-s1-b",
+              "texte": "« Elle fait des tickets quand elle est de bonne humeur. Les autres jours, je note sur un post-it. »",
+              "juste": false,
+              "effets": {
+                "redressement": 1500,
+                "patience": 0,
+                "stress": 5
+              },
+              "reaction": "Une cliente décolle un post-it du miroir. Il dit « brushing, 25 », ou peut-être « bisous, Josette ».",
+              "explication": "Un post-it se perd, se corrige et s'arrache : ce n'est pas un enregistrement qui ne peut plus être modifié, et les recettes notées dessus n'ont aucune garantie.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": "samedi-s2"
+            },
+            {
+              "id": "samedi-s1-c",
+              "texte": "« Les tickets, ça gâche du papier. Je fais confiance à ma mémoire. »",
+              "juste": false,
+              "effets": {
+                "redressement": 2500,
+                "patience": 0,
+                "stress": 10
+              },
+              "reaction": "« Votre mémoire ? Vous m'avez appelée Monique pendant dix ans », glisse la cliente du fauteuil 2.",
+              "explication": "Une mémoire, aussi bonne soit-elle, n'est pas un logiciel de caisse : vos coupes payées sans facture ne laissent alors aucune trace inaltérable, et rien ne prouve ce que vous avez encaissé.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": "samedi-s2"
+            }
+          ]
+        },
+        {
+          "id": "samedi-s2",
+          "personnage": "narrateur",
+          "texte": "Dimanche soir, vous faites les comptes de la semaine. Trois habituées ont payé en espèces « comme d'habitude, ma belle », sans que rien ne passe en caisse.",
+          "choix": [
+            {
+              "id": "samedi-s2-a",
+              "texte": "Enregistrer ces coupes dès lundi matin, et prendre l'habitude de tout encaisser sur le moment.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 0,
+                "stress": -5
+              },
+              "reaction": "Lundi, la caisse imprime trois tickets d'un coup. Elle a l'air presque contente.",
+              "explication": "Une coupe en espèces reste une recette comme une autre : en la passant dans la caisse sécurisée, vous lui donnez la même trace qu'un paiement par carte.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "samedi-s2-b",
+              "texte": "Ouvrir un petit carnet « Habituées » pour les espèces, rangé sous le bac à shampoing.",
+              "juste": false,
+              "effets": {
+                "redressement": 40000,
+                "patience": 0,
+                "stress": 5
+              },
+              "reaction": "Le carnet est joli, à fleurs, avec un élastique. Les clientes du samedi l'ont déjà remarqué.",
+              "explication": "Un carnet à part, c'est une seconde caisse sans aucune garantie : toutes les coupes qui y sont notées échappent au système qui devrait les enregistrer sans retouche possible.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "samedi-s2-c",
+              "texte": "Garder les billets de côté « pour les petites dépenses du salon », sans les compter.",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": 0,
+                "stress": 10
+              },
+              "reaction": "La boîte à biscuits des petites dépenses déborde. Personne ne sait plus ce qui vient d'où.",
+              "explication": "Des espèces dépensées avant d'avoir été encaissées, ce sont des recettes qui n'ont jamais existé pour la caisse : impossible ensuite de prouver ce que le salon a vraiment gagné.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "especes",
       "titre": "Le tiroir à espèces",
       "scenes": [
         {
           "id": "especes-s1",
           "personnage": "frange",
-          "texte": "Mme Brigitte Frange observe le tiroir-caisse, qui s'ouvre à la main avec une petite clé dorée. Aucun ticket n'en est jamais sorti.",
+          "texte": "Mme Brigitte Frange observe le vieux tiroir-caisse, qui s'ouvre à la main avec une petite clé dorée, puis l'écran de caisse posé à côté : « Lequel des deux enregistre vraiment vos coupes ? »",
           "choix": [
             {
               "id": "especes-s1-a",
@@ -88,6 +205,22 @@
                 "R-1770DUO"
               ],
               "suivant": "especes-s2"
+            },
+            {
+              "id": "especes-s1-c",
+              "texte": "Montrer l'écran de caisse, en précisant que les espèces du samedi n'y passent pas « faute de temps ».",
+              "juste": false,
+              "effets": {
+                "redressement": 4000,
+                "patience": -10,
+                "stress": 5
+              },
+              "reaction": "Mme Frange regarde la file d'attente imaginaire. « Le samedi, vous coiffez à la chaîne, et vous comptez à la louche ? »",
+              "explication": "Le samedi compte comme les autres jours : avoir une caisse conforme ne sert à rien si les coupes en espèces la contournent, et ces recettes-là restent sans trace fiable.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": "especes-s2"
             }
           ]
         },
@@ -110,7 +243,7 @@
               "references": [
                 "R-286"
               ],
-              "suivant": null
+              "suivant": "especes-s3"
             },
             {
               "id": "especes-s2-b",
@@ -123,6 +256,79 @@
               },
               "reaction": "Mme Frange a vu le clin d'œil. Les clientes aussi. Tout le quartier le saura avant midi.",
               "explication": "Un clin d'œil devant Mme Frange, c'est une recette qui risque de ne jamais entrer en caisse. Or le logiciel de caisse doit tout enregistrer sans rien effacer, et ne pas pouvoir présenter son attestation coûte 7 500 € d'amende.",
+              "references": [
+                "R-286",
+                "R-1770DUO"
+              ],
+              "suivant": "especes-s3"
+            },
+            {
+              "id": "especes-s2-c",
+              "texte": "« Mesdames, on parlera de ça quand la dame sera partie. »",
+              "juste": false,
+              "effets": {
+                "redressement": 1000,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "Un silence total s'abat sur le salon. Même les séchoirs semblent baisser le volume.",
+              "explication": "Remettre la question à plus tard, devant Mme Frange, c'est laisser entendre que certaines coupes ne passent pas par la caisse, alors qu'elles doivent toutes y être enregistrées.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": "especes-s3"
+            }
+          ]
+        },
+        {
+          "id": "especes-s3",
+          "personnage": "frange",
+          "texte": "Mme Frange désigne la petite caisse du présentoir à shampoings, branchée près de la vitrine : « Et celle-ci ? Vous avez son attestation aussi ? »",
+          "choix": [
+            {
+              "id": "especes-s3-a",
+              "texte": "Avouer qu'il n'y en a pas, réclamer l'attestation à l'éditeur et mettre la caisse en règle sans attendre.",
+              "juste": true,
+              "effets": {
+                "redressement": 1500,
+                "patience": 5,
+                "stress": -5
+              },
+              "reaction": "Mme Frange note la date au crayon. « Je repasserai. Pour la caisse, pas pour une frange. »",
+              "explication": "Chaque caisse compte : sans attestation pour celle du présentoir, l'amende de 7 500 € peut tomber ; vous avez ensuite 60 jours pour vous mettre en règle, et vous les utilisez.",
+              "references": [
+                "R-1770DUO"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "especes-s3-b",
+              "texte": "« Elle ne compte pas : elle ne vend que des shampoings. »",
+              "juste": false,
+              "effets": {
+                "redressement": 7500,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "Mme Frange prend un flacon, lit l'étiquette, le repose. « Il se vend, ce shampoing ? Alors elle compte. »",
+              "explication": "Des shampoings vendus sans facture, ce sont aussi des recettes : la caisse du présentoir est concernée, et faute d'attestation, l'amende de 7 500 € vaut pour elle aussi.",
+              "references": [
+                "R-286",
+                "R-1770DUO"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "especes-s3-c",
+              "texte": "Imprimer un certificat maison, avec un tampon en forme de bigoudi.",
+              "juste": false,
+              "effets": {
+                "redressement": 7500,
+                "patience": -25,
+                "stress": 20
+              },
+              "reaction": "Mme Frange examine le tampon à la loupe. « Le bigoudi est très réussi. Le certificat, beaucoup moins. »",
+              "explication": "Un certificat fait maison ne vaut rien : seule compte la preuve délivrée par un organisme accrédité ou par l'éditeur. Faute de la produire, l'amende de 7 500 € s'applique.",
               "references": [
                 "R-286",
                 "R-1770DUO"
@@ -173,6 +379,22 @@
                 "R-L8221-6"
               ],
               "suivant": "salon-s2"
+            },
+            {
+              "id": "salon-s1-c",
+              "texte": "Lui faire signer en vitesse un contrat de « location de fauteuil » daté de l'an dernier.",
+              "juste": false,
+              "effets": {
+                "redressement": 5000,
+                "patience": -25,
+                "stress": 20
+              },
+              "reaction": "L'encre est encore fraîche. Mme Frange souffle dessus, poliment, pour la faire sécher.",
+              "explication": "Un papier signé à la hâte ne change rien à la réalité : si c'est vous qui organisez tout son travail, le lien de subordination est là, et le contrat de location ne fait que maquiller un emploi salarié.",
+              "references": [
+                "R-L8221-6"
+              ],
+              "suivant": "salon-s2"
             }
           ]
         },
@@ -195,7 +417,7 @@
               "references": [
                 "R-L8221-5"
               ],
-              "suivant": "salon-s3"
+              "suivant": "salon-tri"
             },
             {
               "id": "salon-s2-b",
@@ -211,42 +433,118 @@
               "references": [
                 "R-L8221-5"
               ],
-              "suivant": "salon-s3"
+              "suivant": "salon-tri"
+            },
+            {
+              "id": "salon-s2-c",
+              "texte": "« Elle est en stage d'observation. Elle observe le balai. »",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "L'apprentie, qui vient de faire trois shampoings et une couleur, hoche la tête avec conviction.",
+              "explication": "Elle fait des shampoings et des couleurs : ce n'est plus de l'observation. Sans déclaration à l'embauche ni bulletin de paie, son travail reste dissimulé.",
+              "references": [
+                "R-L8221-5"
+              ],
+              "suivant": "salon-tri"
             }
           ]
         },
         {
-          "id": "salon-s3",
-          "personnage": "narrateur",
-          "texte": "Dans les charges du salon, Mme Frange trouve des shampoings pour toute la famille, trois séjours en thalasso et un sèche-cheveux en or massif « pour la vitrine ».",
-          "choix": [
+          "id": "salon-tri",
+          "type": "tri",
+          "personnage": "frange",
+          "texte": "Mme Frange vide sur le comptoir la boîte des factures du salon : shampoings, thalasso, sèche-cheveux en or massif « pour la vitrine »... « Faisons deux tas. Ce qui sert au salon, et ce qui sert à la famille. »",
+          "parametres": {
+            "bacs": [
+              "Dépense du salon",
+              "Dépense de la famille"
+            ],
+            "pieces": [
+              {
+                "texte": "Shampoings professionnels pour le bac du salon",
+                "bac_attendu": "Dépense du salon"
+              },
+              {
+                "texte": "Shampoings pour toute la famille, cousins compris",
+                "bac_attendu": "Dépense de la famille"
+              },
+              {
+                "texte": "Loyer du local du salon",
+                "bac_attendu": "Dépense du salon"
+              },
+              {
+                "texte": "Trois séjours en thalasso « pour tester les produits »",
+                "bac_attendu": "Dépense de la famille"
+              },
+              {
+                "texte": "Blouses et ciseaux de l'équipe",
+                "bac_attendu": "Dépense du salon"
+              },
+              {
+                "texte": "Sèche-cheveux en or massif, rapporté à la maison",
+                "bac_attendu": "Dépense de la famille"
+              }
+            ]
+          },
+          "issues": [
             {
-              "id": "salon-s3-a",
-              "texte": "Retirer des charges les dépenses de la famille et ne garder que celles du salon.",
+              "id": "salon-tri-parfait",
+              "si": [
+                {
+                  "op": ">=",
+                  "valeur": 6
+                }
+              ],
               "juste": true,
               "effets": {
-                "redressement": 1000,
+                "redressement": 0,
                 "patience": 10,
                 "stress": -5
               },
-              "reaction": "Le sèche-cheveux en or retourne à la maison. Il souffle, ce qui reste son seul talent.",
-              "explication": "Seules les dépenses du salon viennent en déduction ; les vacances de la famille restent à la charge de la famille.",
+              "animation": "tampon",
+              "reaction": "Deux tas bien nets. Mme Frange range la thalasso et le sèche-cheveux en or du côté de la famille, sans un mot.",
+              "explication": "Shampoings du bac, loyer, blouses : ces frais servent le salon et se retirent du bénéfice. La thalasso, les shampoings des cousins et le sèche-cheveux de la maison restent à la charge de la famille.",
               "references": [
                 "R-39-1"
               ],
               "suivant": null
             },
             {
-              "id": "salon-s3-b",
-              "texte": "« La thalasso, c'est pour tester les nouveaux produits capillaires. »",
+              "id": "salon-tri-presque",
+              "si": [
+                {
+                  "op": ">=",
+                  "valeur": 4
+                }
+              ],
+              "juste": false,
+              "effets": {
+                "redressement": 1000,
+                "patience": -5,
+                "stress": 5
+              },
+              "reaction": "Mme Frange fait passer un ou deux papiers d'un tas à l'autre, du bout des doigts.",
+              "explication": "Presque : seuls les frais engagés pour faire tourner le salon se déduisent. Une dépense de la famille glissée dans le mauvais tas est reprise.",
+              "references": [
+                "R-39-1"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "salon-tri-rate",
               "juste": false,
               "effets": {
                 "redressement": 3000,
                 "patience": -15,
                 "stress": 10
               },
-              "reaction": "Mme Frange feuillette les photos de la thalasso. Pas un seul shampoing à l'horizon.",
-              "explication": "Une thalasso n'est pas un test de shampooing : sans lien avec le salon, elle ne vient pas en déduction.",
+              "animation": "secousse",
+              "reaction": "Mme Frange reprend toute la boîte. « Je vais refaire les tas moi-même. Le sèche-cheveux en or, je le mets à sa place : chez vous. »",
+              "explication": "La thalasso et le sèche-cheveux en or ne servent pas le salon : sans lien avec l'activité, ces dépenses ne se déduisent pas et sont réintégrées au bénéfice.",
               "references": [
                 "R-39-1"
               ],
@@ -258,6 +556,18 @@
     }
   ],
   "fins": [
+    {
+      "id": "coiffeuse-fin-carnet",
+      "titre": "Le carnet des habituées",
+      "texte": "Une cliente du samedi, toute fière, a montré à Mme Brigitte Frange le joli carnet à fleurs rangé sous le bac à shampoing. Chaque coupe en espèces y figurait, avec la date. Le redressement aussi a une très belle écriture.",
+      "conditions": [
+        {
+          "jauge": "redressement",
+          "op": ">=",
+          "valeur": 55000
+        }
+      ]
+    },
     {
       "id": "coiffeuse-fin-brushing",
       "titre": "Brushing impeccable",

@@ -1,25 +1,156 @@
 {
-  "avis-s2": {
-    "texte": "Mme Brigitte Frange s'assoit sur le fauteuil 1, refuse poliment le shampoing et sort son carnet : « Je viens pour la comptabilité. La coupe, ce sera une autre fois. »",
+  "avis-s1": {
+    "texte": "Lundi, jour de fermeture du salon. Entre deux catalogues de colorations, le facteur dépose une lettre recommandée : avis de vérification de comptabilité. Le fer à friser, resté branché, refroidit tout seul.",
     "choix": {
+      "avis-s1-a": {
+        "texte": "Lire l'avis en entier, sous la lampe du poste de manucure, petites lignes comprises.",
+        "reaction": "Vous découvrez les années contrôlées et une mention sur l'assistance d'un conseil. Plus passionnant que le nuancier des blonds, c'est dire."
+      },
+      "avis-s1-b": {
+        "texte": "Le glisser sous la pile de magazines de la salle d'attente.",
+        "reaction": "Une cliente du samedi le retrouvera entre deux pages people. Elle le lira à voix haute, évidemment."
+      },
+      "avis-s1-c": {
+        "reaction": "La lettre finit dans le tiroir des bigoudis cassés. Votre expert-comptable l'apprendra trois semaines plus tard, par une cliente."
+      }
+    }
+  },
+  "avis-s2": {
+    "texte": "Mme Brigitte Frange s'assoit sur le fauteuil 1, refuse poliment le shampoing et sort son carnet : « Je viens pour la comptabilité. La coupe, ce sera une autre fois. Nous commençons quand la loi le veut. »",
+    "choix": {
+      "avis-s2-a": {
+        "texte": "Lui demander combien de temps elle va occuper le fauteuil 1.",
+        "reaction": "« Pour un salon de votre taille, il y a une limite. Le fauteuil sera libre bien avant votre prochaine permanente. »"
+      },
       "avis-s2-b": {
         "texte": "Lui proposer un balayage gratuit pour « détendre l'atmosphère ».",
         "reaction": "« Merci, je préfère vérifier vos comptes. Et je paierai ma coupe, le jour où j'en prendrai une. »"
+      },
+      "avis-s2-c": {
+        "reaction": "Mme Frange note la promesse au crayon, entre « frange » et « FEC ». « Je patienterai. Le délai aussi. »"
+      }
+    }
+  },
+  "avis-s3": {
+    "texte": "Votre expert-comptable relit l'avis en faisant tourner un peigne entre ses doigts : « Elle regarde quelles années, déjà ? Je sors quoi, les classeurs ou les albums photo du salon ? »",
+    "choix": {
+      "avis-s3-a": {
+        "reaction": "« Parfait, je sors les bons classeurs. Pas ceux de l'époque des mises en plis. »"
+      },
+      "avis-s3-b": {
+        "texte": "« Tout depuis l'ouverture du salon, par sécurité. Même le cahier de la première permanente. »",
+        "reaction": "Votre expert-comptable disparaît sous une avalanche de cartons et de vieux casques séchoirs. On entend un faible « au secours »."
+      },
+      "avis-s3-c": {
+        "reaction": "Votre expert-comptable sort un seul classeur, fin comme une frange effilée. Mme Frange en réclamera deux autres, très épais."
+      }
+    }
+  },
+  "avis-s4": {
+    "texte": "Mme Frange croise les jambes sur le fauteuil 1 : « Vous avez reçu la charte du contribuable vérifié, et vous pouvez vous faire assister d'un conseil. Vous voulez quelqu'un à vos côtés, ou je commence par la caisse ? »",
+    "choix": {
+      "avis-s4-a": {
+        "reaction": "« Très bien, nous fixerons les rendez-vous ensemble, hors samedi. » Votre expert-comptable recoiffe sa mèche, satisfait."
+      },
+      "avis-s4-b": {
+        "texte": "Rouler la charte en bigoudi géant.",
+        "reaction": "Le bigoudi tient mal. Mme Frange le déroule, le lisse du plat de la main et vous le rend, sans un pli."
+      },
+      "avis-s4-c": {
+        "reaction": "« Comme vous voudrez. » Les clientes du samedi, elles, se proposent comme avocates. Vous déclinez aussi."
       }
     }
   },
   "fec-s1": {
+    "texte": "Mme Frange pose une clé USB sur la tablette du poste de coiffage : « Pour commencer, votre fichier des écritures comptables. Le FEC. Pas le cahier de rendez-vous. »",
     "choix": {
+      "fec-s1-a": {
+        "reaction": "« Merveilleux. Un fichier qui s'ouvre du premier coup, c'est plus rare qu'une frange droite. »"
+      },
       "fec-s1-b": {
         "texte": "Sortir le cahier de rendez-vous, couvert de prénoms et de petits cœurs.",
         "reaction": "Mme Frange tourne les pages. Les cœurs sont jolis, mais aucun n'est une écriture comptable."
+      },
+      "fec-s1-c": {
+        "texte": "Envoyer un export PDF de 900 pages, mis en page aux couleurs du salon.",
+        "reaction": "Le doré et le rose défilent, page après page. Mme Frange referme l'ordinateur comme on referme un séchoir trop chaud."
+      }
+    }
+  },
+  "fec-s2": {
+    "texte": "En relisant vos comptes pendant le temps de pose d'une couleur, vous tombez sur une erreur. Une vraie. Avec des chiffres dedans, et la couleur qui fonce pendant ce temps-là.",
+    "choix": {
+      "fec-s2-a": {
+        "reaction": "Mme Frange hoche la tête : « Voilà qui simplifie les choses. » La cliente sous le casque, elle, s'en sort avec un auburn imprévu."
+      },
+      "fec-s2-b": {
+        "reaction": "Elle la voit. Elle l'entoure en rouge, du même rouge que la couleur ratée de la cliente du fond."
+      },
+      "fec-s2-c": {
+        "reaction": "Mme Frange compare deux versions du même fichier. Elle lève un sourcil parfaitement épilé, puis l'autre."
+      }
+    }
+  },
+  "fec-s3": {
+    "texte": "Mme Frange s'arrête sur une série de dépenses « produits capillaires » achetées le dimanche. Sous les casques, les clientes du samedi retiennent leur souffle.",
+    "choix": {
+      "fec-s3-a": {
+        "reaction": "Les factures défilent, flacon par flacon. Les clientes sous les casques reprennent leur conversation, un peu déçues."
+      },
+      "fec-s3-b": {
+        "texte": "Inventer un grossiste en laque au nom très parfumé.",
+        "reaction": "« Et ce grossiste, il a une adresse ? Un téléphone ? Un seul flacon livré ? »"
+      },
+      "fec-s3-c": {
+        "texte": "« Ça ? C'est l'ancienne apprentie. Elle est partie avec les factures. »",
+        "reaction": "« L'ancienne apprentie a bon dos. Elle a laissé une adresse, au moins ? » Le balai de la nouvelle s'arrête net."
+      }
+    }
+  },
+  "rectification-s1": {
+    "texte": "Quelques semaines plus tard, une enveloppe épaisse arrive au salon : la proposition de rectification. Les clientes du samedi la soupèsent avant vous et rendent leur verdict : « C'est du lourd. »",
+    "choix": {
+      "rectification-s1-a": {
+        "reaction": "Chaque rehaussement est expliqué, ligne par ligne. Vous savez au moins à quoi répondre, et les clientes aussi."
+      },
+      "rectification-s1-b": {
+        "reaction": "Accordé. Votre expert-comptable respire à nouveau, et vous propose même de vous rafraîchir la nuque."
+      },
+      "rectification-s1-c": {
+        "texte": "S'en servir pour caler le fauteuil 2, qui penche depuis des années.",
+        "reaction": "Le fauteuil 2 ne penche plus. Le délai, lui, continue de courir."
+      },
+      "rectification-s1-d": {
+        "reaction": "Votre banquière vous appelle, inquiète. Votre expert-comptable n'a même pas eu le temps d'ouvrir l'enveloppe."
+      }
+    }
+  },
+  "rectification-s2": {
+    "texte": "Mme Frange revient, frange toujours impeccable : « J'ai lu vos observations, entre deux rendez-vous. Je maintiens une partie des rectifications. »",
+    "choix": {
+      "rectification-s2-a": {
+        "reaction": "« C'est votre droit. Je transmets. » Elle range son dossier sans froisser une mèche."
+      },
+      "rectification-s2-b": {
+        "texte": "Répondre par une chanson de douze couplets, reprise en chœur par les clientes du samedi.",
+        "reaction": "« Le refrain est entraînant. Les arguments, introuvables. »"
+      },
+      "rectification-s2-c": {
+        "reaction": "« Très bien, je note votre accord. » Votre expert-comptable, lui, note surtout les points que vous auriez pu gagner."
       }
     }
   },
   "rectification-s3": {
+    "texte": "Votre expert-comptable s'assoit au bac à shampoing, la tête en arrière, les yeux au plafond : « Bon. Reste la question qui fâche : on paie quand ? »",
     "choix": {
+      "rectification-s3-a": {
+        "reaction": "Votre expert-comptable range enfin ses classeurs et se relève du bac, les cheveux propres et le moral avec."
+      },
       "rectification-s3-b": {
         "reaction": "Votre comptable vous regarde comme une permanente ratée : vous avez encore tiré sur les bigoudis."
+      },
+      "rectification-s3-c": {
+        "reaction": "Votre expert-comptable fait le calcul de tête, et pâlit comme une décoloration trop poussée."
       }
     }
   }
