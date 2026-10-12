@@ -24,8 +24,14 @@
     <section id="ecran-titre" class="ecran" hidden aria-labelledby="titre-jeu">
       <div class="chemise">
         <p class="chemise-etiquette">Dossier n° 2026-FF · Confidentiel (ou presque)</p>
-        <h1 id="titre-jeu" class="titre-jeu" tabindex="-1"></h1>
-        <p class="sous-titre">Un contrôle fiscal, des caricatures, et vous au milieu.</p>
+        <!-- Contrôleur emblématique (EX-157) : illustration en pied, ou portrait ; masqué s'il n'est pas déclaré. -->
+        <div class="titre-corps">
+          <figure id="titre-embleme" class="embleme" hidden></figure>
+          <div class="titre-texte">
+            <h1 id="titre-jeu" class="titre-jeu" tabindex="-1"></h1>
+            <p class="sous-titre">Un contrôle fiscal, des caricatures, et vous au milieu.</p>
+          </div>
+        </div>
         <p class="tampon tampon-rouge" aria-hidden="true">À traiter</p>
         <button type="button" id="bouton-commencer" class="bouton bouton-principal">Ouvrir le dossier</button>
       </div>
@@ -71,6 +77,18 @@
         </div>
       </header>
 
+      <!-- Fiche de présentation (EX-156) : première apparition d'un personnage illustré dans la partie,
+           avant sa réplique. Fermée par « Suivant » ou Échap. -->
+      <article id="fiche" class="fiche" hidden aria-labelledby="fiche-nom">
+        <p class="fiche-etiquette">Fiche signalétique</p>
+        <div id="fiche-images" class="fiche-images"></div>
+        <div class="fiche-texte">
+          <h3 id="fiche-nom" class="fiche-nom" tabindex="-1"></h3>
+          <p id="fiche-description" class="fiche-description"></p>
+        </div>
+        <button type="button" id="bouton-fiche-suivant" class="bouton bouton-principal">Suivant</button>
+      </article>
+
       <article id="scene" class="scene">
         <div id="scene-orateur" class="orateur"></div>
         <div id="scene-texte" class="bulle" tabindex="-1"></div>
@@ -102,6 +120,8 @@
       </header>
       <div class="chemise chemise-fin">
         <p class="chemise-etiquette">Dossier clos · <span id="fin-profil"></span></p>
+        <!-- Vérificateur du profil (EX-156) : illustration en pied, ou son portrait. -->
+        <figure id="fin-verificateur" class="fin-verificateur"></figure>
         <h2 id="fin-titre" class="titre-fin" tabindex="-1"></h2>
         <p id="fin-anticipee" class="tampon tampon-rouge" hidden>Contrôle écourté</p>
         <p id="fin-texte" class="fin-texte"></p>
@@ -158,6 +178,10 @@
       <img class="portrait" alt="" role="img" width="120" height="120">
       <figcaption class="orateur-nom"></figcaption>
     </figure>
+  </template>
+
+  <template id="gabarit-portrait">
+    <img class="portrait" alt="" role="img" width="120" height="120">
   </template>
 
   <template id="gabarit-scene-choix">

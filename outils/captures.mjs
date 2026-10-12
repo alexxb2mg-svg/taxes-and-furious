@@ -1,5 +1,6 @@
 // Captures des 5 écrans (EX-033) en 1280x800 et 375x740, navigateur headless ; si le profil a
 // une scène de mini-jeu tri (EX-112), 2 captures de plus : 6-tri (pièces rangées) et 7-tri-resultat.
+// Si un personnage illustré est présenté (EX-156), une capture de plus : 3-fiche (première fiche de présentation).
 //   node outils/captures.mjs [--donnees data] [--profil plombier] [--sortie docs/captures]
 // Par défaut, un profil réel de data/ : docs/captures/ ne garde que des profils réels (EX-103).
 // Joue la première partie du profil (premier choix à chaque scène) jusqu'à la fin.
@@ -57,8 +58,19 @@ async function principal() {
       // Avance jusqu'à une scène avec portrait pour la capture "scene".
       let capturee = false;
       let triCapture = false;
+      let ficheCapturee = false;
       while (await p.eval(`document.body.dataset.ecran`) === 'ecran-partie') {
-        await p.attendre(`!document.querySelector('#scene').hidden`, 'scene');
+        // Fiche de présentation (EX-156) avant la première réplique d'un personnage illustré : capturée une fois, puis « Suivant ».
+        await p.attendre(`!document.querySelector('#scene').hidden || !document.querySelector('#fiche').hidden`, 'scene ou fiche');
+        if (await p.eval(`!document.querySelector('#fiche').hidden`)) {
+          if (!ficheCapturee) {
+            await cap('3-fiche');
+            ficheCapturee = true;
+          }
+          await p.cliquer('#bouton-fiche-suivant');
+          await p.attendre(`!document.querySelector('#scene').hidden || !document.querySelector('#fiche').hidden`, 'scene apres la fiche');
+          continue;
+        }
         const portrait = await p.eval(`!!document.querySelector('#scene-orateur img')`);
         if (!capturee && portrait) await cap('3-scene');
         if (await p.eval(`document.querySelector('#scene').dataset.type`) === 'tri') {

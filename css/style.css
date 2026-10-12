@@ -10,6 +10,9 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   min-height: 100vh;
+  /* Contexte de formatage propre : la marge de <main> (panneau sur décor) ne déborde pas du body,
+     sinon elle s'ajoute à min-height et fait défiler un écran qui tient dans la fenêtre. */
+  display: flow-root;
   color: #2b2118;
   background-color: #f4ead5;
   /* Papier : fines lignes de cahier, sans image externe. */
@@ -609,6 +612,88 @@ h1, h2, h3, h4 {
 .score dd { margin: 0; font-family: "Courier New", Courier, monospace; font-weight: 700; white-space: nowrap; }
 .boutons-fin { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
 
+/* ------------------------------------------------------------ personnages illustrés (EX-156, EX-157) */
+/* Illustrations en pied 3:4 (768x1024) : carte de profil, fiche de présentation, fin, emblème du titre.
+   Sans illustration, l'interface ne montre que le portrait (mêmes cadres que les portraits). */
+
+.carte-illustration,
+.fiche-illustration,
+.fin-illustration,
+.embleme-illustration {
+  display: block;
+  flex: 0 0 auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border: 3px solid #2b2118;
+  border-radius: 10px;
+  background: #e3f6f5;
+}
+.carte-illustration { width: 72px; height: 96px; border-width: 2px; border-radius: 8px; }
+
+/* Écran titre avec emblème : affiche de film, le contrôleur à gauche, le titre et l'action à droite. */
+.titre-corps { display: flex; align-items: center; justify-content: center; gap: 28px; }
+.titre-texte { min-width: 0; }
+.titre-corps:has(> .embleme:not([hidden])) { margin-bottom: 18px; }
+.titre-corps:has(> .embleme:not([hidden])) .titre-texte { text-align: left; }
+.embleme { margin: 0; }
+.embleme-illustration { height: clamp(180px, 40vh, 340px); width: auto; box-shadow: 5px 5px 0 #2b2118; }
+.embleme-portrait,
+.fin-portrait {
+  display: block;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  border: 3px solid #2b2118;
+  border-radius: 12px;
+  background: #e3f6f5;
+  box-shadow: 4px 4px 0 #2b2118;
+}
+
+.fin-verificateur { margin: 0 auto 16px; }
+.fin-illustration { height: clamp(150px, 30vh, 300px); width: auto; margin: 0 auto; box-shadow: 5px 5px 0 #2b2118; }
+
+.fiche {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px 28px;
+  align-items: center;
+  padding: 18px 20px 20px;
+  background: #fffaf0;
+  border: 3px solid #2b2118;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0 #2b2118;
+}
+.fiche-etiquette {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin: 0;
+  padding: 2px 10px;
+  border: 2px solid #2b2118;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b3d12;
+}
+.fiche-images { grid-column: 1; grid-row: 2 / span 2; position: relative; justify-self: center; margin: 0 14px 14px 0; }
+.fiche-illustration { height: clamp(200px, 48vh, 420px); width: auto; }
+/* Portrait épinglé au coin de l'illustration ; seul (illustration introuvable), il reste à sa place. */
+.fiche-portrait-cadre { position: absolute; right: -14px; bottom: -14px; }
+.fiche-portrait-cadre:only-child { position: static; }
+.fiche-portrait {
+  display: block;
+  width: 96px;
+  height: 96px;
+  border: 3px solid #2b2118;
+  border-radius: 8px;
+  background: #e3f6f5;
+  box-shadow: 3px 3px 0 #2b2118;
+}
+.fiche-texte { grid-column: 2; grid-row: 2; align-self: end; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.fiche-nom { margin: 0; font-size: 1.7rem; overflow-wrap: anywhere; }
+.fiche-description { margin: 0; font-size: 1.05rem; }
+#bouton-fiche-suivant { grid-column: 2; grid-row: 3; align-self: start; justify-self: start; }
+
 /* ------------------------------------------------------------ mobile */
 
 @media (max-width: 640px) {
@@ -633,4 +718,20 @@ h1, h2, h3, h4 {
   body.avec-decor main { margin: 48px 0 24px; padding: 16px 9px 36px; border-radius: 10px; box-shadow: none; }
   #bouton-suivant { justify-self: stretch; }
   .boite-boutons .bouton { flex: 1 1 100%; }
+  .fiche { grid-template-columns: auto minmax(0, 1fr); gap: 10px 14px; padding: 12px 12px 14px; }
+  .fiche-images { grid-row: 2; margin: 0 10px 10px 0; }
+  .fiche-texte { align-self: center; }
+  .fiche-illustration { height: min(24vh, 180px); }
+  .fiche-portrait-cadre { right: -10px; bottom: -10px; }
+  .fiche-portrait { width: 56px; height: 56px; border-width: 2px; }
+  .fiche-texte { gap: 6px; }
+  .fiche-nom { font-size: 1.2rem; }
+  .fiche-description { font-size: 0.92rem; line-height: 1.4; }
+  #bouton-fiche-suivant { grid-column: 1 / -1; grid-row: 3; justify-self: stretch; }
+  .titre-corps { gap: 12px; }
+  .titre-corps:has(> .embleme:not([hidden])) .titre-jeu { font-size: 1.9rem; }
+  .titre-corps:has(> .embleme:not([hidden])) .sous-titre { font-size: 1rem; margin-bottom: 0; }
+  .embleme-illustration { height: min(24vh, 180px); }
+  .fin-illustration { height: min(18vh, 140px); }
+  .embleme-portrait, .fin-portrait { width: 96px; height: 96px; }
 }
