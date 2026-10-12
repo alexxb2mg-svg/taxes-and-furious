@@ -1,0 +1,6 @@
+{
+  "regle": "illustration en pied presente sur disque (EX-156)",
+  "couverture": false,
+  "modifs": [{ "fichier": "profils/demo-fleuriste/profil.json", "chemin": ["personnages", 0, "illustration"], "valeur": "img/pistil-situation.webp" }],
+  "attendu": ["personnage \"pistil\", champ \"illustration\" : fichier \"profils/demo-fleuriste/img/pistil-situation.webp\" introuvable"]
+}

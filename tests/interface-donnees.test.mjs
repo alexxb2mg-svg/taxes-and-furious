@@ -6,7 +6,7 @@ import test, { before, after, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { DEPOT, DONNEES, chargerScenario, lireJson } from './aides.mjs';
 import { lancerNavigateur, servir, trouverChrome } from './navigateur.mjs';
-import { tolerance404Variantes, ecran, texte, visible, avertissementAttendu, allerAuChoix, cartes, jouerPartie, suitesParFin } from './partie.mjs';
+import { tolerance404Variantes, ecran, texte, visible, avertissementAttendu, allerAuChoix, cartes, jouerPartie, suitesParFin, imageCarte } from './partie.mjs';
 import { SUITES_FINS } from './suites-fins.mjs';
 
 const INDEX = lireJson(DONNEES, 'profils/index.json');
@@ -72,13 +72,14 @@ test('data/ EX-004 / EX-050 : titre, avertissement date, une carte par profil l\
   for (const id of INACTIFS) assert.equal(vues.some((c) => c.id === id), false, `${id} inactif : aucune carte`);
   for (const c of vues) {
     const { scenario, profil } = chargerScenario(DONNEES, c.id);
-    const verif = scenario.personnages.roles.verificateur;
     assert.equal(c.nom, profil.nom);
     assert.equal(c.entreprise, profil.entreprise);
     assert.equal(c.accroche, profil.accroche);
-    assert.equal(c.portrait, `data/${verif.portrait}`);
+    // EX-156 a : illustration du joueur du profil, sinon portrait du verificateur.
+    const attendu = imageCarte(scenario);
+    assert.equal(c.portrait, `data/${attendu.src}`);
     assert.equal(c.role, 'img');
-    assert.equal(c.label, verif.nom, `${c.id} : aria-label = nom du verificateur (EX-034)`);
+    assert.equal(c.label, attendu.label, `${c.id} : aria-label = nom du personnage montre (EX-034)`);
     assert.equal(c.charge, true, `portrait de ${c.id} charge`);
     assert.equal(c.meilleur, null, `${c.id} : aucun meilleur score apres localStorage.clear()`);
   }

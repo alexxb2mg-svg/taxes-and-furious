@@ -253,19 +253,20 @@ test('EX-152 : portrait .webp affiche ; 404 -> SVG de repli ; sans SVG -> initia
 
 // ------------------------------------------------------------------ EX-153
 
-test('EX-153 : la page d\'accueil ne charge que la couverture et les images de l\'ecran de choix (< 2 Mo transferes)', async () => {
+test('EX-153 : la page d\'accueil ne charge que la couverture, l\'embleme et les images de l\'ecran de choix (< 2 Mo transferes)', async () => {
   for (const donnees of ['data', 'tests/donnees']) {
     const p = await page();
     await ouvrir(p, donnees);
     await allerAuChoix(p);
-    await p.attendre(`[...document.querySelectorAll('#liste-profils .carte-portrait')].every((i) => i.tagName !== 'IMG' || i.complete)`, 'portraits');
+    await p.attendre(`[...document.querySelectorAll('#liste-profils .carte-portrait, #liste-profils .carte-illustration, #titre-embleme img')].every((i) => i.tagName !== 'IMG' || i.complete)`, 'images de l\'accueil');
     await p.attendre(`[...document.querySelectorAll('#decor img')].every((i) => i.complete)`, 'couverture');
     await new Promise((r) => setTimeout(r, 200));
     const images = p.requetes.filter((u) => /\.(webp|svg|png)$/.test(u));
     const decors = images.filter((u) => u.includes('/decors/'));
     assert.ok(decors.every((u) => u.endsWith('/communs/decors/couverture.webp')), `${donnees} : decors charges ${decors}`);
-    const portraits = new Set(await p.eval(`[...document.querySelectorAll('#liste-profils .carte-portrait')].map((i) => i.src)`));
-    for (const u of images.filter((x) => !x.includes('/decors/'))) assert.ok(portraits.has(u), `${donnees} : image ${u} hors ecran de choix`);
+    // Cartes (portrait ou illustration du joueur, EX-156 a) et embleme de l'ecran titre (EX-157), repli SVG compris.
+    const accueil = new Set(await p.eval(`[...document.querySelectorAll('#liste-profils .carte-portrait, #liste-profils .carte-illustration, #titre-embleme img')].map((i) => i.src)`));
+    for (const u of images.filter((x) => !x.includes('/decors/'))) assert.ok(accueil.has(u), `${donnees} : image ${u} hors ecran titre et ecran de choix`);
     const octets = p.transferts.reduce((s, t) => s + t.octets, 0);
     assert.ok(octets < IMAGES.accueilMaxOctets, `${donnees} : ${octets} octets transferes`);
     assert.ok(p.transferts.length > 0);

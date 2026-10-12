@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 // Validateur des donnees de Taxes & Furious (EX-020, EX-002, EX-003, EX-005, EX-052, EX-053, EX-131).
-// Usage : node outils/valider.mjs [--racine <dossier>] [--profil <id>] [--sans-couverture] [--exigences-lot4]
+// Usage : node outils/valider.mjs [--racine <dossier>] [--profil <id>] [--sans-couverture] [--exigences-lot4] [--exigences-lot5]
 // --exigences-lot4 ajoute les regles de profondeur EX-140 a EX-143 (ouverture, tronc habille, 3 ou 4 choix,
 // chapitres, fins, nombre de scenes) pour les profils verifies, et EX-142 pour le tronc.
+// --exigences-lot5 ajoute EX-157 : un personnage `joueur` propre a chaque profil verifie, et le controleur
+// `embleme` de communs/personnages.json, chacun avec portrait illustre et illustration en pied.
 // Code de sortie 0 si valide, 1 sinon ; un message par erreur, en francais, nommant fichier, id et champ.
 
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
@@ -14,6 +16,7 @@ import {
   JAUGES,
   ROLES_TRONC,
   ROLES_GENERIQUES,
+  ROLE_EMBLEME,
   OPERATEURS,
   ID_FIN_PATIENCE,
   TYPE_DEFAUT,
@@ -230,6 +233,29 @@ function verifierPortrait(racine, dossierRel, fichier, contexte, personnage, rap
   if (label === undefined || decoderXml(label) !== personnage.nom) {
     rapport.erreur(fichier, contexte, 'portrait',
       `"${dossierRel}/${portrait}" : aria-label ${label === undefined ? 'absent' : `"${decoderXml(label)}" different du nom`} (attendu "${personnage.nom}")`);
+  }
+}
+
+/**
+ * Illustration en pied facultative d'un personnage (EX-156) : `<perso>-situation.webp` range dans img/,
+ * present sur disque ; dimensions et poids controles avec toutes les images (verifierImages).
+ */
+function verifierIllustration(racine, dossierRel, fichier, contexte, personnage, rapport) {
+  const illu = personnage.illustration;
+  if (illu === undefined) return;
+  if (!verifierCheminImage(racine, dossierRel, illu, fichier, contexte, 'illustration', rapport, 'illustration')) return;
+  if (!normalize(illu).split(sep).includes('img') || !estIllustration(illu)) {
+    rapport.erreur(fichier, contexte, 'illustration', `"${illu}" : une illustration en pied se nomme <perso>${IMAGES.illustrationSuffixe} et se range dans le dossier img/ (EX-156)`);
+  }
+}
+
+/** EX-157 (option --exigences-lot5) : portrait illustre `.webp` et illustration en pied obligatoires. */
+function exigerImagesLot5(fichier, contexte, personnage, rapport) {
+  if (!estTexte(personnage.portrait) || !personnage.portrait.toLowerCase().endsWith('.webp')) {
+    rapport.erreur(fichier, contexte, 'portrait', 'portrait illustre .webp obligatoire (EX-157)');
+  }
+  if (personnage.illustration === undefined) {
+    rapport.erreur(fichier, contexte, 'illustration', `illustration en pied <perso>${IMAGES.illustrationSuffixe} obligatoire (EX-157)`);
   }
 }
 
@@ -765,7 +791,29 @@ function verifierCommuns(racine, communs, rapport) {
     const ctx = `personnage "${p.id ?? role}"`;
     if (!estTexte(p.nom)) rapport.erreur(F, ctx, 'nom', 'nom obligatoire');
     else verifierPortrait(racine, 'communs', F, ctx, p, rapport);
+    verifierIllustration(racine, 'communs', F, ctx, p, rapport);
   }
+  // Controleur emblematique (EX-157), facultatif hors --exigences-lot5 : un seul, avec nom et portrait.
+  const emblemes = communs.personnages.filter((x) => x?.role === ROLE_EMBLEME);
+  if (emblemes.length > 1) rapport.erreur(F, null, 'personnages', `${emblemes.length} personnages de role "${ROLE_EMBLEME}" : un seul attendu (EX-157)`);
+  for (const p of emblemes) {
+    const ctx = `personnage "${p.id ?? ROLE_EMBLEME}"`;
+    if (!estTexte(p.nom)) rapport.erreur(F, ctx, 'nom', 'nom obligatoire');
+    else verifierPortrait(racine, 'communs', F, ctx, p, rapport);
+    verifierIllustration(racine, 'communs', F, ctx, p, rapport);
+  }
+}
+
+/** EX-157 (option --exigences-lot5) : le controleur emblematique est declare, avec ses deux images. */
+function verifierEmblemeLot5(communs, rapport) {
+  const F = 'communs/personnages.json';
+  if (!estObjet(communs) || !Array.isArray(communs.personnages)) return;
+  const p = communs.personnages.find((x) => x?.role === ROLE_EMBLEME);
+  if (!p) {
+    rapport.erreur(F, null, 'personnages', `controleur emblematique (role "${ROLE_EMBLEME}") absent (EX-157)`);
+    return;
+  }
+  exigerImagesLot5(F, `personnage "${p.id ?? ROLE_EMBLEME}"`, p, rapport);
 }
 
 function lireIndex(racine, rapport) {
@@ -974,7 +1022,7 @@ function verifierLot4Profil(profil, variantes, tronc, F, FV, rapport) {
   }
 }
 
-function verifierProfil(racine, id, ctxGlobal, rapport, couverture, lot4 = false) {
+function verifierProfil(racine, id, ctxGlobal, rapport, couverture, lot4 = false, lot5 = false) {
   const dossier = `profils/${id}`;
   const F = `${dossier}/profil.json`;
   const { tronc, communs, decors, refs, troncValide } = ctxGlobal;
@@ -1006,10 +1054,20 @@ function verifierProfil(racine, id, ctxGlobal, rapport, couverture, lot4 = false
     else if (p.id === 'narrateur') rapport.erreur(F, ctx, 'id', '"narrateur" est reserve (encadre narratif sans portrait)');
     if (!estTexte(p.role)) rapport.erreur(F, ctx, 'role', 'role obligatoire (verificateur, comptable, joueur ou role libre de second role)');
     else if (p.role === 'narrateur') rapport.erreur(F, ctx, 'role', '"narrateur" ne peut pas etre porte par un personnage');
+    else if (p.role === ROLE_EMBLEME) rapport.erreur(F, ctx, 'role', `"${ROLE_EMBLEME}" est reserve au controleur emblematique de communs/personnages.json (EX-157)`);
     if (!estTexte(p.nom)) rapport.erreur(F, ctx, 'nom', 'nom obligatoire');
     else verifierPortrait(racine, dossier, F, ctx, p, rapport);
+    verifierIllustration(racine, dossier, F, ctx, p, rapport);
   }
   signalerDoublons(personnages.map((p) => p.id).filter(estTexte), F, 'personnage', rapport);
+  // EX-157 (option --exigences-lot5) : un personnage `joueur` propre au profil, avec ses deux images.
+  if (lot5) {
+    const joueurs = personnages.filter((p) => p.role === 'joueur');
+    if (joueurs.length !== 1) {
+      rapport.erreur(F, null, 'personnages', `${joueurs.length} personnage(s) de role "joueur" : il en faut exactement 1, propre au profil (EX-157)`);
+    }
+    for (const p of joueurs) exigerImagesLot5(F, `personnage "${p.id ?? '?'}"`, p, rapport);
+  }
   if (!personnages.some((p) => p.role === 'verificateur')) {
     rapport.erreur(F, null, 'personnages', 'role "verificateur" porte par aucun personnage du profil (obligatoire, avec portrait)');
   }
@@ -1111,11 +1169,12 @@ function verifierProfil(racine, id, ctxGlobal, rapport, couverture, lot4 = false
 // ---------------------------------------------------------------- point d'entree
 
 /**
- * @param {{ racine?: string, profil?: string|null, couverture?: boolean, exigencesLot4?: boolean }} options
+ * @param {{ racine?: string, profil?: string|null, couverture?: boolean, exigencesLot4?: boolean, exigencesLot5?: boolean }} options
  *   `exigencesLot4` : regles EX-140 a EX-143 pour les profils verifies (et EX-142 pour le tronc).
+ *   `exigencesLot5` : EX-157, joueur propre a chaque profil verifie et controleur emblematique illustres.
  * @returns {{ erreurs: string[], avertissements: string[], profils: string[] }}
  */
-export function valider({ racine = RACINE_DEFAUT, profil = null, couverture = true, exigencesLot4 = false } = {}) {
+export function valider({ racine = RACINE_DEFAUT, profil = null, couverture = true, exigencesLot4 = false, exigencesLot5 = false } = {}) {
   const rapport = new Rapport();
   racine = resolve(racine);
   if (!existsSync(racine)) {
@@ -1136,6 +1195,7 @@ export function valider({ racine = RACINE_DEFAUT, profil = null, couverture = tr
 
   const communs = lireJson(racine, 'communs/personnages.json', rapport);
   verifierCommuns(racine, communs, rapport);
+  if (exigencesLot5) verifierEmblemeLot5(communs, rapport);
 
   // EX-150 : decors par defaut du tronc et de l'ecran titre (fichier facultatif : absent = aucun decor).
   let decors = { chapitres: {}, titre: null };
@@ -1150,7 +1210,7 @@ export function valider({ racine = RACINE_DEFAUT, profil = null, couverture = tr
   verifierImages(racine, rapport);
 
   const ids = profil ? [profil] : lireIndex(racine, rapport);
-  for (const id of ids) verifierProfil(racine, id, { tronc, communs, decors, refs, troncValide }, rapport, couverture, exigencesLot4);
+  for (const id of ids) verifierProfil(racine, id, { tronc, communs, decors, refs, troncValide }, rapport, couverture, exigencesLot4, exigencesLot5);
   if (couverture && !profil) verifierCouvertureTronc(tronc, rapport);
   if (exigencesLot4 && estObjet(tronc)) verifierProfondeurScenes(tronc.chapitres, 'tronc.json', rapport);
 
@@ -1158,7 +1218,7 @@ export function valider({ racine = RACINE_DEFAUT, profil = null, couverture = tr
 }
 
 function lireArguments(argv) {
-  const opts = { racine: RACINE_DEFAUT, profil: null, couverture: true, exigencesLot4: false };
+  const opts = { racine: RACINE_DEFAUT, profil: null, couverture: true, exigencesLot4: false, exigencesLot5: false };
   for (let i = 0; i < argv.length; i += 1) {
     const a = argv[i];
     if (a === '--racine' || a === '--profil') {
@@ -1170,6 +1230,8 @@ function lireArguments(argv) {
       opts.couverture = false;
     } else if (a === '--exigences-lot4') {
       opts.exigencesLot4 = true;
+    } else if (a === '--exigences-lot5') {
+      opts.exigencesLot5 = true;
     } else if (a === '--aide' || a === '-h' || a === '--help') {
       opts.aide = true;
     } else {
@@ -1185,11 +1247,11 @@ export function principal(argv = process.argv.slice(2)) {
     opts = lireArguments(argv);
   } catch (e) {
     console.error(`valider : ${e.message}`);
-    console.error('usage : node outils/valider.mjs [--racine <dossier>] [--profil <id>] [--sans-couverture] [--exigences-lot4]');
+    console.error('usage : node outils/valider.mjs [--racine <dossier>] [--profil <id>] [--sans-couverture] [--exigences-lot4] [--exigences-lot5]');
     return 1;
   }
   if (opts.aide) {
-    console.log('usage : node outils/valider.mjs [--racine <dossier>] [--profil <id>] [--sans-couverture] [--exigences-lot4]');
+    console.log('usage : node outils/valider.mjs [--racine <dossier>] [--profil <id>] [--sans-couverture] [--exigences-lot4] [--exigences-lot5]');
     return 0;
   }
   const { erreurs, avertissements, profils } = valider(opts);
@@ -1197,7 +1259,7 @@ export function principal(argv = process.argv.slice(2)) {
   for (const e of erreurs) console.error(e);
   const rel = relative(process.cwd(), opts.racine);
   const affiche = rel === '' ? '.' : rel.startsWith('..') || isAbsolute(rel) ? opts.racine : rel;
-  const cible = `${affiche.split(sep).join('/')}${opts.profil ? `, profil "${opts.profil}"` : ''}${opts.couverture ? '' : ', sans couverture'}${opts.exigencesLot4 ? ', exigences du lot 4' : ''}`;
+  const cible = `${affiche.split(sep).join('/')}${opts.profil ? `, profil "${opts.profil}"` : ''}${opts.couverture ? '' : ', sans couverture'}${opts.exigencesLot4 ? ', exigences du lot 4' : ''}${opts.exigencesLot5 ? ', exigences du lot 5' : ''}`;
   if (erreurs.length) {
     console.error(`ECHEC : ${erreurs.length} erreur(s) (${cible})`);
     return 1;

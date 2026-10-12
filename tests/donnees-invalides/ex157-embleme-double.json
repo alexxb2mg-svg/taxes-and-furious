@@ -1,0 +1,10 @@
+{
+  "regle": "un seul controleur emblematique dans communs/personnages.json (EX-157)",
+  "couverture": false,
+  "modifs": [{
+    "fichier": "communs/personnages.json",
+    "chemin": ["personnages", 3],
+    "valeur": { "id": "embleme-bis", "role": "embleme", "nom": "Second emblème", "portrait": "img/embleme.webp" }
+  }],
+  "attendu": ["communs/personnages.json : champ \"personnages\" : 2 personnages de role \"embleme\" : un seul attendu (EX-157)"]
+}
