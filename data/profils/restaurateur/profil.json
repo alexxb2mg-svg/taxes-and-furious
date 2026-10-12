@@ -56,7 +56,7 @@
         {
           "id": "coup-de-feu-s1",
           "personnage": "saucier",
-          "texte": "Samedi, dix-neuf heures, la salle se remplit. Entre deux casseroles, le chef saucier vous tend la carte d'un représentant passé l'après-midi : « Il vend un module pour la caisse, le \"Mode discret\". Les ventes en espèces ne remontent plus dans le total. Il dit que tout le monde l'a. »",
+          "texte": "Samedi, dix-neuf heures, la salle se remplit. Entre deux casseroles, le chef saucier vous tend la carte d'un représentant passé l'après-midi : « Il vend un module pour la caisse, le \"Mode fantôme\". Les ventes en espèces ne remontent plus dans le total. Il dit que tout le monde l'a. »",
           "choix": [
             {
               "id": "coup-de-feu-s1-a",
@@ -76,7 +76,7 @@
             },
             {
               "id": "coup-de-feu-s1-b",
-              "texte": "Installer le « Mode discret », juste pour voir ce que ça donne.",
+              "texte": "Installer le « Mode fantôme », juste pour voir ce que ça donne.",
               "juste": false,
               "effets": {
                 "redressement": 30000,
@@ -373,7 +373,7 @@
                 "stress": 10
               },
               "reaction": "Mme Addition, de sa table, sans lever les yeux : « La boîte en carton ne change pas la recette. »",
-              "explication": "Le taux de 5,5 % vise les denrées alimentaires destinées à la consommation humaine ; mais les produits alimentaires préparés en vue d'une consommation immédiate relèvent du taux de 10 %, à emporter comme sur place.",
+              "explication": "La boîte en carton ne change rien : votre plat du jour sort de la cuisine prêt à être mangé, il reste à 10 % comme en salle. Le 5,5 % vaut pour ce que le client emporte pour le cuisiner lui-même, pas pour un plat encore chaud.",
               "references": [
                 "R-278-0B-A1",
                 "R-279-MN"
@@ -523,7 +523,7 @@
     {
       "id": "restaurateur-fin-fantome",
       "titre": "Le fantôme de la caisse",
-      "texte": "En remontant le journal de la caisse, Mme Paulette Addition retrouve le « Mode discret » et toutes les ventes qu'il avait fait disparaître. Les tickets fantômes reviennent un par un, avec la note. Le chef saucier propose de rebaptiser la maison « La Casserole Hantée ».",
+      "texte": "En remontant le journal de la caisse, Mme Paulette Addition retrouve le « Mode fantôme » et toutes les ventes qu'il avait fait disparaître. Les tickets fantômes reviennent un par un, avec la note. Le chef saucier propose de rebaptiser la maison « La Casserole Hantée ».",
       "conditions": [
         {
           "jauge": "redressement",
