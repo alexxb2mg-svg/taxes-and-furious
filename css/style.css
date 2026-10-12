@@ -629,7 +629,8 @@ h1, h2, h3, h4 {
   .jauge-montant { font-size: 1.1rem; }
   .jauge-libelle { font-size: 0.66rem; letter-spacing: 0; overflow-wrap: anywhere; }
   .carte-portrait { width: 72px; height: 72px; }
-  body.avec-decor main { margin: 56px 6px 24px; border-radius: 10px; box-shadow: 3px 3px 0 #2b2118; }
+  /* Panneau pleine largeur : même largeur utile qu'avec le fond uni (351 px de contenu à 375 px). */
+  body.avec-decor main { margin: 48px 0 24px; padding: 16px 9px 36px; border-radius: 10px; box-shadow: none; }
   #bouton-suivant { justify-self: stretch; }
   .boite-boutons .bouton { flex: 1 1 100%; }
 }
