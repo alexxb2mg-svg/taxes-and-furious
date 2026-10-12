@@ -39,8 +39,8 @@ test('EX-142 : chaque choix du tronc est joue par au moins une suite de tests/su
   assert.deepEqual(absents, []);
 });
 
-test('data/ : validateur vert sur tout data/ (couverture comprise)', () => {
-  const r = valider({ racine: DONNEES });
+test('data/ : validateur vert sur tout data/ (couverture et exigences du lot 4 comprises)', () => {
+  const r = valider({ racine: DONNEES, exigencesLot4: true });
   assert.deepEqual(r.erreurs, []);
   assert.deepEqual(r.avertissements, []);
   assert.deepEqual(r.profils, IDS);
