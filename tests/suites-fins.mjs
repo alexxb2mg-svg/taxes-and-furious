@@ -12,11 +12,12 @@ export const SUITES_FINS = {
     'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'caisse-s1-c', 'caisse-s2-b', 'fec-s1-b'],
   },
   influenceuse: {
-    'influenceuse-fin-sans-filtre': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-a', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'residence-s1-a', 'residence-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
-    'influenceuse-fin-deconnexion': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-b', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-c', 'residence-s1-b', 'residence-s2-a', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
-    'fin-sereine': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-a', 'partenariats-s2-b', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'residence-s1-a', 'residence-s2-a', 'rectification-s1-b', 'rectification-s2-b', 'rectification-s3-a'],
-    'fin-defaut': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-b', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'residence-s1-a', 'residence-s2-b', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
-    'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-b', 'partenariats-s3-b'],
+    'influenceuse-fin-dix-ans': ['tournage-s1-c', 'tournage-s2-b', 'avis-s1-c', 'avis-s2-c', 'avis-s3-c', 'avis-s4-a', 'partenariats-s1-c', 'partenariats-s2-a', 'partenariats-s3-b', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'residence-s1-a', 2, 'residence-s2-a', 'rectification-s1-a', 'rectification-s2-c', 'rectification-s3-a'],
+    'influenceuse-fin-sans-filtre': ['tournage-s1-a', 'tournage-s2-a', 'avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-a', 'partenariats-s2-a', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'residence-s1-a', 5, 'residence-s2-a', 'rectification-s1-b', 'rectification-s2-c', 'rectification-s3-a'],
+    'influenceuse-fin-deconnexion': ['tournage-s1-a', 'tournage-s2-c', 'avis-s1-c', 'avis-s2-b', 'avis-s3-a', 'avis-s4-a', 'partenariats-s1-a', 'partenariats-s2-c', 'partenariats-s3-a', 'fec-s1-b', 'fec-s2-c', 'fec-s3-a', 'residence-s1-c', 3, 'residence-s2-a', 'rectification-s1-c', 'rectification-s2-c', 'rectification-s3-b'],
+    'fin-sereine': ['tournage-s1-c', 'tournage-s2-c', 'avis-s1-c', 'avis-s2-c', 'avis-s3-c', 'avis-s4-c', 'partenariats-s1-a', 'partenariats-s2-a', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'residence-s1-a', 5, 'residence-s2-a', 'rectification-s1-b', 'rectification-s2-b', 'rectification-s3-c'],
+    'fin-defaut': ['tournage-s1-c', 'tournage-s2-a', 'avis-s1-a', 'avis-s2-a', 'avis-s3-c', 'avis-s4-c', 'partenariats-s1-a', 'partenariats-s2-b', 'partenariats-s3-a', 'fec-s1-c', 'fec-s2-b', 'fec-s3-c', 'residence-s1-a', 5, 'residence-s2-b', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-c'],
+    'fin-patience': ['tournage-s1-b', 'tournage-s2-b', 'avis-s1-c', 'avis-s2-a', 'avis-s3-c', 'avis-s4-a', 'partenariats-s1-b', 'partenariats-s2-a', 'partenariats-s3-c', 'fec-s1-a', 'fec-s2-a', 'fec-s3-b', 'residence-s1-b', 2, 'residence-s2-c', 'rectification-s1-d', 'rectification-s2-c', 'rectification-s3-b'],
   },
   plombier: {
     'plombier-fin-etanche': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'devis-s1-a', 'devis-s2-a', 5, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'chantier-s1-a', 'chantier-s2-a', 'chantier-s3-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
