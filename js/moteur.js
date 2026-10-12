@@ -5,6 +5,8 @@
 export const JAUGES = ['redressement', 'patience', 'stress'];
 export const ROLES_TRONC = ['verificateur', 'comptable', 'joueur', 'narrateur'];
 export const ROLES_GENERIQUES = ['comptable', 'joueur'];
+// Controleur emblematique (EX-157) : role reserve a communs/personnages.json, absent des scenes.
+export const ROLE_EMBLEME = 'embleme';
 export const OPERATEURS = ['<', '<=', '>', '>=', '=='];
 export const ID_FIN_PATIENCE = 'fin-patience';
 export const TYPE_DEFAUT = 'choix';
@@ -41,7 +43,7 @@ export function borner(jauge, valeur) {
 }
 
 function personnageNarrateur() {
-  return { id: 'narrateur', role: 'narrateur', nom: null, description: null, portrait: null, repli: null };
+  return { id: 'narrateur', role: 'narrateur', nom: null, description: null, portrait: null, repli: null, illustration: null };
 }
 
 /** Portrait SVG de repli d'un portrait illustre `.webp` : meme nom, extension `.svg` ; sinon null (EX-152). */
@@ -58,7 +60,18 @@ function personnagePublic(p, dossier) {
     description: p.description ?? null,
     portrait,
     repli: portraitRepli(portrait),
+    // Illustration en pied, en situation (EX-156) : facultative, null si absente.
+    illustration: typeof p.illustration === 'string' && p.illustration !== '' ? `${dossier}/${p.illustration}` : null,
   };
+}
+
+/**
+ * Controleur fiscal emblematique (EX-157) : personnage de role `embleme` de communs/personnages.json,
+ * chemins relatifs a la racine des donnees ; null s'il n'est pas declare. Il ne joue dans aucune scene.
+ */
+export function embleme(communs) {
+  const p = Array.isArray(communs?.personnages) ? communs.personnages.find((x) => x?.role === ROLE_EMBLEME) : undefined;
+  return p ? geler(personnagePublic(p, 'communs')) : null;
 }
 
 /** Chemin d'un decor relatif a la racine des donnees, ou null (EX-150). */
@@ -109,7 +122,7 @@ export function assembler(tronc, profil, variantes = {}, communs = { personnages
       const g = generiques.find((p) => p.role === role);
       parRole[role] = g
         ? personnagePublic(g, 'communs')
-        : { id: role, role, nom: null, description: null, portrait: null, repli: null };
+        : { id: role, role, nom: null, description: null, portrait: null, repli: null, illustration: null };
     } else {
       throw erreur(`profil "${profil.id}" : role "${role}" porte par aucun personnage`);
     }
