@@ -736,7 +736,12 @@ h1, h2, h3, h4 {
   .titre-corps:has(> .embleme:not([hidden])) .titre-jeu { font-size: 1.9rem; }
   .titre-corps:has(> .embleme:not([hidden])) .sous-titre { font-size: 1rem; margin-bottom: 0; }
   .embleme-illustration { height: min(24vh, 180px); }
-  .fin-corps { gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+  /* Écran de fin compact : verdict, score et boutons tiennent en 375x740 avec l'illustration. */
+  .chemise-fin { padding: 30px 14px 20px; }
+  .chemise-fin .chemise-etiquette { margin-bottom: 10px; }
+  .chemise-fin .score { margin-bottom: 14px; padding: 8px 12px; }
+  #ecran-fin .avertissement { margin-top: 16px; }
+  .fin-corps { gap: 12px; align-items: flex-start; margin-bottom: 12px; }
   .fin-illustration { height: 112px; border-width: 2px; box-shadow: 3px 3px 0 #2b2118; }
   .fin-corps .titre-fin { font-size: 1.5rem; margin-bottom: 6px; }
   .fin-corps .fin-texte { font-size: 1rem; line-height: 1.4; }
