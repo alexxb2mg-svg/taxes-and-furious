@@ -5,14 +5,16 @@
       "role": "comptable",
       "nom": "Votre expert-comptable",
       "description": "Calculatrice à la main, classeurs sous le bras, soupire en trois exemplaires.",
-      "portrait": "img/comptable.svg"
+      "portrait": "img/comptable.webp",
+      "illustration": "img/comptable-situation.webp"
     },
     {
       "id": "joueur",
       "role": "joueur",
       "nom": "Vous",
       "description": "Chef d'entreprise, contribuable, et soudain très attentif à son courrier.",
-      "portrait": "img/joueur.svg"
+      "portrait": "img/joueur.webp",
+      "illustration": "img/joueur-situation.webp"
     },
     {
       "id": "embleme",

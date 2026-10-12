@@ -15,7 +15,8 @@
       "role": "verificateur",
       "nom": "Mme Brigitte Frange",
       "description": "Inspectrice à la frange millimétrée, venue « juste pour une frange ». Ne laisse rien passer, pas même une mèche.",
-      "portrait": "img/frange.svg"
+      "portrait": "img/frange.webp",
+      "illustration": "img/frange-situation.webp"
     },
     {
       "id": "patronne",
@@ -30,14 +31,16 @@
       "role": "second",
       "nom": "Les clientes du samedi",
       "description": "Sous les casques séchoirs, elles entendent tout et commentent le reste.",
-      "portrait": "img/clientes.svg"
+      "portrait": "img/clientes.webp",
+      "illustration": "img/clientes-situation.webp"
     },
     {
       "id": "locataire",
       "role": "second",
       "nom": "La locataire du fauteuil 3",
       "description": "Indépendante, paraît-il. Elle demande pourtant chaque matin quels rendez-vous elle doit prendre.",
-      "portrait": "img/locataire.svg"
+      "portrait": "img/locataire.webp",
+      "illustration": "img/locataire-situation.webp"
     }
   ],
   "parcours": [
@@ -48,6 +51,12 @@
     "profil:salon",
     "tronc:rectification"
   ],
+  "decors": {
+    "samedi": "decors/salon-quartier.webp",
+    "avis": "decors/salon-quartier.webp",
+    "especes": "decors/arriere-boutique.webp",
+    "salon": "decors/salon-quartier.webp"
+  },
   "references_obligatoires": [
     "R-286",
     "R-1770DUO",

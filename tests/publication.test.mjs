@@ -115,7 +115,7 @@ test('EX-104 : workflow tests.yml : push et pull request, actions epinglees par 
   assert.ok(pw, 'installation de chrome-headless-shell par une version epinglee de Playwright');
   assert.ok(lire('README.md').includes(`npx -y playwright@${pw[1]} install chromium-headless-shell`), 'meme version que le README');
   assert.ok(lire('tests', 'navigateur.mjs').includes(`playwright@${pw[1]}`), 'meme version que le message de trouverChrome');
-  assert.match(w, /run: node outils\/valider\.mjs --exigences-lot4$/m, 'regles du lot 4 verifiees en CI');
+  assert.match(w, /run: node outils\/valider\.mjs --exigences-lot4 --exigences-lot5$/m, 'regles des lots 4 et 5 verifiees en CI');
   assert.match(w, /run: node --test tests\//);
   assert.doesNotMatch(w, /\$\{\{\s*github\.event\./, 'aucune donnee d\'evenement dans les commandes');
 });

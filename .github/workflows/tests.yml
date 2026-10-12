@@ -46,9 +46,9 @@ jobs:
           python --version
           node -e "import('./tests/navigateur.mjs').then((m) => console.log(m.trouverChrome()))"
 
-      # Regles de profondeur du lot 4 (EX-140 a EX-143) obligatoires pour data/.
-      - name: 'Valider les donnees (exigences du lot 4)'
-        run: node outils/valider.mjs --exigences-lot4
+      # Regles du lot 4 (EX-140 a EX-143) et du lot 5 (EX-157) obligatoires pour data/.
+      - name: 'Valider les donnees (exigences des lots 4 et 5)'
+        run: node outils/valider.mjs --exigences-lot4 --exigences-lot5
 
       - name: 'Termes interdits (fichier local absent en CI, code 0 attendu)'
         run: node outils/verifier-termes.mjs

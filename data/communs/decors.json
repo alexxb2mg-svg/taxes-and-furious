@@ -1,4 +1,8 @@
 {
-  "chapitres": {},
-  "titre": null
+  "chapitres": {
+    "avis": "decors/bureau-verificateur.webp",
+    "fec": "decors/archives.webp",
+    "rectification": "decors/bureau-verificateur.webp"
+  },
+  "titre": "decors/couverture.webp"
 }
