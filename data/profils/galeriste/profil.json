@@ -17,6 +17,14 @@
       "portrait": "img/poney.svg"
     },
     {
+      "id": "galeriste",
+      "role": "joueur",
+      "nom": "Le galeriste",
+      "description": "Vous. Écharpe en soie en toute saison, lunettes rondes, sait vendre un cadre vide comme un chef-d'œuvre.",
+      "portrait": "img/galeriste.webp",
+      "illustration": "img/galeriste-situation.webp"
+    },
+    {
       "id": "livreur",
       "role": "second",
       "nom": "Le livreur de toiles",

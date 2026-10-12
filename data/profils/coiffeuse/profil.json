@@ -18,6 +18,14 @@
       "portrait": "img/frange.svg"
     },
     {
+      "id": "patronne",
+      "role": "joueur",
+      "nom": "La patronne du salon",
+      "description": "Vous. Brushing impeccable, ciseaux à la ceinture, carnet de rendez-vous tenu au crayon à papier.",
+      "portrait": "img/patronne.webp",
+      "illustration": "img/patronne-situation.webp"
+    },
+    {
       "id": "clientes",
       "role": "second",
       "nom": "Les clientes du samedi",

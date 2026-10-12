@@ -17,6 +17,14 @@
       "portrait": "img/rectif.svg"
     },
     {
+      "id": "artisan",
+      "role": "joueur",
+      "nom": "L'artisan plombier",
+      "description": "Vous. Crayon sur l'oreille, clé à molette à la ceinture, des devis plein la tête et nulle part ailleurs.",
+      "portrait": "img/artisan.webp",
+      "illustration": "img/artisan-situation.webp"
+    },
+    {
       "id": "kevin",
       "role": "second",
       "nom": "Kevin",
