@@ -14,7 +14,8 @@
       "role": "verificateur",
       "nom": "M. Claude Tableur",
       "description": "Vérificateur précis qui ne comprend aucun anglicisme et demande poliment une traduction pour chacun.",
-      "portrait": "img/tableur.svg"
+      "portrait": "img/tableur.webp",
+      "illustration": "img/tableur-situation.webp"
     },
     {
       "id": "fondateur",
@@ -29,7 +30,8 @@
       "role": "comptable",
       "nom": "L'expert-comptable démissionnaire",
       "description": "Votre expert-comptable. Il a rédigé sa lettre de démission et attend le bon moment pour la poser sur la table.",
-      "portrait": "img/expert.svg"
+      "portrait": "img/expert.webp",
+      "illustration": "img/expert-situation.webp"
     }
   ],
   "parcours": [
@@ -40,6 +42,12 @@
     "profil:remuneration",
     "tronc:rectification"
   ],
+  "decors": {
+    "kick-off": "decors/open-space.webp",
+    "avis": "decors/open-space.webp",
+    "train-de-vie": "decors/parking-voiture-sport.webp",
+    "remuneration": "decors/open-space.webp"
+  },
   "references_obligatoires": [
     "R-39-1",
     "R-39-4",

@@ -15,7 +15,8 @@
       "role": "verificateur",
       "nom": "Mme Paulette Addition",
       "description": "Inspectrice méthodique, commande toujours le menu du jour pour vérifier les tickets.",
-      "portrait": "img/addition.svg"
+      "portrait": "img/addition.webp",
+      "illustration": "img/addition-situation.webp"
     },
     {
       "id": "patron",
@@ -30,14 +31,16 @@
       "role": "second",
       "nom": "Le chef saucier",
       "description": "Louche à la main, connaît toutes les sauces et aucun taux de TVA.",
-      "portrait": "img/saucier.svg"
+      "portrait": "img/saucier.webp",
+      "illustration": "img/saucier-situation.webp"
     },
     {
       "id": "belle-soeur",
       "role": "second",
       "nom": "La belle-sœur",
       "description": "Tient la caisse « pour rendre service » depuis des années. Personne ne sait vraiment depuis quand.",
-      "portrait": "img/belle-soeur.svg"
+      "portrait": "img/belle-soeur.webp",
+      "illustration": "img/belle-soeur-situation.webp"
     }
   ],
   "parcours": [
@@ -48,6 +51,12 @@
     "profil:carte",
     "tronc:rectification"
   ],
+  "decors": {
+    "coup-de-feu": "decors/cuisine-coup-de-feu.webp",
+    "avis": "decors/salle-bistrot.webp",
+    "caisse": "decors/salle-bistrot.webp",
+    "carte": "decors/cuisine-coup-de-feu.webp"
+  },
   "references_obligatoires": [
     "R-279-MN",
     "R-278-0B-A1",
