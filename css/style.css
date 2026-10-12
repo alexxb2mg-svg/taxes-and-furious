@@ -220,9 +220,30 @@ h1, h2, h3, h4 {
   border-radius: 10px;
   box-shadow: 4px 4px 0 #2b2118;
 }
-.bandeau-dossier { flex: 1 1 220px; min-width: 0; }
+.bandeau-dossier { flex: 1 1 220px; min-width: 0; display: flex; align-items: flex-start; gap: 12px; }
+.bandeau-titres { flex: 1 1 auto; min-width: 0; }
 .bandeau-profil { margin: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6b3d12; }
 .bandeau-chapitre { margin: 2px 0 0; font-size: 1.3rem; }
+
+/* ------------------------------------------------------------ retour à l'accueil (EX-130) */
+
+.bouton-accueil { flex: 0 0 auto; padding: 6px 14px; font-size: 0.9rem; box-shadow: 3px 3px 0 #2b2118; }
+.entete-fin { display: flex; justify-content: flex-end; }
+
+.boite {
+  width: min(440px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  padding: 24px 20px 20px;
+  color: #2b2118;
+  background: #fffaf0;
+  border: 3px solid #2b2118;
+  border-radius: 10px;
+  box-shadow: 6px 6px 0 #2b2118;
+}
+.boite::backdrop { background: rgba(43, 33, 24, 0.55); }
+.boite-texte { margin: 0 0 20px; font-size: 1.1rem; font-weight: 700; }
+.boite-boutons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; }
+.boite-boutons .bouton { flex: 0 1 auto; }
 
 .jauges { display: flex; flex-wrap: wrap; gap: 10px; flex: 2 1 420px; min-width: 0; }
 .jauge {
@@ -561,4 +582,5 @@ h1, h2, h3, h4 {
   .jauge-libelle { font-size: 0.66rem; letter-spacing: 0; overflow-wrap: anywhere; }
   .carte-portrait { width: 72px; height: 72px; }
   #bouton-suivant { justify-self: stretch; }
+  .boite-boutons .bouton { flex: 1 1 100%; }
 }
