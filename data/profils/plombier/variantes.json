@@ -1,26 +1,151 @@
 {
-  "avis-s2": {
-    "texte": "M. Bernard Rectif se présente, cartable sous le bras. Son regard s'attarde une seconde sur votre caisse à outils : « Nous commençons quand vous voulez. Enfin, quand la loi le veut. »",
+  "avis-s1": {
+    "texte": "Lundi, 11 h. Vous rentrez du chantier du chauffe-eau, les mains encore noires. Dans la boîte aux lettres, coincée entre deux catalogues de robinetterie, une lettre recommandée : avis de vérification de comptabilité. Kevin la regarde comme une fuite qu'on n'a pas vue venir.",
     "choix": {
+      "avis-s1-a": {
+        "reaction": "Vous lisez tout, petites lignes comprises. Kevin, épaté, lit par-dessus votre épaule : il n'avait jamais vu personne lire une notice jusqu'au bout."
+      },
+      "avis-s1-b": {
+        "texte": "La glisser sous la pile de catalogues de robinetterie.",
+        "reaction": "La pile glisse et s'effondre dans le seau de joints. L'avis remonte à la surface, sec, posé bien en évidence."
+      },
+      "avis-s1-c": {
+        "reaction": "Vous la rangez dans la boîte à outils, sous la clé de 22. Votre comptable l'apprendra trois semaines plus tard et soupirera comme un radiateur qu'on purge."
+      }
+    }
+  },
+  "avis-s2": {
+    "texte": "M. Bernard Rectif se présente, cartable sous le bras. Son regard s'attarde une seconde sur votre caisse à outils, puis sur le robinet qui goutte au-dessus de l'évier du bureau : « Nous commençons quand vous voulez. Enfin, quand la loi le veut. »",
+    "choix": {
+      "avis-s2-a": {
+        "reaction": "« Bonne question. Pour une entreprise de votre taille, il y a une limite. » Il jette un œil au robinet. « J'ai le même chez moi, figurez-vous. »"
+      },
       "avis-s2-b": {
         "texte": "Annoncer une urgence : une canalisation a éclaté à l'autre bout du département.",
         "reaction": "« Courez. Le contrôle, lui, vous attendra : il ne fuit pas. »"
+      },
+      "avis-s2-c": {
+        "reaction": "« Quelques mois ? » Il note la date dans un petit carnet. « Le délai attendra sagement, comme un joint qui sèche. »"
+      }
+    }
+  },
+  "avis-s3": {
+    "texte": "Votre comptable déplie l'avis sur le capot de la camionnette, entre deux coudes en cuivre : « Ils regardent quelles années, déjà ? Dites-moi qu'on n'a pas à vider tout le dépôt. »",
+    "choix": {
+      "avis-s3-a": {
+        "reaction": "« Parfait. Je prends les trois classeurs bleus, et on laisse les cartons du dépôt tranquilles. »"
+      },
+      "avis-s3-b": {
+        "reaction": "Tonton Robert ressort du dépôt avec une brouette de cartons. Votre comptable disparaît derrière. On entend un faible « au secours » entre deux tuyaux."
+      },
+      "avis-s3-c": {
+        "reaction": "Votre comptable sort un seul classeur, tout fin. M. Rectif en réclame deux autres, épais comme un manuel de chaudière."
+      }
+    }
+  },
+  "avis-s4": {
+    "texte": "M. Bernard Rectif pose son cartable sur un carton de raccords : « Vous avez reçu la charte du contribuable vérifié, et vous pouvez vous faire assister d'un conseil. Vous voulez quelqu'un à vos côtés ? » Kevin lève la main. Il la baisse aussitôt.",
+    "choix": {
+      "avis-s4-a": {
+        "reaction": "« Très bien, nous fixerons les rendez-vous ensemble. » Votre comptable range son mètre ruban et redresse sa cravate."
+      },
+      "avis-s4-b": {
+        "texte": "Plier la charte en avion et viser le seau de l'établi.",
+        "reaction": "L'avion fait un looping au-dessus de l'établi et atterrit dans le seau d'eau. M. Rectif le repêche, le sèche sur le radiateur et vous le rend."
+      },
+      "avis-s4-c": {
+        "reaction": "« Comme vous voudrez. » Kevin propose aussitôt de vous assister. Votre comptable, vexé, range sa cravate dans la boîte à outils."
       }
     }
   },
   "fec-s1": {
     "texte": "« Pour commencer, il me faudrait votre fichier des écritures comptables. Le FEC. Pas le carnet à spirale de la camionnette. »",
     "choix": {
+      "fec-s1-a": {
+        "reaction": "M. Rectif ouvre le fichier du premier coup. « Pas une ligne qui fuit. C'est presque de la belle plomberie. »"
+      },
       "fec-s1-b": {
         "texte": "Poser sur la table une caisse à outils pleine de tickets et de joints usagés.",
         "reaction": "M. Rectif extrait un ticket de 2019 coincé entre deux joints. « Ça goutte un peu, votre comptabilité. »"
+      },
+      "fec-s1-c": {
+        "reaction": "M. Rectif fait défiler les 900 pages. Derrière lui, Kevin s'endort debout, adossé au chauffe-eau de démonstration."
+      }
+    }
+  },
+  "fec-s2": {
+    "texte": "Le soir, au dépôt, vous relisez vos comptes à la lampe frontale. La facture de la salle de bains de Belle-maman a été saisie deux fois, celle d'un dépannage jamais. Une vraie erreur, avec des chiffres dedans.",
+    "choix": {
+      "fec-s2-a": {
+        "reaction": "M. Rectif hoche la tête : « Une erreur signalée, c'est une fuite qu'on répare avant le dégât des eaux. »"
+      },
+      "fec-s2-b": {
+        "reaction": "Il la voit. Il l'entoure en rouge, deux fois, et colle à côté un petit post-it en forme de goutte."
+      },
+      "fec-s2-c": {
+        "reaction": "M. Rectif compare deux versions du même fichier. Il lève un sourcil, puis l'autre. Kevin regarde ses chaussures de sécurité."
+      }
+    }
+  },
+  "fec-s3": {
+    "texte": "M. Rectif s'arrête sur une série d'achats étranges : quarante mètres de tuyau de cuivre, un mardi, et aucun chantier ce jour-là. Le silence devient si épais qu'on pourrait le colmater à la filasse.",
+    "choix": {
+      "fec-s3-a": {
+        "reaction": "Bon de livraison, adresse du chantier, photo du tuyau posé : les justificatifs défilent. Le silence redevient fluide."
+      },
+      "fec-s3-b": {
+        "texte": "Inventer un fournisseur de cuivre au nom très convaincant.",
+        "reaction": "« Et ce fournisseur de cuivre, il a une adresse ? Un téléphone ? Un entrepôt ? » Kevin souffle un nom. Il aurait mieux fait de se taire."
+      },
+      "fec-s3-c": {
+        "texte": "« Ça ? C'est l'ancien apprenti. Il est parti avec les factures. »",
+        "reaction": "« L'ancien apprenti a bon dos. Et il a laissé une adresse, cet apprenti ? » Kevin, l'actuel, se fait tout petit derrière le chauffe-eau."
+      }
+    }
+  },
+  "rectification-s1": {
+    "texte": "Quelques semaines plus tard, une enveloppe épaisse arrive au dépôt : la proposition de rectification. Tonton Robert la soupèse d'un air connaisseur : « Au moins deux kilos. Ça, ça ne se répare pas avec du ruban. »",
+    "choix": {
+      "rectification-s1-a": {
+        "reaction": "Chaque rehaussement est expliqué, ligne par ligne, comme un schéma de tuyauterie. Vous savez au moins à quoi répondre."
+      },
+      "rectification-s1-b": {
+        "reaction": "Accordé. Votre comptable respire à nouveau, et Kevin lâche enfin la clé à molette qu'il serrait depuis une heure."
+      },
+      "rectification-s1-c": {
+        "texte": "S'en servir pour caler l'établi bancal.",
+        "reaction": "L'établi ne boite plus. Le délai, lui, continue de couler, goutte à goutte."
+      },
+      "rectification-s1-d": {
+        "reaction": "Votre banquière appelle, inquiète. Votre comptable n'a même pas eu le temps de lire la première page, ni Tonton de la soupeser une seconde fois."
+      }
+    }
+  },
+  "rectification-s2": {
+    "texte": "M. Bernard Rectif revient, ponctuel comme une chasse d'eau neuve : « J'ai lu vos observations. Je maintiens une partie des rectifications. »",
+    "choix": {
+      "rectification-s2-a": {
+        "reaction": "« C'est votre droit. Je transmets. » Il range le dossier sans un bruit, comme un robinet bien réglé."
+      },
+      "rectification-s2-b": {
+        "reaction": "« Les rimes sont jolies. \"Siphon\" avec \"abandon\", c'était osé. Les arguments, eux, restent introuvables. »"
+      },
+      "rectification-s2-c": {
+        "reaction": "« Très bien, je note votre accord. » Votre comptable, lui, note surtout au dos d'un devis les points que vous auriez pu gagner."
       }
     }
   },
   "rectification-s3": {
+    "texte": "Votre comptable s'assoit sur un carton de lavabos : « Bon. Reste la question qui fâche : on paie quand ? »",
     "choix": {
       "rectification-s3-a": {
         "reaction": "Votre comptable range ses classeurs en sifflotant. Tonton Robert propose de fêter ça autour d'un gratin."
+      },
+      "rectification-s3-b": {
+        "reaction": "Votre comptable vous regarde comme un ballon d'eau chaude qui lâche en plein mois de janvier."
+      },
+      "rectification-s3-c": {
+        "reaction": "Votre comptable fait le calcul de tête au dos d'un bon de livraison, et pâlit doucement."
       }
     }
   }
