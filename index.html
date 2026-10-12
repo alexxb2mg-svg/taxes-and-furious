@@ -120,11 +120,15 @@
       </header>
       <div class="chemise chemise-fin">
         <p class="chemise-etiquette">Dossier clos · <span id="fin-profil"></span></p>
-        <!-- Vérificateur du profil (EX-156) : illustration en pied, ou son portrait. -->
-        <figure id="fin-verificateur" class="fin-verificateur"></figure>
-        <h2 id="fin-titre" class="titre-fin" tabindex="-1"></h2>
-        <p id="fin-anticipee" class="tampon tampon-rouge" hidden>Contrôle écourté</p>
-        <p id="fin-texte" class="fin-texte"></p>
+        <div class="fin-corps">
+          <!-- Vérificateur du profil (EX-156) : illustration en pied, ou son portrait. -->
+          <figure id="fin-verificateur" class="fin-verificateur"></figure>
+          <div class="fin-corps-texte">
+            <h2 id="fin-titre" class="titre-fin" tabindex="-1"></h2>
+            <p id="fin-anticipee" class="tampon tampon-rouge" hidden>Contrôle écourté</p>
+            <p id="fin-texte" class="fin-texte"></p>
+          </div>
+        </div>
         <dl class="score">
           <div class="score-ligne"><dt>Redressement total</dt><dd><span data-score="redressement"></span> €</dd></div>
           <div class="score-ligne"><dt>Bons réflexes</dt><dd><span data-score="bons"></span> / <span data-score="scenes"></span></dd></div>

@@ -649,8 +649,12 @@ h1, h2, h3, h4 {
   box-shadow: 4px 4px 0 #2b2118;
 }
 
-.fin-verificateur { margin: 0 auto 16px; }
-.fin-illustration { height: clamp(150px, 30vh, 300px); width: auto; margin: 0 auto; box-shadow: 5px 5px 0 #2b2118; }
+/* Écran de fin : le vérificateur à gauche du verdict (titre et texte), le score en dessous. */
+.fin-corps { display: flex; align-items: center; justify-content: center; gap: 24px; margin: 0 0 20px; }
+.fin-corps-texte { min-width: 0; text-align: left; }
+.fin-corps .fin-texte { margin: 0; }
+.fin-verificateur { flex: 0 0 auto; margin: 0; }
+.fin-illustration { height: clamp(140px, 26vh, 220px); width: auto; box-shadow: 5px 5px 0 #2b2118; }
 
 .fiche {
   display: grid;
@@ -732,6 +736,10 @@ h1, h2, h3, h4 {
   .titre-corps:has(> .embleme:not([hidden])) .titre-jeu { font-size: 1.9rem; }
   .titre-corps:has(> .embleme:not([hidden])) .sous-titre { font-size: 1rem; margin-bottom: 0; }
   .embleme-illustration { height: min(24vh, 180px); }
-  .fin-illustration { height: min(18vh, 140px); }
-  .embleme-portrait, .fin-portrait { width: 96px; height: 96px; }
+  .fin-corps { gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+  .fin-illustration { height: 112px; border-width: 2px; box-shadow: 3px 3px 0 #2b2118; }
+  .fin-corps .titre-fin { font-size: 1.5rem; margin-bottom: 6px; }
+  .fin-corps .fin-texte { font-size: 1rem; line-height: 1.4; }
+  .embleme-portrait { width: 96px; height: 96px; }
+  .fin-portrait { width: 72px; height: 72px; border-width: 2px; box-shadow: 3px 3px 0 #2b2118; }
 }
