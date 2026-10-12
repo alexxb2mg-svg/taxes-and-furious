@@ -1,0 +1,22 @@
+{
+  "regle": "EX-131 : titre de l'encadre refuse aussi sans casse ni accents, dans le tronc",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "tronc.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "choix",
+        1,
+        "explication"
+      ],
+      "valeur": "CE QUE DIT VRAIMENT LA LOI. L'avis vous dit où trouver la charte."
+    }
+  ],
+  "attendu": [
+    "tronc.json : scene \"avis-s1\", choix \"avis-s1-b\", champ \"explication\" : commence par \"Ce que dit vraiment la loi\""
+  ]
+}

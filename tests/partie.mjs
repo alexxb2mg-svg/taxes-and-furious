@@ -151,6 +151,9 @@ export async function jouerPartie(p, racine, id, suite, { references, largeurMax
     await verifierJauges(p, etat, `${idChoix} apres choix`);
     assert.equal(await texte(p, '#encadre-reaction'), (choix.reaction ?? '').trim(), `${idChoix} : reaction`);
     assert.equal(await texte(p, '#loi-titre'), 'Ce que dit vraiment la loi');
+    // EX-131 : le libelle n'apparait qu'une fois dans l'encadre (son titre), jamais repete dans l'explication.
+    const libelles = await p.eval(`(document.querySelector('#encadre').textContent.match(/ce que dit vraiment la loi/gi) || []).length`);
+    assert.equal(libelles, 1, `${idChoix} : libelle "Ce que dit vraiment la loi" ${libelles} fois dans l'encadre (EX-131)`);
     assert.equal(await texte(p, '#loi-explication'), choix.explication.trim(), `${idChoix} : explication`);
     const loi = await p.eval(`[...document.querySelectorAll('#loi-references .loi-reference')].map((li) => ({
       id: li.dataset.reference, article: li.querySelector('.loi-article').textContent, resume: li.querySelector('.loi-resume').textContent }))`);

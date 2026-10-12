@@ -1,0 +1,22 @@
+{
+  "regle": "EX-131 : une explication ne commence pas par le titre de l'encadre",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "choix",
+        0,
+        "explication"
+      ],
+      "valeur": "Ce que dit vraiment la loi : un cornet mangé tout de suite suit le taux de 10 %."
+    }
+  ],
+  "attendu": [
+    "choix \"cornets-s1-a\", champ \"explication\" : commence par \"Ce que dit vraiment la loi\""
+  ]
+}

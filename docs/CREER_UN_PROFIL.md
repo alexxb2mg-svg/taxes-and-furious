@@ -50,10 +50,10 @@ Champs (section 4 de la spec) :
 | `personnages` | au moins un personnage de rôle `verificateur`, avec portrait ; les autres ont le rôle `second`. Les rôles `comptable` et `joueur` sont facultatifs : sinon le jeu utilise « Votre expert-comptable » et « Vous » de `data/communs/` |
 | `parcours` | ordre des chapitres : les 3 chapitres du tronc (`tronc:avis`, `tronc:fec`, `tronc:rectification`) une fois chacun, dans cet ordre ; les chapitres du profil (`profil:<id>`) s'intercalent librement, une fois au plus |
 | `references_obligatoires` | références que les chapitres du profil doivent toutes citer (le validateur vérifie la couverture) |
-| `chapitres` | 1 à 3 chapitres propres, 2 à 6 scènes chacun ; la scène d'entrée est la première du tableau `scenes` |
+| `chapitres` | 1 à 3 chapitres propres, 2 à 6 scènes chacun (1 ou 2 pour un chapitre d'ouverture placé en tête du parcours) ; la scène d'entrée est la première du tableau `scenes` |
 | `fins` | au moins 2 fins propres, évaluées dans l'ordre, avant les fins communes |
 
-Une scène : `id` unique, `personnage` (id d'un personnage du profil, ou `narrateur` : encadré sans portrait), `texte`, et 2 à 4 `choix`. Un choix : `id` unique, `texte`, `juste` (au moins un `true` par scène), `effets` (deltas entiers sur `redressement`, `patience`, `stress`), `reaction`, `explication` (commence par « Ce que dit vraiment la loi : »), `references` (identifiants de `data/references.json`), `suivant` (id d'une scène du même chapitre, ou `null` pour finir le chapitre ; aucun cycle, aucune scène inatteignable).
+Une scène : `id` unique, `personnage` (id d'un personnage du profil, ou `narrateur` : encadré sans portrait), `texte`, et 2 à 4 `choix`. Un choix : `id` unique, `texte`, `juste` (au moins un `true` par scène), `effets` (deltas entiers sur `redressement`, `patience`, `stress`), `reaction`, `explication` (ce qui s'applique au cas joué, sans le titre « Ce que dit vraiment la loi », que l'interface affiche déjà en tête de l'encadré, et sans recopier le résumé de l'article cité, affiché juste dessous ; le validateur avertit au-delà de 60 % de mots communs avec ce résumé), `references` (identifiants de `data/references.json`), `suivant` (id d'une scène du même chapitre, ou `null` pour finir le chapitre ; aucun cycle, aucune scène inatteignable).
 
 Une fin : `id`, `titre`, `texte`, `conditions` (`jauge`, `op` parmi `<`, `<=`, `>`, `>=`, `==`, `valeur`) ; toutes les conditions doivent être vraies. Si aucune fin du profil n'est satisfaite, le jeu passe aux fins communes (`fin-sereine`, puis `fin-defaut`, toujours vraie). Si la patience tombe à 0, la partie s'arrête sur `fin-patience`.
 
@@ -95,7 +95,7 @@ Exemple complet, `data/profils/boulanger/profil.json` :
               "juste": true,
               "effets": { "redressement": 0, "patience": 10, "stress": -10 },
               "reaction": "« Parfait. Et elle sent même le croissant. »",
-              "explication": "Ce que dit vraiment la loi : un commerçant qui enregistre avec un logiciel de caisse des ventes sans facture doit utiliser un système sécurisé, attesté par un certificat ou par une attestation individuelle de l'éditeur.",
+              "explication": "C'est la bonne pièce : pour des baguettes payées sans facture, l'attestation de l'éditeur prouve que la caisse ne peut ni effacer ni retoucher une vente.",
               "references": ["R-286"],
               "suivant": "fournil-s2"
             },
@@ -105,7 +105,7 @@ Exemple complet, `data/profils/boulanger/profil.json` :
               "juste": false,
               "effets": { "redressement": 7500, "patience": -15, "stress": 15 },
               "reaction": "M. Levain note quelque chose. Le mot « artisanale » est souligné deux fois.",
-              "explication": "Ce que dit vraiment la loi : ne pas pouvoir produire l'attestation ou le certificat du logiciel de caisse coûte une amende de 7 500 € par logiciel, puis 60 jours pour se mettre en conformité.",
+              "explication": "« Artisanale » ne remplace pas une preuve : faute de pouvoir la montrer, le boulanger paie 7 500 € et dispose de 60 jours pour régulariser.",
               "references": ["R-1770DUO"],
               "suivant": "fournil-s2"
             }
@@ -122,7 +122,7 @@ Exemple complet, `data/profils/boulanger/profil.json` :
               "juste": true,
               "effets": { "redressement": 0, "patience": 5, "stress": -5 },
               "reaction": "M. Levain hoche la tête et repose le bocal, sans se servir.",
-              "explication": "Ce que dit vraiment la loi : les denrées alimentaires bénéficient du taux de 5,5 %, sauf notamment les confiseries, qui relèvent du taux normal de 20 %.",
+              "explication": "Exact : le pain profite du taux réduit de 5,5 %, mais les bonbons du bocal restent au taux normal de 20 %.",
               "references": ["R-278-0B-A1", "R-278"],
               "suivant": null
             },
@@ -132,7 +132,7 @@ Exemple complet, `data/profils/boulanger/profil.json` :
               "juste": false,
               "effets": { "redressement": 3000, "patience": -10, "stress": 10 },
               "reaction": "M. Levain sort sa calculatrice. Elle aussi semble déçue.",
-              "explication": "Ce que dit vraiment la loi : les denrées alimentaires bénéficient du taux de 5,5 %, sauf notamment les confiseries, qui relèvent du taux normal de 20 %.",
+              "explication": "Le sucre ne suffit pas : à côté du pain à 5,5 %, les bonbons du bocal restent au taux normal de 20 %.",
               "references": ["R-278-0B-A1", "R-278"],
               "suivant": null
             }

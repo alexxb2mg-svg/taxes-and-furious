@@ -39,7 +39,7 @@
               "juste": true,
               "effets": { "redressement": 0, "patience": 10, "stress": -5 },
               "reaction": "« Parfait. Une caisse qui se tient droite. »",
-              "explication": "Ce que dit vraiment la loi : un assujetti qui enregistre au moyen d'un logiciel ou d'un système de caisse des ventes sans facture doit utiliser un système qui garantit l'inaltérabilité, la sécurisation, la conservation et l'archivage des données, attesté par un certificat d'un organisme accrédité ou par une attestation individuelle de l'éditeur.",
+              "explication": "C'est la bonne pièce : pour des bouquets payés sans facture, l'attestation de l'éditeur prouve que la caisse ne peut ni effacer ni retoucher une vente.",
               "references": ["R-286"],
               "suivant": "caisse-s2"
             },
@@ -49,7 +49,7 @@
               "juste": false,
               "effets": { "redressement": 2000, "patience": -15, "stress": 15 },
               "reaction": "Mme Démo Pistil compte ses doigts à son tour. Elle n'a pas l'air convaincue.",
-              "explication": "Ce que dit vraiment la loi : les ventes sans facture enregistrées par un logiciel ou un système de caisse doivent passer par un système sécurisé et inaltérable, attesté par un certificat ou par une attestation de l'éditeur.",
+              "explication": "Les ventes sans facture enregistrées par un logiciel ou un système de caisse doivent passer par un système sécurisé et inaltérable, attesté par un certificat ou par une attestation de l'éditeur.",
               "references": ["R-286"],
               "suivant": "caisse-s2"
             }
@@ -66,7 +66,7 @@
               "juste": true,
               "effets": { "redressement": 0, "patience": 5, "stress": -10 },
               "reaction": "M. Démo Bilan coche une case avec un plaisir évident.",
-              "explication": "Ce que dit vraiment la loi : le taux normal de TVA est de 20 %.",
+              "explication": "Un vase reste un vase, même posé à côté des fleurs : aucun taux réduit ne le vise, il passe à 20 %.",
               "references": ["R-278"],
               "suivant": null
             },
@@ -76,7 +76,7 @@
               "juste": false,
               "effets": { "redressement": 1500, "patience": -10, "stress": 20 },
               "reaction": "M. Démo Bilan s'assoit lentement sur un pot de terreau.",
-              "explication": "Ce que dit vraiment la loi : le taux normal de TVA est de 20 %.",
+              "explication": "Décoration ou pas, le vase se vend : aucun taux réduit ne le vise, et encore moins un taux nul. C'est 20 %.",
               "references": ["R-278"],
               "suivant": null
             }

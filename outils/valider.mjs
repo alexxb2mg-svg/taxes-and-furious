@@ -1,6 +1,8 @@
 #!/usr/bin/env node
-// Validateur des donnees de Taxes & Furious (EX-020, EX-002, EX-003, EX-005, EX-052, EX-053).
-// Usage : node outils/valider.mjs [--racine <dossier>] [--profil <id>] [--sans-couverture]
+// Validateur des donnees de Taxes & Furious (EX-020, EX-002, EX-003, EX-005, EX-052, EX-053, EX-131).
+// Usage : node outils/valider.mjs [--racine <dossier>] [--profil <id>] [--sans-couverture] [--exigences-lot4]
+// --exigences-lot4 ajoute les regles de profondeur EX-140 a EX-143 (ouverture, tronc habille, 3 ou 4 choix,
+// chapitres, fins, nombre de scenes) pour les profils verifies, et EX-142 pour le tronc.
 // Code de sortie 0 si valide, 1 sinon ; un message par erreur, en francais, nommant fichier, id et champ.
 
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
@@ -36,6 +38,19 @@ export const PROFILS_OBLIGATOIRES = {
   consultant: ['R-39-1', 'R-39-4', 'R-1729'],
   coiffeuse: ['R-286', 'R-1770DUO', 'R-L8221-6', 'R-L8221-5', 'R-39-1'],
   galeriste: ['R-238BAB', 'R-39-4', 'R-1729'],
+};
+
+// EX-131 : le titre de l'encadre n'est ecrit qu'une fois, par l'interface.
+export const LIBELLE_LOI = 'Ce que dit vraiment la loi';
+// EX-131 : part maximale des mots d'une explication deja presents dans le resume d'une reference citee.
+export const SEUIL_RECOUVREMENT = 0.6;
+// EX-140 a EX-143 (option --exigences-lot4).
+export const LOT4 = {
+  scenesOuverture: [1, 2],
+  choixParScene: [3, 4],
+  chapitresHorsOuverture: 2,
+  finsPropres: 3,
+  scenesParcours: [16, 24],
 };
 
 const CHAMPS_VARIANTE_SCENE = ['texte', 'choix'];
@@ -106,6 +121,33 @@ export function verifierChiffres(explication, idsReferences, referencesParId) {
     problemes.push(`nombre en lettres "${l}" : ecrire les chiffres d'une explication en chiffres`);
   }
   return problemes;
+}
+
+// ---------------------------------------------------------------- EX-131
+
+/** Mots d'au moins 4 lettres, sans casse ni accents (ensemble). */
+export function motsSignificatifs(texte) {
+  return new Set(String(texte ?? '')
+    .normalize('NFD').replace(/\p{M}/gu, '').toLowerCase()
+    .replace(/œ/g, 'oe').replace(/æ/g, 'ae')
+    .split(/[^a-z]+/)
+    .filter((m) => m.length >= 4));
+}
+
+/** Part des mots de l'explication (4 lettres et plus) qui figurent aussi dans le resume. */
+export function recouvrement(explication, resume) {
+  const mots = motsSignificatifs(explication);
+  if (mots.size === 0) return 0;
+  const dansResume = motsSignificatifs(resume);
+  let communs = 0;
+  for (const m of mots) if (dansResume.has(m)) communs += 1;
+  return communs / mots.size;
+}
+
+/** Explication qui commence par le titre de l'encadre (casse et accents ignores). */
+export function commenceParLibelle(explication) {
+  const sans = (t) => String(t ?? '').normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
+  return sans(explication).trimStart().startsWith(sans(LIBELLE_LOI));
 }
 
 // ---------------------------------------------------------------- rapport
@@ -278,6 +320,18 @@ function verifierChoix(choix, fichier, ctxScene, refs, rapport, issue = false) {
   const cites = verifierReferences(choix.references, fichier, ctx, 'references', refs, rapport);
   if (estTexte(choix.explication)) {
     for (const p of verifierChiffres(choix.explication, cites, refs)) rapport.erreur(fichier, ctx, 'explication', p);
+    // EX-131 : le titre de l'encadre est affiche par l'interface, pas repete dans l'explication.
+    if (commenceParLibelle(choix.explication)) {
+      rapport.erreur(fichier, ctx, 'explication', `commence par "${LIBELLE_LOI}" : ce titre est deja celui de l'encadre, l'explication commence directement par le cas joue`);
+    }
+    // EX-131 : l'explication dit ce qui s'applique au cas joue, sans recopier le resume affiche dessous.
+    for (const id of cites) {
+      const part = recouvrement(choix.explication, refs.get(id)?.resume);
+      if (part > SEUIL_RECOUVREMENT) {
+        rapport.avertissement(fichier, ctx, 'explication',
+          `${Math.round(part * 100)} % de ses mots figurent dans le resume de ${id} (seuil ${Math.round(SEUIL_RECOUVREMENT * 100)} %) : dire ce qui s'applique au cas joue plutot que repeter l'article`);
+      }
+    }
   }
 }
 
@@ -636,7 +690,95 @@ function verifierParcours(profil, F, tronc, rapport) {
   }
 }
 
-function verifierProfil(racine, id, ctxGlobal, rapport, couverture) {
+// ---------------------------------------------------------------- lot 4 (EX-140 a EX-143)
+
+const cleEffets = (c) => JAUGES.map((j) => Number(c?.effets?.[j]) || 0).join('|');
+
+/** EX-142 : scenes `choix` a 3 ou 4 choix, au moins un mauvais reflexe, effets deux a deux differents. */
+function verifierProfondeurScenes(chapitres, fichier, rapport) {
+  const [min, max] = LOT4.choixParScene;
+  for (const s of idsScenes(chapitres)) {
+    if ((s.type ?? TYPE_DEFAUT) !== TYPE_DEFAUT || !Array.isArray(s.choix)) continue;
+    const ctx = `scene "${s.id}"`;
+    if (s.choix.length < min || s.choix.length > max) {
+      rapport.erreur(fichier, ctx, 'choix', `${s.choix.length} choix : il en faut ${min} ou ${max} (EX-142)`);
+    }
+    if (!s.choix.some((c) => c?.juste === false)) {
+      rapport.erreur(fichier, ctx, 'choix', 'aucun mauvais reflexe ("juste": false) : il en faut au moins un (EX-142)');
+    }
+    const vus = new Map();
+    for (const c of s.choix) {
+      const cle = cleEffets(c);
+      if (vus.has(cle)) {
+        rapport.erreur(fichier, `${ctx}, choix "${c?.id ?? '?'}"`, 'effets', `effets identiques a ceux du choix "${vus.get(cle)}" : chaque choix d'une scene a ses propres effets (EX-142)`);
+      } else {
+        vus.set(cle, c?.id ?? '?');
+      }
+    }
+  }
+}
+
+/** Regles du lot 4 pour un profil (option --exigences-lot4). */
+function verifierLot4Profil(profil, variantes, tronc, F, FV, rapport) {
+  const parcours = Array.isArray(profil.parcours) ? profil.parcours : [];
+  const chapitres = Array.isArray(profil.chapitres) ? profil.chapitres.filter(estObjet) : [];
+  const parId = new Map(chapitres.map((c) => [c.id, c]));
+
+  // EX-140 : ouverture propre au profil, avant le tronc.
+  const premiere = parcours[0];
+  let ouverture = null;
+  if (typeof premiere !== 'string' || !premiere.startsWith('profil:')) {
+    rapport.erreur(F, null, 'parcours', `premiere entree ${JSON.stringify(premiere ?? null)} : le parcours commence par le chapitre d'ouverture du profil ("profil:<id>"), avant le tronc (EX-140)`);
+  } else {
+    ouverture = premiere.slice('profil:'.length);
+    const n = Array.isArray(parId.get(ouverture)?.scenes) ? parId.get(ouverture).scenes.length : 0;
+    const [min, max] = LOT4.scenesOuverture;
+    if (parId.has(ouverture) && (n < min || n > max)) {
+      rapport.erreur(F, `chapitre "${ouverture}"`, 'scenes', `${n} scene(s) dans le chapitre d'ouverture : il en faut de ${min} a ${max} (EX-140)`);
+    }
+  }
+
+  // EX-141 : chaque scene du tronc habillee (texte), chaque choix avec sa reaction.
+  const v = estObjet(variantes) ? variantes : {};
+  for (const s of idsScenes(tronc?.chapitres)) {
+    const vs = v[s.id];
+    if (!estObjet(vs) || !estTexte(vs.texte)) {
+      rapport.erreur(FV, `scene "${s.id}"`, 'texte', 'variante absente : chaque scene du tronc est reecrite pour le profil (EX-141)');
+    }
+    for (const c of sortiesScene(s)) {
+      if (!estTexte(c?.id)) continue;
+      if (!estTexte(vs?.choix?.[c.id]?.reaction)) {
+        rapport.erreur(FV, `scene "${s.id}", choix "${c.id}"`, 'reaction', 'reaction absente : chaque choix du tronc a une reaction propre au profil (EX-141)');
+      }
+    }
+  }
+
+  // EX-142 : chapitres du profil.
+  verifierProfondeurScenes(chapitres, F, rapport);
+
+  // EX-143 : profondeur.
+  const autres = chapitres.filter((c) => c.id !== ouverture).length;
+  if (autres < LOT4.chapitresHorsOuverture) {
+    rapport.erreur(F, null, 'chapitres', `${autres} chapitre(s) propre(s) hors ouverture : il en faut au moins ${LOT4.chapitresHorsOuverture} (EX-143)`);
+  }
+  const fins = Array.isArray(profil.fins) ? profil.fins.length : 0;
+  if (fins < LOT4.finsPropres) {
+    rapport.erreur(F, null, 'fins', `${fins} fin(s) propre(s) : il en faut au moins ${LOT4.finsPropres} (EX-143)`);
+  }
+  const chTronc = new Map((Array.isArray(tronc?.chapitres) ? tronc.chapitres : []).filter(estObjet).map((c) => [c.id, c]));
+  let total = 0;
+  for (const e of parcours) {
+    if (typeof e !== 'string') continue;
+    const ch = e.startsWith('tronc:') ? chTronc.get(e.slice(6)) : e.startsWith('profil:') ? parId.get(e.slice(7)) : undefined;
+    total += Array.isArray(ch?.scenes) ? ch.scenes.length : 0;
+  }
+  const [min, max] = LOT4.scenesParcours;
+  if (total < min || total > max) {
+    rapport.erreur(F, null, 'parcours', `${total} scene(s) sur l'ensemble du parcours : il en faut de ${min} a ${max} (EX-143)`);
+  }
+}
+
+function verifierProfil(racine, id, ctxGlobal, rapport, couverture, lot4 = false) {
   const dossier = `profils/${id}`;
   const F = `${dossier}/profil.json`;
   const { tronc, communs, refs, troncValide } = ctxGlobal;
@@ -724,6 +866,9 @@ function verifierProfil(racine, id, ctxGlobal, rapport, couverture) {
     if (variantes !== undefined) verifierVariantes(variantes, FV, tronc, rapport);
   }
 
+  // Lot 4 (EX-140 a EX-143), sur demande.
+  if (lot4) verifierLot4Profil(profil, variantes, tronc, F, FV, rapport);
+
   // EX-005 (couverture)
   if (couverture) {
     const declarees = Array.isArray(profil.references_obligatoires) ? profil.references_obligatoires : [];
@@ -743,9 +888,15 @@ function verifierProfil(racine, id, ctxGlobal, rapport, couverture) {
     }
     const ch = Array.isArray(profil.chapitres) ? profil.chapitres : [];
     if (ch.length < 1 || ch.length > 3) rapport.erreur(F, null, 'chapitres', `${ch.length} chapitre(s) propre(s) : il en faut de 1 a 3`);
+    // Chapitre d'ouverture (EX-140) : premier du parcours, avant le tronc, 1 ou 2 scenes.
+    const premiere = Array.isArray(profil.parcours) ? profil.parcours[0] : undefined;
+    const ouverture = typeof premiere === 'string' && premiere.startsWith('profil:') ? premiere.slice('profil:'.length) : null;
     for (const c of ch) {
       const n = Array.isArray(c?.scenes) ? c.scenes.length : 0;
-      if (n < 2 || n > 6) rapport.erreur(F, `chapitre "${c?.id}"`, 'scenes', `${n} scene(s) : il en faut de 2 a 6`);
+      const [min, max] = c?.id === ouverture ? LOT4.scenesOuverture : [2, 6];
+      if (n < min || n > max) {
+        rapport.erreur(F, `chapitre "${c?.id}"`, 'scenes', `${n} scene(s) : il en faut de ${min} a ${max}${c?.id === ouverture ? ' (chapitre d\'ouverture)' : ''}`);
+      }
     }
   }
 
@@ -762,10 +913,11 @@ function verifierProfil(racine, id, ctxGlobal, rapport, couverture) {
 // ---------------------------------------------------------------- point d'entree
 
 /**
- * @param {{ racine?: string, profil?: string|null, couverture?: boolean }} options
+ * @param {{ racine?: string, profil?: string|null, couverture?: boolean, exigencesLot4?: boolean }} options
+ *   `exigencesLot4` : regles EX-140 a EX-143 pour les profils verifies (et EX-142 pour le tronc).
  * @returns {{ erreurs: string[], avertissements: string[], profils: string[] }}
  */
-export function valider({ racine = RACINE_DEFAUT, profil = null, couverture = true } = {}) {
+export function valider({ racine = RACINE_DEFAUT, profil = null, couverture = true, exigencesLot4 = false } = {}) {
   const rapport = new Rapport();
   racine = resolve(racine);
   if (!existsSync(racine)) {
@@ -788,14 +940,15 @@ export function valider({ racine = RACINE_DEFAUT, profil = null, couverture = tr
   verifierCommuns(racine, communs, rapport);
 
   const ids = profil ? [profil] : lireIndex(racine, rapport);
-  for (const id of ids) verifierProfil(racine, id, { tronc, communs, refs, troncValide }, rapport, couverture);
+  for (const id of ids) verifierProfil(racine, id, { tronc, communs, refs, troncValide }, rapport, couverture, exigencesLot4);
   if (couverture && !profil) verifierCouvertureTronc(tronc, rapport);
+  if (exigencesLot4 && estObjet(tronc)) verifierProfondeurScenes(tronc.chapitres, 'tronc.json', rapport);
 
   return { erreurs: rapport.erreurs, avertissements: rapport.avertissements, profils: ids };
 }
 
 function lireArguments(argv) {
-  const opts = { racine: RACINE_DEFAUT, profil: null, couverture: true };
+  const opts = { racine: RACINE_DEFAUT, profil: null, couverture: true, exigencesLot4: false };
   for (let i = 0; i < argv.length; i += 1) {
     const a = argv[i];
     if (a === '--racine' || a === '--profil') {
@@ -805,6 +958,8 @@ function lireArguments(argv) {
       i += 1;
     } else if (a === '--sans-couverture') {
       opts.couverture = false;
+    } else if (a === '--exigences-lot4') {
+      opts.exigencesLot4 = true;
     } else if (a === '--aide' || a === '-h' || a === '--help') {
       opts.aide = true;
     } else {
@@ -820,11 +975,11 @@ export function principal(argv = process.argv.slice(2)) {
     opts = lireArguments(argv);
   } catch (e) {
     console.error(`valider : ${e.message}`);
-    console.error('usage : node outils/valider.mjs [--racine <dossier>] [--profil <id>] [--sans-couverture]');
+    console.error('usage : node outils/valider.mjs [--racine <dossier>] [--profil <id>] [--sans-couverture] [--exigences-lot4]');
     return 1;
   }
   if (opts.aide) {
-    console.log('usage : node outils/valider.mjs [--racine <dossier>] [--profil <id>] [--sans-couverture]');
+    console.log('usage : node outils/valider.mjs [--racine <dossier>] [--profil <id>] [--sans-couverture] [--exigences-lot4]');
     return 0;
   }
   const { erreurs, avertissements, profils } = valider(opts);
@@ -832,7 +987,7 @@ export function principal(argv = process.argv.slice(2)) {
   for (const e of erreurs) console.error(e);
   const rel = relative(process.cwd(), opts.racine);
   const affiche = rel === '' ? '.' : rel.startsWith('..') || isAbsolute(rel) ? opts.racine : rel;
-  const cible = `${affiche.split(sep).join('/')}${opts.profil ? `, profil "${opts.profil}"` : ''}${opts.couverture ? '' : ', sans couverture'}`;
+  const cible = `${affiche.split(sep).join('/')}${opts.profil ? `, profil "${opts.profil}"` : ''}${opts.couverture ? '' : ', sans couverture'}${opts.exigencesLot4 ? ', exigences du lot 4' : ''}`;
   if (erreurs.length) {
     console.error(`ECHEC : ${erreurs.length} erreur(s) (${cible})`);
     return 1;

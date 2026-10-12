@@ -33,7 +33,7 @@
               "juste": true,
               "effets": { "redressement": 0, "patience": 10, "stress": -5 },
               "reaction": "« Bien. Pas de glissade sur ce point. »",
-              "explication": "Ce que dit vraiment la loi : la TVA est à 10 % pour les ventes à consommer sur place et pour les ventes à emporter ou à livrer de produits alimentaires préparés en vue d'une consommation immédiate, sauf les boissons alcooliques.",
+              "explication": "Un cornet mangé sur le trottoir dans la minute est préparé pour être consommé tout de suite : 10 %, à emporter comme sur place.",
               "references": ["R-279-MN"],
               "suivant": "cornets-s2"
             },
@@ -43,7 +43,7 @@
               "juste": false,
               "effets": { "redressement": 3000, "patience": -15, "stress": 15 },
               "reaction": "Une goutte de vanille tombe sur le dossier. Silence glacial.",
-              "explication": "Ce que dit vraiment la loi : les ventes à emporter de produits alimentaires préparés en vue d'une consommation immédiate relèvent du taux de 10 %.",
+              "explication": "Froid ne veut pas dire surgelé : un cornet servi pour être mangé tout de suite suit le taux de 10 %.",
               "references": ["R-279-MN"],
               "suivant": "cornets-s2"
             }
@@ -60,7 +60,7 @@
               "juste": true,
               "effets": { "redressement": 0, "patience": 15, "stress": -10 },
               "reaction": "M. Démo Sorbet range son stylo. C'est presque un compliment.",
-              "explication": "Ce que dit vraiment la loi : la TVA est à 10 % pour les ventes à consommer sur place, sauf les boissons alcooliques.",
+              "explication": "En terrasse, c'est bien une vente sur place, au même taux de 10 % que le cornet emporté.",
               "references": ["R-279-MN"],
               "suivant": null
             },
@@ -70,7 +70,7 @@
               "juste": false,
               "effets": { "redressement": 1000, "patience": -10, "stress": 10 },
               "reaction": "« Merci, non. Revenons au parasol. »",
-              "explication": "Ce que dit vraiment la loi : les ventes à consommer sur place relèvent du taux de 10 %, sauf les boissons alcooliques.",
+              "explication": "La boule pistache ne fait pas oublier la question : en terrasse, c'est une vente sur place, à 10 %.",
               "references": ["R-279-MN"],
               "suivant": null
             }

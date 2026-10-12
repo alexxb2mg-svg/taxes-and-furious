@@ -12,6 +12,7 @@ La fiction est dans la mise en scène ; la loi est dans l'encadré « Ce que dit
 - Si la notion existe déjà dans `data/references.json`, on cite son identifiant et on n'écrit rien de plus que ce que disent son `article`, son `resume` et ses `valeur`.
 - **Toute notion juridique nouvelle s'appuie sur un article lu dans le texte officiel** (code général des impôts, livre des procédures fiscales, code du travail...) **et est ajoutée à `data/references.json` dans la même pull request**. Indiquez dans la description de la pull request l'article, sa version en vigueur et où vous l'avez lu. Un mainteneur relit la référence sur le texte avant la fusion. On n'invente jamais une règle, un taux, un montant ou un délai.
 - Les chiffres d'une explication (`%`, `pour cent`, `€`, `euros`, `EUR`, `jours`, `mois`, `ans`) s'écrivent en chiffres et doivent figurer dans les `valeur` des références citées par ce choix. Les montants des textes et réactions sont libres : c'est de la fiction.
+- Une explication dit ce qui s'applique au cas joué. Elle ne commence pas par « Ce que dit vraiment la loi » (l'interface affiche déjà ce titre ; le validateur refuse) et ne recopie pas le résumé de l'article, affiché juste dessous : au-delà de 60 % de mots communs (mots de 4 lettres et plus, sans casse ni accents) avec le `resume` d'une référence citée, le validateur avertit, et la pull request doit en rester à 0 avertissement.
 
 Une entrée de `data/references.json` ressemble à ceci (reprenez la forme des entrées existantes) :
 
@@ -42,6 +43,17 @@ Un profil est un dossier de données sous `data/profils/<id>/` : aucune modifica
 En bref : copier `data/profils/_modele/`, renommer, remplir `profil.json` (et éventuellement `variantes.json`), valider avec `node outils/valider.mjs --profil <id>`, ajouter l'id à `data/profils/index.json`, puis `node outils/valider.mjs` et `node --test tests/`. Les tests vérifient que chaque fin du profil est atteignable et la jouent dans le navigateur sans fenêtre.
 
 Ajoutez à la pull request les captures du profil (`node outils/captures.mjs --donnees data --profil <id>`).
+
+### Profondeur d'un profil : `--exigences-lot4`
+
+`node outils/valider.mjs --exigences-lot4` (combinable avec `--profil <id>`) ajoute les règles de profondeur d'un profil :
+
+- le parcours commence par le chapitre d'ouverture du profil (`"profil:<id>"`), de 1 ou 2 scènes, avant le tronc ;
+- `variantes.json` réécrit chaque scène du tronc (`texte`) et donne une `reaction` propre au profil pour chaque choix du tronc ;
+- chaque scène à choix (profil et tronc) a 3 ou 4 choix, au moins un mauvais réflexe (`"juste": false`), et deux choix d'une même scène n'ont jamais exactement les mêmes effets ;
+- au moins 2 chapitres propres en plus de l'ouverture, au moins 3 fins propres, et de 16 à 24 scènes sur l'ensemble du parcours (tronc compris).
+
+Ces règles ne sont pas encore exigées par les tests automatiques : les profils existants y passent un par un. Un nouveau profil les respecte dès le départ.
 
 ## Ajouter un type de scène (mini-jeu, nouvelle mécanique)
 
