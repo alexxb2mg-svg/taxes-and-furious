@@ -40,7 +40,7 @@
         "reaction": "« Parfait, je sors les bons classeurs. Pas ceux de l'époque où la galerie vendait des cadres vides. »"
       },
       "avis-s3-b": {
-        "texte": "« Tout depuis l'ouverture, par sécurité. Même le cahier de la brocante. »",
+        "texte": "« Tout depuis l'ouverture de la galerie, par sécurité. Même le carnet de 1998. »",
         "reaction": "Votre comptable disparaît derrière une pile de catalogues jaunis. On entend un faible « au secours » du côté des natures mortes."
       },
       "avis-s3-c": {
@@ -120,8 +120,8 @@
         "reaction": "Accordé. Votre comptable respire à nouveau, et range ses arguments par ordre de taille, comme des cadres."
       },
       "rectification-s1-c": {
-        "texte": "S'en servir pour caler un socle bancal.",
-        "reaction": "Le socle ne boite plus, la sculpture non plus. Le délai, lui, continue de courir."
+        "texte": "S'en servir pour caler la table bancale de l'accueil, celle du livre d'or.",
+        "reaction": "La table ne boite plus, le livre d'or non plus. Le délai, lui, continue de courir."
       },
       "rectification-s1-d": {
         "reaction": "Votre banquière vous appelle, inquiète. Votre comptable n'a même pas eu le temps de lire la première page, ni la légende."
@@ -135,8 +135,8 @@
         "reaction": "« C'est votre droit. On passe à l'arbitrage. Je transmets. »"
       },
       "rectification-s2-b": {
-        "texte": "Répondre par un manifeste artistique de douze pages sur l'injustice du monde.",
-        "reaction": "« Le manifeste est joli, la typographie aussi. Les arguments, introuvables. »"
+        "texte": "Répondre par un poème de douze pages sur l'injustice du monde, déclamé au prochain vernissage.",
+        "reaction": "« Le poème est joli, la rime aussi. Les arguments, introuvables. »"
       },
       "rectification-s2-c": {
         "reaction": "« Très bien, je note votre accord. » Votre comptable, lui, note surtout les points que vous auriez pu gagner."
