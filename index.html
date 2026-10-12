@@ -42,8 +42,11 @@
     <section id="ecran-partie" class="ecran" hidden aria-labelledby="partie-chapitre">
       <header class="bandeau">
         <div class="bandeau-dossier">
-          <p id="partie-profil" class="bandeau-profil"></p>
-          <h2 id="partie-chapitre" class="bandeau-chapitre"></h2>
+          <div class="bandeau-titres">
+            <p id="partie-profil" class="bandeau-profil"></p>
+            <h2 id="partie-chapitre" class="bandeau-chapitre"></h2>
+          </div>
+          <button type="button" id="bouton-accueil" class="bouton bouton-accueil" aria-haspopup="dialog" aria-controls="confirmer-accueil">Accueil</button>
         </div>
         <div class="jauges" role="group" aria-label="Jauges">
           <div class="jauge jauge-redressement" data-jauge="redressement" data-valeur="0">
@@ -89,6 +92,9 @@
 
     <!-- Écran 5 : fin -->
     <section id="ecran-fin" class="ecran" hidden aria-labelledby="fin-titre">
+      <header class="entete-fin">
+        <button type="button" id="bouton-accueil-fin" class="bouton bouton-accueil">Accueil</button>
+      </header>
       <div class="chemise chemise-fin">
         <p class="chemise-etiquette">Dossier clos · <span id="fin-profil"></span></p>
         <h2 id="fin-titre" class="titre-fin" tabindex="-1"></h2>
@@ -113,6 +119,16 @@
       <p>Les données du jeu n'ont pas pu être chargées. Lancez le jeu avec <code>python lancer.py</code> puis rechargez la page.</p>
     </section>
   </main>
+
+  <!-- Confirmation avant de quitter une partie en cours (bouton Accueil de l'écran de partie).
+       Échap ferme la boîte comme « Continuer la partie ». -->
+  <dialog id="confirmer-accueil" class="boite" aria-labelledby="confirmer-accueil-texte">
+    <p id="confirmer-accueil-texte" class="boite-texte">Quitter la partie ? Elle ne sera pas enregistrée.</p>
+    <div class="boite-boutons">
+      <button type="button" id="bouton-quitter" class="bouton">Quitter</button>
+      <button type="button" id="bouton-continuer" class="bouton bouton-principal" autofocus>Continuer la partie</button>
+    </div>
+  </dialog>
 
   <!-- Gabarits utilisés par js/interface.js -->
   <template id="gabarit-avertissement">Jeu humoristique. Ce n'est pas un conseil fiscal. Textes vérifiés au {date}.</template>
