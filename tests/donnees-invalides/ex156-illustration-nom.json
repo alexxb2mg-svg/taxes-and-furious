@@ -1,0 +1,6 @@
+{
+  "regle": "illustration en pied nommee <perso>-situation.webp dans img/ (EX-156)",
+  "couverture": false,
+  "modifs": [{ "fichier": "profils/demo-fleuriste/profil.json", "chemin": ["personnages", 0, "illustration"], "valeur": "img/pistil.webp" }],
+  "attendu": ["personnage \"pistil\", champ \"illustration\" : \"img/pistil.webp\" : une illustration en pied se nomme <perso>-situation.webp et se range dans le dossier img/ (EX-156)"]
+}
