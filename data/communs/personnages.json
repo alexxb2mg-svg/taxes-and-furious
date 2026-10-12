@@ -13,6 +13,14 @@
       "nom": "Vous",
       "description": "Chef d'entreprise, contribuable, et soudain très attentif à son courrier.",
       "portrait": "img/joueur.svg"
+    },
+    {
+      "id": "embleme",
+      "role": "embleme",
+      "nom": "Le Contrôleur",
+      "description": "Attaché-case blindé, lunettes noires, il lit un bilan à deux cents à l'heure. Il ne se déplace jamais : ce sont les dossiers qui viennent à lui.",
+      "portrait": "img/embleme.webp",
+      "illustration": "img/embleme-situation.webp"
     }
   ]
 }

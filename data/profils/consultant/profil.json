@@ -17,6 +17,14 @@
       "portrait": "img/tableur.svg"
     },
     {
+      "id": "fondateur",
+      "role": "joueur",
+      "nom": "Le fondateur",
+      "description": "Vous. Gilet sans manches, baskets immaculées, trois pivots par trimestre et un tableur que personne n'ouvre.",
+      "portrait": "img/fondateur.webp",
+      "illustration": "img/fondateur-situation.webp"
+    },
+    {
       "id": "expert",
       "role": "comptable",
       "nom": "L'expert-comptable démissionnaire",

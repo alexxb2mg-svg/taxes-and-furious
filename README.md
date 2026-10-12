@@ -106,7 +106,7 @@ docs/                       spécification, guides (profil, type de scène), arc
 Deux licences, pour que chacun puisse réutiliser le jeu :
 
 - le **code** (`js/`, `css/`, `index.html`, `outils/`, `tests/`, `lancer.py`) est sous licence MIT : [LICENSE](LICENSE). Vous pouvez le copier, le modifier et le redistribuer, y compris dans un projet commercial, en gardant la mention de copyright et le texte de la licence ;
-- le **contenu** (`data/` : scénario, profils, textes, portraits SVG ; et les captures de `docs/captures/`) est sous licence CC BY 4.0 : [LICENSE-CONTENU.md](LICENSE-CONTENU.md). Vous pouvez le partager et l'adapter, y compris commercialement, à condition de créditer « Taxes & Furious, les contributeurs » et d'indiquer la licence.
+- le **contenu** (`data/` : scénario, profils, textes, portraits SVG, illustrations WebP ; et les captures de `docs/captures/`) est sous licence CC BY 4.0 : [LICENSE-CONTENU.md](LICENSE-CONTENU.md). Vous pouvez le partager et l'adapter, y compris commercialement, à condition de créditer « Taxes & Furious, les contributeurs » et d'indiquer la licence. Les illustrations ont été générées avec l'aide de Gemini (Google), puis sélectionnées et retouchées (prompts : [docs/art/PROMPTS.md](docs/art/PROMPTS.md)).
 
 Les textes officiels cités (articles de loi) ne sont couverts par aucune des deux licences : personne ne peut se les approprier.
 

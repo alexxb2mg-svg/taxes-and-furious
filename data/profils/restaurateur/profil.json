@@ -18,6 +18,14 @@
       "portrait": "img/addition.svg"
     },
     {
+      "id": "patron",
+      "role": "joueur",
+      "nom": "Le patron",
+      "description": "Vous. Moustache en guidon, torchon sur l'épaule, connaît chaque habitué par son prénom et aucun ticket de caisse par son numéro.",
+      "portrait": "img/patron.webp",
+      "illustration": "img/patron-situation.webp"
+    },
+    {
       "id": "saucier",
       "role": "second",
       "nom": "Le chef saucier",
