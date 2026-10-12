@@ -1,0 +1,294 @@
+{
+  "id": "influenceuse",
+  "actif": true,
+  "nom": "L'influenceuse",
+  "entreprise": "@CindyFiltre",
+  "accroche": "Des cadeaux de marques, des voyages « pro » et une résidence lointaine qui ne convainc personne, pas même votre chihuahua.",
+  "inspiration": "Affaires d'influenceurs installés à l'étranger, sans aucun nom. Les explications ne disent que ce que portent R-92, R-L169 et R-1729, sans affirmer de régime fiscal propre aux influenceurs.",
+  "jauges_initiales": {
+    "patience": 70,
+    "stress": 40
+  },
+  "personnages": [
+    {
+      "id": "story",
+      "role": "verificateur",
+      "nom": "M. Jean-Marc Story",
+      "description": "Contrôleur courtois qui vous suit sur les réseaux depuis deux ans. Il a tout vu, et même liké certaines publications.",
+      "portrait": "img/story.svg"
+    },
+    {
+      "id": "cindy",
+      "role": "joueur",
+      "nom": "@CindyFiltre",
+      "description": "Vous. Lumière parfaite, sourire permanent, comptabilité floue.",
+      "portrait": "img/cindy.svg"
+    },
+    {
+      "id": "manager",
+      "role": "second",
+      "nom": "Le manager",
+      "description": "Lunettes de soleil en intérieur, oreillette vissée, une idée géniale par minute.",
+      "portrait": "img/manager.svg"
+    },
+    {
+      "id": "chihuahua",
+      "role": "second",
+      "nom": "Le chihuahua",
+      "description": "Gilet brodé, regard humide, figure dans la note de frais. Ne s'exprime qu'en silence.",
+      "portrait": "img/chihuahua.svg"
+    }
+  ],
+  "parcours": [
+    "tronc:avis",
+    "profil:partenariats",
+    "tronc:fec",
+    "profil:residence",
+    "tronc:rectification"
+  ],
+  "references_obligatoires": [
+    "R-92",
+    "R-L169",
+    "R-1729"
+  ],
+  "chapitres": [
+    {
+      "id": "partenariats",
+      "titre": "Les partenariats",
+      "scenes": [
+        {
+          "id": "partenariats-s1",
+          "personnage": "story",
+          "texte": "M. Jean-Marc Story fait défiler votre fil sur sa tablette : « Je vous suis depuis deux ans. Vos partenariats payés, je les vois très bien. Dans vos déclarations, beaucoup moins. »",
+          "choix": [
+            {
+              "id": "partenariats-s1-a",
+              "texte": "Sortir le tableau de tous les partenariats rémunérés et les déclarer avec votre comptable.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -10
+              },
+              "reaction": "« Un tableau ! Avec des colonnes ! » M. Story semble sincèrement ému.",
+              "explication": "Ce que dit vraiment la loi : relèvent des bénéfices non commerciaux les bénéfices des professions libérales et de toutes occupations, exploitations lucratives et sources de profits ne se rattachant pas à une autre catégorie de revenus.",
+              "references": [
+                "R-92"
+              ],
+              "suivant": "partenariats-s2"
+            },
+            {
+              "id": "partenariats-s1-b",
+              "texte": "« Ce n'est pas un revenu, c'est l'amour de ma communauté. »",
+              "juste": false,
+              "effets": {
+                "redressement": 8000,
+                "patience": -15,
+                "stress": 10
+              },
+              "reaction": "M. Story ouvre une publication où vous annoncez « un partenariat très rémunérateur ». Il la pose entre vous, sans un mot.",
+              "explication": "Ce que dit vraiment la loi : relèvent des bénéfices non commerciaux les bénéfices des professions libérales et de toutes occupations, exploitations lucratives et sources de profits ne se rattachant pas à une autre catégorie de revenus.",
+              "references": [
+                "R-92"
+              ],
+              "suivant": "partenariats-s2"
+            }
+          ]
+        },
+        {
+          "id": "partenariats-s2",
+          "personnage": "chihuahua",
+          "texte": "Le chihuahua, en gilet brodé, trône sur une pile de colis envoyés par des marques. Il vous regarde, puis regarde M. Story, puis de nouveau vous.",
+          "choix": [
+            {
+              "id": "partenariats-s2-a",
+              "texte": "Faire la liste de ce que vous avez reçu et la remettre à votre comptable, sans rien cacher.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -5
+              },
+              "reaction": "Le chihuahua descend de la pile avec dignité. Il garde quand même un coussin.",
+              "explication": "Ce que dit vraiment la loi : en cas de manquement délibéré, les droits sont majorés de 40 % ; la majoration est de 80 % en cas de manœuvres frauduleuses.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": "partenariats-s3"
+            },
+            {
+              "id": "partenariats-s2-b",
+              "texte": "Pousser discrètement les colis sous le canapé, chihuahua compris.",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -15,
+                "stress": 15
+              },
+              "reaction": "Un aboiement indigné sort du canapé. M. Story se penche : « Je compte sept colis et un chien. »",
+              "explication": "Ce que dit vraiment la loi : en cas de manquement délibéré, les droits sont majorés de 40 % ; la majoration est de 80 % en cas de manœuvres frauduleuses.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": "partenariats-s3"
+            }
+          ]
+        },
+        {
+          "id": "partenariats-s3",
+          "personnage": "manager",
+          "texte": "Le manager vous glisse à l'oreille : « J'ai une idée. On dit que le chihuahua est un collaborateur. Il a son propre compte, quand même. Je prépare un contrat ? »",
+          "choix": [
+            {
+              "id": "partenariats-s3-a",
+              "texte": "« Non. On ne fabrique rien, on répond franchement. »",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "Le manager range son stylo, vexé. Le chihuahua, lui, semble soulagé.",
+              "explication": "Ce que dit vraiment la loi : la majoration est de 40 % en cas de manquement délibéré et de 80 % en cas de manœuvres frauduleuses.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "partenariats-s3-b",
+              "texte": "« Parfait. Faites-le signer d'une patte. »",
+              "juste": false,
+              "effets": {
+                "redressement": 6000,
+                "patience": -25,
+                "stress": 15
+              },
+              "reaction": "M. Story examine l'empreinte de patte au bas du contrat. « Elle est jolie. Elle est aussi postérieure à la date du contrat. »",
+              "explication": "Ce que dit vraiment la loi : la majoration est de 40 % en cas de manquement délibéré et de 80 % en cas de manœuvres frauduleuses.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "residence",
+      "titre": "La résidence au soleil",
+      "scenes": [
+        {
+          "id": "residence-s1",
+          "personnage": "story",
+          "texte": "« Vous déclarez résider à Dubaï. Pourtant, vos stories montrent tous les matins la même boulangerie de quartier, à 7 h 02, sous la pluie. »",
+          "choix": [
+            {
+              "id": "residence-s1-a",
+              "texte": "Reconnaître que votre vie est ici et accepter de remettre votre situation d'aplomb.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -10
+              },
+              "reaction": "M. Story range sa tablette. « Merci. Je n'avais vraiment pas envie de regarder deux ans de croissants. »",
+              "explication": "Ce que dit vraiment la loi : en impôt sur le revenu, l'administration peut rectifier jusqu'à la fin de la troisième année qui suit celle de l'imposition (3 ans) ; ce délai est porté à 10 ans, notamment en cas de fausse domiciliation fiscale à l'étranger.",
+              "references": [
+                "R-L169"
+              ],
+              "suivant": "residence-s2"
+            },
+            {
+              "id": "residence-s1-b",
+              "texte": "Tourner une story en direct devant un fond vert de dunes.",
+              "juste": false,
+              "effets": {
+                "redressement": 12000,
+                "patience": -20,
+                "stress": 20
+              },
+              "reaction": "M. Story met un cœur à la story. Puis il note l'heure, et la pluie qui ruisselle sur la vitre derrière le fond vert.",
+              "explication": "Ce que dit vraiment la loi : en impôt sur le revenu, le droit de rectifier court en principe jusqu'à la fin de la troisième année qui suit celle de l'imposition (3 ans), mais il est porté à 10 ans, notamment en cas de fausse domiciliation fiscale à l'étranger.",
+              "references": [
+                "R-L169"
+              ],
+              "suivant": "residence-s2"
+            }
+          ]
+        },
+        {
+          "id": "residence-s2",
+          "personnage": "cindy",
+          "texte": "Votre téléphone vibre sans arrêt : 48 000 abonnés réclament un direct. M. Story, lui, attend une réponse.",
+          "choix": [
+            {
+              "id": "residence-s2-a",
+              "texte": "Couper le téléphone et répondre à M. Story, sans filtre.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -10
+              },
+              "reaction": "Le silence soudain surprend tout le monde, le chihuahua le premier.",
+              "explication": "Ce que dit vraiment la loi : les majorations visent le manquement délibéré (40 %) et les manœuvres frauduleuses (80 %).",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "residence-s2-b",
+              "texte": "Lancer un sondage : « Dois-je répondre au contrôleur ? Oui / Plus tard ».",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -20,
+                "stress": 10
+              },
+              "reaction": "« Plus tard » l'emporte. M. Story, qui a voté, ne semble pas d'accord avec le résultat.",
+              "explication": "Ce que dit vraiment la loi : en cas de manquement délibéré, les droits sont majorés de 40 % ; la majoration est de 80 % en cas de manœuvres frauduleuses.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fins": [
+    {
+      "id": "influenceuse-fin-sans-filtre",
+      "titre": "Sans filtre",
+      "texte": "Vous publiez une story toute simple : « Contrôle terminé, tout est en ordre. » Record d'abonnés. M. Story, lui, se contente d'un discret pouce levé.",
+      "conditions": [
+        {
+          "jauge": "patience",
+          "op": ">=",
+          "valeur": 95
+        },
+        {
+          "jauge": "stress",
+          "op": "<=",
+          "valeur": 10
+        }
+      ]
+    },
+    {
+      "id": "influenceuse-fin-deconnexion",
+      "titre": "Déconnexion forcée",
+      "texte": "Vous désactivez les commentaires, puis le compte, puis le Wi-Fi. Le redressement, lui, reste parfaitement connecté.",
+      "conditions": [
+        {
+          "jauge": "redressement",
+          "op": ">=",
+          "valeur": 20000
+        }
+      ]
+    }
+  ]
+}

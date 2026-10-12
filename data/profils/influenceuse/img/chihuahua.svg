@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Le chihuahua">
+  <title>Le chihuahua</title>
+  <rect width="200" height="200" rx="24" fill="#fff3d6"/>
+  <path d="M50 200 Q56 150 100 146 Q144 150 150 200 Z" fill="#c0392b" stroke="#2b2118" stroke-width="4"/>
+  <path d="M70 160 L80 176 L90 160 L100 176 L110 160 L120 176 L130 160" fill="none" stroke="#ffd700" stroke-width="3"/>
+  <path d="M54 80 L28 16 L86 58 Z" fill="#e0b07a" stroke="#2b2118" stroke-width="4"/><path d="M146 80 L172 16 L114 58 Z" fill="#e0b07a" stroke="#2b2118" stroke-width="4"/>
+  <path d="M52 74 L38 34 L74 60 Z M148 74 L162 34 L126 60 Z" fill="#f6c6b6"/>
+  <ellipse cx="100" cy="100" rx="52" ry="48" fill="#e0b07a" stroke="#2b2118" stroke-width="4"/>
+  <ellipse cx="100" cy="124" rx="24" ry="18" fill="#f2d3a8" stroke="#2b2118" stroke-width="3"/>
+  <circle cx="78" cy="94" r="12" fill="#2b2118"/><circle cx="122" cy="94" r="12" fill="#2b2118"/>
+  <circle cx="82" cy="90" r="4" fill="#fff"/><circle cx="126" cy="90" r="4" fill="#fff"/>
+  <ellipse cx="100" cy="114" rx="8" ry="6" fill="#2b2118"/>
+  <path d="M90 130 Q100 138 110 130" fill="none" stroke="#2b2118" stroke-width="3" stroke-linecap="round"/>
+</svg>

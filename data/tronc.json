@@ -1,0 +1,493 @@
+{
+  "titre": "Taxes & Furious",
+  "references_obligatoires": [
+    "R-L47",
+    "R-L10",
+    "R-L52",
+    "R-L169",
+    "R-L176",
+    "R-L47A",
+    "R-1729D",
+    "R-L57",
+    "R-L11",
+    "R-L59",
+    "R-1651",
+    "R-1727",
+    "R-1729",
+    "R-L62"
+  ],
+  "jauges_initiales": {
+    "redressement": 0,
+    "patience": 70,
+    "stress": 30
+  },
+  "chapitres": [
+    {
+      "id": "avis",
+      "titre": "L'avis de vérification",
+      "scenes": [
+        {
+          "id": "avis-s1",
+          "personnage": "narrateur",
+          "texte": "Lundi matin, le facteur sonne deux fois. Une lettre recommandée : avis de vérification de comptabilité. Le café refroidit tout seul.",
+          "choix": [
+            {
+              "id": "avis-s1-a",
+              "texte": "Lire l'avis en entier, petites lignes comprises.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -5
+              },
+              "reaction": "Vous découvrez les années contrôlées et une mention sur l'assistance d'un conseil. Rien d'aussi palpitant depuis la notice du four.",
+              "explication": "Ce que dit vraiment la loi : pas de vérification de comptabilité sans avis de vérification préalable. L'avis précise les années contrôlées et mentionne, sous peine de nullité, que vous pouvez vous faire assister d'un conseil de votre choix.",
+              "references": [
+                "R-L47"
+              ],
+              "suivant": "avis-s2"
+            },
+            {
+              "id": "avis-s1-b",
+              "texte": "Le glisser sous la pile de prospectus de pizzeria.",
+              "juste": false,
+              "effets": {
+                "redressement": 0,
+                "patience": -10,
+                "stress": 15
+              },
+              "reaction": "La pile s'effondre. L'avis réapparaît, posé bien en évidence, comme s'il vous attendait.",
+              "explication": "Ce que dit vraiment la loi : l'avis indique où consulter la charte des droits et obligations du contribuable vérifié, et les dispositions de cette charte sont opposables à l'administration.",
+              "references": [
+                "R-L47",
+                "R-L10"
+              ],
+              "suivant": "avis-s3"
+            }
+          ]
+        },
+        {
+          "id": "avis-s2",
+          "personnage": "verificateur",
+          "texte": "Le vérificateur se présente, sourire poli, cartable impeccable : « Nous commençons quand vous voulez. Enfin, quand la loi le veut. »",
+          "choix": [
+            {
+              "id": "avis-s2-a",
+              "texte": "Demander combien de temps ça va durer.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -10
+              },
+              "reaction": "« Bonne question. Pour une entreprise de votre taille, il y a une limite. »",
+              "explication": "Ce que dit vraiment la loi : pour les petites entreprises sous les seuils de chiffre d'affaires fixés par la loi, la vérification sur place ne peut pas durer plus de 3 mois, sous peine de nullité, sauf exceptions (6 mois au plus en cas de graves irrégularités). Le délai est suspendu tant que le FEC n'est pas remis.",
+              "references": [
+                "R-L52"
+              ],
+              "suivant": "avis-s3"
+            },
+            {
+              "id": "avis-s2-b",
+              "texte": "Annoncer un départ imprévu en croisière autour du monde.",
+              "juste": false,
+              "effets": {
+                "redressement": 500,
+                "patience": -20,
+                "stress": 10
+              },
+              "reaction": "« Bon voyage. Le contrôle, lui, ne prend pas de vacances. »",
+              "explication": "Ce que dit vraiment la loi : la durée de la vérification sur place est encadrée (3 mois au plus pour les petites entreprises, sauf exceptions), mais ce délai est suspendu tant que le FEC n'est pas remis.",
+              "references": [
+                "R-L52"
+              ],
+              "suivant": "avis-s3"
+            }
+          ]
+        },
+        {
+          "id": "avis-s3",
+          "personnage": "comptable",
+          "texte": "Votre comptable relit l'avis en fronçant les sourcils : « Ils regardent quelles années, déjà ? »",
+          "choix": [
+            {
+              "id": "avis-s3-a",
+              "texte": "« Les dernières années, celles que l'avis indique. »",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -5
+              },
+              "reaction": "« Parfait, je sors les bons classeurs. Pas ceux de la préhistoire. »",
+              "explication": "Ce que dit vraiment la loi : en impôt sur le revenu et sur les sociétés, l'administration peut rectifier jusqu'à la fin de la troisième année qui suit celle de l'imposition (3 ans) ; en TVA, jusqu'à la fin de la troisième année suivant celle où la taxe est devenue exigible. Ce délai passe à 10 ans notamment en cas d'activité occulte.",
+              "references": [
+                "R-L169",
+                "R-L176"
+              ],
+              "suivant": "avis-s4"
+            },
+            {
+              "id": "avis-s3-b",
+              "texte": "« Tout depuis la création, par sécurité. Même le carnet de 1998. »",
+              "juste": false,
+              "effets": {
+                "redressement": 0,
+                "patience": -5,
+                "stress": 15
+              },
+              "reaction": "Votre comptable disparaît sous une avalanche de cartons. On entend un faible « au secours ».",
+              "explication": "Ce que dit vraiment la loi : le droit de reprise a une limite, en principe jusqu'à la fin de la troisième année qui suit (3 ans), portée à 10 ans notamment en cas d'activité occulte.",
+              "references": [
+                "R-L169",
+                "R-L176"
+              ],
+              "suivant": "avis-s4"
+            }
+          ]
+        },
+        {
+          "id": "avis-s4",
+          "personnage": "verificateur",
+          "texte": "« Avant de commencer : vous avez reçu la charte du contribuable vérifié, et vous pouvez vous faire assister d'un conseil. Vous souhaitez quelqu'un à vos côtés ? »",
+          "choix": [
+            {
+              "id": "avis-s4-a",
+              "texte": "« Oui, mon comptable sera présent à chaque rendez-vous. »",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -10
+              },
+              "reaction": "« Très bien. Nous fixerons les rendez-vous ensemble. » Votre comptable redresse sa cravate.",
+              "explication": "Ce que dit vraiment la loi : l'avis de vérification mentionne, sous peine de nullité, que le contribuable peut se faire assister d'un conseil de son choix, et il indique où consulter la charte des droits et obligations du contribuable vérifié, dont les dispositions sont opposables à l'administration.",
+              "references": [
+                "R-L47",
+                "R-L10"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "avis-s4-b",
+              "texte": "Plier la charte en avion et viser la corbeille.",
+              "juste": false,
+              "effets": {
+                "redressement": 0,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "L'avion rate la corbeille et se pose aux pieds du vérificateur. Il le déplie, le lisse, et vous le rend.",
+              "explication": "Ce que dit vraiment la loi : les dispositions de la charte des droits et obligations du contribuable vérifié sont opposables à l'administration.",
+              "references": [
+                "R-L10"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fec",
+      "titre": "Le FEC et les écritures",
+      "scenes": [
+        {
+          "id": "fec-s1",
+          "personnage": "verificateur",
+          "texte": "« Pour commencer, il me faudrait votre fichier des écritures comptables. Le FEC. »",
+          "choix": [
+            {
+              "id": "fec-s1-a",
+              "texte": "Remettre la copie du FEC dès le début.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -10
+              },
+              "reaction": "« Merveilleux. Un fichier qui s'ouvre du premier coup, c'est presque de la poésie. »",
+              "explication": "Ce que dit vraiment la loi : quand la comptabilité est informatisée, le contribuable vérifié remet au début des opérations de contrôle une copie dématérialisée des fichiers des écritures comptables (le FEC).",
+              "references": [
+                "R-L47A"
+              ],
+              "suivant": "fec-s2"
+            },
+            {
+              "id": "fec-s1-b",
+              "texte": "Poser sur la table une boîte à chaussures remplie de tickets.",
+              "juste": false,
+              "effets": {
+                "redressement": 5000,
+                "patience": -25,
+                "stress": 20
+              },
+              "reaction": "Le vérificateur soulève le couvercle avec deux doigts. Un ticket de 2019 s'envole.",
+              "explication": "Ce que dit vraiment la loi : ne pas remettre le FEC dans les formes prévues est sanctionné d'une amende de 5 000 € ou, en cas de rectification et si c'est plus élevé, d'une majoration de 10 % des droits.",
+              "references": [
+                "R-1729D"
+              ],
+              "suivant": "fec-s2"
+            }
+          ]
+        },
+        {
+          "id": "fec-s2",
+          "personnage": "joueur",
+          "texte": "En relisant vos comptes, vous tombez sur une erreur. Une vraie. Avec des chiffres dedans.",
+          "choix": [
+            {
+              "id": "fec-s2-a",
+              "texte": "Proposer de la corriger tout de suite.",
+              "juste": true,
+              "effets": {
+                "redressement": 1500,
+                "patience": 10,
+                "stress": -10
+              },
+              "reaction": "Le vérificateur hoche la tête : « Voilà qui simplifie les choses. »",
+              "explication": "Ce que dit vraiment la loi : si vous demandez à régulariser en cours de contrôle (avant la proposition de rectification, ou dans les 30 jours de sa réception), l'intérêt de retard est réduit à 70 % de son montant, à condition de déposer une déclaration complémentaire et de payer. Cela ne vaut pas pour les infractions exclusives de la bonne foi.",
+              "references": [
+                "R-L62"
+              ],
+              "suivant": "fec-s3"
+            },
+            {
+              "id": "fec-s2-b",
+              "texte": "Croiser les doigts pour qu'il ne la voie pas.",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -10,
+                "stress": 15
+              },
+              "reaction": "Il la voit. Il l'entoure. En rouge. Deux fois.",
+              "explication": "Ce que dit vraiment la loi : un impôt non payé dans le délai légal donne lieu à un intérêt de retard de 0,20 % par mois, auquel s'ajoutent le cas échéant les sanctions.",
+              "references": [
+                "R-1727"
+              ],
+              "suivant": "fec-s3"
+            }
+          ]
+        },
+        {
+          "id": "fec-s3",
+          "personnage": "narrateur",
+          "texte": "Le vérificateur s'arrête sur une série d'écritures étranges. Le silence devient si épais qu'on pourrait le ranger dans un classeur.",
+          "choix": [
+            {
+              "id": "fec-s3-a",
+              "texte": "Sortir les factures et expliquer, pièce par pièce.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -5
+              },
+              "reaction": "Les justificatifs défilent. Le silence redevient fluide.",
+              "explication": "Ce que dit vraiment la loi : en cas de manquement délibéré, les droits sont majorés de 40 % ; la majoration est de 80 % en cas de manœuvres frauduleuses.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "fec-s3-b",
+              "texte": "Inventer un fournisseur au nom très convaincant.",
+              "juste": false,
+              "effets": {
+                "redressement": 8000,
+                "patience": -30,
+                "stress": 25
+              },
+              "reaction": "« Et ce fournisseur, il a une adresse ? Un téléphone ? Une existence ? »",
+              "explication": "Ce que dit vraiment la loi : la majoration est de 40 % en cas de manquement délibéré et de 80 % en cas de manœuvres frauduleuses ou d'abus de droit (ramenée à 40 % dans certains cas).",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rectification",
+      "titre": "La proposition de rectification",
+      "scenes": [
+        {
+          "id": "rectification-s1",
+          "personnage": "narrateur",
+          "texte": "Quelques semaines plus tard, une enveloppe épaisse arrive : la proposition de rectification.",
+          "choix": [
+            {
+              "id": "rectification-s1-a",
+              "texte": "La lire et vérifier qu'elle explique ses motifs.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -5
+              },
+              "reaction": "Chaque rehaussement est expliqué. Vous savez au moins à quoi répondre.",
+              "explication": "Ce que dit vraiment la loi : la proposition de rectification doit être motivée de manière à permettre au contribuable de formuler ses observations ou de faire connaître son acceptation.",
+              "references": [
+                "R-L57"
+              ],
+              "suivant": "rectification-s2"
+            },
+            {
+              "id": "rectification-s1-b",
+              "texte": "Demander un délai pour répondre sérieusement.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 0,
+                "stress": -10
+              },
+              "reaction": "Accordé. Votre comptable respire à nouveau.",
+              "explication": "Ce que dit vraiment la loi : sauf délai particulier, vous disposez de 30 jours à compter de la réception pour répondre. Sur demande faite avant l'expiration de ce délai, il est prorogé de 30 jours.",
+              "references": [
+                "R-L11",
+                "R-L57"
+              ],
+              "suivant": "rectification-s2"
+            },
+            {
+              "id": "rectification-s1-c",
+              "texte": "S'en servir pour caler la table bancale.",
+              "juste": false,
+              "effets": {
+                "redressement": 2000,
+                "patience": -15,
+                "stress": 15
+              },
+              "reaction": "La table ne boite plus. Le délai, lui, continue de courir.",
+              "explication": "Ce que dit vraiment la loi : sauf délai particulier, le contribuable dispose de 30 jours à compter de la réception pour répondre à une notification de l'administration.",
+              "references": [
+                "R-L11"
+              ],
+              "suivant": "rectification-s2"
+            }
+          ]
+        },
+        {
+          "id": "rectification-s2",
+          "personnage": "verificateur",
+          "texte": "« J'ai lu vos observations. Je maintiens une partie des rectifications. »",
+          "choix": [
+            {
+              "id": "rectification-s2-a",
+              "texte": "Demander que le désaccord soit soumis à la commission.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 0,
+                "stress": -5
+              },
+              "reaction": "« C'est votre droit. Je transmets. »",
+              "explication": "Ce que dit vraiment la loi : si le désaccord persiste, l'administration soumet le litige, à la demande du contribuable, à la commission des impôts directs et des taxes sur le chiffre d'affaires. Cette commission est présidée par un magistrat administratif et comprend trois représentants des contribuables et deux représentants de l'administration.",
+              "references": [
+                "R-L59",
+                "R-1651"
+              ],
+              "suivant": "rectification-s3"
+            },
+            {
+              "id": "rectification-s2-b",
+              "texte": "Répondre par un poème de douze pages sur l'injustice du monde.",
+              "juste": false,
+              "effets": {
+                "redressement": 0,
+                "patience": -20,
+                "stress": 10
+              },
+              "reaction": "« Les rimes sont jolies. Les arguments, introuvables. »",
+              "explication": "Ce que dit vraiment la loi : la proposition de rectification est motivée pour permettre de répondre ; si l'administration rejette vos observations, sa réponse est elle aussi motivée.",
+              "references": [
+                "R-L57"
+              ],
+              "suivant": "rectification-s3"
+            }
+          ]
+        },
+        {
+          "id": "rectification-s3",
+          "personnage": "comptable",
+          "texte": "« Bon. Reste la question qui fâche : on paie quand ? »",
+          "choix": [
+            {
+              "id": "rectification-s3-a",
+              "texte": "« Maintenant, et on tourne la page. »",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -15
+              },
+              "reaction": "Votre comptable range enfin ses classeurs. Il fredonne.",
+              "explication": "Ce que dit vraiment la loi : un impôt non payé dans le délai légal donne lieu à un intérêt de retard de 0,20 % par mois, auquel s'ajoutent le cas échéant les sanctions.",
+              "references": [
+                "R-1727"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "rectification-s3-b",
+              "texte": "« Plus tard. Beaucoup plus tard. Peut-être jamais. »",
+              "juste": false,
+              "effets": {
+                "redressement": 1000,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "Votre comptable vous regarde comme un soufflé qui retombe.",
+              "explication": "Ce que dit vraiment la loi : l'intérêt de retard court à 0,20 % par mois tant que l'impôt n'est pas payé, en plus des éventuelles sanctions.",
+              "references": [
+                "R-1727"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fins": [
+    {
+      "id": "fin-patience",
+      "titre": "Le vérificateur a perdu patience",
+      "texte": "Le vérificateur referme son cartable avec une lenteur inquiétante. La suite se réglera par courrier, et pas par carte postale.",
+      "conditions": [
+        {
+          "jauge": "patience",
+          "op": "<=",
+          "valeur": 0
+        }
+      ]
+    },
+    {
+      "id": "fin-sereine",
+      "titre": "Contrôle traversé sans naufrage",
+      "texte": "Vous avez répondu, justifié, régularisé. Le contrôle s'achève, et vous dormez de nouveau la nuit.",
+      "conditions": [
+        {
+          "jauge": "redressement",
+          "op": "<=",
+          "valeur": 6000
+        },
+        {
+          "jauge": "stress",
+          "op": "<=",
+          "valeur": 25
+        }
+      ]
+    },
+    {
+      "id": "fin-defaut",
+      "titre": "Contrôle terminé",
+      "texte": "Le contrôle est terminé. Il en reste un redressement, quelques cheveux blancs et une forte envie de ranger vos papiers.",
+      "conditions": []
+    }
+  ]
+}

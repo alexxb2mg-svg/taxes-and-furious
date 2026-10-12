@@ -1,0 +1,16 @@
+{
+  "regle": "actif booleen",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "actif"
+      ],
+      "valeur": "oui"
+    }
+  ],
+  "attendu": [
+    "profils/demo-glacier/profil.json : champ \"actif\" : booleen obligatoire"
+  ]
+}

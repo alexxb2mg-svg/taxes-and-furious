@@ -1,0 +1,17 @@
+{
+  "regle": "EX-005 : liste du tronc = section 2.2",
+  "couverture": true,
+  "modifs": [
+    {
+      "fichier": "tronc.json",
+      "chemin": [
+        "references_obligatoires",
+        13
+      ],
+      "supprimer": true
+    }
+  ],
+  "attendu": [
+    "tronc.json : champ \"references_obligatoires\" : different de la liste \"Tronc commun\" de la spec (2.2) ; manquantes : R-L62"
+  ]
+}

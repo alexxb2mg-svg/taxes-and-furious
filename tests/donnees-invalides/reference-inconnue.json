@@ -1,0 +1,25 @@
+{
+  "regle": "references existantes (EX-002)",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "choix",
+        0,
+        "references"
+      ],
+      "valeur": [
+        "R-286",
+        "R-INVENTEE"
+      ]
+    }
+  ],
+  "attendu": [
+    "choix \"caisse-s1-a\", champ \"references\" : reference \"R-INVENTEE\" inconnue de references.json"
+  ]
+}

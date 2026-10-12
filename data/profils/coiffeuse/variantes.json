@@ -1,0 +1,26 @@
+{
+  "avis-s2": {
+    "texte": "Mme Brigitte Frange s'assoit sur le fauteuil 1, refuse poliment le shampoing et sort son carnet : « Je viens pour la comptabilité. La coupe, ce sera une autre fois. »",
+    "choix": {
+      "avis-s2-b": {
+        "texte": "Lui proposer un balayage gratuit pour « détendre l'atmosphère ».",
+        "reaction": "« Merci, je préfère vérifier vos comptes. Et je paierai ma coupe, le jour où j'en prendrai une. »"
+      }
+    }
+  },
+  "fec-s1": {
+    "choix": {
+      "fec-s1-b": {
+        "texte": "Sortir le cahier de rendez-vous, couvert de prénoms et de petits cœurs.",
+        "reaction": "Mme Frange tourne les pages. Les cœurs sont jolis, mais aucun n'est une écriture comptable."
+      }
+    }
+  },
+  "rectification-s3": {
+    "choix": {
+      "rectification-s3-b": {
+        "reaction": "Votre comptable vous regarde comme une permanente ratée : vous avez encore tiré sur les bigoudis."
+      }
+    }
+  }
+}

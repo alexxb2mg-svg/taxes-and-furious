@@ -1,0 +1,23 @@
+{
+  "regle": "EX-003 : virgule decimale et espace de milliers, pas de nombre a point suivi d'une unite",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "choix",
+        0,
+        "explication"
+      ],
+      "valeur": "Ce que dit vraiment la loi : TVA a 19.6 %, amende de 1.500 €."
+    }
+  ],
+  "attendu": [
+    "nombre \"19.6 %\" : ecrire la virgule decimale et l'espace de milliers",
+    "nombre \"1.500 €\" : ecrire la virgule decimale et l'espace de milliers"
+  ]
+}

@@ -1,0 +1,424 @@
+{
+  "id": "plombier",
+  "actif": true,
+  "nom": "Le plombier",
+  "entreprise": "Fuite & Fils",
+  "accroche": "Trois taux de TVA, un sous-traitant qui a créé son entreprise mardi et un tonton qui « aide juste le samedi ». Ça fuit de partout.",
+  "inspiration": "Situations de chantier ordinaires : taux de TVA des travaux, attestation du client, autoliquidation en sous-traitance, faux indépendants.",
+  "jauges_initiales": {
+    "patience": 60
+  },
+  "personnages": [
+    {
+      "id": "rectif",
+      "role": "verificateur",
+      "nom": "M. Bernard Rectif",
+      "description": "Vérificateur rigoureux. Il a une fuite chez lui et voudrait bien un devis, mais il ne le demandera pas. Enfin, pas tout de suite.",
+      "portrait": "img/rectif.svg"
+    },
+    {
+      "id": "kevin",
+      "role": "second",
+      "nom": "Kevin",
+      "description": "Auto-entrepreneur depuis mardi. Arrive à 7 h, repart à 17 h, porte le tee-shirt de l'entreprise.",
+      "portrait": "img/kevin.svg"
+    },
+    {
+      "id": "tonton",
+      "role": "second",
+      "nom": "Tonton Robert",
+      "description": "Retraité, casquette vissée, « aide juste le samedi ». Tous les samedis.",
+      "portrait": "img/tonton.svg"
+    },
+    {
+      "id": "bellemaman",
+      "role": "second",
+      "nom": "Belle-maman",
+      "description": "Fait refaire sa salle de bains et attend un tarif « famille ».",
+      "portrait": "img/bellemaman.svg"
+    }
+  ],
+  "parcours": [
+    "tronc:avis",
+    "profil:devis",
+    "tronc:fec",
+    "profil:chantier",
+    "tronc:rectification"
+  ],
+  "references_obligatoires": [
+    "R-278",
+    "R-279-0B",
+    "R-279-0B-3",
+    "R-278-0BA",
+    "R-283-2N",
+    "R-L8221-1",
+    "R-L8221-5",
+    "R-L8221-6"
+  ],
+  "chapitres": [
+    {
+      "id": "devis",
+      "titre": "Les devis et leurs taux",
+      "scenes": [
+        {
+          "id": "devis-s1",
+          "personnage": "bellemaman",
+          "texte": "Belle-maman fait refaire la salle de bains de sa maison, construite il y a trente ans. Elle croise les bras : « Et pour la famille, c'est quel taux ? Le plus petit, j'espère. »",
+          "choix": [
+            {
+              "id": "devis-s1-a",
+              "texte": "« 10 %, et vous signez l'attestation sur le devis. »",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "Belle-maman signe en soupirant. Elle souligne deux fois sa signature, par principe.",
+              "explication": "Ce que dit vraiment la loi : la TVA est à 10 % pour les travaux d'amélioration, de transformation, d'aménagement et d'entretien de locaux d'habitation achevés depuis plus de 2 ans. Pour appliquer ce taux réduit, le client certifie sur le devis ou la facture que les locaux sont des locaux d'habitation achevés depuis plus de 2 ans et que les travaux ne relèvent pas des exceptions ; l'entreprise conserve ces éléments, et le client est solidairement tenu au complément de taxe si ses mentions sont inexactes de son fait.",
+              "references": [
+                "R-279-0B",
+                "R-279-0B-3"
+              ],
+              "suivant": "devis-s2"
+            },
+            {
+              "id": "devis-s1-b",
+              "texte": "« 5,5 %, c'est le tarif famille. »",
+              "juste": false,
+              "effets": {
+                "redressement": 1500,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "M. Bernard Rectif, qui lisait par-dessus votre épaule, toussote poliment.",
+              "explication": "Ce que dit vraiment la loi : le taux de 5,5 % vise la rénovation énergétique (isolation thermique, chauffage et ventilation, eau chaude sanitaire) de locaux d'habitation achevés depuis au moins 2 ans, selon la liste fixée par arrêté. Les autres travaux d'amélioration ou d'aménagement d'un logement achevé depuis plus de 2 ans relèvent du taux de 10 %.",
+              "references": [
+                "R-278-0BA",
+                "R-279-0B"
+              ],
+              "suivant": "devis-s2"
+            },
+            {
+              "id": "devis-s1-c",
+              "texte": "« Pas de devis, pas de facture, pas de TVA : vous me ferez un gratin. »",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -15,
+                "stress": 10
+              },
+              "reaction": "Belle-maman approuve. M. Rectif, beaucoup moins. Le gratin n'apparaît dans aucune comptabilité.",
+              "explication": "Ce que dit vraiment la loi : le taux normal de TVA est de 20 % ; le taux de 10 % s'applique aux travaux d'amélioration, de transformation, d'aménagement et d'entretien de locaux d'habitation achevés depuis plus de 2 ans.",
+              "references": [
+                "R-278",
+                "R-279-0B"
+              ],
+              "suivant": "devis-s2"
+            }
+          ]
+        },
+        {
+          "id": "devis-s2",
+          "personnage": "rectif",
+          "texte": "M. Bernard Rectif s'arrête sur deux factures : « Remplacement d'une chaudière au fioul par une chaudière au fioul neuve : 10 %. Isolation des combles : 5,5 %. » Il lève les yeux. « Une des deux me chiffonne. »",
+          "choix": [
+            {
+              "id": "devis-s2-a",
+              "texte": "Corriger la chaudière au fioul au taux normal de 20 % et garder 5,5 % pour l'isolation.",
+              "juste": true,
+              "effets": {
+                "redressement": 1000,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "« Voilà. » Il marque une pause. « Et chez moi, un siphon qui goutte, ce serait quel taux ? Non, oubliez. »",
+              "explication": "Ce que dit vraiment la loi : l'installation d'une chaudière à combustible fossile revient au taux normal de 20 %. Le taux de 5,5 % vise la rénovation énergétique, dont l'isolation thermique, de locaux d'habitation achevés depuis au moins 2 ans, chaudière à combustible fossile exclue.",
+              "references": [
+                "R-279-0B",
+                "R-278-0BA",
+                "R-278"
+              ],
+              "suivant": "devis-tri"
+            },
+            {
+              "id": "devis-s2-b",
+              "texte": "Expliquer que le fioul, c'est « presque de l'eau chaude sanitaire ».",
+              "juste": false,
+              "effets": {
+                "redressement": 2500,
+                "patience": -15,
+                "stress": 15
+              },
+              "reaction": "M. Rectif sourit poliment. Chez lui, le siphon goutte toujours, et sa patience aussi.",
+              "explication": "Ce que dit vraiment la loi : le taux de 5,5 % de la rénovation énergétique exclut la chaudière à combustible fossile ; son installation relève du taux normal de 20 %.",
+              "references": [
+                "R-278-0BA",
+                "R-279-0B"
+              ],
+              "suivant": "devis-tri"
+            }
+          ]
+        },
+        {
+          "id": "devis-tri",
+          "type": "tri",
+          "personnage": "rectif",
+          "texte": "Le vérificateur étale vos factures de l'année en éventail, comme un jeu de cartes. « Petit exercice : chaque chantier dans le bon taux de TVA. Prenez votre temps, moi j'ai tout le mois. »",
+          "parametres": {
+            "bacs": [
+              "5,5 %",
+              "10 %",
+              "20 %"
+            ],
+            "pieces": [
+              {
+                "texte": "Débouchage de l'évier dans une maison de plus de deux ans",
+                "bac_attendu": "10 %"
+              },
+              {
+                "texte": "Pose d'un chauffe-eau solaire dans une maison de plus de deux ans",
+                "bac_attendu": "5,5 %"
+              },
+              {
+                "texte": "Toute la plomberie d'une maison neuve",
+                "bac_attendu": "20 %"
+              },
+              {
+                "texte": "Fuite réparée dans les toilettes d'un restaurant",
+                "bac_attendu": "20 %"
+              },
+              {
+                "texte": "Chaudière au fioul neuve dans une maison de plus de deux ans",
+                "bac_attendu": "20 %"
+              }
+            ]
+          },
+          "issues": [
+            {
+              "id": "devis-tri-parfait",
+              "si": [
+                {
+                  "op": ">=",
+                  "valeur": 5
+                }
+              ],
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 0,
+                "stress": 0
+              },
+              "animation": "tampon",
+              "reaction": "Le vérificateur referme l'éventail. « Rien à redire. C'est presque décevant. »",
+              "explication": "Dans un logement achevé depuis plus de 2 ans, l'entretien et l'amélioration passent à 10 %, et la rénovation énergétique (eau chaude sanitaire comprise) à 5,5 %, si le client le certifie. Le neuf, les locaux professionnels et la chaudière à combustible fossile restent au taux normal de 20 %.",
+              "references": [
+                "R-279-0B",
+                "R-278-0BA",
+                "R-278"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "devis-tri-presque",
+              "si": [
+                {
+                  "op": ">=",
+                  "valeur": 3
+                }
+              ],
+              "juste": false,
+              "effets": {
+                "redressement": 1000,
+                "patience": -5,
+                "stress": 5
+              },
+              "reaction": "Le vérificateur sort deux factures du lot. « Celles-ci, on va en reparler. »",
+              "explication": "Le taux réduit ne vise que les locaux d'habitation achevés depuis plus de 2 ans : un restaurant ou une maison neuve restent à 20 %. La chaudière au fioul est exclue du taux réduit, même dans l'ancien. Le chauffe-eau solaire relève de la rénovation énergétique à 5,5 %.",
+              "references": [
+                "R-279-0B",
+                "R-278-0BA",
+                "R-278"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "devis-tri-rate",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -10,
+                "stress": 10
+              },
+              "animation": "secousse",
+              "reaction": "Le vérificateur ramasse tout. « On recommence depuis le début. Avec les factures de l'an dernier, tant qu'on y est. »",
+              "explication": "Le taux normal est de 20 %. Le taux de 10 % ne vaut que pour les travaux dans un logement achevé depuis plus de 2 ans, hors neuf et hors chaudière à combustible fossile, et le taux de 5,5 % pour la rénovation énergétique de ces mêmes logements.",
+              "references": [
+                "R-279-0B",
+                "R-278-0BA",
+                "R-278"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chantier",
+      "titre": "Le chantier et ses renforts",
+      "scenes": [
+        {
+          "id": "chantier-s1",
+          "personnage": "narrateur",
+          "texte": "Fuite & Fils travaille en sous-traitance pour une grande entreprise générale du bâtiment, sur un immeuble neuf. Le chantier est fini, il faut facturer.",
+          "choix": [
+            {
+              "id": "chantier-s1-a",
+              "texte": "Facturer hors taxe : c'est l'entreprise générale, assujettie, qui acquitte la TVA.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "M. Rectif hoche la tête. Même le tuyau sous l'évier semble soulagé.",
+              "explication": "Ce que dit vraiment la loi : pour des travaux de construction (y compris réparation, nettoyage, entretien, transformation et démolition) réalisés par une entreprise sous-traitante pour le compte d'un preneur assujetti, la TVA est acquittée par le preneur. C'est l'autoliquidation.",
+              "references": [
+                "R-283-2N"
+              ],
+              "suivant": "chantier-s2"
+            },
+            {
+              "id": "chantier-s1-b",
+              "texte": "Facturer 20 % de TVA et la garder « au chaud » sur le compte de l'entreprise.",
+              "juste": false,
+              "effets": {
+                "redressement": 4000,
+                "patience": -15,
+                "stress": 10
+              },
+              "reaction": "« Au chaud ? » M. Rectif sort une calculatrice. Elle, en revanche, est très froide.",
+              "explication": "Ce que dit vraiment la loi : pour des travaux de construction réalisés par une entreprise sous-traitante pour le compte d'un preneur assujetti, la TVA est acquittée par le preneur (autoliquidation), et non par le sous-traitant.",
+              "references": [
+                "R-283-2N"
+              ],
+              "suivant": "chantier-s2"
+            }
+          ]
+        },
+        {
+          "id": "chantier-s2",
+          "personnage": "kevin",
+          "texte": "Kevin, auto-entrepreneur depuis mardi, arrive à 7 h pile, attend vos consignes, porte le tee-shirt Fuite & Fils et repart à 17 h. Tous les jours. Avec vos outils.",
+          "choix": [
+            {
+              "id": "chantier-s2-a",
+              "texte": "Reconnaître qu'il travaille en réalité comme un salarié, et l'embaucher pour de bon.",
+              "juste": true,
+              "effets": {
+                "redressement": 2000,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "Kevin enfile son tee-shirt avec une fierté nouvelle. Il demande s'il aura des tickets-restaurant.",
+              "explication": "Ce que dit vraiment la loi : une personne immatriculée comme indépendante est présumée ne pas être salariée ; mais un contrat de travail peut être établi si elle travaille dans un lien de subordination juridique permanente envers son donneur d'ordre. Il y a alors dissimulation d'emploi salarié si le donneur d'ordre a voulu ainsi échapper à ses obligations d'employeur.",
+              "references": [
+                "R-L8221-6"
+              ],
+              "suivant": "chantier-s3"
+            },
+            {
+              "id": "chantier-s2-b",
+              "texte": "« Kevin est une entreprise. Une toute petite entreprise, très obéissante. »",
+              "juste": false,
+              "effets": {
+                "redressement": 6000,
+                "patience": -20,
+                "stress": 15
+              },
+              "reaction": "Kevin lève la main : « Je fais quoi, chef ? » M. Rectif note le mot « chef ».",
+              "explication": "Ce que dit vraiment la loi : un indépendant travaillant dans un lien de subordination juridique permanente envers son donneur d'ordre peut être reconnu salarié, avec dissimulation d'emploi salarié si le donneur d'ordre a voulu échapper à ses obligations d'employeur. Le travail dissimulé est interdit, ainsi que le fait de recourir sciemment aux services de celui qui l'exerce.",
+              "references": [
+                "R-L8221-6",
+                "R-L8221-1"
+              ],
+              "suivant": "chantier-s3"
+            }
+          ]
+        },
+        {
+          "id": "chantier-s3",
+          "personnage": "tonton",
+          "texte": "Tonton Robert, casquette vissée, clé à molette en main, précise qu'il « aide juste le samedi ». Contre un repas et une petite enveloppe.",
+          "choix": [
+            {
+              "id": "chantier-s3-a",
+              "texte": "Le déclarer avant qu'il remette les pieds sur un chantier : déclaration préalable à l'embauche et bulletin de paie.",
+              "juste": true,
+              "effets": {
+                "redressement": 1000,
+                "patience": 5,
+                "stress": -5
+              },
+              "reaction": "Tonton Robert découvre son premier bulletin de paie depuis longtemps. Il l'encadre.",
+              "explication": "Ce que dit vraiment la loi : est du travail dissimulé le fait pour un employeur de se soustraire intentionnellement à la déclaration préalable à l'embauche, à la remise du bulletin de paie ou aux déclarations sociales.",
+              "references": [
+                "R-L8221-5"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "chantier-s3-b",
+              "texte": "« Tonton, c'est la famille, ça ne compte pas. »",
+              "juste": false,
+              "effets": {
+                "redressement": 4000,
+                "patience": -15,
+                "stress": 10
+              },
+              "reaction": "Tonton Robert approuve vigoureusement. M. Rectif, lui, ne voit pas de clause « famille » dans son code.",
+              "explication": "Ce que dit vraiment la loi : est du travail dissimulé le fait pour un employeur de se soustraire intentionnellement à la déclaration préalable à l'embauche, à la remise du bulletin de paie ou aux déclarations sociales. Le travail dissimulé est interdit, ainsi que le fait de recourir sciemment aux services de celui qui l'exerce.",
+              "references": [
+                "R-L8221-5",
+                "R-L8221-1"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fins": [
+    {
+      "id": "plombier-fin-etanche",
+      "titre": "Étanche",
+      "texte": "M. Bernard Rectif referme le dossier : tout est étanche. Sur le pas de la porte, il demande enfin un devis pour son siphon. Au bon taux, évidemment.",
+      "conditions": [
+        {
+          "jauge": "patience",
+          "op": ">=",
+          "valeur": 95
+        },
+        {
+          "jauge": "redressement",
+          "op": "<=",
+          "valeur": 6000
+        }
+      ]
+    },
+    {
+      "id": "plombier-fin-degat-des-eaux",
+      "titre": "Dégât des eaux",
+      "texte": "Le redressement déborde de partout. Kevin propose de colmater avec du ruban adhésif, Tonton Robert avec un repas. Ça ne suffira pas.",
+      "conditions": [
+        {
+          "jauge": "redressement",
+          "op": ">=",
+          "valeur": 20000
+        }
+      ]
+    }
+  ]
+}

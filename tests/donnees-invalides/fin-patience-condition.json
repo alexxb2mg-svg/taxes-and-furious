@@ -1,0 +1,20 @@
+{
+  "regle": "fin-patience : seule condition patience <= 0",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "tronc.json",
+      "chemin": [
+        "fins",
+        0,
+        "conditions",
+        0,
+        "valeur"
+      ],
+      "valeur": 10
+    }
+  ],
+  "attendu": [
+    "tronc.json : fin \"fin-patience\", champ \"conditions\" : doit etre exactement"
+  ]
+}

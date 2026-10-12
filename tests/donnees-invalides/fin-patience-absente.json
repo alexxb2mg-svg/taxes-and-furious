@@ -1,0 +1,18 @@
+{
+  "regle": "fin-patience presente dans le tronc",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "tronc.json",
+      "chemin": [
+        "fins",
+        0,
+        "id"
+      ],
+      "valeur": "fin-colere"
+    }
+  ],
+  "attendu": [
+    "tronc.json : champ \"fins\" : fin commune \"fin-patience\" absente"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "regle": "identifiants uniques par profil assemble",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "choix",
+        0,
+        "id"
+      ],
+      "valeur": "avis-s1-a"
+    }
+  ],
+  "attendu": [
+    "profils/demo-fleuriste/profil.json : choix \"avis-s1-a\", champ \"id\" : deja utilise par un choix du tronc"
+  ]
+}

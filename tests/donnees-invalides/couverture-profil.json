@@ -1,0 +1,20 @@
+{
+  "regle": "EX-005 : references obligatoires citees par le profil",
+  "couverture": true,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/profil.json",
+      "chemin": [
+        "references_obligatoires"
+      ],
+      "valeur": [
+        "R-286",
+        "R-278",
+        "R-L62"
+      ]
+    }
+  ],
+  "attendu": [
+    "profils/demo-fleuriste/profil.json : champ \"references_obligatoires\" : references non citees par les chapitres du profil : R-L62"
+  ]
+}

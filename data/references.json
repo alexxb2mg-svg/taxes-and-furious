@@ -1,0 +1,343 @@
+{
+  "date_verification": "2026-10-12",
+  "verifie_par": "spec",
+  "methode": "Texte lu dans la compilation codes.droit.org (donnees Legifrance), editions indiquees dans sources ; Legifrance non consulte directement.",
+  "sources": {
+    "cgi": {
+      "code": "Code general des impots",
+      "edition": "2026-09-28",
+      "fichier": "https://codes.droit.org/PDF/Code%20g%C3%A9n%C3%A9ral%20des%20imp%C3%B4ts.pdf",
+      "sha256": "e382736b1049bcb87d7f9f4be9297743b68c4c32da2707b947f659977c22f2f6",
+      "derniere_modification": "2026-09-01"
+    },
+    "lpf": {
+      "code": "Livre des procedures fiscales",
+      "edition": "2026-10-01",
+      "fichier": "https://codes.droit.org/PDF/Livre%20des%20proc%C3%A9dures%20fiscales.pdf",
+      "sha256": "fd1587175926b2fcc848bb07fcde863b6a7b590377cc71fc5ab8ac7b6d8fe195"
+    },
+    "ct": {
+      "code": "Code du travail",
+      "edition": "2026-10-08",
+      "fichier": "https://codes.droit.org/PDF/Code%20du%20travail.pdf",
+      "sha256": "0ab8b277960692a12c089c625338214e52521e459bf5624b99addebf3731ad96"
+    }
+  },
+  "references": [
+    {
+      "id": "R-L47",
+      "source": "lpf",
+      "article": "Article L. 47 du LPF",
+      "version": "LOI n°2016-1918 du 29 décembre 2016 - art. 14",
+      "valeur": [],
+      "resume": "Pas de vérification de comptabilité sans avis de vérification préalable. L'avis précise les années contrôlées et mentionne, sous peine de nullité, que le contribuable peut se faire assister d'un conseil de son choix. Il indique où consulter la charte des droits et obligations du contribuable vérifié.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-L10",
+      "source": "lpf",
+      "article": "Article L. 10 du LPF",
+      "version": "LOI n°2015-1785 du 29 décembre 2015 - art. 86",
+      "valeur": [],
+      "resume": "Les dispositions de la charte des droits et obligations du contribuable vérifié sont opposables à l'administration.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-L52",
+      "source": "lpf",
+      "article": "Article L. 52 du LPF",
+      "version": "Ordonnance n°2021-1843 du 22 décembre 2021 - art. 11",
+      "valeur": [
+        "3 mois",
+        "6 mois"
+      ],
+      "resume": "Pour les petites entreprises (sous les seuils de chiffre d'affaires fixés par la loi), la vérification sur place ne peut pas durer plus de 3 mois, sous peine de nullité. Exceptions, dont les graves irrégularités privant la comptabilité de valeur probante (6 mois au plus). Le délai est suspendu tant que le FEC n'est pas remis.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-L169",
+      "source": "lpf",
+      "article": "Article L. 169 du LPF",
+      "version": "Décret n°2026-563 du 29 juin 2026 - art. 1",
+      "valeur": [
+        "3 ans",
+        "10 ans"
+      ],
+      "resume": "Impôt sur le revenu et impôt sur les sociétés : l'administration peut rectifier jusqu'à la fin de la troisième année qui suit celle de l'imposition (3 ans). Exceptions, notamment : 10 ans en cas d'activité occulte ou de fausse domiciliation fiscale à l'étranger.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-L176",
+      "source": "lpf",
+      "article": "Article L. 176 du LPF",
+      "version": "LOI n° 2019-1479 du 28 décembre 2019 - art. 30",
+      "valeur": [
+        "3 ans",
+        "10 ans"
+      ],
+      "resume": "TVA : droit de reprise jusqu'à la fin de la troisième année suivant celle où la taxe est devenue exigible (3 ans). Exception : 10 ans en cas d'activité occulte ou de flagrance fiscale.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-L47A",
+      "source": "lpf",
+      "article": "Article L. 47 A du LPF (I)",
+      "version": "LOI n°2018-898 du 23 octobre 2018 - art. 4",
+      "valeur": [],
+      "resume": "Comptabilité informatisée : le contribuable vérifié remet au début des opérations de contrôle une copie dématérialisée des fichiers des écritures comptables (le FEC).",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-1729D",
+      "source": "cgi",
+      "article": "Article 1729 D du CGI (I)",
+      "version": "LOI n°2016-1918 du 29 décembre 2016 - art. 14",
+      "valeur": [
+        "5 000 €",
+        "10 %"
+      ],
+      "resume": "Ne pas remettre le FEC dans les formes prévues : amende de 5 000 € ou, en cas de rectification et si c'est plus élevé, majoration de 10 % des droits.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-286",
+      "source": "cgi",
+      "article": "Article 286 du CGI (I, 3° bis)",
+      "version": "LOI n°2026-534 du 25 juin 2026 - art. 87",
+      "valeur": [],
+      "resume": "Un assujetti qui enregistre, au moyen d'un logiciel ou d'un système de caisse, des livraisons ou prestations ne donnant pas lieu à facturation doit utiliser un système qui garantit l'inaltérabilité, la sécurisation, la conservation et l'archivage des données, attesté par un certificat d'un organisme accrédité ou par une attestation individuelle de l'éditeur.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-1770DUO",
+      "source": "cgi",
+      "article": "Article 1770 duodecies du CGI",
+      "version": "LOI n°2026-103 du 19 février 2026 - art. 125",
+      "valeur": [
+        "7 500 €",
+        "60 jours"
+      ],
+      "resume": "Ne pas pouvoir produire l'attestation ou le certificat du logiciel de caisse : amende de 7 500 € par logiciel ou système, puis 60 jours pour se mettre en conformité, faute de quoi l'amende peut s'appliquer à nouveau.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-278",
+      "source": "cgi",
+      "article": "Article 278 du CGI",
+      "version": "LOI n°2012-1510 du 29 décembre 2012 - art. 68",
+      "valeur": [
+        "20 %"
+      ],
+      "resume": "Le taux normal de TVA est de 20 %.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-279-0B",
+      "source": "cgi",
+      "article": "Article 279-0 bis du CGI (1, 2 et 2 bis)",
+      "version": "LOI n°2025-127 du 14 février 2025 - art. 32",
+      "valeur": [
+        "10 %",
+        "20 %",
+        "2 ans"
+      ],
+      "resume": "TVA à 10 % pour les travaux d'amélioration, de transformation, d'aménagement et d'entretien de locaux d'habitation achevés depuis plus de 2 ans (hors rénovation énergétique à 5,5 %). Retour au taux normal de 20 % pour les travaux qui produisent un immeuble neuf ou augmentent la surface de plancher de plus de 10 %, et pour l'installation d'une chaudière à combustible fossile.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-279-0B-3",
+      "source": "cgi",
+      "article": "Article 279-0 bis du CGI (3)",
+      "version": "LOI n°2025-127 du 14 février 2025 - art. 32",
+      "valeur": [],
+      "resume": "Pour appliquer le taux réduit, le client certifie sur le devis ou la facture que les locaux sont des locaux d'habitation achevés depuis plus de deux ans et que les travaux ne relèvent pas des exceptions. L'entreprise conserve ces éléments ; le client est solidairement tenu au complément de taxe si ses mentions sont inexactes de son fait.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-278-0BA",
+      "source": "cgi",
+      "article": "Articles 278-0 bis et 278-0 bis A du CGI",
+      "version": "LOI n°2026-103 du 19 février 2026 - art. 81 et art. 92",
+      "valeur": [
+        "5,5 %",
+        "2 ans"
+      ],
+      "resume": "TVA à 5,5 % pour la rénovation énergétique (isolation thermique, chauffage et ventilation, eau chaude sanitaire) de locaux d'habitation achevés depuis au moins 2 ans, selon la liste fixée par arrêté. Exclu : chaudière à combustible fossile. Le client certifie les conditions sur le devis ou la facture.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-283-2N",
+      "source": "cgi",
+      "article": "Article 283 du CGI (2 nonies)",
+      "version": "LOI n°2025-127 du 14 février 2025 - art. 19",
+      "valeur": [],
+      "resume": "Travaux de construction (y compris réparation, nettoyage, entretien, transformation et démolition) réalisés par une entreprise sous-traitante pour le compte d'un preneur assujetti : la TVA est acquittée par le preneur (autoliquidation).",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-39-1",
+      "source": "cgi",
+      "article": "Article 39 du CGI (1, 1°)",
+      "version": "LOI n°2026-103 du 19 février 2026 - art. 13",
+      "valeur": [],
+      "resume": "Le bénéfice se calcule après déduction des charges, dont les frais généraux. Les rémunérations ne sont déductibles que si elles correspondent à un travail effectif et ne sont pas excessives.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-39-4",
+      "source": "cgi",
+      "article": "Article 39 du CGI (4)",
+      "version": "LOI n°2026-103 du 19 février 2026 - art. 13",
+      "valeur": [
+        "18 300 €",
+        "30 000 €",
+        "20 300 €",
+        "9 900 €"
+      ],
+      "resume": "Exclusion des charges de chasse, de pêche non professionnelle et des résidences de plaisance. L'amortissement d'un véhicule de tourisme n'est déductible que dans la limite d'un plafond de prix : 18 300 € en règle générale, 30 000 € ou 20 300 € pour les véhicules peu émetteurs, 9 900 € pour les plus émetteurs.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-L57",
+      "source": "lpf",
+      "article": "Article L. 57 du LPF",
+      "version": "Décret n°2010-422 du 27 avril 2010 - art. 1",
+      "valeur": [
+        "30 jours"
+      ],
+      "resume": "La proposition de rectification doit être motivée pour permettre au contribuable de répondre ou d'accepter. Sur demande avant l'expiration du délai de réponse, celui-ci est prorogé de 30 jours. Si l'administration rejette les observations, sa réponse est motivée.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-L11",
+      "source": "lpf",
+      "article": "Article L. 11 du LPF",
+      "version": "LOI n°2016-1918 du 29 décembre 2016 - art. 14",
+      "valeur": [
+        "30 jours"
+      ],
+      "resume": "Sauf délai particulier, le contribuable dispose de 30 jours à compter de la réception pour répondre à une notification de l'administration.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-L59",
+      "source": "lpf",
+      "article": "Article L. 59 du LPF",
+      "version": "Décret n°2022-783 du 4 mai 2022 - art. 1",
+      "valeur": [],
+      "resume": "Si le désaccord persiste sur les rectifications, l'administration soumet le litige, à la demande du contribuable, à l'avis de la commission des impôts directs et des taxes sur le chiffre d'affaires (ou d'une autre commission selon le cas). L'administration peut aussi la saisir.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-1727",
+      "source": "cgi",
+      "article": "Article 1727 du CGI (I et III)",
+      "version": "LOI n°2025-127 du 14 février 2025 - art. 11",
+      "valeur": [
+        "0,20 %"
+      ],
+      "resume": "Un impôt non payé dans le délai légal donne lieu à un intérêt de retard de 0,20 % par mois, auquel s'ajoutent le cas échéant les sanctions.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-1729",
+      "source": "cgi",
+      "article": "Article 1729 du CGI",
+      "version": "LOI n°2008-1443 du 30 décembre 2008 - art. 35",
+      "valeur": [
+        "40 %",
+        "80 %"
+      ],
+      "resume": "Majoration de 40 % en cas de manquement délibéré ; 80 % en cas de manœuvres frauduleuses, et 80 % en cas d'abus de droit (ramenée à 40 % dans certains cas).",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-L62",
+      "source": "lpf",
+      "article": "Article L. 62 du LPF",
+      "version": "LOI n°2018-727 du 10 août 2018 - art. 9",
+      "valeur": [
+        "30 jours",
+        "70 %"
+      ],
+      "resume": "Régularisation en cours de contrôle : si le contribuable demande à corriger ses erreurs (avant la proposition de rectification, ou dans les 30 jours de sa réception), l'intérêt de retard est réduit à 70 % de son montant, à condition de déposer une déclaration complémentaire et de payer. Hors infractions exclusives de la bonne foi.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-L8221-1",
+      "source": "ct",
+      "article": "Article L. 8221-1 du code du travail",
+      "version": "Ordonnance 2007-329 du 12 mars 2007",
+      "valeur": [],
+      "resume": "Le travail dissimulé est interdit, ainsi que le fait de recourir sciemment aux services de celui qui l'exerce.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-L8221-5",
+      "source": "ct",
+      "article": "Article L. 8221-5 du code du travail",
+      "version": "LOI n°2016-1088 du 8 août 2016 - art. 105",
+      "valeur": [],
+      "resume": "Est du travail dissimulé le fait pour un employeur de se soustraire intentionnellement à la déclaration préalable à l'embauche, à la remise du bulletin de paie ou aux déclarations sociales.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-1651",
+      "source": "cgi",
+      "article": "Article 1651 du CGI",
+      "version": "LOI n°2018-1317 du 28 décembre 2018 - art. 193",
+      "valeur": [],
+      "resume": "La commission des impôts directs et des taxes sur le chiffre d'affaires est instituée dans le ressort de chaque tribunal administratif. Elle est présidée par un magistrat administratif et comprend trois représentants des contribuables et deux représentants de l'administration.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-279-MN",
+      "source": "cgi",
+      "article": "Article 279 du CGI (m et n)",
+      "version": "LOI n°2026-103 du 19 février 2026 - art. 81",
+      "valeur": [
+        "10 %"
+      ],
+      "resume": "TVA à 10 % pour les ventes à consommer sur place et pour les ventes à emporter ou à livrer de produits alimentaires préparés en vue d'une consommation immédiate, sauf les boissons alcooliques, qui relèvent du taux normal.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-278-0B-A1",
+      "source": "cgi",
+      "article": "Article 278-0 bis du CGI (A, 1°)",
+      "version": "LOI n°2026-103 du 19 février 2026 - art. 81",
+      "valeur": [
+        "5,5 %"
+      ],
+      "resume": "TVA à 5,5 % sur les denrées alimentaires destinées à la consommation humaine, sauf notamment les confiseries, la plupart des produits au chocolat, les margarines et graisses végétales, le caviar et les boissons alcooliques, qui relèvent du taux normal.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-92",
+      "source": "cgi",
+      "article": "Article 92 du CGI (1)",
+      "version": "LOI n°2026-534 du 25 juin 2026 - art. 91",
+      "valeur": [],
+      "resume": "Relèvent des bénéfices non commerciaux les bénéfices des professions libérales et de toutes occupations, exploitations lucratives et sources de profits ne se rattachant pas à une autre catégorie de revenus.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-238BAB",
+      "source": "cgi",
+      "article": "Article 238 bis AB du CGI",
+      "version": "LOI n°2026-103 du 19 février 2026 - art. 89",
+      "valeur": [],
+      "resume": "Une entreprise qui achète une œuvre originale d'artiste vivant et l'inscrit à l'actif peut déduire son prix par fractions égales sur l'exercice d'acquisition et les quatre suivants, dans une limite plafonnée, à condition de l'exposer dans un lieu accessible au public ou aux salariés, à l'exception de leurs bureaux, pendant toute cette période.",
+      "statut": "verifie"
+    },
+    {
+      "id": "R-L8221-6",
+      "source": "ct",
+      "article": "Article L. 8221-6 du code du travail",
+      "version": "Ordonnance n°2021-1189 du 15 septembre 2021 - art. 35",
+      "valeur": [],
+      "resume": "Une personne immatriculée comme indépendante est présumée ne pas être salariée. Mais un contrat de travail peut être établi si elle travaille dans un lien de subordination juridique permanente envers son donneur d'ordre ; il y a alors dissimulation d'emploi salarié si le donneur d'ordre a voulu ainsi échapper à ses obligations d'employeur.",
+      "statut": "verifie"
+    }
+  ]
+}

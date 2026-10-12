@@ -1,0 +1,27 @@
+{
+  "avis-s2": {
+    "texte": "M. Bernard Rectif se présente, cartable sous le bras. Son regard s'attarde une seconde sur votre caisse à outils : « Nous commençons quand vous voulez. Enfin, quand la loi le veut. »",
+    "choix": {
+      "avis-s2-b": {
+        "texte": "Annoncer une urgence : une canalisation a éclaté à l'autre bout du département.",
+        "reaction": "« Courez. Le contrôle, lui, vous attendra : il ne fuit pas. »"
+      }
+    }
+  },
+  "fec-s1": {
+    "texte": "« Pour commencer, il me faudrait votre fichier des écritures comptables. Le FEC. Pas le carnet à spirale de la camionnette. »",
+    "choix": {
+      "fec-s1-b": {
+        "texte": "Poser sur la table une caisse à outils pleine de tickets et de joints usagés.",
+        "reaction": "M. Rectif extrait un ticket de 2019 coincé entre deux joints. « Ça goutte un peu, votre comptabilité. »"
+      }
+    }
+  },
+  "rectification-s3": {
+    "choix": {
+      "rectification-s3-a": {
+        "reaction": "Votre comptable range ses classeurs en sifflotant. Tonton Robert propose de fêter ça autour d'un gratin."
+      }
+    }
+  }
+}

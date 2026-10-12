@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Les clientes du samedi">
+  <title>Les clientes du samedi</title>
+  <rect width="200" height="200" rx="24" fill="#fdedec"/>
+  <path d="M0 200 Q10 156 50 152 Q90 156 98 200 Z" fill="#a569bd" stroke="#2b2118" stroke-width="4"/>
+  <path d="M102 200 Q110 156 150 152 Q190 156 200 200 Z" fill="#48c9b0" stroke="#2b2118" stroke-width="4"/>
+  <ellipse cx="50" cy="112" rx="34" ry="40" fill="#f3cfb3" stroke="#2b2118" stroke-width="4"/>
+  <ellipse cx="150" cy="112" rx="34" ry="40" fill="#e8b996" stroke="#2b2118" stroke-width="4"/>
+  <path d="M8 96 Q10 34 50 30 Q90 34 92 96 Q80 70 50 70 Q20 70 8 96 Z" fill="#d5d8dc" stroke="#2b2118" stroke-width="4"/>
+  <path d="M108 96 Q110 34 150 30 Q190 34 192 96 Q180 70 150 70 Q120 70 108 96 Z" fill="#d5d8dc" stroke="#2b2118" stroke-width="4"/>
+  <g fill="none" stroke="#2b2118" stroke-width="2"><path d="M20 60 L80 60 M24 48 L76 48 M120 60 L180 60 M124 48 L176 48"/></g>
+  <circle cx="38" cy="108" r="5" fill="#2b2118"/><circle cx="62" cy="108" r="5" fill="#2b2118"/>
+  <circle cx="138" cy="108" r="5" fill="#2b2118"/><circle cx="162" cy="108" r="5" fill="#2b2118"/>
+  <ellipse cx="50" cy="132" rx="9" ry="7" fill="#2b2118"/><ellipse cx="150" cy="132" rx="9" ry="7" fill="#2b2118"/>
+  <g fill="#ffffff" stroke="#2b2118" stroke-width="2"><path d="M76 20 Q100 6 124 20 Q124 34 100 34 L94 42 L94 34 Q76 34 76 20 Z"/></g>
+  <g fill="#2b2118"><circle cx="90" cy="21" r="2"/><circle cx="100" cy="21" r="2"/><circle cx="110" cy="21" r="2"/></g>
+</svg>

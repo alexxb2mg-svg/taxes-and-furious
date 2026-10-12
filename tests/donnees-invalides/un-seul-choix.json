@@ -1,0 +1,21 @@
+{
+  "regle": "2 a 4 choix",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        1,
+        "choix",
+        1
+      ],
+      "supprimer": true
+    }
+  ],
+  "attendu": [
+    "profils/demo-glacier/profil.json : scene \"cornets-s2\", champ \"choix\" : 1 choix : il en faut de 2 a 4"
+  ]
+}

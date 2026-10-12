@@ -1,0 +1,17 @@
+{
+  "regle": "index.json : id sans dossier = erreur",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/index.json",
+      "valeur_fichier": [
+        "demo-fleuriste",
+        "demo-glacier",
+        "fantome"
+      ]
+    }
+  ],
+  "attendu": [
+    "profils/index.json : profil \"fantome\" sans dossier profils/fantome/"
+  ]
+}

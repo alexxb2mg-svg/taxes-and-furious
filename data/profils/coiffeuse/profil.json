@@ -1,0 +1,291 @@
+{
+  "id": "coiffeuse",
+  "actif": true,
+  "nom": "La coiffeuse",
+  "entreprise": "Au Bigoudi d'Or",
+  "accroche": "Un tiroir-caisse qui ne connaît que les espèces, une locataire de fauteuil très obéissante et des clientes qui savent tout. Ça va décoiffer.",
+  "inspiration": "Clin d'oeil au film \"Vénus Beauté (Institut)\" : le salon de quartier où tout se sait. Aucun nom de personnage du film.",
+  "jauges_initiales": {
+    "patience": 70,
+    "stress": 30
+  },
+  "personnages": [
+    {
+      "id": "frange",
+      "role": "verificateur",
+      "nom": "Mme Brigitte Frange",
+      "description": "Inspectrice à la frange millimétrée, venue « juste pour une frange ». Ne laisse rien passer, pas même une mèche.",
+      "portrait": "img/frange.svg"
+    },
+    {
+      "id": "clientes",
+      "role": "second",
+      "nom": "Les clientes du samedi",
+      "description": "Sous les casques séchoirs, elles entendent tout et commentent le reste.",
+      "portrait": "img/clientes.svg"
+    },
+    {
+      "id": "locataire",
+      "role": "second",
+      "nom": "La locataire du fauteuil 3",
+      "description": "Indépendante, paraît-il. Elle demande pourtant chaque matin quels rendez-vous elle doit prendre.",
+      "portrait": "img/locataire.svg"
+    }
+  ],
+  "parcours": [
+    "tronc:avis",
+    "profil:especes",
+    "tronc:fec",
+    "profil:salon",
+    "tronc:rectification"
+  ],
+  "references_obligatoires": [
+    "R-286",
+    "R-1770DUO",
+    "R-L8221-6",
+    "R-L8221-5",
+    "R-39-1"
+  ],
+  "chapitres": [
+    {
+      "id": "especes",
+      "titre": "Le tiroir à espèces",
+      "scenes": [
+        {
+          "id": "especes-s1",
+          "personnage": "frange",
+          "texte": "Mme Brigitte Frange observe le tiroir-caisse, qui s'ouvre à la main avec une petite clé dorée. Aucun ticket n'en est jamais sorti.",
+          "choix": [
+            {
+              "id": "especes-s1-a",
+              "texte": "Installer une caisse certifiée et enregistrer chaque coupe, même payée en espèces.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "Mme Frange ajuste sa frange, ce qui chez elle équivaut à un sourire.",
+              "explication": "Ce que dit vraiment la loi : un assujetti qui enregistre, au moyen d'un logiciel ou d'un système de caisse, des livraisons ou des prestations ne donnant pas lieu à facturation doit utiliser un système qui garantit l'inaltérabilité, la sécurisation, la conservation et l'archivage des données, attesté par un certificat d'un organisme accrédité ou par une attestation individuelle de l'éditeur.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": "especes-s2"
+            },
+            {
+              "id": "especes-s1-b",
+              "texte": "Présenter un logiciel de caisse téléchargé gratuitement, « option suppression incluse ».",
+              "juste": false,
+              "effets": {
+                "redressement": 7500,
+                "patience": -15,
+                "stress": 10
+              },
+              "reaction": "Mme Frange teste l'option. Le mois de décembre s'évapore. Elle aussi, presque.",
+              "explication": "Ce que dit vraiment la loi : le système de caisse doit garantir l'inaltérabilité, la sécurisation, la conservation et l'archivage des données. Ne pas pouvoir produire l'attestation ou le certificat entraîne une amende de 7 500 € par logiciel ou système, puis un délai de 60 jours pour se mettre en conformité, faute de quoi l'amende peut s'appliquer à nouveau.",
+              "references": [
+                "R-286",
+                "R-1770DUO"
+              ],
+              "suivant": "especes-s2"
+            }
+          ]
+        },
+        {
+          "id": "especes-s2",
+          "personnage": "clientes",
+          "texte": "Sous les casques séchoirs, les clientes du samedi tendent l'oreille. L'une d'elles lance : « Moi, je paie toujours en espèces, c'est plus discret ! »",
+          "choix": [
+            {
+              "id": "especes-s2-a",
+              "texte": "« Espèces ou carte, tout passe en caisse, et chacune repart avec son ticket. »",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "Les casques séchoirs hochent la tête en cadence. Mme Frange note : rien à noter.",
+              "explication": "Ce que dit vraiment la loi : le système de caisse qui enregistre les prestations ne donnant pas lieu à facturation doit garantir l'inaltérabilité, la sécurisation, la conservation et l'archivage des données.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "especes-s2-b",
+              "texte": "Faire un clin d'œil appuyé à la cliente, juste devant Mme Frange.",
+              "juste": false,
+              "effets": {
+                "redressement": 2000,
+                "patience": -20,
+                "stress": 15
+              },
+              "reaction": "Mme Frange a vu le clin d'œil. Les clientes aussi. Tout le quartier le saura avant midi.",
+              "explication": "Ce que dit vraiment la loi : le système de caisse doit garantir l'inaltérabilité, la sécurisation, la conservation et l'archivage des données ; sans attestation ni certificat, l'amende est de 7 500 € par logiciel ou système.",
+              "references": [
+                "R-286",
+                "R-1770DUO"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salon",
+      "titre": "Les fauteuils du salon",
+      "scenes": [
+        {
+          "id": "salon-s1",
+          "personnage": "locataire",
+          "texte": "La locataire du fauteuil 3 est indépendante, paraît-il. Pourtant, c'est vous qui fixez ses horaires, ses tarifs, ses rendez-vous, et même la couleur de sa blouse.",
+          "choix": [
+            {
+              "id": "salon-s1-a",
+              "texte": "Reconnaître qu'elle travaille comme une salariée et la salarier pour de bon.",
+              "juste": true,
+              "effets": {
+                "redressement": 2000,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "La locataire du fauteuil 3 choisit enfin la couleur de sa blouse : la même, mais avec un contrat.",
+              "explication": "Ce que dit vraiment la loi : une personne immatriculée comme indépendante est présumée ne pas être salariée ; mais un contrat de travail peut être établi si elle travaille dans un lien de subordination juridique permanente envers son donneur d'ordre, avec dissimulation d'emploi salarié si celui-ci a voulu échapper à ses obligations d'employeur.",
+              "references": [
+                "R-L8221-6"
+              ],
+              "suivant": "salon-s2"
+            },
+            {
+              "id": "salon-s1-b",
+              "texte": "« Elle loue le fauteuil, c'est tout. Le reste, c'est de la décoration. »",
+              "juste": false,
+              "effets": {
+                "redressement": 6000,
+                "patience": -20,
+                "stress": 15
+              },
+              "reaction": "La locataire lève la main : « Patronne, je prends la permanente de 15 h ? » Mme Frange note le mot « patronne ».",
+              "explication": "Ce que dit vraiment la loi : un indépendant travaillant dans un lien de subordination juridique permanente envers son donneur d'ordre peut être reconnu salarié, avec dissimulation d'emploi salarié si le donneur d'ordre a voulu échapper à ses obligations d'employeur.",
+              "references": [
+                "R-L8221-6"
+              ],
+              "suivant": "salon-s2"
+            }
+          ]
+        },
+        {
+          "id": "salon-s2",
+          "personnage": "frange",
+          "texte": "Mme Frange désigne l'apprentie qui balaie les mèches au fond du salon : « Et mademoiselle, elle a un bulletin de paie ? »",
+          "choix": [
+            {
+              "id": "salon-s2-a",
+              "texte": "Faire tout de suite la déclaration préalable à l'embauche et établir ses bulletins de paie.",
+              "juste": true,
+              "effets": {
+                "redressement": 1000,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "L'apprentie pose son balai et lit son premier bulletin de paie comme un roman.",
+              "explication": "Ce que dit vraiment la loi : est du travail dissimulé le fait pour un employeur de se soustraire intentionnellement à la déclaration préalable à l'embauche, à la remise du bulletin de paie ou aux déclarations sociales.",
+              "references": [
+                "R-L8221-5"
+              ],
+              "suivant": "salon-s3"
+            },
+            {
+              "id": "salon-s2-b",
+              "texte": "« Elle ? Elle est juste venue balayer. Depuis deux ans. »",
+              "juste": false,
+              "effets": {
+                "redressement": 5000,
+                "patience": -20,
+                "stress": 15
+              },
+              "reaction": "L'apprentie salue Mme Frange en l'appelant « madame la cliente ». Le balai tremble légèrement.",
+              "explication": "Ce que dit vraiment la loi : est du travail dissimulé le fait pour un employeur de se soustraire intentionnellement à la déclaration préalable à l'embauche, à la remise du bulletin de paie ou aux déclarations sociales.",
+              "references": [
+                "R-L8221-5"
+              ],
+              "suivant": "salon-s3"
+            }
+          ]
+        },
+        {
+          "id": "salon-s3",
+          "personnage": "narrateur",
+          "texte": "Dans les charges du salon, Mme Frange trouve des shampoings pour toute la famille, trois séjours en thalasso et un sèche-cheveux en or massif « pour la vitrine ».",
+          "choix": [
+            {
+              "id": "salon-s3-a",
+              "texte": "Retirer des charges les dépenses de la famille et ne garder que celles du salon.",
+              "juste": true,
+              "effets": {
+                "redressement": 1000,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "Le sèche-cheveux en or retourne à la maison. Il souffle, ce qui reste son seul talent.",
+              "explication": "Ce que dit vraiment la loi : le bénéfice imposable se calcule après déduction des charges, dont les frais généraux.",
+              "references": [
+                "R-39-1"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "salon-s3-b",
+              "texte": "« La thalasso, c'est pour tester les nouveaux produits capillaires. »",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -15,
+                "stress": 10
+              },
+              "reaction": "Mme Frange feuillette les photos de la thalasso. Pas un seul shampoing à l'horizon.",
+              "explication": "Ce que dit vraiment la loi : le bénéfice imposable se calcule après déduction des charges, dont les frais généraux.",
+              "references": [
+                "R-39-1"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fins": [
+    {
+      "id": "coiffeuse-fin-brushing",
+      "titre": "Brushing impeccable",
+      "texte": "Pas un cheveu de travers dans la comptabilité. Mme Brigitte Frange prend rendez-vous pour samedi prochain. Une vraie coupe, payée en caisse.",
+      "conditions": [
+        {
+          "jauge": "patience",
+          "op": ">=",
+          "valeur": 100
+        },
+        {
+          "jauge": "stress",
+          "op": "<=",
+          "valeur": 5
+        }
+      ]
+    },
+    {
+      "id": "coiffeuse-fin-decoiffee",
+      "titre": "Coup de ciseaux dans le budget",
+      "texte": "Le redressement vous a décoiffée pour de bon. Les clientes du samedi en parleront longtemps, et jusqu'au marché.",
+      "conditions": [
+        {
+          "jauge": "redressement",
+          "op": ">=",
+          "valeur": 20000
+        }
+      ]
+    }
+  ]
+}

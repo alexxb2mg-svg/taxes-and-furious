@@ -1,0 +1,18 @@
+{
+  "regle": "variante vers une scene existante du tronc (EX-052)",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/variantes.json",
+      "chemin": [
+        "avis-s9"
+      ],
+      "valeur": {
+        "texte": "Texte orphelin."
+      }
+    }
+  ],
+  "attendu": [
+    "profils/demo-fleuriste/variantes.json : scene \"avis-s9\" : variante d'une scene inconnue du tronc"
+  ]
+}

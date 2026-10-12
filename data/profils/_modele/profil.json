@@ -1,0 +1,96 @@
+{
+  "id": "_modele",
+  "actif": true,
+  "nom": "A remplacer : nom du profil (ex. Le plombier)",
+  "entreprise": "A remplacer : nom de l'entreprise fictive",
+  "accroche": "A remplacer : une phrase drôle pour l'écran de choix.",
+  "inspiration": "A remplacer : film, livre ou type d'affaire qui inspire le profil (texte libre, non affiché).",
+  "jauges_initiales": { "patience": 70, "stress": 30 },
+  "personnages": [
+    {
+      "id": "verificateur",
+      "role": "verificateur",
+      "nom": "A remplacer : nom du vérificateur",
+      "description": "A remplacer : une ligne de description du personnage.",
+      "portrait": "img/verificateur.svg"
+    }
+  ],
+  "parcours": ["tronc:avis", "profil:metier", "tronc:fec", "tronc:rectification"],
+  "references_obligatoires": [],
+  "chapitres": [
+    {
+      "id": "metier",
+      "titre": "A remplacer : titre du chapitre métier",
+      "scenes": [
+        {
+          "id": "modele-s1",
+          "personnage": "verificateur",
+          "texte": "A remplacer : ce que dit le vérificateur.",
+          "choix": [
+            {
+              "id": "modele-s1-a",
+              "texte": "A remplacer : le bon réflexe.",
+              "juste": true,
+              "effets": { "redressement": 0, "patience": 5, "stress": -5 },
+              "reaction": "A remplacer : réaction du personnage.",
+              "explication": "A remplacer : Ce que dit vraiment la loi, avec les identifiants de references.json dans \"references\".",
+              "references": [],
+              "suivant": "modele-s2"
+            },
+            {
+              "id": "modele-s1-b",
+              "texte": "A remplacer : le mauvais réflexe.",
+              "juste": false,
+              "effets": { "redressement": 1000, "patience": -10, "stress": 10 },
+              "reaction": "A remplacer : réaction du personnage.",
+              "explication": "A remplacer : Ce que dit vraiment la loi.",
+              "references": [],
+              "suivant": "modele-s2"
+            }
+          ]
+        },
+        {
+          "id": "modele-s2",
+          "personnage": "narrateur",
+          "texte": "A remplacer : texte du narrateur (affiché en encadré, sans portrait).",
+          "choix": [
+            {
+              "id": "modele-s2-a",
+              "texte": "A remplacer : le bon réflexe.",
+              "juste": true,
+              "effets": { "redressement": 0, "patience": 5, "stress": -5 },
+              "reaction": "A remplacer : réaction.",
+              "explication": "A remplacer : Ce que dit vraiment la loi.",
+              "references": [],
+              "suivant": null
+            },
+            {
+              "id": "modele-s2-b",
+              "texte": "A remplacer : le mauvais réflexe.",
+              "juste": false,
+              "effets": { "redressement": 1000, "patience": -10, "stress": 10 },
+              "reaction": "A remplacer : réaction.",
+              "explication": "A remplacer : Ce que dit vraiment la loi.",
+              "references": [],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fins": [
+    {
+      "id": "modele-fin-1",
+      "titre": "A remplacer : titre de la bonne fin",
+      "texte": "A remplacer : texte de fin.",
+      "conditions": [{ "jauge": "patience", "op": ">=", "valeur": 90 }]
+    },
+    {
+      "id": "modele-fin-2",
+      "titre": "A remplacer : titre de la mauvaise fin",
+      "texte": "A remplacer : texte de fin.",
+      "conditions": [{ "jauge": "stress", "op": ">=", "valeur": 80 }]
+    }
+  ]
+}

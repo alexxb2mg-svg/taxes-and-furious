@@ -1,0 +1,21 @@
+{
+  "regle": "parcours : tronc dans l'ordre de tronc.json",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "parcours"
+      ],
+      "valeur": [
+        "tronc:fec",
+        "tronc:avis",
+        "profil:cornets",
+        "tronc:rectification"
+      ]
+    }
+  ],
+  "attendu": [
+    "champ \"parcours\" : chapitres du tronc dans le desordre (fec, avis, rectification)"
+  ]
+}

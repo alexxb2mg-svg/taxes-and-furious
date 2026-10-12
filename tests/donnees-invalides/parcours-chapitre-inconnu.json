@@ -1,0 +1,22 @@
+{
+  "regle": "parcours : chapitres existants",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "parcours"
+      ],
+      "valeur": [
+        "tronc:avis",
+        "tronc:fec",
+        "profil:glacons",
+        "profil:cornets",
+        "tronc:rectification"
+      ]
+    }
+  ],
+  "attendu": [
+    "champ \"parcours\" : chapitre \"profil:glacons\" absent des chapitres du profil"
+  ]
+}

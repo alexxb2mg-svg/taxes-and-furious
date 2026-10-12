@@ -1,0 +1,35 @@
+{
+  "regle": "aucune scene inatteignable depuis la scene d'entree",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "choix",
+        0,
+        "suivant"
+      ],
+      "valeur": null
+    },
+    {
+      "fichier": "profils/demo-fleuriste/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "choix",
+        1,
+        "suivant"
+      ],
+      "valeur": null
+    }
+  ],
+  "attendu": [
+    "chapitre \"caisse\", scene \"caisse-s2\" : scene inatteignable depuis la scene d'entree \"caisse-s1\""
+  ]
+}

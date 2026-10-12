@@ -1,0 +1,105 @@
+{
+  "id": "demo-fleuriste",
+  "actif": true,
+  "nom": "La fleuriste de démonstration",
+  "entreprise": "Les Pétales Fictifs",
+  "accroche": "Profil de test : des fleurs, une caisse et beaucoup de questions.",
+  "inspiration": "Données de démonstration pour les tests, sans inspiration particulière.",
+  "personnages": [
+    {
+      "id": "pistil",
+      "role": "verificateur",
+      "nom": "Mme Démo Pistil",
+      "description": "Vérificatrice de démonstration, allergique au pollen mais pas aux justificatifs.",
+      "portrait": "img/pistil.svg"
+    },
+    {
+      "id": "bilan",
+      "role": "comptable",
+      "nom": "M. Démo Bilan",
+      "description": "Comptable de démonstration, range ses factures par couleur de rose.",
+      "portrait": "img/bilan.svg"
+    }
+  ],
+  "parcours": ["tronc:avis", "profil:caisse", "tronc:fec", "tronc:rectification"],
+  "references_obligatoires": ["R-286", "R-278"],
+  "chapitres": [
+    {
+      "id": "caisse",
+      "titre": "La caisse en fleurs",
+      "scenes": [
+        {
+          "id": "caisse-s1",
+          "personnage": "pistil",
+          "texte": "« Votre caisse enregistreuse, elle a son certificat ? Ou elle aussi pousse au hasard ? »",
+          "choix": [
+            {
+              "id": "caisse-s1-a",
+              "texte": "Sortir l'attestation de l'éditeur du logiciel.",
+              "juste": true,
+              "effets": { "redressement": 0, "patience": 10, "stress": -5 },
+              "reaction": "« Parfait. Une caisse qui se tient droite. »",
+              "explication": "Ce que dit vraiment la loi : un assujetti qui enregistre au moyen d'un logiciel ou d'un système de caisse des ventes sans facture doit utiliser un système qui garantit l'inaltérabilité, la sécurisation, la conservation et l'archivage des données, attesté par un certificat d'un organisme accrédité ou par une attestation individuelle de l'éditeur.",
+              "references": ["R-286"],
+              "suivant": "caisse-s2"
+            },
+            {
+              "id": "caisse-s1-b",
+              "texte": "« Une caisse ? Je compte sur mes doigts, c'est plus bio. »",
+              "juste": false,
+              "effets": { "redressement": 2000, "patience": -15, "stress": 15 },
+              "reaction": "Mme Démo Pistil compte ses doigts à son tour. Elle n'a pas l'air convaincue.",
+              "explication": "Ce que dit vraiment la loi : les ventes sans facture enregistrées par un logiciel ou un système de caisse doivent passer par un système sécurisé et inaltérable, attesté par un certificat ou par une attestation de l'éditeur.",
+              "references": ["R-286"],
+              "suivant": "caisse-s2"
+            }
+          ]
+        },
+        {
+          "id": "caisse-s2",
+          "personnage": "bilan",
+          "texte": "« Et les vases décoratifs que vous vendez avec les bouquets, vous les passez à quel taux de TVA ? »",
+          "choix": [
+            {
+              "id": "caisse-s2-a",
+              "texte": "« Au taux normal. »",
+              "juste": true,
+              "effets": { "redressement": 0, "patience": 5, "stress": -10 },
+              "reaction": "M. Démo Bilan coche une case avec un plaisir évident.",
+              "explication": "Ce que dit vraiment la loi : le taux normal de TVA est de 20 %.",
+              "references": ["R-278"],
+              "suivant": null
+            },
+            {
+              "id": "caisse-s2-b",
+              "texte": "« Zéro. C'est de la décoration, pas de la marchandise. »",
+              "juste": false,
+              "effets": { "redressement": 1500, "patience": -10, "stress": 20 },
+              "reaction": "M. Démo Bilan s'assoit lentement sur un pot de terreau.",
+              "explication": "Ce que dit vraiment la loi : le taux normal de TVA est de 20 %.",
+              "references": ["R-278"],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fins": [
+    {
+      "id": "fleuriste-fin-bouquet",
+      "titre": "Bouquet final",
+      "texte": "Presque rien à redresser, une vérificatrice qui repart avec le sourire. Les tulipes en restent bouche bée.",
+      "conditions": [
+        { "jauge": "redressement", "op": "<=", "valeur": 1500 },
+        { "jauge": "patience", "op": ">=", "valeur": 90 }
+      ]
+    },
+    {
+      "id": "fleuriste-fin-fanee",
+      "titre": "Fleurs fanées",
+      "texte": "Le contrôle est passé. Vos nerfs, eux, ont besoin d'un arrosage.",
+      "conditions": [{ "jauge": "stress", "op": ">=", "valeur": 80 }]
+    }
+  ]
+}

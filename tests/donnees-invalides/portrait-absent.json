@@ -1,0 +1,18 @@
+{
+  "regle": "portraits presents sur disque (EX-034)",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/profil.json",
+      "chemin": [
+        "personnages",
+        1,
+        "portrait"
+      ],
+      "valeur": "img/absent.svg"
+    }
+  ],
+  "attendu": [
+    "personnage \"bilan\", champ \"portrait\" : fichier \"profils/demo-fleuriste/img/absent.svg\" introuvable"
+  ]
+}

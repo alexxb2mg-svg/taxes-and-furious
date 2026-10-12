@@ -1,0 +1,13 @@
+{
+  "regle": "portrait role=\"img\" et aria-label = nom (EX-034)",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/img/sorbet.svg",
+      "brut": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10 10\" role=\"img\"><circle cx=\"5\" cy=\"5\" r=\"4\"/></svg>\n"
+    }
+  ],
+  "attendu": [
+    "personnage \"sorbet\", champ \"portrait\" : \"profils/demo-glacier/img/sorbet.svg\" : aria-label absent"
+  ]
+}

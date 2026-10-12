@@ -1,0 +1,47 @@
+// Suites de choix explicites qui atteignent chaque fin de chaque profil de data/ (C2).
+// Reutilisables par les tests d'interface (C4). Generees par exploration exhaustive, puis figees ici.
+// Un nombre est le resultat d'un mini-jeu (EX-110) : pour le tri (EX-112), le nombre de pieces bien rangees.
+export const SUITES_FINS = {
+  restaurateur: {
+    'restaurateur-fin-etoile': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'caisse-s1-a', 'caisse-s2-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'carte-s1-a', 'carte-s2-a', 'rectification-s1-a', 'rectification-s2-a', 'rectification-s3-a'],
+    'restaurateur-fin-addition': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'caisse-s1-c', 'caisse-s2-b', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'carte-s1-b', 'carte-s2-a', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-sereine': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'caisse-s1-a', 'caisse-s2-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'carte-s1-a', 'carte-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-defaut': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'caisse-s1-c', 'caisse-s2-b', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'carte-s1-b', 'carte-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-b'],
+    'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'caisse-s1-c', 'caisse-s2-b', 'fec-s1-b'],
+  },
+  influenceuse: {
+    'influenceuse-fin-sans-filtre': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-a', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'residence-s1-a', 'residence-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
+    'influenceuse-fin-deconnexion': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-b', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'residence-s1-b', 'residence-s2-a', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-sereine': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-a', 'partenariats-s2-b', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'residence-s1-a', 'residence-s2-a', 'rectification-s1-b', 'rectification-s2-b', 'rectification-s3-a'],
+    'fin-defaut': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-b', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'residence-s1-a', 'residence-s2-b', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-b', 'partenariats-s3-b'],
+  },
+  plombier: {
+    'plombier-fin-etanche': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'devis-s1-a', 'devis-s2-a', 5, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'chantier-s1-a', 'chantier-s2-a', 'chantier-s3-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
+    'plombier-fin-degat-des-eaux': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'devis-s1-c', 'devis-s2-a', 5, 'fec-s1-a', 'fec-s2-a', 'fec-s3-b', 'chantier-s1-b', 'chantier-s2-a', 'chantier-s3-a', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-sereine': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'devis-s1-a', 'devis-s2-a', 5, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'chantier-s1-a', 'chantier-s2-a', 'chantier-s3-a', 'rectification-s1-b', 'rectification-s2-b', 'rectification-s3-a'],
+    'fin-defaut': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'devis-s1-c', 'devis-s2-b', 5, 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'chantier-s1-a', 'chantier-s2-a', 'chantier-s3-b', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-b'],
+    'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'devis-s1-c', 'devis-s2-b', 5, 'fec-s1-b'],
+  },
+  consultant: {
+    'consultant-fin-pivot': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'train-de-vie-s1-a', 'train-de-vie-s2-a', 6, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'remuneration-s1-a', 'remuneration-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
+    'consultant-fin-burn': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'train-de-vie-s1-b', 'train-de-vie-s2-b', 6, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'remuneration-s1-b', 'remuneration-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-b'],
+    'fin-sereine': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'train-de-vie-s1-a', 'train-de-vie-s2-a', 6, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'remuneration-s1-a', 'remuneration-s2-a', 'rectification-s1-b', 'rectification-s2-b', 'rectification-s3-a'],
+    'fin-defaut': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'train-de-vie-s1-b', 'train-de-vie-s2-b', 6, 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'remuneration-s1-a', 'remuneration-s2-a', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'train-de-vie-s1-b', 'train-de-vie-s2-b', 6, 'fec-s1-b'],
+  },
+  coiffeuse: {
+    'coiffeuse-fin-brushing': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'especes-s1-b', 'especes-s2-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'salon-s1-a', 'salon-s2-a', 'salon-s3-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
+    'coiffeuse-fin-decoiffee': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'especes-s1-b', 'especes-s2-b', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'salon-s1-a', 'salon-s2-b', 'salon-s3-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-b'],
+    'fin-sereine': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'especes-s1-a', 'especes-s2-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'salon-s1-a', 'salon-s2-a', 'salon-s3-a', 'rectification-s1-b', 'rectification-s2-b', 'rectification-s3-a'],
+    'fin-defaut': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'especes-s1-b', 'especes-s2-b', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'salon-s1-a', 'salon-s2-a', 'salon-s3-b', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-b'],
+    'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'especes-s1-b', 'especes-s2-b', 'fec-s1-b'],
+  },
+  galeriste: {
+    'galeriste-fin-chef-oeuvre': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'oeuvres-s1-a', 'oeuvres-s2-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'campagne-s1-a', 'campagne-s2-a', 'rectification-s1-a', 'rectification-s2-a', 'rectification-s3-a'],
+    'galeriste-fin-vente-forcee': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'oeuvres-s1-b', 'oeuvres-s2-a', 'fec-s1-b', 'fec-s2-a', 'fec-s3-a', 'campagne-s1-b', 'campagne-s2-a', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-sereine': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'oeuvres-s1-a', 'oeuvres-s2-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'campagne-s1-a', 'campagne-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-defaut': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'oeuvres-s1-b', 'oeuvres-s2-b', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'campagne-s1-a', 'campagne-s2-b', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'oeuvres-s1-b', 'oeuvres-s2-b', 'fec-s1-b'],
+  },
+};

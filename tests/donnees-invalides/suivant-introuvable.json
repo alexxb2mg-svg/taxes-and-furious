@@ -1,0 +1,22 @@
+{
+  "regle": "suivant valides (EX-053 : message type)",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "choix",
+        1,
+        "suivant"
+      ],
+      "valeur": "caisse-s9"
+    }
+  ],
+  "attendu": [
+    "profils/demo-fleuriste/profil.json : scene \"caisse-s1\", champ \"suivant\" : scene \"caisse-s9\" introuvable"
+  ]
+}

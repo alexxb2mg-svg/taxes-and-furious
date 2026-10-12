@@ -1,0 +1,22 @@
+{
+  "regle": "parcours : sans doublon",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "parcours"
+      ],
+      "valeur": [
+        "tronc:avis",
+        "profil:cornets",
+        "tronc:fec",
+        "profil:cornets",
+        "tronc:rectification"
+      ]
+    }
+  ],
+  "attendu": [
+    "champ \"parcours\" : chapitre \"profil:cornets\" en double"
+  ]
+}

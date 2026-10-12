@@ -1,0 +1,17 @@
+{
+  "regle": "jauges initiales 0..100",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "jauges_initiales",
+        "patience"
+      ],
+      "valeur": 150
+    }
+  ],
+  "attendu": [
+    "profils/demo-glacier/profil.json : champ \"jauges_initiales\" : valeur de \"patience\" invalide (150)"
+  ]
+}

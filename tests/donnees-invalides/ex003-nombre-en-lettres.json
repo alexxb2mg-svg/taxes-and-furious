@@ -1,0 +1,22 @@
+{
+  "regle": "EX-003 : pas de nombre en lettres suivi d'une unite",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "tronc.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        1,
+        "choix",
+        0,
+        "explication"
+      ],
+      "valeur": "Ce que dit vraiment la loi : trois mois au plus, sauf exceptions."
+    }
+  ],
+  "attendu": [
+    "tronc.json : scene \"avis-s2\", choix \"avis-s2-a\", champ \"explication\" : nombre en lettres \"trois mois\""
+  ]
+}

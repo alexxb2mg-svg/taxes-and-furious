@@ -1,0 +1,17 @@
+{
+  "regle": "au moins 2 fins par profil",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/profil.json",
+      "chemin": [
+        "fins",
+        1
+      ],
+      "supprimer": true
+    }
+  ],
+  "attendu": [
+    "profils/demo-fleuriste/profil.json : champ \"fins\" : 1 fin(s) propre(s) : il en faut au moins 2"
+  ]
+}

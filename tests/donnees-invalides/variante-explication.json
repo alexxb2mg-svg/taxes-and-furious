@@ -1,0 +1,19 @@
+{
+  "regle": "variante : explication non surchargeable (EX-052)",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/variantes.json",
+      "chemin": [
+        "avis-s2",
+        "choix",
+        "avis-s2-a",
+        "explication"
+      ],
+      "valeur": "Autre loi."
+    }
+  ],
+  "attendu": [
+    "scene \"avis-s2\", choix \"avis-s2-a\", champ \"explication\" : non surchargeable"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "regle": "personnage d'une scene du profil = id du profil ou narrateur",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "personnage"
+      ],
+      "valeur": "fantome"
+    }
+  ],
+  "attendu": [
+    "scene \"cornets-s1\", champ \"personnage\" : personnage \"fantome\" inconnu du profil"
+  ]
+}

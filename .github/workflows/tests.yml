@@ -1,0 +1,55 @@
+# Integration continue (EX-104) : validateur et tests complets, navigateur headless compris, 0 test saute.
+# Actions epinglees par SHA de commit (version en commentaire) ; Playwright sert seulement a
+# telecharger chrome-headless-shell, il n'est pas une dependance du jeu.
+# Aucune donnee d'evenement (titre, branche, message) n'est utilisee dans les commandes.
+name: tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '26'
+
+      # Le test du lanceur execute `python lancer.py`.
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+
+      - name: 'Installer chrome-headless-shell (Playwright 1.63.0)'
+        run: npx -y playwright@1.63.0 install --with-deps chromium-headless-shell
+
+      - name: 'Versions et navigateur trouve'
+        run: |
+          node --version
+          python --version
+          node -e "import('./tests/navigateur.mjs').then((m) => console.log(m.trouverChrome()))"
+
+      - name: 'Valider les donnees'
+        run: node outils/valider.mjs
+
+      - name: 'Termes interdits (fichier local absent en CI, code 0 attendu)'
+        run: node outils/verifier-termes.mjs
+
+      - name: 'Construire dist/'
+        run: node outils/construire.mjs
+
+      - name: 'Tests'
+        run: node --test tests/

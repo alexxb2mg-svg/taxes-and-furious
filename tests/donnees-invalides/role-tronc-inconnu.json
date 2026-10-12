@@ -1,0 +1,20 @@
+{
+  "regle": "personnage d'une scene du tronc = role connu",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "tronc.json",
+      "chemin": [
+        "chapitres",
+        1,
+        "scenes",
+        0,
+        "personnage"
+      ],
+      "valeur": "stagiaire"
+    }
+  ],
+  "attendu": [
+    "tronc.json : scene \"fec-s1\", champ \"personnage\" : role \"stagiaire\" inconnu"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "regle": "fins : operateurs < <= > >= ==",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/profil.json",
+      "chemin": [
+        "fins",
+        1,
+        "conditions",
+        0,
+        "op"
+      ],
+      "valeur": "!="
+    }
+  ],
+  "attendu": [
+    "fin \"fleuriste-fin-fanee\", champ \"conditions\" : operateur \"!=\" inconnu"
+  ]
+}

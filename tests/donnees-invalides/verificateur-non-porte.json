@@ -1,0 +1,18 @@
+{
+  "regle": "role verificateur porte (EX-052)",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "personnages",
+        0,
+        "role"
+      ],
+      "valeur": "inspecteur"
+    }
+  ],
+  "attendu": [
+    "profils/demo-glacier/profil.json : champ \"personnages\" : role \"verificateur\" porte par aucun personnage du profil"
+  ]
+}

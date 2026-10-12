@@ -1,0 +1,99 @@
+{
+  "id": "demo-glacier",
+  "actif": true,
+  "nom": "Le glacier de démonstration",
+  "entreprise": "Glaces de Démonstration",
+  "accroche": "Profil de test : des cornets, des taux et un vérificateur qui ne fond pas.",
+  "inspiration": "Données de démonstration pour les tests, sans inspiration particulière.",
+  "jauges_initiales": { "patience": 60, "stress": 40 },
+  "personnages": [
+    {
+      "id": "sorbet",
+      "role": "verificateur",
+      "nom": "M. Démo Sorbet",
+      "description": "Vérificateur de démonstration, imperturbable même à moins dix-huit degrés.",
+      "portrait": "img/sorbet.svg"
+    }
+  ],
+  "parcours": ["tronc:avis", "tronc:fec", "profil:cornets", "tronc:rectification"],
+  "references_obligatoires": ["R-279-MN"],
+  "chapitres": [
+    {
+      "id": "cornets",
+      "titre": "Le taux du cornet",
+      "scenes": [
+        {
+          "id": "cornets-s1",
+          "personnage": "sorbet",
+          "texte": "« Vos cornets à emporter, mangés sur le trottoir dans la minute, vous les passez à quel taux ? »",
+          "choix": [
+            {
+              "id": "cornets-s1-a",
+              "texte": "« Le taux de la consommation immédiate. »",
+              "juste": true,
+              "effets": { "redressement": 0, "patience": 10, "stress": -5 },
+              "reaction": "« Bien. Pas de glissade sur ce point. »",
+              "explication": "Ce que dit vraiment la loi : la TVA est à 10 % pour les ventes à consommer sur place et pour les ventes à emporter ou à livrer de produits alimentaires préparés en vue d'une consommation immédiate, sauf les boissons alcooliques.",
+              "references": ["R-279-MN"],
+              "suivant": "cornets-s2"
+            },
+            {
+              "id": "cornets-s1-b",
+              "texte": "« Le taux des surgelés, c'est froid pareil. »",
+              "juste": false,
+              "effets": { "redressement": 3000, "patience": -15, "stress": 15 },
+              "reaction": "Une goutte de vanille tombe sur le dossier. Silence glacial.",
+              "explication": "Ce que dit vraiment la loi : les ventes à emporter de produits alimentaires préparés en vue d'une consommation immédiate relèvent du taux de 10 %.",
+              "references": ["R-279-MN"],
+              "suivant": "cornets-s2"
+            }
+          ]
+        },
+        {
+          "id": "cornets-s2",
+          "personnage": "sorbet",
+          "texte": "« Et en terrasse, assis sous le parasol ? »",
+          "choix": [
+            {
+              "id": "cornets-s2-a",
+              "texte": "« Pareil : vente à consommer sur place. »",
+              "juste": true,
+              "effets": { "redressement": 0, "patience": 15, "stress": -10 },
+              "reaction": "M. Démo Sorbet range son stylo. C'est presque un compliment.",
+              "explication": "Ce que dit vraiment la loi : la TVA est à 10 % pour les ventes à consommer sur place, sauf les boissons alcooliques.",
+              "references": ["R-279-MN"],
+              "suivant": null
+            },
+            {
+              "id": "cornets-s2-b",
+              "texte": "Lui offrir une boule pistache pour changer de sujet.",
+              "juste": false,
+              "effets": { "redressement": 1000, "patience": -10, "stress": 10 },
+              "reaction": "« Merci, non. Revenons au parasol. »",
+              "explication": "Ce que dit vraiment la loi : les ventes à consommer sur place relèvent du taux de 10 %, sauf les boissons alcooliques.",
+              "references": ["R-279-MN"],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fins": [
+    {
+      "id": "glacier-fin-givre",
+      "titre": "Contrôle givré",
+      "texte": "Le vérificateur repart sans rien trouver. Il aurait presque repris un cornet.",
+      "conditions": [
+        { "jauge": "redressement", "op": "<", "valeur": 2000 },
+        { "jauge": "patience", "op": ">", "valeur": 95 }
+      ]
+    },
+    {
+      "id": "glacier-fin-fondue",
+      "titre": "La comptabilité a fondu",
+      "texte": "Un gros redressement, et votre trésorerie coule comme un cornet en plein soleil.",
+      "conditions": [{ "jauge": "redressement", "op": ">=", "valeur": 9000 }]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "avis-s1": {
+    "texte": "Entre deux colis de marques, une lettre recommandée : avis de vérification de comptabilité. Vous la prenez en photo par réflexe, puis vous renoncez à la publier."
+  },
+  "avis-s2": {
+    "texte": "M. Jean-Marc Story se présente, sourire poli : « Je vous suis depuis deux ans. Aujourd'hui, c'est un peu plus officiel. »",
+    "choix": {
+      "avis-s2-b": {
+        "texte": "Annoncer en story un départ immédiat pour une « retraite créative » à l'autre bout du monde.",
+        "reaction": "M. Story regarde la story, puis vous, assise juste en face. « Bonne retraite. Le contrôle, lui, ne prend pas de vacances. »"
+      }
+    }
+  },
+  "fec-s1": {
+    "choix": {
+      "fec-s1-b": {
+        "texte": "Lui envoyer un carrousel de 40 captures d'écran de vos virements, avec filtre pastel.",
+        "reaction": "M. Story fait défiler. Le filtre pastel n'adoucit rien."
+      }
+    }
+  },
+  "fec-s2": {
+    "texte": "En relisant vos comptes, vous tombez sur une erreur. Une vraie, avec des chiffres dedans, et aucun filtre ne l'embellit."
+  },
+  "rectification-s2": {
+    "texte": "M. Story a lu vos observations, avec la même attention que vos stories : « Je maintiens une partie des rectifications. »"
+  }
+}

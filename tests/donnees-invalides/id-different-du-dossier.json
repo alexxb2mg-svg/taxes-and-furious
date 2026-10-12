@@ -1,0 +1,16 @@
+{
+  "regle": "id du profil = nom du dossier",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "id"
+      ],
+      "valeur": "glacier"
+    }
+  ],
+  "attendu": [
+    "profils/demo-glacier/profil.json : champ \"id\" : \"glacier\" different du nom du dossier \"demo-glacier\""
+  ]
+}

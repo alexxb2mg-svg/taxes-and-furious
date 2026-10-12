@@ -1,0 +1,289 @@
+{
+  "id": "restaurateur",
+  "actif": true,
+  "nom": "Le restaurateur",
+  "entreprise": "La Casserole Distraite",
+  "accroche": "Une caisse qui oublie les tickets, une carte des vins créative et une belle-sœur discrète. Que pourrait-il arriver ?",
+  "inspiration": "Clin d'oeil au film \"Le Grand Restaurant\" (inspection en salle, chef qui s'affole) ; affaires de logiciels de caisse permissifs. Aucun nom de personnage du film.",
+  "jauges_initiales": {
+    "patience": 70,
+    "stress": 30
+  },
+  "personnages": [
+    {
+      "id": "addition",
+      "role": "verificateur",
+      "nom": "Mme Paulette Addition",
+      "description": "Inspectrice méthodique, commande toujours le menu du jour pour vérifier les tickets.",
+      "portrait": "img/addition.svg"
+    },
+    {
+      "id": "saucier",
+      "role": "second",
+      "nom": "Le chef saucier",
+      "description": "Louche à la main, connaît toutes les sauces et aucun taux de TVA.",
+      "portrait": "img/saucier.svg"
+    },
+    {
+      "id": "belle-soeur",
+      "role": "second",
+      "nom": "La belle-sœur",
+      "description": "Tient la caisse « pour rendre service » depuis des années. Personne ne sait vraiment depuis quand.",
+      "portrait": "img/belle-soeur.svg"
+    }
+  ],
+  "parcours": [
+    "tronc:avis",
+    "profil:caisse",
+    "tronc:fec",
+    "profil:carte",
+    "tronc:rectification"
+  ],
+  "references_obligatoires": [
+    "R-279-MN",
+    "R-278-0B-A1",
+    "R-278",
+    "R-286",
+    "R-1770DUO",
+    "R-L8221-5"
+  ],
+  "chapitres": [
+    {
+      "id": "caisse",
+      "titre": "La caisse magique",
+      "scenes": [
+        {
+          "id": "caisse-s1",
+          "personnage": "addition",
+          "texte": "Mme Paulette Addition termine son menu du jour, réclame son ticket, puis fixe la caisse. Sur le clavier, une petite touche dorée porte l'inscription « Oups ».",
+          "choix": [
+            {
+              "id": "caisse-s1-a",
+              "texte": "Lui présenter l'attestation de l'éditeur du logiciel de caisse.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -10
+              },
+              "reaction": "« Inaltérable, sécurisé, archivé. Comme la recette de votre blanquette, j'imagine. » Elle range l'attestation avec soin.",
+              "explication": "Ce que dit vraiment la loi : un assujetti qui enregistre, au moyen d'un logiciel ou d'un système de caisse, des livraisons ou des prestations ne donnant pas lieu à facturation doit utiliser un système qui garantit l'inaltérabilité, la sécurisation, la conservation et l'archivage des données, attesté par un certificat d'un organisme accrédité ou par une attestation individuelle de l'éditeur.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": "caisse-s2"
+            },
+            {
+              "id": "caisse-s1-b",
+              "texte": "Expliquer que la touche « Oups » sert seulement à corriger les fautes de frappe.",
+              "juste": false,
+              "effets": {
+                "redressement": 7500,
+                "patience": -15,
+                "stress": 15
+              },
+              "reaction": "Elle appuie une fois. Trois tables du samedi soir disparaissent de l'écran. « Fascinant. »",
+              "explication": "Ce que dit vraiment la loi : le système de caisse doit garantir l'inaltérabilité, la sécurisation, la conservation et l'archivage des données. Ne pas pouvoir produire l'attestation ou le certificat du logiciel est puni d'une amende de 7 500 € par logiciel ou système, puis il reste 60 jours pour se mettre en conformité, faute de quoi l'amende peut s'appliquer à nouveau.",
+              "references": [
+                "R-286",
+                "R-1770DUO"
+              ],
+              "suivant": "caisse-s2"
+            },
+            {
+              "id": "caisse-s1-c",
+              "texte": "Dire que la caisse a été installée par un cousin qui « fait de l'informatique » et qu'il n'a rien laissé.",
+              "juste": false,
+              "effets": {
+                "redressement": 7500,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "« Et votre cousin a laissé un certificat ? Non ? Il a au moins laissé un numéro de téléphone ? »",
+              "explication": "Ce que dit vraiment la loi : ne pas pouvoir produire l'attestation ou le certificat du logiciel de caisse entraîne une amende de 7 500 € par logiciel ou système, puis un délai de 60 jours pour se mettre en conformité, faute de quoi l'amende peut s'appliquer à nouveau.",
+              "references": [
+                "R-1770DUO"
+              ],
+              "suivant": "caisse-s2"
+            }
+          ]
+        },
+        {
+          "id": "caisse-s2",
+          "personnage": "belle-soeur",
+          "texte": "La belle-sœur, à la caisse depuis « un bon moment », chuchote en dénouant son tablier : « Je file me cacher dans la réserve, derrière les sacs de farine ? »",
+          "choix": [
+            {
+              "id": "caisse-s2-a",
+              "texte": "Lui demander de rester et régulariser : déclaration préalable à l'embauche et bulletins de paie.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "Elle renoue son tablier, soulagée. Mme Addition note quelque chose, mais sans froncer les sourcils.",
+              "explication": "Ce que dit vraiment la loi : est du travail dissimulé le fait pour un employeur de se soustraire intentionnellement à la déclaration préalable à l'embauche, à la remise du bulletin de paie ou aux déclarations sociales.",
+              "references": [
+                "R-L8221-5"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "caisse-s2-b",
+              "texte": "« Oui, derrière la farine, et pas un bruit. »",
+              "juste": false,
+              "effets": {
+                "redressement": 6000,
+                "patience": -20,
+                "stress": 20
+              },
+              "reaction": "Un éternuement enfariné résonne dans la réserve. Mme Addition lève un sourcil, puis son stylo.",
+              "explication": "Ce que dit vraiment la loi : est du travail dissimulé le fait pour un employeur de se soustraire intentionnellement à la déclaration préalable à l'embauche, à la remise du bulletin de paie ou aux déclarations sociales. Cacher la personne ne change rien à l'obligation.",
+              "references": [
+                "R-L8221-5"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "carte",
+      "titre": "La carte des taux",
+      "scenes": [
+        {
+          "id": "carte-s1",
+          "personnage": "saucier",
+          "texte": "Le chef saucier surgit, louche levée : « Le plat du jour à emporter, dans sa boîte en carton, je mets quel taux sur le ticket ? »",
+          "choix": [
+            {
+              "id": "carte-s1-a",
+              "texte": "« 10 %, comme sur place : c'est préparé pour être mangé tout de suite. »",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -5
+              },
+              "reaction": "Le chef hoche la tête et retourne à sa sauce, qui n'attend personne.",
+              "explication": "Ce que dit vraiment la loi : la TVA est à 10 % pour les ventes à consommer sur place et pour les ventes à emporter ou à livrer de produits alimentaires préparés en vue d'une consommation immédiate, sauf les boissons alcooliques, qui relèvent du taux normal.",
+              "references": [
+                "R-279-MN"
+              ],
+              "suivant": "carte-s2"
+            },
+            {
+              "id": "carte-s1-b",
+              "texte": "« 5,5 %, puisqu'il part dans une boîte en carton. »",
+              "juste": false,
+              "effets": {
+                "redressement": 1500,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "Mme Addition, de sa table, sans lever les yeux : « La boîte en carton ne change pas la recette. »",
+              "explication": "Ce que dit vraiment la loi : le taux de 5,5 % vise les denrées alimentaires destinées à la consommation humaine ; mais les produits alimentaires préparés en vue d'une consommation immédiate relèvent du taux de 10 %, à emporter comme sur place.",
+              "references": [
+                "R-278-0B-A1",
+                "R-279-MN"
+              ],
+              "suivant": "carte-s2"
+            }
+          ]
+        },
+        {
+          "id": "carte-s2",
+          "personnage": "narrateur",
+          "texte": "Mme Addition parcourt la carte des vins, puis l'étagère d'épicerie près de l'entrée, où trônent des sachets de lentilles du producteur vendus à rapporter à la maison.",
+          "choix": [
+            {
+              "id": "carte-s2-a",
+              "texte": "Appliquer 20 % sur le vin servi à table et 5,5 % sur les sachets de lentilles.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "Mme Addition coche deux cases. Elle semble presque déçue de ne rien trouver.",
+              "explication": "Ce que dit vraiment la loi : le taux normal de TVA est de 20 %, et les boissons alcooliques en relèvent, même servies à table ; les denrées alimentaires destinées à la consommation humaine, comme des lentilles en sachet, relèvent du taux de 5,5 %.",
+              "references": [
+                "R-278",
+                "R-279-MN",
+                "R-278-0B-A1"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "carte-s2-b",
+              "texte": "Tout passer à 10 %, vin compris : « c'est plus simple pour tout le monde ».",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "« Plus simple, certainement. Plus juste, beaucoup moins. »",
+              "explication": "Ce que dit vraiment la loi : le taux de 10 % de la vente à consommer sur place exclut les boissons alcooliques, qui relèvent du taux normal de 20 %.",
+              "references": [
+                "R-279-MN",
+                "R-278"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "carte-s2-c",
+              "texte": "Inscrire le vin à la carte sous le nom « sauce pour la viande, en carafe ».",
+              "juste": false,
+              "effets": {
+                "redressement": 4000,
+                "patience": -20,
+                "stress": 15
+              },
+              "reaction": "« Une sauce servie en carafe, avec un verre à pied ? Votre chef saucier a de l'audace. »",
+              "explication": "Ce que dit vraiment la loi : les boissons alcooliques relèvent du taux normal de TVA, qui est de 20 %, même vendues à consommer sur place.",
+              "references": [
+                "R-278",
+                "R-279-MN"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fins": [
+    {
+      "id": "restaurateur-fin-etoile",
+      "titre": "Une étoile au guide du contrôle",
+      "texte": "Mme Paulette Addition repart en saluant la blanquette et la tenue de la caisse. Elle reviendra, promet-elle. Pour déjeuner, cette fois.",
+      "conditions": [
+        {
+          "jauge": "patience",
+          "op": ">=",
+          "valeur": 95
+        },
+        {
+          "jauge": "redressement",
+          "op": "<=",
+          "valeur": 3000
+        }
+      ]
+    },
+    {
+      "id": "restaurateur-fin-addition",
+      "titre": "L'addition, s'il vous plaît",
+      "texte": "Pour une fois, c'est vous qui recevez l'addition. Elle est salée, détaillée ligne par ligne, et il n'y a pas de dessert.",
+      "conditions": [
+        {
+          "jauge": "redressement",
+          "op": ">=",
+          "valeur": 20000
+        }
+      ]
+    }
+  ]
+}

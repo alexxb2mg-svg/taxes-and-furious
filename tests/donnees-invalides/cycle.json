@@ -1,0 +1,22 @@
+{
+  "regle": "aucun cycle",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        1,
+        "choix",
+        0,
+        "suivant"
+      ],
+      "valeur": "caisse-s1"
+    }
+  ],
+  "attendu": [
+    "chapitre \"caisse\", scene \"caisse-s1\", champ \"suivant\" : cycle"
+  ]
+}

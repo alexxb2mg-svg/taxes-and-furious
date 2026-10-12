@@ -1,0 +1,6 @@
+.worktrees/
+node_modules/
+__pycache__/
+*.log
+dist/
+.termes-prives.txt

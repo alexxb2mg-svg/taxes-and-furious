@@ -1,0 +1,241 @@
+{
+  "id": "galeriste",
+  "actif": true,
+  "nom": "Le galeriste parisien",
+  "entreprise": "Galerie du Clou Rouillé",
+  "accroche": "Des tableaux qui disparaissent quand on sonne, une œuvre « exposée au public » dans votre chambre et une maison de campagne très artistique. Le vérificateur, lui, repère un faux de très loin.",
+  "inspiration": "Clin d'oeil au film \"Le Dîner de cons\" (la scène du contrôleur fiscal qui découvre les tableaux), sans nom de personnage du film ni réplique reprise.",
+  "jauges_initiales": {
+    "patience": 70
+  },
+  "personnages": [
+    {
+      "id": "poney",
+      "role": "verificateur",
+      "nom": "M. Lucien Poney",
+      "description": "Vérificateur fan de football. Il repère un faux à trente mètres, comme un hors-jeu, et commente tout comme un match.",
+      "portrait": "img/poney.svg"
+    },
+    {
+      "id": "livreur",
+      "role": "second",
+      "nom": "Le livreur de toiles",
+      "description": "Transporte les tableaux entre la galerie, votre appartement et sa camionnette. Surtout quand quelqu'un sonne.",
+      "portrait": "img/livreur.svg"
+    }
+  ],
+  "parcours": [
+    "tronc:avis",
+    "profil:oeuvres",
+    "tronc:fec",
+    "profil:campagne",
+    "tronc:rectification"
+  ],
+  "references_obligatoires": [
+    "R-238BAB",
+    "R-39-4",
+    "R-1729"
+  ],
+  "chapitres": [
+    {
+      "id": "oeuvres",
+      "titre": "Les tableaux voyageurs",
+      "scenes": [
+        {
+          "id": "oeuvres-s1",
+          "personnage": "poney",
+          "texte": "M. Lucien Poney feuillette l'actif de la galerie : une grande toile d'un peintre vivant, déduite « car exposée au public ». « Superbe acquisition. Et ce public, où la voit-il ? »",
+          "choix": [
+            {
+              "id": "oeuvres-s1-a",
+              "texte": "« Dans la salle d'exposition, ouverte à tous les visiteurs. Venez voir. »",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "M. Poney admire la toile une seconde de trop. « Belle frappe. » Il note ensuite : exposée au public.",
+              "explication": "Ce que dit vraiment la loi : une entreprise qui achète une œuvre originale d'artiste vivant et l'inscrit à l'actif peut déduire son prix par fractions égales sur l'exercice d'acquisition et les quatre suivants, dans une limite plafonnée, à condition de l'exposer dans un lieu accessible au public ou aux salariés, à l'exception de leurs bureaux, pendant toute cette période.",
+              "references": [
+                "R-238BAB"
+              ],
+              "suivant": "oeuvres-s2"
+            },
+            {
+              "id": "oeuvres-s1-b",
+              "texte": "« Dans ma chambre. Elle est ouverte au public, sur rendez-vous. Le mien. »",
+              "juste": false,
+              "effets": {
+                "redressement": 6000,
+                "patience": -15,
+                "stress": 10
+              },
+              "reaction": "M. Poney siffle, comme un arbitre. « Votre chambre, si charmante soit-elle, n'est pas un lieu accessible au public. Carton jaune. »",
+              "explication": "Ce que dit vraiment la loi : la déduction du prix d'une œuvre originale d'artiste vivant suppose de l'exposer dans un lieu accessible au public ou aux salariés, à l'exception de leurs bureaux, pendant l'exercice d'acquisition et les quatre suivants.",
+              "references": [
+                "R-238BAB"
+              ],
+              "suivant": "oeuvres-s2"
+            }
+          ]
+        },
+        {
+          "id": "oeuvres-s2",
+          "personnage": "livreur",
+          "texte": "Le livreur de toiles passe une tête : « Je remets les tableaux aux murs ? Vous m'aviez dit de tout charger dans la camionnette dès que le contrôleur sonnerait. »",
+          "choix": [
+            {
+              "id": "oeuvres-s2-a",
+              "texte": "« Oui, tout aux murs, et on montre l'inventaire complet à M. Poney. »",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "Les tableaux reprennent leur place. M. Poney les compte d'un coup d'œil, comme les joueurs d'un mur sur coup franc.",
+              "explication": "Ce que dit vraiment la loi : la déduction du prix d'une œuvre originale d'artiste vivant suppose de l'exposer dans un lieu accessible au public ou aux salariés pendant toute la période de déduction.",
+              "references": [
+                "R-238BAB"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "oeuvres-s2-b",
+              "texte": "« Quels tableaux ? Il n'y a jamais eu de tableaux. »",
+              "juste": false,
+              "effets": {
+                "redressement": 4000,
+                "patience": -20,
+                "stress": 15
+              },
+              "reaction": "M. Poney montre du doigt les rectangles plus clairs sur le papier peint. « Il y avait des tableaux. Je les vois d'ici, à trente mètres. »",
+              "explication": "Ce que dit vraiment la loi : la majoration est de 40 % en cas de manquement délibéré et de 80 % en cas de manœuvres frauduleuses.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "campagne",
+      "titre": "La maison de campagne",
+      "scenes": [
+        {
+          "id": "campagne-s1",
+          "personnage": "narrateur",
+          "texte": "Dans les charges de la galerie, M. Poney trouve une maison de campagne avec piscine, rebaptisée « résidence d'inspiration artistique ». Personne n'y a jamais exposé quoi que ce soit.",
+          "choix": [
+            {
+              "id": "campagne-s1-a",
+              "texte": "La retirer des charges : c'est une résidence de plaisance.",
+              "juste": true,
+              "effets": {
+                "redressement": 1000,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "M. Poney hoche la tête. « Bon réflexe. On évite les prolongations. »",
+              "explication": "Ce que dit vraiment la loi : les charges des résidences de plaisance sont exclues des charges déductibles, comme celles de la chasse et de la pêche non professionnelle.",
+              "references": [
+                "R-39-4"
+              ],
+              "suivant": "campagne-s2"
+            },
+            {
+              "id": "campagne-s1-b",
+              "texte": "« La piscine est une installation d'art contemporain, intitulée “Le Bleu”. »",
+              "juste": false,
+              "effets": {
+                "redressement": 9000,
+                "patience": -20,
+                "stress": 15
+              },
+              "reaction": "M. Poney examine la photo de la piscine, puis celle du barbecue. « Et le barbecue, c'est “Le Rouge” ? »",
+              "explication": "Ce que dit vraiment la loi : les charges des résidences de plaisance sont exclues des charges déductibles ; en cas de manquement délibéré, les droits sont majorés de 40 %.",
+              "references": [
+                "R-39-4",
+                "R-1729"
+              ],
+              "suivant": "campagne-s2"
+            }
+          ]
+        },
+        {
+          "id": "campagne-s2",
+          "personnage": "poney",
+          "texte": "M. Poney s'arrête sur le cabriolet de luxe classé à l'actif sous la rubrique « œuvre d'art mobile », amorti en entier. « Celui-là, je l'ai vu arriver de loin. »",
+          "choix": [
+            {
+              "id": "campagne-s2-a",
+              "texte": "Le reclasser en véhicule de tourisme et plafonner l'amortissement déduit.",
+              "juste": true,
+              "effets": {
+                "redressement": 2000,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "Le cabriolet perd son statut d'œuvre d'art. Il garde sa couleur, c'est déjà ça.",
+              "explication": "Ce que dit vraiment la loi : l'amortissement d'un véhicule de tourisme n'est déductible que dans la limite d'un plafond de prix : 18 300 € en règle générale, 30 000 € ou 20 300 € pour les véhicules peu émetteurs, 9 900 € pour les plus émetteurs.",
+              "references": [
+                "R-39-4"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "campagne-s2-b",
+              "texte": "« C'est une sculpture cinétique : elle roule pour exprimer le mouvement. »",
+              "juste": false,
+              "effets": {
+                "redressement": 8000,
+                "patience": -20,
+                "stress": 10
+              },
+              "reaction": "M. Poney fait le tour du cabriolet. Il trouve une plaque d'immatriculation, mais aucune signature d'artiste.",
+              "explication": "Ce que dit vraiment la loi : l'amortissement d'un véhicule de tourisme n'est déductible que dans la limite d'un plafond de prix : 18 300 € en règle générale, et seulement 9 900 € pour les véhicules les plus émetteurs.",
+              "references": [
+                "R-39-4"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fins": [
+    {
+      "id": "galeriste-fin-chef-oeuvre",
+      "titre": "Chef-d'œuvre de comptabilité",
+      "texte": "M. Lucien Poney repart en vous félicitant pour l'accrochage, et pour le grand livre. Il vous invite même au match de dimanche, place payée de sa poche.",
+      "conditions": [
+        {
+          "jauge": "patience",
+          "op": ">=",
+          "valeur": 100
+        },
+        {
+          "jauge": "redressement",
+          "op": "<=",
+          "valeur": 8000
+        }
+      ]
+    },
+    {
+      "id": "galeriste-fin-vente-forcee",
+      "titre": "Vente aux enchères forcée",
+      "texte": "Le redressement est si élevé qu'il faudra vendre la collection. Le cabriolet part en premier, la maison de campagne ensuite. Les tableaux, eux, sont enfin exposés au public : à la salle des ventes.",
+      "conditions": [
+        {
+          "jauge": "redressement",
+          "op": ">=",
+          "valeur": 25000
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "avis-s2": {
+    "texte": "Mme Démo Pistil entre dans la boutique en éternuant : « Vérification de comptabilité. Et un mouchoir, si vous avez. »",
+    "choix": {
+      "avis-s2-a": {
+        "reaction": "« Une durée limitée, comme la floraison des pivoines. »"
+      },
+      "avis-s2-b": {
+        "texte": "Annoncer un départ urgent pour un salon de l'orchidée à l'autre bout du monde."
+      }
+    }
+  },
+  "fec-s1": {
+    "texte": "« Le FEC, s'il vous plaît. Pas l'herbier. »"
+  },
+  "rectification-s3": {
+    "choix": {
+      "rectification-s3-a": {
+        "reaction": "M. Démo Bilan vous tend une rose. Une seule. Il faut rester raisonnable."
+      }
+    }
+  }
+}

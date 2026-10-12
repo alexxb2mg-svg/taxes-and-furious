@@ -1,0 +1,20 @@
+{
+  "regle": "parcours : tronc complet (EX-052)",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "parcours"
+      ],
+      "valeur": [
+        "tronc:avis",
+        "profil:cornets",
+        "tronc:rectification"
+      ]
+    }
+  ],
+  "attendu": [
+    "profils/demo-glacier/profil.json : champ \"parcours\" : chapitre du tronc \"tronc:fec\" absent du parcours"
+  ]
+}

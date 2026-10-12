@@ -1,0 +1,36 @@
+{
+  "avis-s2": {
+    "texte": "Mme Paulette Addition s'installe en salle, déplie sa serviette et commande le menu du jour : « Je vérifie aussi les tickets. Surtout les tickets. »",
+    "choix": {
+      "avis-s2-a": {
+        "reaction": "« Bonne question. Pour une maison de votre taille, il y a une limite. Le dessert, lui, est en option. »"
+      },
+      "avis-s2-b": {
+        "texte": "Annoncer une fermeture exceptionnelle pour « inventaire des cuillères ».",
+        "reaction": "« Je repasserai. Le contrôle, lui, ne ferme jamais pour inventaire. »"
+      }
+    }
+  },
+  "fec-s1": {
+    "texte": "« Le FEC, s'il vous plaît. Pas les comptes griffonnés au dos des bons de commande. »",
+    "choix": {
+      "fec-s1-b": {
+        "texte": "Poser sur la table un bac à glaçons rempli de tickets froissés.",
+        "reaction": "Mme Addition repêche un ticket de 2019, détrempé. Il est illisible. Elle note que c'est illisible."
+      }
+    }
+  },
+  "fec-s3": {
+    "texte": "Mme Addition s'arrête sur une série d'écritures étranges. Le silence devient épais comme une sauce trop réduite."
+  },
+  "rectification-s3": {
+    "choix": {
+      "rectification-s3-a": {
+        "reaction": "Le chef saucier lève sa louche en signe de victoire. Votre comptable, lui, commande enfin un café."
+      },
+      "rectification-s3-b": {
+        "reaction": "Votre comptable vous regarde comme un soufflé qui retombe en plein service."
+      }
+    }
+  }
+}

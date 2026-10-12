@@ -1,0 +1,343 @@
+{
+  "id": "consultant",
+  "actif": true,
+  "nom": "Le consultant en disruption agile",
+  "entreprise": "Disruptivement Vôtre",
+  "accroche": "Une voiture de sport « outil de mobilité », un salaire de vision et des déjeuners clients tous les midis. Le client, c'est souvent vous.",
+  "inspiration": "Clin d'oeil au film \"Le Loup de Wall Street\", version province et sans aucun nom de personnage du film.",
+  "jauges_initiales": {
+    "patience": 60
+  },
+  "personnages": [
+    {
+      "id": "tableur",
+      "role": "verificateur",
+      "nom": "M. Claude Tableur",
+      "description": "Vérificateur précis qui ne comprend aucun anglicisme et demande poliment une traduction pour chacun.",
+      "portrait": "img/tableur.svg"
+    },
+    {
+      "id": "expert",
+      "role": "comptable",
+      "nom": "L'expert-comptable démissionnaire",
+      "description": "Votre expert-comptable. Il a rédigé sa lettre de démission et attend le bon moment pour la poser sur la table.",
+      "portrait": "img/expert.svg"
+    }
+  ],
+  "parcours": [
+    "tronc:avis",
+    "profil:train-de-vie",
+    "tronc:fec",
+    "profil:remuneration",
+    "tronc:rectification"
+  ],
+  "references_obligatoires": [
+    "R-39-1",
+    "R-39-4",
+    "R-1729"
+  ],
+  "chapitres": [
+    {
+      "id": "train-de-vie",
+      "titre": "Le train de vie disruptif",
+      "scenes": [
+        {
+          "id": "train-de-vie-s1",
+          "personnage": "tableur",
+          "texte": "M. Claude Tableur contemple la photo du coupé sport inscrit à l'actif : « “Asset de mobilité disruptive.” Pourriez-vous traduire ? Je note, en attendant : voiture. »",
+          "choix": [
+            {
+              "id": "train-de-vie-s1-a",
+              "texte": "Limiter l'amortissement déduit au plafond prévu pour les véhicules de tourisme.",
+              "juste": true,
+              "effets": {
+                "redressement": 1000,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "« Merci. Pour une fois, je n'ai pas eu besoin de dictionnaire. »",
+              "explication": "Ce que dit vraiment la loi : l'amortissement d'un véhicule de tourisme n'est déductible que dans la limite d'un plafond de prix : 18 300 € en règle générale, 30 000 € ou 20 300 € pour les véhicules peu émetteurs, 9 900 € pour les plus émetteurs.",
+              "references": [
+                "R-39-4"
+              ],
+              "suivant": "train-de-vie-s2"
+            },
+            {
+              "id": "train-de-vie-s1-b",
+              "texte": "« C'est un outil de travail : je pitche beaucoup mieux à pleine vitesse. »",
+              "juste": false,
+              "effets": {
+                "redressement": 9000,
+                "patience": -15,
+                "stress": 10
+              },
+              "reaction": "« “Pitcher”. » M. Tableur écrit le mot, l'entoure, et ajoute un point d'interrogation.",
+              "explication": "Ce que dit vraiment la loi : même utilisé pour l'activité, un véhicule de tourisme n'est amortissable en déduction que dans la limite d'un plafond de prix : 18 300 € en règle générale, et seulement 9 900 € pour les véhicules les plus émetteurs.",
+              "references": [
+                "R-39-4"
+              ],
+              "suivant": "train-de-vie-s2"
+            }
+          ]
+        },
+        {
+          "id": "train-de-vie-s2",
+          "personnage": "narrateur",
+          "texte": "Chaque midi, une note de restaurant porte la mention « déjeuner client ». Sur la plupart, le nom du client est le même : le vôtre.",
+          "choix": [
+            {
+              "id": "train-de-vie-s2-a",
+              "texte": "Ne garder en charges que les repas réellement engagés pour l'entreprise, justificatifs à l'appui.",
+              "juste": true,
+              "effets": {
+                "redressement": 500,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "La pile de notes fond de moitié. M. Tableur la trouve beaucoup plus lisible.",
+              "explication": "Ce que dit vraiment la loi : le bénéfice imposable se calcule après déduction des charges, dont les frais généraux.",
+              "references": [
+                "R-39-1"
+              ],
+              "suivant": "train-de-vie-tri"
+            },
+            {
+              "id": "train-de-vie-s2-b",
+              "texte": "Rebaptiser chaque déjeuner « atelier d'idéation stratégique ».",
+              "juste": false,
+              "effets": {
+                "redressement": 4000,
+                "patience": -15,
+                "stress": 10
+              },
+              "reaction": "« Idéation. » M. Tableur demande poliment si le dessert faisait partie de la stratégie.",
+              "explication": "Ce que dit vraiment la loi : le bénéfice se calcule après déduction des charges, dont les frais généraux ; en cas de manquement délibéré, les droits sont majorés de 40 %.",
+              "references": [
+                "R-39-1",
+                "R-1729"
+              ],
+              "suivant": "train-de-vie-tri"
+            }
+          ]
+        },
+        {
+          "id": "train-de-vie-tri",
+          "type": "tri",
+          "personnage": "tableur",
+          "texte": "M. Tableur pose une boîte à chaussures pleine de tickets sur le bureau. « Vous appelez ça un \"bucket\", je crois. Nous allons faire deux piles, à l'ancienne : ce qui se déduit, et ce qui ne se déduit pas. »",
+          "parametres": {
+            "bacs": [
+              "Déductible",
+              "Pas déductible"
+            ],
+            "pieces": [
+              {
+                "texte": "Déjeuner avec un client pour préparer une mission",
+                "bac_attendu": "Déductible"
+              },
+              {
+                "texte": "Dîner du samedi en famille, « pour réfléchir à la stratégie »",
+                "bac_attendu": "Pas déductible"
+              },
+              {
+                "texte": "Amortissement de la voiture de sport, part du prix sous le plafond",
+                "bac_attendu": "Déductible"
+              },
+              {
+                "texte": "Amortissement de la voiture de sport, part du prix au-dessus du plafond",
+                "bac_attendu": "Pas déductible"
+              },
+              {
+                "texte": "Salaire du gérant pour un vrai travail, au prix du marché",
+                "bac_attendu": "Déductible"
+              },
+              {
+                "texte": "« Salaire de vision » du cousin, qui ne vient jamais",
+                "bac_attendu": "Pas déductible"
+              }
+            ]
+          },
+          "issues": [
+            {
+              "id": "train-de-vie-tri-parfait",
+              "si": [
+                {
+                  "op": ">=",
+                  "valeur": 6
+                }
+              ],
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 0,
+                "stress": 0
+              },
+              "animation": "tampon",
+              "reaction": "M. Tableur range les deux piles bien droites. « Impeccable. Je n'ai même pas eu besoin de traduction. »",
+              "explication": "Les frais engagés dans l'intérêt de l'entreprise, comme un repas d'affaires, se déduisent ; une dépense personnelle, non. Une rémunération ne se déduit que si elle paie un travail effectif et n'est pas excessive. L'amortissement d'une voiture de tourisme ne se déduit que jusqu'au plafond de prix : 18 300 € en règle générale.",
+              "references": [
+                "R-39-1",
+                "R-39-4"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "train-de-vie-tri-presque",
+              "si": [
+                {
+                  "op": ">=",
+                  "valeur": 4
+                }
+              ],
+              "juste": false,
+              "effets": {
+                "redressement": 1500,
+                "patience": -5,
+                "stress": 5
+              },
+              "reaction": "M. Tableur déplace deux tickets d'une pile à l'autre, sans un mot. Le silence est pire qu'un mot.",
+              "explication": "Presque. Une dépense ne se déduit que si elle sert l'entreprise : le dîner familial et le salaire d'un cousin absent n'en font pas partie. Pour une voiture de tourisme, l'amortissement au-delà du plafond de prix (18 300 € en règle générale) reste à votre charge.",
+              "references": [
+                "R-39-1",
+                "R-39-4"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "train-de-vie-tri-rate",
+              "juste": false,
+              "effets": {
+                "redressement": 4000,
+                "patience": -10,
+                "stress": 10
+              },
+              "animation": "secousse",
+              "reaction": "M. Tableur reprend toute la boîte. « Je vais refaire le tri moi-même. Ce sera plus rapide, et surtout plus cher pour vous. »",
+              "explication": "Les charges ne se déduisent que si elles sont engagées dans l'intérêt de l'entreprise ; un salaire doit correspondre à un travail effectif et ne pas être excessif. L'amortissement d'une voiture de tourisme est plafonné : 18 300 € de prix en règle générale.",
+              "references": [
+                "R-39-1",
+                "R-39-4"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "remuneration",
+      "titre": "Le salaire de vision",
+      "scenes": [
+        {
+          "id": "remuneration-s1",
+          "personnage": "tableur",
+          "texte": "« Votre rémunération de gérant a triplé l'an dernier. Le chiffre d'affaires, lui, a… comment dites-vous… “pivoté” vers le bas. »",
+          "choix": [
+            {
+              "id": "remuneration-s1-a",
+              "texte": "Ramener la rémunération déduite à ce qui correspond au travail réellement fourni, sans excès.",
+              "juste": true,
+              "effets": {
+                "redressement": 1500,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "M. Tableur hoche la tête. Il a l'air d'apprécier les mots « sans excès ».",
+              "explication": "Ce que dit vraiment la loi : le bénéfice se calcule après déduction des charges, mais les rémunérations ne sont déductibles que si elles correspondent à un travail effectif et ne sont pas excessives.",
+              "references": [
+                "R-39-1"
+              ],
+              "suivant": "remuneration-s2"
+            },
+            {
+              "id": "remuneration-s1-b",
+              "texte": "« C'est un salaire de vision. Et je visionne énormément. »",
+              "juste": false,
+              "effets": {
+                "redressement": 10000,
+                "patience": -20,
+                "stress": 10
+              },
+              "reaction": "« Visionner. » M. Tableur demande s'il existe une feuille de temps de vos visions.",
+              "explication": "Ce que dit vraiment la loi : les rémunérations ne sont déductibles que si elles correspondent à un travail effectif et ne sont pas excessives.",
+              "references": [
+                "R-39-1"
+              ],
+              "suivant": "remuneration-s2"
+            }
+          ]
+        },
+        {
+          "id": "remuneration-s2",
+          "personnage": "expert",
+          "texte": "Votre expert-comptable pose sa lettre de démission sur la table, devant le vérificateur : « Une dernière question avant de partir. Les factures “mock-up” du dossier bleu, c'est quoi ? »",
+          "choix": [
+            {
+              "id": "remuneration-s2-a",
+              "texte": "Avouer qu'elles ont été fabriquées et les retirer de la comptabilité.",
+              "juste": true,
+              "effets": {
+                "redressement": 1000,
+                "patience": 5,
+                "stress": -10
+              },
+              "reaction": "Votre expert-comptable reprend sa lettre, la plie en deux et la range. Pour l'instant.",
+              "explication": "Ce que dit vraiment la loi : un manquement délibéré entraîne une majoration de 40 % des droits ; des manœuvres frauduleuses, une majoration de 80 %.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "remuneration-s2-b",
+              "texte": "« Ce sont des prototypes de factures. C'est très agile. »",
+              "juste": false,
+              "effets": {
+                "redressement": 12000,
+                "patience": -25,
+                "stress": 20
+              },
+              "reaction": "Votre expert-comptable enfile son manteau et sort sans un mot. M. Tableur, lui, reste. Longtemps.",
+              "explication": "Ce que dit vraiment la loi : la majoration est de 40 % en cas de manquement délibéré et de 80 % en cas de manœuvres frauduleuses.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fins": [
+    {
+      "id": "consultant-fin-pivot",
+      "titre": "Pivot réussi",
+      "texte": "Vous avez rangé les anglicismes et sorti les justificatifs. M. Claude Tableur repart en vous souhaitant « une bonne continuation ». Il a dit continuation, pas roadmap.",
+      "conditions": [
+        {
+          "jauge": "patience",
+          "op": ">=",
+          "valeur": 95
+        },
+        {
+          "jauge": "stress",
+          "op": "<=",
+          "valeur": 10
+        }
+      ]
+    },
+    {
+      "id": "consultant-fin-burn",
+      "titre": "Burn-out du business plan",
+      "texte": "Le redressement a une croissance exponentielle, enfin. Votre expert-comptable a officiellement démissionné, et la voiture de sport est en vente.",
+      "conditions": [
+        {
+          "jauge": "redressement",
+          "op": ">=",
+          "valeur": 25000
+        }
+      ]
+    }
+  ]
+}

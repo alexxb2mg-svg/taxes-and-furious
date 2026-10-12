@@ -1,0 +1,18 @@
+{
+  "regle": "EX-005 : tronc 3 a 6 scenes par chapitre",
+  "couverture": true,
+  "modifs": [
+    {
+      "fichier": "tronc.json",
+      "chemin": [
+        "chapitres",
+        2,
+        "scenes"
+      ],
+      "repeter": 4
+    }
+  ],
+  "attendu": [
+    "tronc.json : chapitre \"rectification\", champ \"scenes\" : 7 scene(s) : il en faut de 3 a 6"
+  ]
+}

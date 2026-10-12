@@ -1,0 +1,11 @@
+{
+  "fec-s1": {
+    "texte": "M. Démo Sorbet pose son cartable sur le congélateur : « Le FEC, avant qu'il fonde. »",
+    "choix": {
+      "fec-s1-b": {
+        "texte": "Lui tendre un bac à glace rempli de tickets de caisse.",
+        "reaction": "Les tickets sont collés entre eux par du coulis de fraise."
+      }
+    }
+  }
+}

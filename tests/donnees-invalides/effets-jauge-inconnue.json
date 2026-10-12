@@ -1,0 +1,23 @@
+{
+  "regle": "effets : jauges connues, deltas entiers",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "choix",
+        0,
+        "effets",
+        "bonheur"
+      ],
+      "valeur": 5
+    }
+  ],
+  "attendu": [
+    "choix \"cornets-s1-a\", champ \"effets\" : jauge \"bonheur\" inconnue"
+  ]
+}

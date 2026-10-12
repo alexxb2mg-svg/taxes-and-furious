@@ -1,0 +1,25 @@
+{
+  "avis-s2": {
+    "texte": "M. Claude Tableur se présente, cartable impeccable : « Bonjour. Votre plaque indique “Chief Disruption Officer”. Je vous appellerai monsieur, si vous le permettez. »",
+    "choix": {
+      "avis-s2-b": {
+        "texte": "Annoncer un « offsite de team building » immédiat, très loin, sans réseau.",
+        "reaction": "« Offsite. » M. Tableur cherche le mot dans un petit carnet. « Le contrôle, lui, reste sur site. »"
+      }
+    }
+  },
+  "fec-s1": {
+    "choix": {
+      "fec-s1-b": {
+        "texte": "Projeter une présentation de 80 diapositives intitulée « Notre vision comptable ».",
+        "reaction": "M. Tableur attend poliment la diapositive 80. Elle ne contient pas le FEC."
+      }
+    }
+  },
+  "fec-s3": {
+    "texte": "M. Tableur s'arrête sur une série d'écritures libellées « synergies ». Il ne demande pas de traduction : il demande des factures."
+  },
+  "rectification-s3": {
+    "texte": "Votre expert-comptable, manteau sur le bras, se retourne une dernière fois : « Bon. Reste la question qui fâche : on paie quand ? »"
+  }
+}

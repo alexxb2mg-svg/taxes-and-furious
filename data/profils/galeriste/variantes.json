@@ -1,0 +1,26 @@
+{
+  "avis-s2": {
+    "texte": "M. Lucien Poney s'arrête dans l'entrée, devant une toile : « Magnifique. » Puis il ouvre son cartable : « Bien. Commençons. »",
+    "choix": {
+      "avis-s2-b": {
+        "texte": "Annoncer un départ urgent pour une foire d'art à l'étranger.",
+        "reaction": "« Je connais cette foire. Elle dure trois jours. Le contrôle, lui, sera encore là à votre retour. »"
+      }
+    }
+  },
+  "fec-s1": {
+    "choix": {
+      "fec-s1-b": {
+        "texte": "Lui tendre un catalogue d'exposition en expliquant que « tout est dedans, en filigrane ».",
+        "reaction": "M. Poney feuillette le catalogue à la loupe. Il admire les reproductions. Il ne trouve aucune écriture."
+      }
+    }
+  },
+  "rectification-s3": {
+    "choix": {
+      "rectification-s3-a": {
+        "reaction": "Votre comptable, soulagé, propose d'accrocher l'échéancier dans l'entrée. Comme une œuvre."
+      }
+    }
+  }
+}

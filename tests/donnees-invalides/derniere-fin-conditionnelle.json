@@ -1,0 +1,24 @@
+{
+  "regle": "derniere fin commune sans condition",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "tronc.json",
+      "chemin": [
+        "fins",
+        2,
+        "conditions"
+      ],
+      "valeur": [
+        {
+          "jauge": "stress",
+          "op": "<=",
+          "valeur": 50
+        }
+      ]
+    }
+  ],
+  "attendu": [
+    "tronc.json : fin \"fin-defaut\", champ \"conditions\" : la derniere fin commune doit etre sans condition"
+  ]
+}

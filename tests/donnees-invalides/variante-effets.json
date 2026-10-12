@@ -1,0 +1,23 @@
+{
+  "regle": "variante : effets non surchargeables (EX-052)",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/variantes.json",
+      "chemin": [
+        "avis-s2",
+        "choix",
+        "avis-s2-a",
+        "effets"
+      ],
+      "valeur": {
+        "redressement": 0,
+        "patience": 100,
+        "stress": 0
+      }
+    }
+  ],
+  "attendu": [
+    "profils/demo-fleuriste/variantes.json : scene \"avis-s2\", choix \"avis-s2-a\", champ \"effets\" : non surchargeable"
+  ]
+}

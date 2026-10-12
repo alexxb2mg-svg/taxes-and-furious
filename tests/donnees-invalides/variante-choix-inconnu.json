@@ -1,0 +1,20 @@
+{
+  "regle": "variante vers un choix existant du tronc (EX-052)",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/variantes.json",
+      "chemin": [
+        "avis-s2",
+        "choix",
+        "avis-s2-z"
+      ],
+      "valeur": {
+        "texte": "Choix fantome."
+      }
+    }
+  ],
+  "attendu": [
+    "scene \"avis-s2\", choix \"avis-s2-z\" : choix inconnu de la scene \"avis-s2\" du tronc"
+  ]
+}

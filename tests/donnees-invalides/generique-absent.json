@@ -1,0 +1,17 @@
+{
+  "regle": "personnages generiques presents",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "communs/personnages.json",
+      "chemin": [
+        "personnages",
+        1
+      ],
+      "supprimer": true
+    }
+  ],
+  "attendu": [
+    "communs/personnages.json : champ \"personnages\" : personnage generique de role \"joueur\" absent"
+  ]
+}

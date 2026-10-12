@@ -1,0 +1,20 @@
+{
+  "regle": "identifiants uniques par profil assemble",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-fleuriste/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        1,
+        "id"
+      ],
+      "valeur": "caisse-s1"
+    }
+  ],
+  "attendu": [
+    "scene \"caisse-s1\" en double"
+  ]
+}

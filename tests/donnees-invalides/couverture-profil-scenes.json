@@ -1,0 +1,45 @@
+{
+  "regle": "EX-005 : profil 2 a 6 scenes par chapitre",
+  "couverture": true,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        1
+      ],
+      "supprimer": true
+    },
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "choix",
+        0,
+        "suivant"
+      ],
+      "valeur": null
+    },
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "choix",
+        1,
+        "suivant"
+      ],
+      "valeur": null
+    }
+  ],
+  "attendu": [
+    "profils/demo-glacier/profil.json : chapitre \"cornets\", champ \"scenes\" : 1 scene(s) : il en faut de 2 a 6"
+  ]
+}

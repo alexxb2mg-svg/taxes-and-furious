@@ -1,0 +1,37 @@
+{
+  "regle": "EX-003 : chiffres dans les valeur des references citees",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "choix",
+        0,
+        "explication"
+      ],
+      "valeur": "Ce que dit vraiment la loi : TVA a 7 %."
+    },
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "chemin": [
+        "chapitres",
+        0,
+        "scenes",
+        0,
+        "choix",
+        0,
+        "references"
+      ],
+      "valeur": [
+        "R-279-0B"
+      ]
+    }
+  ],
+  "attendu": [
+    "choix \"cornets-s1-a\", champ \"explication\" : chiffre \"7 %\" absent des valeurs des references citees (R-279-0B)"
+  ]
+}

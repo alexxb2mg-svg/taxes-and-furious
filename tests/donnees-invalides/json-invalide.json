@@ -1,0 +1,13 @@
+{
+  "regle": "JSON valide",
+  "couverture": false,
+  "modifs": [
+    {
+      "fichier": "profils/demo-glacier/profil.json",
+      "brut": "{ \"id\": \"demo-glacier\", "
+    }
+  ],
+  "attendu": [
+    "profils/demo-glacier/profil.json : JSON invalide"
+  ]
+}
