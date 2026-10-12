@@ -19,11 +19,12 @@ export const SUITES_FINS = {
     'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-b', 'partenariats-s3-b'],
   },
   plombier: {
-    'plombier-fin-etanche': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'devis-s1-a', 'devis-s2-a', 5, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'chantier-s1-a', 'chantier-s2-a', 'chantier-s3-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
-    'plombier-fin-degat-des-eaux': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'devis-s1-c', 'devis-s2-a', 5, 'fec-s1-a', 'fec-s2-a', 'fec-s3-b', 'chantier-s1-b', 'chantier-s2-a', 'chantier-s3-a', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
-    'fin-sereine': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'devis-s1-a', 'devis-s2-a', 5, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'chantier-s1-a', 'chantier-s2-a', 'chantier-s3-a', 'rectification-s1-b', 'rectification-s2-b', 'rectification-s3-a'],
-    'fin-defaut': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'devis-s1-c', 'devis-s2-b', 5, 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'chantier-s1-a', 'chantier-s2-a', 'chantier-s3-b', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-b'],
-    'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'devis-s1-c', 'devis-s2-b', 5, 'fec-s1-b'],
+    'plombier-fin-etanche': ['ouverture-s1-a', 'avis-s1-a', 'avis-s2-a', 'avis-s3-a', 'avis-s4-a', 'devis-s1-a', 'devis-s2-a', 5, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'chantier-s1-a', 'chantier-s2-a', 'chantier-s3-a', 'rectification-s1-a', 'rectification-s2-a', 'rectification-s3-a'],
+    'plombier-fin-kevin': ['ouverture-s1-a', 'avis-s1-a', 'avis-s2-a', 'avis-s3-a', 'avis-s4-a', 'devis-s1-a', 'devis-s2-a', 3, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'chantier-s1-a', 'chantier-s2-a', 'chantier-s3-a', 'rectification-s1-a', 'rectification-s2-a', 'rectification-s3-a'],
+    'plombier-fin-degat-des-eaux': ['ouverture-s1-c', 'avis-s1-a', 'avis-s2-a', 'avis-s3-a', 'avis-s4-a', 'devis-s1-c', 'devis-s2-b', 0, 'fec-s1-a', 'fec-s2-a', 'fec-s3-b', 'chantier-s1-a', 'chantier-s2-a', 'chantier-s3-a', 'rectification-s1-a', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-sereine': ['ouverture-s1-a', 'avis-s1-a', 'avis-s2-a', 'avis-s3-a', 'avis-s4-a', 'devis-s1-a', 'devis-s2-a', 5, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'chantier-s1-a', 'chantier-s2-a', 'chantier-s3-a', 'rectification-s1-a', 'rectification-s2-b', 'rectification-s3-a'],
+    'fin-defaut': ['ouverture-s1-b', 'avis-s1-a', 'avis-s2-a', 'avis-s3-a', 'avis-s4-a', 'devis-s1-a', 'devis-s2-c', 5, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'chantier-s1-c', 'chantier-s2-c', 'chantier-s3-c', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-patience': ['ouverture-s1-b', 'avis-s1-a', 'avis-s2-a', 'avis-s3-a', 'avis-s4-a', 'devis-s1-a', 'devis-s2-a', 5, 'fec-s1-b', 'fec-s2-b', 'fec-s3-c', 'chantier-s1-b', 'chantier-s2-b', 'chantier-s3-b'],
   },
   consultant: {
     'consultant-fin-burn': ['kick-off-s1-a', 'kick-off-s2-a', 'avis-s1-a', 'avis-s2-a', 'avis-s3-a', 'avis-s4-a', 'train-de-vie-s1-a', 'train-de-vie-s2-a', 0, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'remuneration-s1-a', 'remuneration-s2-b', 'rectification-s1-c', 'rectification-s2-c', 'rectification-s3-b'],

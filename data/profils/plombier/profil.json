@@ -39,6 +39,7 @@
     }
   ],
   "parcours": [
+    "profil:ouverture",
     "tronc:avis",
     "profil:devis",
     "tronc:fec",
@@ -56,6 +57,70 @@
     "R-L8221-6"
   ],
   "chapitres": [
+    {
+      "id": "ouverture",
+      "titre": "Lundi, 7 heures",
+      "scenes": [
+        {
+          "id": "ouverture-s1",
+          "personnage": "narrateur",
+          "texte": "Lundi, 7 h. Le café n'a pas encore coulé que le téléphone sonne : le chauffe-eau électrique d'un client a rendu l'âme dans sa maison de 1978. Il veut un chauffe-eau solaire, et vite. « Mais pas de paperasse, hein. La paperasse, ça me donne des boutons. »",
+          "choix": [
+            {
+              "id": "ouverture-s1-a",
+              "texte": "« 5,5 %, et vous certifiez sur le devis que la maison a plus de deux ans. Une signature, pas une de plus. »",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -5
+              },
+              "reaction": "Le client signe en se grattant le bras. Kevin agrafe le devis dans le classeur des chantiers, fier comme un robinet neuf.",
+              "explication": "Bon réflexe : un chauffe-eau solaire dans une maison de plus de 2 ans, c'est de la rénovation énergétique à 5,5 %. La signature du client sur le devis, que vous gardez dans le dossier, est ce qui justifie ce taux.",
+              "references": [
+                "R-278-0BA",
+                "R-279-0B-3"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "ouverture-s1-b",
+              "texte": "« 5,5 %, et on oublie la signature : vous avez une tête de maison ancienne. »",
+              "juste": false,
+              "effets": {
+                "redressement": 500,
+                "patience": 0,
+                "stress": 5
+              },
+              "reaction": "Le client repart ravi, sans rien signer. Dans le classeur, le devis a l'air un peu tout nu.",
+              "explication": "Le taux réduit se prouve par écrit : sans la certification du client sur le devis, rien dans votre dossier ne montre que la maison a plus de 2 ans, et votre 5,5 % ne repose plus que sur votre bonne mine.",
+              "references": [
+                "R-278-0BA",
+                "R-279-0B-3"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "ouverture-s1-c",
+              "texte": "« En liquide, sans devis ni facture : pas de papier, pas de boutons. »",
+              "juste": false,
+              "effets": {
+                "redressement": 1500,
+                "patience": -5,
+                "stress": 10
+              },
+              "reaction": "Le client se détend. Kevin, lui, regarde le chauffe-eau comme s'il allait témoigner un jour.",
+              "explication": "Le liquide ne rend pas le chantier gratuit pour le fisc : la TVA reste due, et sans signature du client, même le 5,5 % du chauffe-eau solaire ne peut plus être revendiqué. Faute de mieux, c'est le taux normal de 20 % qui guette.",
+              "references": [
+                "R-278",
+                "R-278-0BA"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "devis",
       "titre": "Les devis et leurs taux",
@@ -154,6 +219,22 @@
               "explication": "Le fioul n'est pas de l'eau chaude, et la loi l'a prévu : une chaudière à combustible fossile reste au taux normal de 20 %, sans taux réduit.",
               "references": [
                 "R-278-0BA",
+                "R-279-0B"
+              ],
+              "suivant": "devis-tri"
+            },
+            {
+              "id": "devis-s2-c",
+              "texte": "Garder les deux taux : dans l'ancien, une chaudière se pose à 10 %, comme le reste.",
+              "juste": false,
+              "effets": {
+                "redressement": 1500,
+                "patience": -5,
+                "stress": 10
+              },
+              "reaction": "M. Rectif recompte sur ses doigts. « Comme le reste, sauf elle. » Le siphon de sa cuisine, lui, goutte toujours.",
+              "explication": "Dans un logement ancien, le 10 % couvre bien l'entretien et l'amélioration, mais une chaudière au fioul en est exclue : cette facture-là repasse à 20 %.",
+              "references": [
                 "R-279-0B"
               ],
               "suivant": "devis-tri"
@@ -304,6 +385,23 @@
                 "R-283-2N"
               ],
               "suivant": "chantier-s2"
+            },
+            {
+              "id": "chantier-s1-c",
+              "texte": "Facturer 10 % : ce sont des logements, donc c'est le taux réduit.",
+              "juste": false,
+              "effets": {
+                "redressement": 2000,
+                "patience": -10,
+                "stress": 5
+              },
+              "reaction": "M. Rectif pose son stylo. « Deux erreurs dans une seule ligne. C'est presque un record. »",
+              "explication": "Double raté : un immeuble neuf ne profite pas du taux réduit, et en sous-traitance d'une entreprise générale assujettie, vous n'avez de toute façon aucune TVA à facturer, puisque c'est elle qui l'acquitte.",
+              "references": [
+                "R-279-0B",
+                "R-283-2N"
+              ],
+              "suivant": "chantier-s2"
             }
           ]
         },
@@ -342,6 +440,22 @@
               "references": [
                 "R-L8221-6",
                 "R-L8221-1"
+              ],
+              "suivant": "chantier-s3"
+            },
+            {
+              "id": "chantier-s2-c",
+              "texte": "Lui faire signer un beau contrat de sous-traitance, et continuer exactement comme avant.",
+              "juste": false,
+              "effets": {
+                "redressement": 4000,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "Kevin signe en trois exemplaires, puis demande à quelle heure il doit être là demain. M. Rectif note l'heure.",
+              "explication": "Le papier ne change pas la réalité : tant que Kevin suit vos ordres, vos horaires et utilise vos outils, ce lien de subordination peut faire reconnaître un contrat de travail, contrat de sous-traitance ou pas.",
+              "references": [
+                "R-L8221-6"
               ],
               "suivant": "chantier-s3"
             }
@@ -384,6 +498,22 @@
                 "R-L8221-1"
               ],
               "suivant": null
+            },
+            {
+              "id": "chantier-s3-c",
+              "texte": "Lui demander de s'inscrire comme indépendant, comme Kevin. Problème réglé.",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -10,
+                "stress": 15
+              },
+              "reaction": "Tonton Robert remplit le formulaire avec application, puis demande à quelle heure il commence samedi. Comme d'habitude.",
+              "explication": "Une inscription comme indépendant ne règle rien si Tonton vient chaque samedi travailler sous vos ordres, sur vos chantiers : face à un tel lien de subordination, le statut ne protège pas.",
+              "references": [
+                "R-L8221-6"
+              ],
+              "suivant": null
             }
           ]
         }
@@ -405,6 +535,23 @@
           "jauge": "redressement",
           "op": "<=",
           "valeur": 6000
+        }
+      ]
+    },
+    {
+      "id": "plombier-fin-kevin",
+      "titre": "Fuite, Fils & Kevin",
+      "texte": "Le contrôle laisse quelques traces, mais Kevin a désormais un vrai contrat et un vrai bulletin de paie. Le jour de la clôture, c'est lui qui part réparer le siphon de M. Bernard Rectif. Sur devis, au bon taux, facture comprise.",
+      "conditions": [
+        {
+          "jauge": "redressement",
+          "op": ">",
+          "valeur": 6000
+        },
+        {
+          "jauge": "redressement",
+          "op": "<=",
+          "valeur": 7000
         }
       ]
     },
