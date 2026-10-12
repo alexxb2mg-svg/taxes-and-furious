@@ -36,7 +36,6 @@
         "reaction": "« Parfait, je sors les dossiers de ces années-là. Pas l'album du lancement de la chaîne. »"
       },
       "avis-s3-b": {
-        "texte": "« Tout, depuis le tout premier selfie. Par sécurité. »",
         "reaction": "Votre comptable disparaît sous une avalanche de captures d'écran imprimées. On entend un faible « au secours », suivi d'un aboiement."
       },
       "avis-s3-c": {
@@ -54,8 +53,8 @@
         "reaction": "L'avion rate la corbeille et atterrit dans la gamelle du chihuahua. M. Story le récupère, le sèche avec soin et vous le rend."
       },
       "avis-s4-c": {
-        "texte": "« Non merci, je me défendrai seule : ma communauté me soutient. »",
-        "reaction": "« Comme vous voudrez. Votre communauté, en revanche, n'assistera pas aux rendez-vous. »"
+        "texte": "« Non merci, je me défendrai seule : ça fera des économies pour le budget maquillage. »",
+        "reaction": "« Comme vous voudrez. » Votre comptable, vexé, range son stylo qui fonctionne."
       }
     }
   },
@@ -113,8 +112,7 @@
         "reaction": "Accordé. Votre comptable respire à nouveau, et le chihuahua aussi, par solidarité."
       },
       "rectification-s1-c": {
-        "texte": "S'en servir pour caler le trépied du ring light.",
-        "reaction": "Le trépied ne penche plus. Le délai, lui, continue de courir."
+        "reaction": "La table du tournage ne boite plus, et le ring light non plus. Le délai, lui, continue de courir."
       },
       "rectification-s1-d": {
         "reaction": "Votre banquière appelle, inquiète : « Encore un achat sur un coup de tête ? » Votre comptable n'a même pas eu le temps de lire la première page."
@@ -128,8 +126,8 @@
         "reaction": "« C'est votre droit. Je transmets. » Vous résistez de justesse à l'envie d'annoncer la nouvelle en direct."
       },
       "rectification-s2-b": {
-        "texte": "Répondre par une vidéo de douze minutes, ralentis et musique triste, sur l'injustice du monde.",
-        "reaction": "« Le montage est soigné. Les arguments, introuvables. »"
+        "texte": "Répondre par un poème de douze pages sur l'injustice du monde, lu en story sur une musique triste.",
+        "reaction": "« Les rimes sont jolies, la musique aussi. Les arguments, introuvables. »"
       },
       "rectification-s2-c": {
         "reaction": "« Très bien, je note votre accord. » Votre comptable, hors champ, note surtout les points que vous auriez pu gagner."
