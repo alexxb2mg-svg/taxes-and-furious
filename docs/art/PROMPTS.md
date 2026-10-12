@@ -234,11 +234,11 @@ Chaque personnage a d'abord une fiche de reference (en pied, de trois quarts, no
 ### `data/profils/plombier/img/bellemaman-situation.webp`
 
 - Date : 2026-10-12
-- Tentatives : 1
+- Tentatives : 2
 - Images jointes : fiche de reference de ce personnage (non publiee), `data/profils/plombier/decors/salle-de-bains-chantier.webp` (lieu et style)
 - Prompt :
 
-> Illustration pour un jeu web humoristique francais sur le controle fiscal, style bande dessinee franco-belge (ligne claire), couleurs chaudes facon papier kraft, aplats, contours noirs nets. Une belle-mere elegante d'environ soixante-cinq ans, brushing laque aux reflets violines, collier de perles, sac a main serre contre elle, en pied, en situation : dans sa salle de bains en chantier, elle montre du doigt les carreaux tout en serrant son sac a main. Meme personnage que la premiere image jointe ; la seconde image jointe donne le lieu et le style du decor. Format vertical 3:4, lumiere de fin d'apres-midi. Caricature de fonction, pas une personne reelle, aucun texte lisible, aucune marque ni logo.
+> Illustration pour un jeu web humoristique francais sur le controle fiscal, style bande dessinee franco-belge (ligne claire), couleurs chaudes facon papier kraft, aplats, contours noirs nets. Une belle-mere elegante d'environ soixante-cinq ans, brushing laque aux reflets violines, collier de perles, sac a main serre contre elle, en pied, en situation : dans sa salle de bains en chantier, elle montre du doigt les carreaux tout en serrant son sac a main. Meme personnage que la premiere image jointe ; la seconde image jointe donne le lieu et le style du decor. Format vertical 3:4, lumiere de fin d'apres-midi. Caricature de fonction, pas une personne reelle, aucun texte lisible, aucune marque ni logo. Les sacs, bouteilles et materiaux du chantier sont unis, sans aucune inscription, ni etiquette ni lettre. Illustration pleine page : le dessin va jusqu'aux bords de l'image, sans cadre, sans bordure ni marge.
 
 ### `data/profils/restaurateur/img/addition.webp`
 
@@ -278,11 +278,11 @@ Chaque personnage a d'abord une fiche de reference (en pied, de trois quarts, no
 ### `data/profils/restaurateur/img/patron-situation.webp`
 
 - Date : 2026-10-12
-- Tentatives : 1
+- Tentatives : 2
 - Images jointes : fiche de reference de ce personnage (non publiee), `data/profils/restaurateur/decors/salle-bistrot.webp` (lieu et style)
 - Prompt :
 
-> Illustration pour un jeu web humoristique francais sur le controle fiscal, style bande dessinee franco-belge (ligne claire), couleurs chaudes facon papier kraft, aplats, contours noirs nets. Un patron de bistrot francais d'une quarantaine d'annees bien portant, moustache en guidon, tablier noir noue, torchon sur l'epaule, manches retroussees, en pied, en situation : derriere son comptoir en zinc, il essuie un verre avec son torchon. Meme personnage que la premiere image jointe ; la seconde image jointe donne le lieu et le style du decor. Format vertical 3:4, lumiere de fin d'apres-midi. Caricature de fonction, pas une personne reelle, aucun texte lisible, aucune marque ni logo.
+> Illustration pour un jeu web humoristique francais sur le controle fiscal, style bande dessinee franco-belge (ligne claire), couleurs chaudes facon papier kraft, aplats, contours noirs nets. Un patron de bistrot francais d'une quarantaine d'annees bien portant, moustache en guidon, tablier noir noue, torchon sur l'epaule, manches retroussees, en pied, en situation : debout devant son comptoir en zinc, visible des pieds a la tete, il essuie un verre avec son torchon. Meme personnage que la premiere image jointe ; la seconde image jointe donne le lieu et le style du decor. Format vertical 3:4, lumiere de fin d'apres-midi. Caricature de fonction, pas une personne reelle, aucun texte lisible, aucune marque ni logo. Le personnage est entierement visible, des chaussures au sommet du crane, avec un peu de sol sous ses pieds. Illustration pleine page : le dessin va jusqu'aux bords de l'image, sans cadre, sans bordure ni marge.
 
 ### `data/profils/restaurateur/img/saucier.webp`
 
@@ -564,11 +564,11 @@ Chaque personnage a d'abord une fiche de reference (en pied, de trois quarts, no
 ### `data/profils/coiffeuse/img/locataire-situation.webp`
 
 - Date : 2026-10-12
-- Tentatives : 1
+- Tentatives : 2
 - Images jointes : fiche de reference de ce personnage (non publiee), `data/profils/coiffeuse/decors/arriere-boutique.webp` (lieu et style)
 - Prompt :
 
-> Illustration pour un jeu web humoristique francais sur le controle fiscal, style bande dessinee franco-belge (ligne claire), couleurs chaudes facon papier kraft, aplats, contours noirs nets. Une coiffeuse independante d'une trentaine d'annees, queue de cheval, blouse de salon, peigne dans la poche, telephone a la main, en pied, en situation : dans l'arriere-boutique entre les stocks de flacons de shampoing, elle regarde un planning accroche au mur. Meme personnage que la premiere image jointe ; la seconde image jointe donne le lieu et le style du decor. Format vertical 3:4, lumiere de fin d'apres-midi. Caricature de fonction, pas une personne reelle, aucun texte lisible, aucune marque ni logo.
+> Illustration pour un jeu web humoristique francais sur le controle fiscal, style bande dessinee franco-belge (ligne claire), couleurs chaudes facon papier kraft, aplats, contours noirs nets. Une coiffeuse independante d'une trentaine d'annees, queue de cheval, blouse de salon, peigne dans la poche, telephone a la main, en pied, en situation : dans l'arriere-boutique entre les stocks de flacons de shampoing sans etiquette, elle compte les flacons d'une etagere, telephone a la main. Meme personnage que la premiere image jointe ; la seconde image jointe donne le lieu et le style du decor. Format vertical 3:4, lumiere de fin d'apres-midi. Caricature de fonction, pas une personne reelle, aucun texte lisible, aucune marque ni logo. Aucun planning, calendrier, affiche ni etiquette ecrite dans l'image ; les flacons sont unis. Illustration pleine page : le dessin va jusqu'aux bords de l'image, sans cadre, sans bordure ni marge.
 
 ### `data/profils/galeriste/img/poney.webp`
 
