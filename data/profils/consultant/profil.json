@@ -25,6 +25,7 @@
     }
   ],
   "parcours": [
+    "profil:kick-off",
     "tronc:avis",
     "profil:train-de-vie",
     "tronc:fec",
@@ -37,6 +38,122 @@
     "R-1729"
   ],
   "chapitres": [
+    {
+      "id": "kick-off",
+      "titre": "Le kick-off de l'exercice",
+      "scenes": [
+        {
+          "id": "kick-off-s1",
+          "personnage": "narrateur",
+          "texte": "Disruptivement Vôtre : quarante mètres carrés d'open space pour un seul salarié, vous. Sur le tableau blanc, en lettres capitales : « SÉMINAIRE STRATÉGIQUE ANNUEL — château, spa, trois jours ». Participants prévus : deux clients… et toute votre famille.",
+          "choix": [
+            {
+              "id": "kick-off-s1-a",
+              "texte": "Ne passer en charges que la salle de réunion et le déjeuner de travail avec les deux clients ; le reste du week-end, sur votre compte personnel.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -5
+              },
+              "reaction": "Vous sortez votre carte bancaire personnelle pour le spa. Elle proteste un peu. Votre expert-comptable, lui, sourit pour la première fois de l'année.",
+              "explication": "La salle et le déjeuner avec vos clients servent l'entreprise : ils se déduisent. Le spa et le week-end en famille relèvent de votre vie privée ; en les réglant vous-même, vous ne laissez rien à reprendre.",
+              "references": [
+                "R-39-1"
+              ],
+              "suivant": "kick-off-s2"
+            },
+            {
+              "id": "kick-off-s1-b",
+              "texte": "Tout passer en frais de séminaire : c'est un événement professionnel, donc tout y est professionnel.",
+              "juste": false,
+              "effets": {
+                "redressement": 2000,
+                "patience": -5,
+                "stress": 5
+              },
+              "reaction": "La facture du château tient sur trois pages. La ligne « massage aux pierres chaudes, enfants » ressort particulièrement bien.",
+              "explication": "L'étiquette « séminaire » ne suffit pas : seule la part de la dépense engagée pour l'entreprise se déduit. Le massage des enfants n'en fait pas partie, même pendant un séminaire.",
+              "references": [
+                "R-39-1"
+              ],
+              "suivant": "kick-off-s2"
+            },
+            {
+              "id": "kick-off-s1-c",
+              "texte": "Demander au château de facturer le week-end comme une « prestation de conseil en innovation ».",
+              "juste": false,
+              "effets": {
+                "redressement": 4000,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "Le château accepte, un peu surpris. C'est la première fois qu'un spa lui commande une facture de conseil en innovation.",
+              "explication": "Faire écrire sur une facture autre chose que ce qui a été vendu, c'est fabriquer une pièce trompeuse : on passe aux manœuvres frauduleuses, et la majoration monte à 80 % des droits.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": "kick-off-s2"
+            }
+          ]
+        },
+        {
+          "id": "kick-off-s2",
+          "personnage": "expert",
+          "texte": "Votre expert-comptable pose une enveloppe sur votre bureau : « Ma lettre de démission. Je ne l'ai pas datée. Ça dépend de vous : je veux toutes les pièces de l'année. Toutes. Même celles du carton. »",
+          "choix": [
+            {
+              "id": "kick-off-s2-a",
+              "texte": "Lui remettre toutes les pièces, y compris celles qui fâchent, et le laisser écarter ce qui n'est pas professionnel.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -10
+              },
+              "reaction": "Il trie en silence, met de côté une petite pile de notes « personnelles » et range l'enveloppe dans son tiroir. Pas à la poubelle : dans le tiroir.",
+              "explication": "Seules les dépenses engagées pour l'entreprise se déduisent : en lui confiant tout, vous lui permettez d'écarter dès maintenant celles qui ne le sont pas, avant que quelqu'un d'autre ne le fasse.",
+              "references": [
+                "R-39-1"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "kick-off-s2-b",
+              "texte": "Ne lui donner que les pièces « présentables » et garder le carton des notes de restaurant au fond du placard.",
+              "juste": false,
+              "effets": {
+                "redressement": 1500,
+                "patience": 0,
+                "stress": 5
+              },
+              "reaction": "Il compte les pièces, puis les mois. « Il manque un trimestre de déjeuners. Vous avez jeûné ? »",
+              "explication": "Cacher le carton n'efface pas les dépenses : celles qui sont personnelles restent non déductibles, et votre expert-comptable ne peut plus vous aider à les mettre de côté.",
+              "references": [
+                "R-39-1"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "kick-off-s2-c",
+              "texte": "Lui demander de « lisser » le résultat en reclassant vos vacances en déplacements professionnels.",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -5,
+                "stress": 10
+              },
+              "reaction": "Votre expert-comptable sort un stylo, date sa lettre de démission, puis se ravise et efface la date. « Je vous laisse une dernière chance. »",
+              "explication": "Reclasser sciemment des vacances en frais professionnels n'a rien d'un lissage : c'est un manquement délibéré, majoré de 40 % des droits.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "train-de-vie",
       "titre": "Le train de vie disruptif",
@@ -77,6 +194,23 @@
                 "R-39-4"
               ],
               "suivant": "train-de-vie-s2"
+            },
+            {
+              "id": "train-de-vie-s1-c",
+              "texte": "Inscrire le coupé à son prix « de base » et oublier les options, pour passer juste sous le plafond.",
+              "juste": false,
+              "effets": {
+                "redressement": 6000,
+                "patience": -20,
+                "stress": 15
+              },
+              "reaction": "M. Tableur pose à côté du registre le bon de commande du concessionnaire. Les options y occupent une page entière, jantes chromées comprises.",
+              "explication": "Le plafond de 18 300 € s'apprécie sur le vrai prix de la voiture. Faire disparaître les options pour passer dessous, c'est minorer volontairement : un manquement délibéré, majoré de 40 %.",
+              "references": [
+                "R-39-4",
+                "R-1729"
+              ],
+              "suivant": "train-de-vie-s2"
             }
           ]
         },
@@ -115,6 +249,22 @@
               "references": [
                 "R-39-1",
                 "R-1729"
+              ],
+              "suivant": "train-de-vie-tri"
+            },
+            {
+              "id": "train-de-vie-s2-c",
+              "texte": "Tout garder : vous parlez toujours un peu boulot, même au déjeuner du dimanche.",
+              "juste": false,
+              "effets": {
+                "redressement": 2500,
+                "patience": -5,
+                "stress": 5
+              },
+              "reaction": "« Un peu boulot. » M. Tableur relève qu'au déjeuner du dimanche, le client a commandé un menu enfant.",
+              "explication": "Parler travail au dessert ne change pas la nature du repas : un déjeuner de famille reste une dépense privée, et seul le repas pris pour l'entreprise se déduit.",
+              "references": [
+                "R-39-1"
               ],
               "suivant": "train-de-vie-tri"
             }
@@ -238,7 +388,7 @@
               "texte": "Ramener la rémunération déduite à ce qui correspond au travail réellement fourni, sans excès.",
               "juste": true,
               "effets": {
-                "redressement": 1500,
+                "redressement": 1000,
                 "patience": 10,
                 "stress": -5
               },
@@ -264,6 +414,22 @@
                 "R-39-1"
               ],
               "suivant": "remuneration-s2"
+            },
+            {
+              "id": "remuneration-s1-c",
+              "texte": "Garder le montant, mais le rebaptiser « prime exceptionnelle de performance » : ça passe mieux.",
+              "juste": false,
+              "effets": {
+                "redressement": 7000,
+                "patience": -10,
+                "stress": 5
+              },
+              "reaction": "« Performance. » M. Tableur regarde la courbe du chiffre d'affaires, puis la prime, puis de nouveau la courbe.",
+              "explication": "Prime ou salaire, le nom ne change rien : ce qui compte, c'est le travail effectif. La part qui le dépasse reste exclue des charges, quel que soit son intitulé.",
+              "references": [
+                "R-39-1"
+              ],
+              "suivant": "remuneration-s2"
             }
           ]
         },
@@ -277,7 +443,7 @@
               "texte": "Avouer qu'elles ont été fabriquées et les retirer de la comptabilité.",
               "juste": true,
               "effets": {
-                "redressement": 1000,
+                "redressement": 500,
                 "patience": 5,
                 "stress": -10
               },
@@ -303,6 +469,22 @@
                 "R-1729"
               ],
               "suivant": null
+            },
+            {
+              "id": "remuneration-s2-c",
+              "texte": "Dire que vous ne savez pas, et laisser votre expert-comptable chercher la réponse tout seul.",
+              "juste": false,
+              "effets": {
+                "redressement": 5000,
+                "patience": -10,
+                "stress": 15
+              },
+              "reaction": "Votre expert-comptable ouvre le dossier bleu, lit trois factures, puis vous regarde longuement. M. Tableur, lui, prend des notes.",
+              "explication": "Se taire ne fait pas disparaître les factures fabriquées : elles restent des manœuvres frauduleuses, majorées de 80 %, et le silence ne fait que retarder le moment de les retirer.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
             }
           ]
         }
@@ -310,23 +492,6 @@
     }
   ],
   "fins": [
-    {
-      "id": "consultant-fin-pivot",
-      "titre": "Pivot réussi",
-      "texte": "Vous avez rangé les anglicismes et sorti les justificatifs. M. Claude Tableur repart en vous souhaitant « une bonne continuation ». Il a dit continuation, pas roadmap.",
-      "conditions": [
-        {
-          "jauge": "patience",
-          "op": ">=",
-          "valeur": 95
-        },
-        {
-          "jauge": "stress",
-          "op": "<=",
-          "valeur": 10
-        }
-      ]
-    },
     {
       "id": "consultant-fin-burn",
       "titre": "Burn-out du business plan",
@@ -336,6 +501,35 @@
           "jauge": "redressement",
           "op": ">=",
           "valeur": 25000
+        }
+      ]
+    },
+    {
+      "id": "consultant-fin-pivot",
+      "titre": "Pivot réussi",
+      "texte": "Le week-end au château, réglé de votre poche dès le premier jour, a fait la différence : M. Claude Tableur n'a presque rien trouvé à reprendre. Il repart en vous souhaitant « une bonne continuation ». Il a dit continuation, pas roadmap. Votre expert-comptable a jeté sa lettre de démission.",
+      "conditions": [
+        {
+          "jauge": "redressement",
+          "op": "<=",
+          "valeur": 5500
+        },
+        {
+          "jauge": "patience",
+          "op": ">=",
+          "valeur": 90
+        }
+      ]
+    },
+    {
+      "id": "consultant-fin-dictionnaire",
+      "titre": "Dictionnaire épuisé",
+      "texte": "M. Claude Tableur repart avec un carnet de quarante pages d'anglicismes à traduire et une proposition de rectification très complète. Il vous souhaite « un bon feedback ». Il l'a dit exprès.",
+      "conditions": [
+        {
+          "jauge": "patience",
+          "op": "<=",
+          "valeur": 30
         }
       ]
     }
