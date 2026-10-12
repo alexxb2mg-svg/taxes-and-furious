@@ -1,25 +1,158 @@
 {
+  "avis-s1": {
+    "texte": "Lundi, huit heures. Entre deux « calls » imaginaires, vous ouvrez enfin le courrier de Disruptivement Vôtre : un avis de vérification de comptabilité. Votre smoothie détox vire doucement au gris.",
+    "choix": {
+      "avis-s1-a": {
+        "reaction": "Vous lisez tout, petites lignes comprises, et surlignez « assistance d'un conseil » en vert fluo, la couleur des « action items »."
+      },
+      "avis-s1-b": {
+        "texte": "Le glisser sous la pile des dossiers « nice to have », avec les prospectus.",
+        "reaction": "La pile s'effondre. L'avis remonte tout seul en haut, comme une priorité critique qu'on n'avait pas vue venir."
+      },
+      "avis-s1-c": {
+        "texte": "Garder la lettre pour vous, sans en parler à votre expert-comptable, pour ne pas « casser son flow ».",
+        "reaction": "Votre expert-comptable l'apprend trois semaines plus tard. Il ressort sa lettre de démission, la relit, et la range à nouveau."
+      }
+    }
+  },
   "avis-s2": {
     "texte": "M. Claude Tableur se présente, cartable impeccable : « Bonjour. Votre plaque indique “Chief Disruption Officer”. Je vous appellerai monsieur, si vous le permettez. »",
     "choix": {
+      "avis-s2-a": {
+        "texte": "Demander combien de temps va durer la « mission ».",
+        "reaction": "« Mission. Bien. Pour une entreprise de votre taille, il y a une limite de durée. Je vous la donne sans anglicisme. »"
+      },
       "avis-s2-b": {
-        "texte": "Annoncer un « offsite de team building » immédiat, très loin, sans réseau.",
+        "texte": "Annoncer un « offsite » imprévu : une croisière autour du monde, très loin, sans réseau.",
         "reaction": "« Offsite. » M. Tableur cherche le mot dans un petit carnet. « Le contrôle, lui, reste sur site. »"
+      },
+      "avis-s2-c": {
+        "texte": "Promettre le FEC « dans la prochaine roadmap, dans quelques mois, sans faute ».",
+        "reaction": "« Roadmap. » M. Tableur note le mot, puis la date du jour. « Le délai, lui, attendra sagement que le fichier arrive. »"
+      }
+    }
+  },
+  "avis-s3": {
+    "texte": "Votre expert-comptable, la lettre de démission toujours dans la poche intérieure, relit l'avis : « Ils regardent quelles années ? Et ne me répondez pas “le futur”. »",
+    "choix": {
+      "avis-s3-a": {
+        "reaction": "« Parfait. Je sors les bons classeurs, pas les archives de votre première start-up. »"
+      },
+      "avis-s3-b": {
+        "reaction": "Votre expert-comptable disparaît sous les cartons. On l'entend murmurer « disruptif » sur un ton de reproche."
+      },
+      "avis-s3-c": {
+        "reaction": "Il sort un seul classeur, très fin. M. Tableur en réclamera deux autres, très épais, et sans un seul anglicisme dedans."
+      }
+    }
+  },
+  "avis-s4": {
+    "texte": "M. Tableur pose une brochure sur la table de réunion « Agora » : « La charte du contribuable vérifié. Vous pouvez vous faire assister d'un conseil. Vous souhaitez quelqu'un à vos côtés ? Un conseil, je précise : pas un coach. »",
+    "choix": {
+      "avis-s4-a": {
+        "reaction": "« Très bien. » Votre expert-comptable redresse sa cravate et, pour la première fois, ne touche pas à sa lettre de démission."
+      },
+      "avis-s4-b": {
+        "texte": "Plier la charte en avion de papier et la lancer vers la corbeille « zéro déchet ».",
+        "reaction": "L'avion rate la corbeille et se pose aux pieds de M. Tableur. Il le déplie, le lisse soigneusement, et vous le rend."
+      },
+      "avis-s4-c": {
+        "texte": "« Non merci, je me défendrai seul : c'est plus lean, et ça fera des économies. »",
+        "reaction": "« Lean. » M. Tableur note le mot. Votre expert-comptable, vexé, range sa cravate dans sa poche."
       }
     }
   },
   "fec-s1": {
+    "texte": "M. Tableur ouvre un ordinateur portable d'un autre âge, mais parfaitement entretenu : « Pour commencer, il me faudrait votre fichier des écritures comptables. Le FEC. Ce n'est pas un anglicisme, c'est un sigle. »",
     "choix": {
+      "fec-s1-a": {
+        "reaction": "« Merveilleux. Un fichier qui s'ouvre du premier coup. Je n'ose pas dire “seamless”, mais je le pense. »"
+      },
       "fec-s1-b": {
-        "texte": "Projeter une présentation de 80 diapositives intitulée « Notre vision comptable ».",
-        "reaction": "M. Tableur attend poliment la diapositive 80. Elle ne contient pas le FEC."
+        "texte": "Poser sur la table une boîte à chaussures remplie de tickets, étiquetée « Data lake ».",
+        "reaction": "M. Tableur soulève le couvercle. « Data lake. » Un ticket de 2019 s'envole ; le lac, lui, reste en désordre."
+      },
+      "fec-s1-c": {
+        "texte": "Envoyer un export PDF de 900 pages, en « version premium » : « c'est pareil, en plus joli ».",
+        "reaction": "M. Tableur fait défiler. Et défiler. Et défiler encore. Il referme l'ordinateur avec une douceur qui fait peur."
+      }
+    }
+  },
+  "fec-s2": {
+    "texte": "En préparant un « dashboard » pour M. Tableur, vous tombez sur une erreur. Une vraie, avec des chiffres dedans, et aucun indicateur coloré pour la cacher.",
+    "choix": {
+      "fec-s2-a": {
+        "reaction": "M. Tableur range son stylo rouge. « Voilà qui simplifie les choses. Et sans la moindre diapositive. »"
+      },
+      "fec-s2-b": {
+        "reaction": "Il la voit. Il l'entoure. En rouge. Deux fois. Puis il écrit à côté, en petit : « quick win ? »"
+      },
+      "fec-s2-c": {
+        "texte": "Corriger l'écriture en douce dans le logiciel, sans rien dire : une simple « mise à jour ».",
+        "reaction": "M. Tableur compare deux versions du même fichier. « Mise à jour. » Il lève un sourcil, puis l'autre."
       }
     }
   },
   "fec-s3": {
-    "texte": "M. Tableur s'arrête sur une série d'écritures libellées « synergies ». Il ne demande pas de traduction : il demande des factures."
+    "texte": "M. Tableur s'arrête sur une série d'écritures libellées « synergies ». Il ne demande pas de traduction : il demande des factures.",
+    "choix": {
+      "fec-s3-a": {
+        "reaction": "Les justificatifs défilent. M. Tableur coche, coche encore, et finit par traduire lui-même : « Synergies, donc : factures. »"
+      },
+      "fec-s3-b": {
+        "texte": "Inventer un fournisseur au nom très convaincant, avec un logo en dégradé.",
+        "reaction": "« Et ce fournisseur, il a une adresse ? Un téléphone ? Autre chose qu'un logo en dégradé ? »"
+      },
+      "fec-s3-c": {
+        "texte": "« Ça ? C'est le stagiaire “growth”. Il est parti avec les factures. »",
+        "reaction": "« Growth. » M. Tableur hoche la tête. « Et il a laissé une adresse, ce stagiaire en croissance ? »"
+      }
+    }
+  },
+  "rectification-s1": {
+    "texte": "Quelques semaines plus tard arrive la proposition de rectification de M. Tableur : épaisse, paginée, et rédigée sans un seul mot d'anglais. Même « week-end » est entre guillemets.",
+    "choix": {
+      "rectification-s1-a": {
+        "reaction": "Chaque rehaussement est expliqué, avec un glossaire en annexe. Vous savez au moins à quoi répondre."
+      },
+      "rectification-s1-b": {
+        "reaction": "Accordé. Votre expert-comptable repose sa lettre de démission dans le tiroir et respire à nouveau."
+      },
+      "rectification-s1-c": {
+        "reaction": "La table de votre « bureau debout » ne boite plus. Le délai, lui, continue de courir."
+      },
+      "rectification-s1-d": {
+        "reaction": "Votre banquière vous appelle, inquiète. Votre expert-comptable n'a même pas eu le temps de lire le glossaire."
+      }
+    }
+  },
+  "rectification-s2": {
+    "texte": "M. Tableur revient, son carnet d'anglicismes sous le bras : « J'ai lu vos observations. Toutes, y compris l'annexe intitulée “Lessons learned”. Je maintiens une partie des rectifications. »",
+    "choix": {
+      "rectification-s2-a": {
+        "reaction": "« C'est votre droit. Je transmets. » Pour une fois, il ne note aucun mot dans son carnet."
+      },
+      "rectification-s2-b": {
+        "reaction": "« Les rimes sont jolies. Les arguments, introuvables. Et “disruption” ne rime avec rien. »"
+      },
+      "rectification-s2-c": {
+        "reaction": "« Très bien, je note votre accord. » Votre expert-comptable, lui, note surtout les points que vous auriez pu gagner."
+      }
+    }
   },
   "rectification-s3": {
-    "texte": "Votre expert-comptable, manteau sur le bras, se retourne une dernière fois : « Bon. Reste la question qui fâche : on paie quand ? »"
+    "texte": "Votre expert-comptable, manteau sur le bras, se retourne une dernière fois : « Bon. Reste la question qui fâche : on paie quand ? »",
+    "choix": {
+      "rectification-s3-a": {
+        "reaction": "Votre expert-comptable range enfin ses classeurs. Il fredonne, et laisse sa lettre de démission au fond de la poche."
+      },
+      "rectification-s3-b": {
+        "texte": "« Plus tard. Beaucoup plus tard. Au prochain trimestre, ou au suivant. Peut-être jamais. »",
+        "reaction": "Votre expert-comptable vous regarde comme une start-up qui vient de rater sa levée de fonds."
+      },
+      "rectification-s3-c": {
+        "reaction": "Votre expert-comptable fait le calcul de tête et pâlit doucement. « Ce n'est pas un paiement échelonné, c'est un demi-paiement. »"
+      }
+    }
   }
 }

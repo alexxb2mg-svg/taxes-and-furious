@@ -179,11 +179,21 @@ function erreursApres(modifs) {
 }
 
 const F_CONSULTANT = 'profils/consultant/profil.json';
-const SCENE_TRI = ['chapitres', 0, 'scenes', 2];
+// Chemins des scenes temoins calcules a partir de leur id (l'ordre des chapitres du profil peut changer).
+function cheminScene(fichier, idScene) {
+  const chapitres = lireJson(DONNEES, fichier).chapitres;
+  for (const [i, c] of chapitres.entries()) {
+    const j = c.scenes.findIndex((s) => s.id === idScene);
+    if (j >= 0) return ['chapitres', i, 'scenes', j];
+  }
+  throw new Error(`scene temoin "${idScene}" introuvable dans ${fichier}`);
+}
+const SCENE_TRI = cheminScene(F_CONSULTANT, 'train-de-vie-tri');
+const SCENE_VOITURE = cheminScene(F_CONSULTANT, 'train-de-vie-s1');
+const scene = (fichier, chemin) => chemin.reduce((o, k) => o[k], lireJson(DONNEES, fichier));
 
 test('EX-111 : type inconnu = erreur nommant fichier, scene et type', () => {
-  const profil = lireJson(DONNEES, F_CONSULTANT);
-  assert.equal(profil.chapitres[0].scenes[2].id, 'train-de-vie-tri', 'chemin du temoin');
+  assert.equal(scene(F_CONSULTANT, SCENE_TRI).id, 'train-de-vie-tri', 'chemin du temoin');
   const erreurs = erreursApres([{ fichier: F_CONSULTANT, chemin: [...SCENE_TRI, 'type'], valeur: 'memory' }]);
   assert.ok(erreurs.some((e) => e.startsWith('profils/consultant/profil.json : scene "train-de-vie-tri", champ "type" : type "memory" inconnu')), erreurs.join('\n'));
   assert.equal(erreurs.length, 1, `une seule erreur, sans cascade : ${erreurs.join('\n')}`);
@@ -209,7 +219,7 @@ test('EX-110 : issues : derniere conditionnelle, aucune juste, si mal forme, cho
 // ------------------------------------------------------------ EX-112 : parametres du tri
 
 test('EX-112 : validerParametres du tri rejette bac attendu inconnu, moins de 3 pieces, plus de 8, bacs mal formes', () => {
-  const p = lireJson(DONNEES, F_CONSULTANT).chapitres[0].scenes[2].parametres;
+  const p = scene(F_CONSULTANT, SCENE_TRI).parametres;
   assert.deepEqual(tri.validerParametres(p), []);
   const avec = (modif) => tri.validerParametres(modif(structuredClone(p)));
   const un = (erreurs, motif) => assert.ok(erreurs.some((e) => motif.test(e)), `${motif} dans ${JSON.stringify(erreurs)}`);
@@ -272,11 +282,11 @@ test('EX-113 : animation inconnue (scene, issue ou choix) = erreur du validateur
   const cas = [
     [[...SCENE_TRI, 'animation'], 'scene "train-de-vie-tri", champ "animation" : animation "inconnue" inconnue'],
     [[...SCENE_TRI, 'issues', 0, 'animation'], 'issue "train-de-vie-tri-parfait", champ "animation" : animation "inconnue" inconnue'],
-    [['chapitres', 0, 'scenes', 0, 'choix', 0, 'animation'], 'choix "train-de-vie-s1-a", champ "animation" : animation "inconnue" inconnue'],
+    [[...SCENE_VOITURE, 'choix', 0, 'animation'], 'choix "train-de-vie-s1-a", champ "animation" : animation "inconnue" inconnue'],
   ];
   for (const [chemin, attendu] of cas) {
     const erreurs = erreursApres([{ fichier: F_CONSULTANT, chemin, valeur: 'inconnue' }]);
     assert.ok(erreurs.some((e) => e.includes(attendu)), `attendu : ${attendu}\nobtenus :\n${erreurs.join('\n')}`);
   }
-  assert.deepEqual(erreursApres([{ fichier: F_CONSULTANT, chemin: ['chapitres', 0, 'scenes', 0, 'choix', 0, 'animation'], valeur: 'secousse' }]), []);
+  assert.deepEqual(erreursApres([{ fichier: F_CONSULTANT, chemin: [...SCENE_VOITURE, 'choix', 0, 'animation'], valeur: 'secousse' }]), []);
 });

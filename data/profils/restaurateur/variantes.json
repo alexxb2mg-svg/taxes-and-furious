@@ -1,35 +1,161 @@
 {
+  "avis-s1": {
+    "texte": "Lundi, jour de fermeture. Entre deux cageots de poireaux, le livreur glisse une lettre recommandée : avis de vérification de comptabilité. Sur le feu, le fond de veau se met à attacher.",
+    "choix": {
+      "avis-s1-a": {
+        "texte": "Éteindre le feu et lire l'avis en entier, petites lignes comprises.",
+        "reaction": "Années contrôlées, possibilité de vous faire assister d'un conseil : tout y est. C'est plus digeste que la notice de la chambre froide."
+      },
+      "avis-s1-b": {
+        "texte": "Le glisser sous la pile de menus de l'an dernier.",
+        "reaction": "La pile de menus glisse dans le bac à plonge. L'avis, lui, ressort parfaitement sec et se pose bien en évidence sur le passe-plat."
+      },
+      "avis-s1-c": {
+        "texte": "Le glisser dans la poche de votre veste de cuisine, sans en parler à votre comptable, pour ne pas lui couper l'appétit.",
+        "reaction": "La lettre fait trois machines avec la veste. Votre comptable l'apprendra des semaines plus tard, en recollant les morceaux, et soupirera longuement."
+      }
+    }
+  },
   "avis-s2": {
     "texte": "Mme Paulette Addition s'installe en salle, déplie sa serviette et commande le menu du jour : « Je vérifie aussi les tickets. Surtout les tickets. »",
     "choix": {
       "avis-s2-a": {
+        "texte": "Lui demander combien de temps elle compte rester à votre table.",
         "reaction": "« Bonne question. Pour une maison de votre taille, il y a une limite. Le dessert, lui, est en option. »"
       },
       "avis-s2-b": {
-        "texte": "Annoncer une fermeture exceptionnelle pour « inventaire des cuillères ».",
-        "reaction": "« Je repasserai. Le contrôle, lui, ne ferme jamais pour inventaire. »"
+        "texte": "Annoncer que vous partez dès demain pour une croisière gastronomique autour du monde.",
+        "reaction": "« Bon appétit à bord. Le contrôle, lui, ne prend pas de vacances, et il garde votre table. »"
+      },
+      "avis-s2-c": {
+        "texte": "Promettre le FEC « dans quelques mois, après la saison des terrasses ».",
+        "reaction": "« Après les terrasses ? Le délai, lui, attendra sagement au chaud que le fichier arrive. »"
+      }
+    }
+  },
+  "avis-s3": {
+    "texte": "Votre comptable, venu déjeuner pour l'occasion, relit l'avis entre l'entrée et le plat : « Ils regardent quelles années, déjà ? »",
+    "choix": {
+      "avis-s3-a": {
+        "reaction": "« Parfait, je sors les bons classeurs. Pas ceux de la cave, rangés entre les bocaux de cornichons. »"
+      },
+      "avis-s3-b": {
+        "texte": "« Tout depuis l'ouverture, par sécurité. Même le cahier de recettes de 1998. »",
+        "reaction": "Votre comptable disparaît sous une avalanche de cartons qui sentent l'oignon. On entend un faible « au secours » entre deux cagettes."
+      },
+      "avis-s3-c": {
+        "texte": "« Seulement l'an dernier. Avant, c'était l'ancienne carte. »",
+        "reaction": "Votre comptable apporte un seul classeur, très fin. Mme Addition en réclame deux autres, très épais, et redemande du pain."
+      }
+    }
+  },
+  "avis-s4": {
+    "texte": "Mme Addition repose sa fourchette : « Avant de commencer : vous avez reçu la charte du contribuable vérifié, et vous pouvez vous faire assister d'un conseil. Quelqu'un se joint à nous ? »",
+    "choix": {
+      "avis-s4-a": {
+        "reaction": "« Très bien. Nous fixerons les rendez-vous ensemble, en dehors du coup de feu de midi. » Votre comptable redresse sa cravate et repousse son assiette."
+      },
+      "avis-s4-b": {
+        "texte": "Plier la charte en toque de papier et la poser sur la tête du chef saucier.",
+        "reaction": "Le chef saucier garde la toque de papier toute la matinée, très digne. Mme Addition la lui reprend, la déplie, la lisse, et vous la rend."
+      },
+      "avis-s4-c": {
+        "reaction": "« Comme vous voudrez. » Votre comptable, vexé, termine son café en silence et demande l'addition. La vraie, cette fois."
       }
     }
   },
   "fec-s1": {
-    "texte": "« Le FEC, s'il vous plaît. Pas les comptes griffonnés au dos des bons de commande. »",
+    "texte": "Mme Addition installe son ordinateur entre la salière et le moulin à poivre : « Le FEC, s'il vous plaît. Pas les comptes griffonnés au dos des bons de commande. »",
     "choix": {
+      "fec-s1-a": {
+        "reaction": "« Un fichier qui s'ouvre du premier coup. Comme un soufflé réussi : c'est rare, et ça se respecte. »"
+      },
       "fec-s1-b": {
         "texte": "Poser sur la table un bac à glaçons rempli de tickets froissés.",
         "reaction": "Mme Addition repêche un ticket de 2019, détrempé. Il est illisible. Elle note que c'est illisible."
+      },
+      "fec-s1-c": {
+        "texte": "Lui imprimer le grand livre en 900 pages : « c'est pareil, en plus joli, et ça calera la table 12 ».",
+        "reaction": "Mme Addition feuillette. Et feuillette. Et feuillette encore. La table 12 ne boite plus ; le contrôle, si."
+      }
+    }
+  },
+  "fec-s2": {
+    "texte": "En relisant vos comptes au comptoir après le service, vous tombez sur une erreur : la livraison de beurre de mars, passée deux fois en charges. Une vraie erreur, avec des chiffres dedans.",
+    "choix": {
+      "fec-s2-a": {
+        "reaction": "Mme Addition hoche la tête : « Voilà qui simplifie les choses. Et qui évite de faire réchauffer le dossier. »"
+      },
+      "fec-s2-b": {
+        "texte": "Croiser les doigts, et les cuillères, pour qu'elle ne la voie pas.",
+        "reaction": "Elle la voit. Elle l'entoure. En rouge. Deux fois. Puis elle souligne le mot « beurre »."
+      },
+      "fec-s2-c": {
+        "reaction": "Mme Addition compare deux versions du même fichier, comme on compare deux sauces. L'une des deux a tourné."
       }
     }
   },
   "fec-s3": {
-    "texte": "Mme Addition s'arrête sur une série d'écritures étranges. Le silence devient épais comme une sauce trop réduite."
+    "texte": "Mme Addition s'arrête sur une série d'écritures étranges. Le silence devient épais comme une sauce trop réduite.",
+    "choix": {
+      "fec-s3-a": {
+        "texte": "Sortir les factures du primeur, du boucher et du fromager, et expliquer pièce par pièce.",
+        "reaction": "Les factures défilent, ticket de pesée compris. Le silence redevient fluide, comme une sauce qu'on détend d'un trait de bouillon."
+      },
+      "fec-s3-b": {
+        "texte": "Inventer un fournisseur de truffes au nom très convaincant.",
+        "reaction": "« Et ce fournisseur de truffes, il a une adresse ? Un téléphone ? Un chien truffier, au moins ? »"
+      },
+      "fec-s3-c": {
+        "texte": "« Ça ? C'est l'apprenti. Il est parti avec les factures. »",
+        "reaction": "« L'apprenti a bon dos. Et il a laissé une adresse, cet apprenti ? » Le chef saucier, qui n'a jamais eu d'apprenti, regarde ses chaussures."
+      }
+    }
+  },
+  "rectification-s1": {
+    "texte": "Quelques semaines plus tard, entre deux services, une enveloppe épaisse arrive : la proposition de rectification. Elle est plus longue que la carte des desserts.",
+    "choix": {
+      "rectification-s1-a": {
+        "reaction": "Chaque rehaussement est expliqué, plat par plat. Vous savez au moins à quoi répondre."
+      },
+      "rectification-s1-b": {
+        "reaction": "Accordé. Votre comptable respire à nouveau et dénoue sa serviette."
+      },
+      "rectification-s1-c": {
+        "texte": "S'en servir pour caler le pied de la table 12.",
+        "reaction": "La table 12 ne boite plus. Le délai, lui, continue de courir, et pas en cuisine."
+      },
+      "rectification-s1-d": {
+        "reaction": "Votre banquière vous appelle en plein coup de feu, inquiète. Votre comptable n'a même pas eu le temps de lire la première page."
+      }
+    }
+  },
+  "rectification-s2": {
+    "texte": "Mme Addition revient, commande le menu du jour, puis pose sa serviette : « J'ai lu vos observations. Je maintiens une partie des rectifications. »",
+    "choix": {
+      "rectification-s2-a": {
+        "reaction": "« C'est votre droit. Je transmets. » Elle termine son dessert, sans se presser."
+      },
+      "rectification-s2-b": {
+        "texte": "Répondre par un poème de douze pages sur l'injustice faite aux sauciers.",
+        "reaction": "« Les rimes sont jolies, la sauce aussi. Les arguments, introuvables. »"
+      },
+      "rectification-s2-c": {
+        "reaction": "« Très bien, je note votre accord. » Votre comptable, lui, note au dos du menu les points que vous auriez pu gagner."
+      }
+    }
   },
   "rectification-s3": {
+    "texte": "Votre comptable repousse sa tasse vide : « Bon. Reste la question qui fâche : on paie quand ? »",
     "choix": {
       "rectification-s3-a": {
         "reaction": "Le chef saucier lève sa louche en signe de victoire. Votre comptable, lui, commande enfin un café."
       },
       "rectification-s3-b": {
         "reaction": "Votre comptable vous regarde comme un soufflé qui retombe en plein service."
+      },
+      "rectification-s3-c": {
+        "reaction": "Votre comptable fait le calcul sur un coin de nappe et pâlit doucement. La nappe, elle, est bonne pour la blanchisserie."
       }
     }
   }
