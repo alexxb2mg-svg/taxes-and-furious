@@ -371,6 +371,37 @@ function ecranFin() {
   focaliser($('#fin-titre'));
 }
 
+// ------------------------------------------------------------------ retour à l'accueil (EX-130)
+
+/** Accueil pendant une partie : confirmation dans un <dialog> modal natif (focus dans la boîte, Échap = annuler). */
+function demanderAccueil() {
+  const boite = $('#confirmer-accueil');
+  if (!boite.open) boite.showModal();
+}
+
+/** « Quitter » : écran titre ; la partie en cours est abandonnée, le meilleur score n'est pas touché. */
+function quitterPartie() {
+  $('#confirmer-accueil').close('quitter');
+}
+
+/** « Continuer la partie » : referme la boîte sans rien changer. */
+function continuerPartie() {
+  $('#confirmer-accueil').close('continuer');
+}
+
+/** Fermeture de la boîte (boutons ou Échap) : titre si « Quitter », sinon retour au bouton Accueil. */
+function boiteFermee() {
+  const boite = $('#confirmer-accueil');
+  const choix = boite.returnValue;
+  boite.returnValue = '';
+  if (choix === 'quitter') {
+    app.etat = null;
+    ecranTitre();
+  } else {
+    focaliser($('#bouton-accueil'));
+  }
+}
+
 // ------------------------------------------------------------------ démarrage
 
 function remplirTextesCommuns() {
@@ -386,6 +417,11 @@ async function demarrer() {
   $('#bouton-suivant').addEventListener('click', suivant);
   $('#bouton-rejouer').addEventListener('click', () => commencer(app.courant.id));
   $('#bouton-changer').addEventListener('click', ecranChoix);
+  $('#bouton-accueil').addEventListener('click', demanderAccueil);
+  $('#bouton-accueil-fin').addEventListener('click', ecranTitre); // fin de partie : rien à perdre
+  $('#bouton-quitter').addEventListener('click', quitterPartie);
+  $('#bouton-continuer').addEventListener('click', continuerPartie);
+  $('#confirmer-accueil').addEventListener('close', boiteFermee);
   try {
     await charger();
   } catch (e) {

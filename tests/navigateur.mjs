@@ -334,6 +334,7 @@ export class Page {
       Tab: { key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 },
       Enter: { key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13, text: '\r' },
       Space: { key: ' ', code: 'Space', windowsVirtualKeyCode: 32, text: ' ' },
+      Escape: { key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 },
       ArrowLeft: { key: 'ArrowLeft', code: 'ArrowLeft', windowsVirtualKeyCode: 37 },
       ArrowUp: { key: 'ArrowUp', code: 'ArrowUp', windowsVirtualKeyCode: 38 },
       ArrowRight: { key: 'ArrowRight', code: 'ArrowRight', windowsVirtualKeyCode: 39 },
