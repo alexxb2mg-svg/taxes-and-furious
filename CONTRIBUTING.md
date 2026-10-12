@@ -88,6 +88,21 @@ python outils/preparer-images.py verifier
 
 Pour le détourage, le portrait source doit avoir un fond blanc uni qui touche les coins ; `--tolerance` (24 par défaut) règle l'écart au blanc pur accepté pour le fond, `--marge` la marge transparente autour du personnage. Regardez toujours le résultat sur un fond coloré avant de le garder : une image hors charte est rejetée, pas retouchée à la main. `node outils/valider.mjs` refait les mêmes contrôles de poids et de dimensions (un `.webp` d'un dossier `img/` est une illustration en pied s'il se termine par `-situation.webp`, un portrait sinon).
 
+### Personnages illustrés à l'écran
+
+Un personnage déclare son illustration en pied avec le champ `illustration`, à côté de `portrait` (chemin relatif au dossier du fichier qui le déclare) :
+
+```json
+{ "id": "rose", "role": "joueur", "nom": "Rose", "description": "Une ligne de présentation.",
+  "portrait": "img/rose.webp", "illustration": "img/rose-situation.webp" }
+```
+
+L'interface s'en sert à trois endroits : la carte du profil à l'écran de choix montre l'illustration du personnage `joueur` du profil ; la première réplique d'un personnage illustré dans une partie est précédée d'une fiche de présentation (illustration, portrait, nom et `description`), fermée par « Suivant » ou Échap ; l'écran de fin montre l'illustration du vérificateur du profil. Sans illustration (champ absent ou image introuvable), l'interface ne montre que le portrait, comme avant.
+
+Le contrôleur fiscal emblématique de l'écran titre est le personnage de rôle `embleme` de `data/communs/personnages.json` (portrait et illustration en pied) ; il n'apparaît dans aucune scène, et ce rôle est refusé dans un profil.
+
+`node outils/valider.mjs --exigences-lot5` (combinable avec `--profil <id>` et `--exigences-lot4`) exige en plus, pour chaque profil vérifié, exactement un personnage `joueur` propre au profil, et le contrôleur emblématique, chacun avec un portrait `.webp` et une illustration.
+
 ## Ajouter un profil
 
 Un profil est un dossier de données sous `data/profils/<id>/` : aucune modification de `js/`, `css/` ni `index.html`. Le guide pas à pas, avec un exemple complet : [docs/CREER_UN_PROFIL.md](docs/CREER_UN_PROFIL.md).
