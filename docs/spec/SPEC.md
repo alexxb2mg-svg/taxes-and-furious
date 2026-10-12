@@ -308,7 +308,7 @@ Hors perimetre lot 4 : nouveaux profils, nouveaux mini-jeux, son.
 
 ## 9. Lot 5 - identite graphique illustree (demande du porteur, 12/10/2026)
 
-But : donner au jeu une identite visuelle forte et coherente : un decor illustre par lieu (bureau du verificateur, restaurant, villa d'influenceuse...) et des personnages illustres, generes par IA (Gemini) puis selectionnes et integres a la main. Les portraits SVG actuels restent comme solution de repli.
+But : donner au jeu une identite visuelle forte et coherente : un decor illustre par lieu (bureau du verificateur, restaurant, villa d'influenceuse...) et des personnages illustres, generes par IA (Gemini) puis selectionnes et integres a la main. Les portraits SVG actuels, juges trop generiques, sont remplaces et ne restent qu'en repli.
 
 ### 9.1 Direction artistique (fait foi pour toute image)
 
@@ -332,7 +332,8 @@ But : donner au jeu une identite visuelle forte et coherente : un decor illustre
 | Consultant : open space de start-up (baby-foot, post-it) ; parking avec voiture de sport | idem | `data/profils/consultant/decors/*.webp` |
 | Coiffeuse : salon de quartier ; arriere-boutique (stock de shampoings) | idem | `data/profils/coiffeuse/decors/*.webp` |
 | Galeriste : galerie aux murs blancs et cadres vides ; maison de campagne | idem | `data/profils/galeriste/decors/*.webp` |
-| Personnages nommes de chaque profil + personnages generiques | portraits | `data/profils/<id>/img/<perso>.webp`, `data/communs/img/*.webp` |
+| Personnages nommes de chaque profil (dont le `joueur` du profil) + generiques | portrait facon photo d'identite judiciaire (EX-152) et illustration en situation (EX-156) | `data/profils/<id>/img/<perso>.webp` et `<perso>-situation.webp`, `data/communs/img/*.webp` |
+| Controleur fiscal emblematique | portrait + illustration en pied heroique (EX-157) | `data/communs/img/embleme.webp`, `embleme-situation.webp` |
 
 ### 9.3 Exigences
 
@@ -342,10 +343,16 @@ But : donner au jeu une identite visuelle forte et coherente : un decor illustre
 **EX-151 - Affichage lisible.** Le decor occupe le fond de l'ecran de partie (`object-fit: cover`, decoratif : `alt=""` et `aria-hidden`), le texte et les choix restent sur un panneau opaque ; contraste texte/panneau >= 4,5:1 calcule sur la couleur du panneau. Changement de decor en fondu <= 300 ms, coupe sous `prefers-reduced-motion`. Chargement : decor suivant prechargé, `decoding="async"`. Aucune image en ligne (`data:`) ni style en ligne (CSP inchangee).
 *Verification* : test d'interface en 1280x800 et 375x740 : decor attendu pour une scene de chaque cas d'EX-150, panneau lisible (contraste calcule), 0 erreur CSP, 0 requete externe ; captures jointes.
 
-**EX-152 - Portraits illustres.** Un personnage peut declarer `portrait` en `.webp` (ou `.svg`, repli). Format : carre 512 px, fond transparent (detourage depuis le fond blanc), le personnage centre. Si l'image manque ou echoue au chargement, l'interface affiche le portrait SVG s'il existe, sinon les initiales dans un disque. `role="img"` et `aria-label` = nom, inchanges.
-*Verification* : validateur (presence, taille carree 512) ; test d'interface du repli (image 404 simulee -> SVG affiche, 0 erreur non interceptee).
+**EX-152 - Portraits illustres facon photo d'identite judiciaire.** Chaque personnage nomme a un portrait `mugshot` : buste de face, regard camera, expression typique du personnage, devant une toise graduee (traits sans chiffres lisibles), tenant ou non une ardoise vierge, eclairage frontal, toujours dans le style BD de 9.1 (pas de photo realiste). Format carre 512 px, fond conserve (la toise fait partie de l'image), <= 80 Ko. Champ `portrait` du personnage (`.webp`) ; repli : `.svg` existant, puis initiales dans un disque. `role="img"` et `aria-label` = nom, inchanges.
+*Verification* : validateur (presence, carre 512) ; test d'interface du repli (image 404 simulee -> SVG affiche, 0 erreur non interceptee) ; relecture REVIEWER sur planche (meme cadrage et meme toise pour tous).
 
-**EX-153 - Poids.** Decor <= 250 Ko (largeur 1280 a 1600 px), portrait <= 80 Ko, total `data/**/*.webp` <= 6 Mo ; la page d'accueil ne charge que la couverture et les portraits de l'ecran de choix (< 1,2 Mo transferes).
+**EX-156 - Personnages en situation.** Chaque personnage nomme a aussi une illustration en pied, en situation dans son univers (le restaurateur derriere son comptoir, l'influenceuse au bord de la piscine, le verificateur avec ses dossiers...), meme personnage que son portrait (portrait joint en reference a la generation). Format vertical 3:4, 768x1024, <= 150 Ko, champ `illustration` du personnage. Usage : (a) carte de profil de l'ecran de choix = illustration du personnage `joueur` du profil ; (b) premiere apparition d'un personnage dans une partie = fiche de presentation (illustration + portrait + nom + une ligne de description) avant sa replique, fermee par "Suivant" ou Echap ; (c) ecran de fin = illustration du verificateur du profil. Absente = l'interface ne montre que le portrait.
+*Verification* : tests d'interface des trois usages et du cas absent ; 375x740 sans defilement horizontal ; clavier.
+
+**EX-157 - Le joueur et le controleur emblematique.** Chaque profil declare un personnage de role `joueur` propre (le gerant caricatural du metier : le restaurateur, la coiffeuse, le galeriste... ; l'influenceuse est deja @CindyFiltre), avec portrait et illustration ; le personnage generique "Vous" reste le repli. Le jeu a un controleur fiscal emblematique, figure de la couverture et de l'ecran titre (`data/communs/personnages.json`, role `embleme`, portrait + illustration en pied heroique facon affiche de film d'action) ; il n'apparait pas dans les scenes (chaque profil garde son verificateur).
+*Verification* : validateur : un `joueur` par profil de l'index (option `--exigences-lot5`), personnage `embleme` present avec ses deux images ; test d'interface : ecran titre montre l'embleme.
+
+**EX-153 - Poids.** Decor <= 250 Ko (largeur 1024 a 1600 px), portrait <= 80 Ko, illustration en pied <= 150 Ko, total `data/**/*.webp` <= 12 Mo ; la page d'accueil ne charge que la couverture, l'embleme et les illustrations de l'ecran de choix (< 2 Mo transferes) ; les images d'une partie sont chargees a la demande.
 *Verification* : test qui mesure les fichiers ; test d'interface qui somme les octets transferes a l'ecran de choix.
 
 **EX-154 - Provenance et licence.** Les images generees sont sous la licence du contenu (CC BY 4.0) ; `LICENSE-CONTENU.md` et le README indiquent "illustrations generees avec l'aide de Gemini (Google), puis selectionnees et retouchees" ; `docs/art/PROMPTS.md` liste, pour chaque fichier, le prompt exact utilise (preambule compris) et la date. Pas de filigrane visible tiers dans les images publiees.
