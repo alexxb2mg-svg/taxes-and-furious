@@ -56,7 +56,7 @@
                 "stress": -5
               },
               "reaction": "M. Poney admire la toile une seconde de trop. « Belle frappe. » Il note ensuite : exposée au public.",
-              "explication": "Ce que dit vraiment la loi : une entreprise qui achète une œuvre originale d'artiste vivant et l'inscrit à l'actif peut déduire son prix par fractions égales sur l'exercice d'acquisition et les quatre suivants, dans une limite plafonnée, à condition de l'exposer dans un lieu accessible au public ou aux salariés, à l'exception de leurs bureaux, pendant toute cette période.",
+              "explication": "Une salle ouverte à tous les visiteurs, c'est précisément le lieu qu'il faut pour déduire le prix de l'œuvre petit à petit.",
               "references": [
                 "R-238BAB"
               ],
@@ -72,7 +72,7 @@
                 "stress": 10
               },
               "reaction": "M. Poney siffle, comme un arbitre. « Votre chambre, si charmante soit-elle, n'est pas un lieu accessible au public. Carton jaune. »",
-              "explication": "Ce que dit vraiment la loi : la déduction du prix d'une œuvre originale d'artiste vivant suppose de l'exposer dans un lieu accessible au public ou aux salariés, à l'exception de leurs bureaux, pendant l'exercice d'acquisition et les quatre suivants.",
+              "explication": "Une chambre, même « sur rendez-vous », n'est pas un lieu ouvert au public : la déduction tombe.",
               "references": [
                 "R-238BAB"
               ],
@@ -95,7 +95,7 @@
                 "stress": -5
               },
               "reaction": "Les tableaux reprennent leur place. M. Poney les compte d'un coup d'œil, comme les joueurs d'un mur sur coup franc.",
-              "explication": "Ce que dit vraiment la loi : la déduction du prix d'une œuvre originale d'artiste vivant suppose de l'exposer dans un lieu accessible au public ou aux salariés pendant toute la période de déduction.",
+              "explication": "Tout aux murs et l'inventaire sur la table : chaque œuvre déduite reste visible, la condition est remplie.",
               "references": [
                 "R-238BAB"
               ],
@@ -111,7 +111,7 @@
                 "stress": 15
               },
               "reaction": "M. Poney montre du doigt les rectangles plus clairs sur le papier peint. « Il y avait des tableaux. Je les vois d'ici, à trente mètres. »",
-              "explication": "Ce que dit vraiment la loi : la majoration est de 40 % en cas de manquement délibéré et de 80 % en cas de manœuvres frauduleuses.",
+              "explication": "Nier ce que l'inventaire montre, c'est transformer un oubli en dissimulation délibérée (40 % de majoration), et en manœuvre frauduleuse (80 %) si l'on maquille les comptes pour faire disparaître les œuvres.",
               "references": [
                 "R-1729"
               ],
@@ -140,7 +140,7 @@
                 "stress": -5
               },
               "reaction": "M. Poney hoche la tête. « Bon réflexe. On évite les prolongations. »",
-              "explication": "Ce que dit vraiment la loi : les charges des résidences de plaisance sont exclues des charges déductibles, comme celles de la chasse et de la pêche non professionnelle.",
+              "explication": "Les charges des résidences de plaisance sont exclues des charges déductibles, comme celles de la chasse et de la pêche non professionnelle.",
               "references": [
                 "R-39-4"
               ],
@@ -156,7 +156,7 @@
                 "stress": 15
               },
               "reaction": "M. Poney examine la photo de la piscine, puis celle du barbecue. « Et le barbecue, c'est “Le Rouge” ? »",
-              "explication": "Ce que dit vraiment la loi : les charges des résidences de plaisance sont exclues des charges déductibles ; en cas de manquement délibéré, les droits sont majorés de 40 %.",
+              "explication": "Les charges des résidences de plaisance sont exclues des charges déductibles ; en cas de manquement délibéré, les droits sont majorés de 40 %.",
               "references": [
                 "R-39-4",
                 "R-1729"
@@ -180,7 +180,7 @@
                 "stress": -5
               },
               "reaction": "Le cabriolet perd son statut d'œuvre d'art. Il garde sa couleur, c'est déjà ça.",
-              "explication": "Ce que dit vraiment la loi : l'amortissement d'un véhicule de tourisme n'est déductible que dans la limite d'un plafond de prix : 18 300 € en règle générale, 30 000 € ou 20 300 € pour les véhicules peu émetteurs, 9 900 € pour les plus émetteurs.",
+              "explication": "Bon reclassement : le cabriolet n'est amorti en déduction que sur 18 300 € de son prix, en règle générale. Le surplus reste à votre charge.",
               "references": [
                 "R-39-4"
               ],
@@ -196,7 +196,7 @@
                 "stress": 10
               },
               "reaction": "M. Poney fait le tour du cabriolet. Il trouve une plaque d'immatriculation, mais aucune signature d'artiste.",
-              "explication": "Ce que dit vraiment la loi : l'amortissement d'un véhicule de tourisme n'est déductible que dans la limite d'un plafond de prix : 18 300 € en règle générale, et seulement 9 900 € pour les véhicules les plus émetteurs.",
+              "explication": "Une sculpture qui roule reste une voiture : l'amortissement déduit s'arrête au plafond, 18 300 € en règle générale, voire 9 900 € si elle pollue beaucoup.",
               "references": [
                 "R-39-4"
               ],

@@ -32,6 +32,13 @@ test('data/ : les 6 profils initiaux sont dans l\'index, dans l\'ordre de la spe
   assert.deepEqual(IDS.filter((id) => INITIAUX.includes(id)), INITIAUX);
 });
 
+test('EX-142 : chaque choix du tronc est joue par au moins une suite de tests/suites-fins.mjs (donc dans le navigateur)', () => {
+  const joues = new Set(Object.values(SUITES_FINS).flatMap((fins) => Object.values(fins).flat()));
+  const tronc = lireJson(DONNEES, 'tronc.json');
+  const absents = tronc.chapitres.flatMap((c) => c.scenes).flatMap((s) => (s.choix ?? []).map((c) => c.id)).filter((id) => !joues.has(id));
+  assert.deepEqual(absents, []);
+});
+
 test('data/ : validateur vert sur tout data/ (couverture comprise)', () => {
   const r = valider({ racine: DONNEES });
   assert.deepEqual(r.erreurs, []);

@@ -71,7 +71,7 @@
                 "stress": -10
               },
               "reaction": "« Un tableau ! Avec des colonnes ! » M. Story semble sincèrement ému.",
-              "explication": "Ce que dit vraiment la loi : relèvent des bénéfices non commerciaux les bénéfices des professions libérales et de toutes occupations, exploitations lucratives et sources de profits ne se rattachant pas à une autre catégorie de revenus.",
+              "explication": "Un partenariat payé rapporte un profit comme une autre activité : ces sommes s'ajoutent à vos revenus imposables. Le tableau en main, votre comptable peut tout déclarer.",
               "references": [
                 "R-92"
               ],
@@ -87,7 +87,7 @@
                 "stress": 10
               },
               "reaction": "M. Story ouvre une publication où vous annoncez « un partenariat très rémunérateur ». Il la pose entre vous, sans un mot.",
-              "explication": "Ce que dit vraiment la loi : relèvent des bénéfices non commerciaux les bénéfices des professions libérales et de toutes occupations, exploitations lucratives et sources de profits ne se rattachant pas à une autre catégorie de revenus.",
+              "explication": "L'amour de la communauté n'est pas une case de la déclaration : un partenariat rémunéré rapporte un profit, imposé en bénéfices non commerciaux.",
               "references": [
                 "R-92"
               ],
@@ -110,7 +110,7 @@
                 "stress": -5
               },
               "reaction": "Le chihuahua descend de la pile avec dignité. Il garde quand même un coussin.",
-              "explication": "Ce que dit vraiment la loi : en cas de manquement délibéré, les droits sont majorés de 40 % ; la majoration est de 80 % en cas de manœuvres frauduleuses.",
+              "explication": "Tout montrer d'emblée, c'est le meilleur moyen d'éviter qu'on parle de manquement délibéré, et de sa majoration de 40 %.",
               "references": [
                 "R-1729"
               ],
@@ -126,7 +126,7 @@
                 "stress": 15
               },
               "reaction": "Un aboiement indigné sort du canapé. M. Story se penche : « Je compte sept colis et un chien. »",
-              "explication": "Ce que dit vraiment la loi : en cas de manquement délibéré, les droits sont majorés de 40 % ; la majoration est de 80 % en cas de manœuvres frauduleuses.",
+              "explication": "Des colis cachés sous le canapé, c'est l'image même du manquement délibéré : 40 % de majoration, et 80 % si l'on bascule dans la manœuvre.",
               "references": [
                 "R-1729"
               ],
@@ -149,7 +149,7 @@
                 "stress": -5
               },
               "reaction": "Le manager range son stylo, vexé. Le chihuahua, lui, semble soulagé.",
-              "explication": "Ce que dit vraiment la loi : la majoration est de 40 % en cas de manquement délibéré et de 80 % en cas de manœuvres frauduleuses.",
+              "explication": "Bien vu : fabriquer une preuve transformerait un oubli en manœuvre frauduleuse, majorée de 80 %.",
               "references": [
                 "R-1729"
               ],
@@ -165,7 +165,7 @@
                 "stress": 15
               },
               "reaction": "M. Story examine l'empreinte de patte au bas du contrat. « Elle est jolie. Elle est aussi postérieure à la date du contrat. »",
-              "explication": "Ce que dit vraiment la loi : la majoration est de 40 % en cas de manquement délibéré et de 80 % en cas de manœuvres frauduleuses.",
+              "explication": "Une signature de chihuahua sur un faux contrat, c'est une manœuvre frauduleuse : la majoration grimpe à 80 % des droits.",
               "references": [
                 "R-1729"
               ],
@@ -194,7 +194,7 @@
                 "stress": -10
               },
               "reaction": "M. Story range sa tablette. « Merci. Je n'avais vraiment pas envie de regarder deux ans de croissants. »",
-              "explication": "Ce que dit vraiment la loi : en impôt sur le revenu, l'administration peut rectifier jusqu'à la fin de la troisième année qui suit celle de l'imposition (3 ans) ; ce délai est porté à 10 ans, notamment en cas de fausse domiciliation fiscale à l'étranger.",
+              "explication": "Avec une fausse adresse à l'étranger, l'administration peut remonter jusqu'à 10 ans, au lieu de 3. Remettre les choses d'aplomb tout de suite limite les dégâts.",
               "references": [
                 "R-L169"
               ],
@@ -210,7 +210,7 @@
                 "stress": 20
               },
               "reaction": "M. Story met un cœur à la story. Puis il note l'heure, et la pluie qui ruisselle sur la vitre derrière le fond vert.",
-              "explication": "Ce que dit vraiment la loi : en impôt sur le revenu, le droit de rectifier court en principe jusqu'à la fin de la troisième année qui suit celle de l'imposition (3 ans), mais il est porté à 10 ans, notamment en cas de fausse domiciliation fiscale à l'étranger.",
+              "explication": "Un fond vert ne fait pas une résidence : en cas de fausse domiciliation à l'étranger, le fisc peut remonter 10 ans en arrière, pas seulement 3.",
               "references": [
                 "R-L169"
               ],
@@ -233,7 +233,7 @@
                 "stress": -10
               },
               "reaction": "Le silence soudain surprend tout le monde, le chihuahua le premier.",
-              "explication": "Ce que dit vraiment la loi : les majorations visent le manquement délibéré (40 %) et les manœuvres frauduleuses (80 %).",
+              "explication": "Répondre franchement, c'est éviter de glisser du simple oubli au manquement délibéré, majoré de 40 %.",
               "references": [
                 "R-1729"
               ],
@@ -249,7 +249,7 @@
                 "stress": 10
               },
               "reaction": "« Plus tard » l'emporte. M. Story, qui a voté, ne semble pas d'accord avec le résultat.",
-              "explication": "Ce que dit vraiment la loi : en cas de manquement délibéré, les droits sont majorés de 40 % ; la majoration est de 80 % en cas de manœuvres frauduleuses.",
+              "explication": "Votre communauté ne votera pas à la place du contrôleur, et le sondage ne change rien au fond : s'il établit que vous avez caché vos revenus en connaissance de cause, c'est 40 % de majoration, 80 % en cas de manœuvres.",
               "references": [
                 "R-1729"
               ],

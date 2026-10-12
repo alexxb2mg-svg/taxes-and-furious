@@ -1,17 +1,19 @@
 // Suites de choix explicites qui atteignent chaque fin de chaque profil de data/ (C2).
 // Reutilisables par les tests d'interface (C4). Generees par exploration exhaustive, puis figees ici.
 // Un nombre est le resultat d'un mini-jeu (EX-110) : pour le tri (EX-112), le nombre de pieces bien rangees.
+// Chaque choix ajoute au tronc (3 ou 4 choix par scene, EX-142) figure dans au moins une suite :
+// il est donc joue dans le navigateur, encadre de la loi compris.
 export const SUITES_FINS = {
   restaurateur: {
-    'restaurateur-fin-etoile': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'caisse-s1-a', 'caisse-s2-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'carte-s1-a', 'carte-s2-a', 'rectification-s1-a', 'rectification-s2-a', 'rectification-s3-a'],
-    'restaurateur-fin-addition': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'caisse-s1-c', 'caisse-s2-b', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'carte-s1-b', 'carte-s2-a', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
-    'fin-sereine': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'caisse-s1-a', 'caisse-s2-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'carte-s1-a', 'carte-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
+    'restaurateur-fin-etoile': ['avis-s1-a', 'avis-s2-a', 'avis-s3-a', 'avis-s4-a', 'caisse-s1-a', 'caisse-s2-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'carte-s1-a', 'carte-s2-a', 'rectification-s1-a', 'rectification-s2-a', 'rectification-s3-a'],
+    'restaurateur-fin-addition': ['avis-s1-c', 'avis-s2-b', 'avis-s3-c', 'avis-s4-c', 'caisse-s1-c', 'caisse-s2-b', 'fec-s1-a', 'fec-s2-c', 'fec-s3-a', 'carte-s1-a', 'carte-s2-a', 'rectification-s1-d', 'rectification-s2-c', 'rectification-s3-c'],
+    'fin-sereine': ['avis-s1-a', 'avis-s2-c', 'avis-s3-b', 'avis-s4-b', 'caisse-s1-a', 'caisse-s2-a', 'fec-s1-c', 'fec-s2-a', 'fec-s3-a', 'carte-s1-a', 'carte-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
     'fin-defaut': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'caisse-s1-c', 'caisse-s2-b', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'carte-s1-b', 'carte-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-b'],
     'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'caisse-s1-c', 'caisse-s2-b', 'fec-s1-b'],
   },
   influenceuse: {
     'influenceuse-fin-sans-filtre': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-a', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'residence-s1-a', 'residence-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
-    'influenceuse-fin-deconnexion': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-b', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'residence-s1-b', 'residence-s2-a', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
+    'influenceuse-fin-deconnexion': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-b', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-c', 'residence-s1-b', 'residence-s2-a', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
     'fin-sereine': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-a', 'partenariats-s2-b', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'residence-s1-a', 'residence-s2-a', 'rectification-s1-b', 'rectification-s2-b', 'rectification-s3-a'],
     'fin-defaut': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-b', 'partenariats-s3-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'residence-s1-a', 'residence-s2-b', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
     'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'partenariats-s1-b', 'partenariats-s2-b', 'partenariats-s3-b'],

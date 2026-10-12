@@ -33,7 +33,7 @@
               "juste": true,
               "effets": { "redressement": 0, "patience": 5, "stress": -5 },
               "reaction": "A remplacer : réaction du personnage.",
-              "explication": "A remplacer : Ce que dit vraiment la loi, avec les identifiants de references.json dans \"references\".",
+              "explication": "A remplacer : ce qui s'applique au cas joué, avec les identifiants de references.json dans \"references\".",
               "references": [],
               "suivant": "modele-s2"
             },
@@ -43,7 +43,7 @@
               "juste": false,
               "effets": { "redressement": 1000, "patience": -10, "stress": 10 },
               "reaction": "A remplacer : réaction du personnage.",
-              "explication": "A remplacer : Ce que dit vraiment la loi.",
+              "explication": "A remplacer : ce qui s'applique au cas joué.",
               "references": [],
               "suivant": "modele-s2"
             }
@@ -60,7 +60,7 @@
               "juste": true,
               "effets": { "redressement": 0, "patience": 5, "stress": -5 },
               "reaction": "A remplacer : réaction.",
-              "explication": "A remplacer : Ce que dit vraiment la loi.",
+              "explication": "A remplacer : ce qui s'applique au cas joué.",
               "references": [],
               "suivant": null
             },
@@ -70,7 +70,7 @@
               "juste": false,
               "effets": { "redressement": 1000, "patience": -10, "stress": 10 },
               "reaction": "A remplacer : réaction.",
-              "explication": "A remplacer : Ce que dit vraiment la loi.",
+              "explication": "A remplacer : ce qui s'applique au cas joué.",
               "references": [],
               "suivant": null
             }
