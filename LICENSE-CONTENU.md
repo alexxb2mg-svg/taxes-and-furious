@@ -7,6 +7,7 @@ Texte officiel de la licence : https://creativecommons.org/licenses/by/4.0/legal
 ## Ce qui est couvert
 
 - Tout le dossier `data/` : scénario du tronc commun (`data/tronc.json`), profils (`data/profils/`), personnages génériques (`data/communs/`), textes des scènes, choix, réactions, explications et fins, et les portraits SVG (`data/**/img/*.svg`).
+- Les illustrations WebP (`data/**/decors/*.webp`, `data/**/img/*.webp`) : illustrations générées avec l'aide de Gemini (Google), puis sélectionnées et retouchées. Le prompt de chaque image et sa date sont listés dans [docs/art/PROMPTS.md](docs/art/PROMPTS.md).
 - Les captures d'écran de `docs/captures/`.
 
 Les textes officiels cités par `data/references.json` (articles du code général des impôts, du livre des procédures fiscales, du code du travail) ne sont pas couverts par cette licence : ce sont des textes officiels, que personne ne peut s'approprier. Seuls la sélection et les résumés rédigés pour le jeu en font partie.
