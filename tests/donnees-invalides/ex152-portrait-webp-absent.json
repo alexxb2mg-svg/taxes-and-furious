@@ -1,0 +1,6 @@
+{
+  "regle": "portrait illustre present sur disque (EX-152)",
+  "couverture": false,
+  "modifs": [{ "fichier": "profils/demo-fleuriste/profil.json", "chemin": ["personnages", 0, "portrait"], "valeur": "img/absent.webp" }],
+  "attendu": ["personnage \"pistil\", champ \"portrait\" : fichier \"profils/demo-fleuriste/img/absent.webp\" introuvable"]
+}

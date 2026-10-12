@@ -1,0 +1,6 @@
+{
+  "regle": "un .webp est un vrai fichier WebP (EX-152)",
+  "couverture": false,
+  "modifs": [{ "fichier": "profils/demo-fleuriste/img/pistil.webp", "copier": "tests/donnees/art/portrait-essai.png" }],
+  "attendu": ["profils/demo-fleuriste/img/pistil.webp : contenu illisible : ce n'est pas un fichier WebP"]
+}

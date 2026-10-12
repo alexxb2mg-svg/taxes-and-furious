@@ -1,5 +1,5 @@
 // Aides partagees par les tests (pas un fichier de test).
-import { mkdtempSync, cpSync, readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs';
+import { mkdtempSync, cpSync, readFileSync, writeFileSync, existsSync, rmSync, mkdirSync, copyFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname, resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -15,15 +15,16 @@ export function lireJson(racine, rel) {
   return JSON.parse(readFileSync(join(racine, ...rel.split('/')), 'utf8'));
 }
 
-/** Charge et assemble un profil d'une racine de donnees. */
+/** Charge et assemble un profil d'une racine de donnees (communs/decors.json facultatif). */
 export function chargerScenario(racine, id) {
   const tronc = lireJson(racine, 'tronc.json');
   const communs = lireJson(racine, 'communs/personnages.json');
+  const decors = existsSync(join(racine, 'communs', 'decors.json')) ? lireJson(racine, 'communs/decors.json') : undefined;
   const profil = lireJson(racine, `profils/${id}/profil.json`);
   const variantes = existsSync(join(racine, 'profils', id, 'variantes.json'))
     ? lireJson(racine, `profils/${id}/variantes.json`)
     : {};
-  return { tronc, communs, profil, variantes, scenario: assembler(tronc, profil, variantes, communs) };
+  return { tronc, communs, decors, profil, variantes, scenario: assembler(tronc, profil, variantes, communs, decors) };
 }
 
 /** Copie un dossier de donnees dans un dossier temporaire ; renvoie { racine, nettoyer }. */
@@ -55,11 +56,22 @@ function atteindre(objet, chemin) {
  * Applique les modifications d'un temoin negatif (tests/donnees-invalides/*.json) a une racine.
  * Operations : { fichier, brut } remplace le fichier par un texte ; { fichier, valeur_fichier } par un JSON ;
  * { fichier, chemin, valeur } affecte ; { fichier, chemin, supprimer: true } supprime (element de tableau ou cle) ;
- * { fichier, chemin, repeter: n } ajoute n copies du dernier element du tableau (ids suffixes).
+ * { fichier, chemin, repeter: n } ajoute n copies du dernier element du tableau (ids suffixes) ;
+ * { fichier, copier: '<chemin relatif au depot>' } remplace le fichier par une copie (images d'essai) ;
+ * { fichier, effacer: true } supprime le fichier.
  */
 export function appliquerModifs(racine, modifs) {
   for (const m of modifs) {
     const chemin = join(racine, ...m.fichier.split('/'));
+    if (m.copier !== undefined) {
+      mkdirSync(dirname(chemin), { recursive: true });
+      copyFileSync(join(DEPOT, ...m.copier.split('/')), chemin);
+      continue;
+    }
+    if (m.effacer) {
+      rmSync(chemin);
+      continue;
+    }
     if (m.brut !== undefined) {
       writeFileSync(chemin, m.brut);
       continue;

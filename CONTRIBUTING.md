@@ -34,7 +34,52 @@ Si la référence change la date de vérification (`date_verification`) ou une �
 
 - Comique de situation et travers du métier. Pas de mépris envers l'administration, ses agents ou un groupe de personnes. Tous publics : pas de vulgarité, pas d'alcool mis en scène de façon complaisante, pas de politique.
 - Entreprises et personnages 100 % fictifs : aucune personne réelle, aucune entreprise réelle, aucun nom, adresse, numéro SIRET ou numéro de facture réel. Les clins d'œil à des films, livres ou types d'affaires sont bienvenus ; les noms de personnages de films et les répliques citées mot pour mot ne le sont pas.
-- Portraits : SVG dessinés dans le dépôt, formes simples, aucune image téléchargée, aucun visage d'une personne réelle.
+- Portraits : soit un SVG dessiné dans le dépôt (formes simples), soit une illustration WebP qui respecte la direction artistique (section 9.1 de `docs/spec/SPEC.md`) ; jamais une image téléchargée, jamais le visage d'une personne réelle. Un portrait WebP garde son SVG de même nom comme repli.
+
+## Illustrations : décors et portraits (`outils/preparer-images.py`)
+
+Les décors et portraits illustrés sont des fichiers WebP rangés dans les données :
+
+- un décor : `data/communs/decors/<nom>.webp` (tronc, écran titre) ou `data/profils/<id>/decors/<nom>.webp` (profil), 16:9, de 1280 à 1600 px de large, 250 Ko au plus ;
+- un portrait : `data/profils/<id>/img/<perso>.webp` ou `data/communs/img/<perso>.webp`, carré de 512 px, fond transparent, 80 Ko au plus ; à côté, le SVG de même nom sert de repli ;
+- au total, 6 Mo au plus pour tous les `data/**/*.webp`.
+
+Où le décor s'affiche (le validateur vérifie que le fichier existe, qu'il est en `.webp` et que le chapitre existe) :
+
+```json
+// data/communs/decors.json : décors par défaut des chapitres du tronc, et de l'écran titre
+{ "chapitres": { "avis": "decors/bureau-verificateur.webp" }, "titre": "decors/couverture.webp" }
+
+// data/profils/<id>/profil.json : décor d'un chapitre du profil ou du tronc, pour ce profil
+"decors": { "ouverture": "decors/salle.webp", "fec": "decors/cuisine.webp" }
+
+// une scène peut surcharger le décor de son chapitre (exception justifiée)
+{ "id": "...", "decor": "decors/cuisine.webp", ... }
+```
+
+Ordre : décor de la scène, puis du chapitre dans le profil, puis décor par défaut du tronc, puis aucun (fond uni). Les chemins sont relatifs au dossier du fichier qui les déclare (`data/communs/` pour le tronc, `data/profils/<id>/` pour un profil).
+
+Les images se préparent avec `outils/preparer-images.py`. C'est un outil local : il demande Python 3 et Pillow, qui n'est **pas** une dépendance du jeu (le jeu reste statique, sans dépendance). Installation vérifiée par empreintes, une fois :
+
+```bash
+python -m pip install --require-hashes -r outils/preparer-images.requirements.txt
+```
+
+Puis :
+
+```bash
+# Décor : recadrage 16:9 au centre, largeur 1280 à 1600 px (1600 par défaut), WebP sous 250 Ko
+python outils/preparer-images.py decor source.png data/profils/<id>/decors/salle.webp --largeur 1600
+
+# Portrait : détourage du fond blanc depuis les 4 coins (les blancs entourés par le personnage,
+# yeux ou col, restent opaques), personnage centré dans un carré transparent de 512 px, WebP sous 80 Ko
+python outils/preparer-images.py portrait fiche.png data/profils/<id>/img/<perso>.webp
+
+# Contrôle des poids et dimensions de tous les .webp de data/ (code 1 au moindre écart)
+python outils/preparer-images.py verifier
+```
+
+Le portrait source doit avoir un fond blanc uni qui touche les coins ; `--tolerance` (24 par défaut) règle l'écart au blanc pur accepté pour le fond, `--marge` la marge transparente autour du personnage. Regardez toujours le résultat sur un fond coloré avant de le garder : une image hors charte est rejetée, pas retouchée à la main. `node outils/valider.mjs` refait les mêmes contrôles de poids et de dimensions.
 
 ## Ajouter un profil
 

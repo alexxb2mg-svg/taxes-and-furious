@@ -1,0 +1,6 @@
+{
+  "regle": "portrait illustre carre 512 px (EX-152)",
+  "couverture": false,
+  "modifs": [{ "fichier": "profils/demo-fleuriste/img/pistil.webp", "copier": "tests/donnees/art/portrait-256.webp" }],
+  "attendu": ["profils/demo-fleuriste/img/pistil.webp : portrait de 256x256 px : carre 512x512 attendu (EX-152)"]
+}

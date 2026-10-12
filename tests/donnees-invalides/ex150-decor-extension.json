@@ -1,0 +1,9 @@
+{
+  "regle": "decor en .webp (EX-150)",
+  "couverture": false,
+  "modifs": [
+    { "fichier": "profils/demo-fleuriste/decors/boutique.png", "copier": "tests/donnees/art/decor-essai.png" },
+    { "fichier": "profils/demo-fleuriste/profil.json", "chemin": ["decors", "caisse"], "valeur": "decors/boutique.png" }
+  ],
+  "attendu": ["decor du chapitre \"caisse\", champ \"decors\" : \"decors/boutique.png\" : extension .webp attendue pour un decor"]
+}

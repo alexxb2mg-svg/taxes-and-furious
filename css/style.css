@@ -30,6 +30,41 @@ main {
 
 [hidden] { display: none !important; }
 
+/* ------------------------------------------------------------ décor illustré (EX-150, EX-151) */
+/* Fond de l'écran (object-fit: cover), décoratif. Le contenu reste sur un panneau opaque : le texte
+   ne se lit jamais directement sur l'image. Fondu de 250 ms, coupé sous prefers-reduced-motion. */
+
+.decor {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.decor-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
+}
+.decor-image.decor-visible { opacity: 1; }
+.decor-image:not([src]) { display: none; }
+
+body.avec-decor main {
+  margin: 32px auto;
+  background: #fffaf0;
+  border: 3px solid #2b2118;
+  border-radius: 14px;
+  box-shadow: 6px 6px 0 #2b2118;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .decor-image { transition: none; }
+}
+
 h1, h2, h3, h4 {
   font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", "Segoe Print", "Trebuchet MS", sans-serif;
   line-height: 1.2;
@@ -318,6 +353,19 @@ h1, h2, h3, h4 {
   box-shadow: 4px 4px 0 #2b2118;
 }
 .orateur-nom { margin-top: 8px; font-weight: 800; font-size: 0.95rem; }
+/* Repli d'un portrait introuvable (EX-152) : initiales dans un disque, aux dimensions du portrait. */
+.portrait-initiales {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50% !important;
+  background: #6b3d12 !important;
+  color: #fffaf0;
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: 0.04em;
+}
+.carte-portrait.portrait-initiales { font-size: 1.6rem; }
 .orateur-narrateur { display: none; }
 
 .bulle {
@@ -581,6 +629,7 @@ h1, h2, h3, h4 {
   .jauge-montant { font-size: 1.1rem; }
   .jauge-libelle { font-size: 0.66rem; letter-spacing: 0; overflow-wrap: anywhere; }
   .carte-portrait { width: 72px; height: 72px; }
+  body.avec-decor main { margin: 56px 6px 24px; border-radius: 10px; box-shadow: 3px 3px 0 #2b2118; }
   #bouton-suivant { justify-self: stretch; }
   .boite-boutons .bouton { flex: 1 1 100%; }
 }

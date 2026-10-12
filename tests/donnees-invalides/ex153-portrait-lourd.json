@@ -1,0 +1,6 @@
+{
+  "regle": "portrait <= 80 Ko (EX-153)",
+  "couverture": false,
+  "modifs": [{ "fichier": "profils/demo-fleuriste/img/pistil.webp", "copier": "tests/donnees/art/portrait-lourd.webp" }],
+  "attendu": ["profils/demo-fleuriste/img/pistil.webp : portrait de 126 Ko : plafond 80 Ko (EX-153)"]
+}

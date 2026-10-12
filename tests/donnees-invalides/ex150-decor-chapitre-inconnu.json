@@ -1,0 +1,6 @@
+{
+  "regle": "decor d un chapitre existant (EX-150)",
+  "couverture": false,
+  "modifs": [{ "fichier": "profils/demo-fleuriste/profil.json", "chemin": ["decors", "inventaire"], "valeur": "decors/boutique.webp" }],
+  "attendu": ["decor du chapitre \"inventaire\", champ \"decors\" : chapitre inconnu"]
+}

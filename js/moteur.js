@@ -41,17 +41,34 @@ export function borner(jauge, valeur) {
 }
 
 function personnageNarrateur() {
-  return { id: 'narrateur', role: 'narrateur', nom: null, description: null, portrait: null };
+  return { id: 'narrateur', role: 'narrateur', nom: null, description: null, portrait: null, repli: null };
+}
+
+/** Portrait SVG de repli d'un portrait illustre `.webp` : meme nom, extension `.svg` ; sinon null (EX-152). */
+export function portraitRepli(chemin) {
+  return typeof chemin === 'string' && /\.webp$/i.test(chemin) ? chemin.replace(/\.webp$/i, '.svg') : null;
 }
 
 function personnagePublic(p, dossier) {
+  const portrait = p.portrait ? `${dossier}/${p.portrait}` : null;
   return {
     id: p.id,
     role: p.role,
     nom: p.nom,
     description: p.description ?? null,
-    portrait: p.portrait ? `${dossier}/${p.portrait}` : null,
+    portrait,
+    repli: portraitRepli(portrait),
   };
+}
+
+/** Chemin d'un decor relatif a la racine des donnees, ou null (EX-150). */
+function cheminDecor(dossier, rel) {
+  return typeof rel === 'string' && rel !== '' ? `${dossier}/${rel}` : null;
+}
+
+/** Decor de l'ecran titre (EX-150) : `titre` de communs/decors.json, ou null. */
+export function decorTitre(decors) {
+  return cheminDecor('communs', decors?.titre);
 }
 
 /**
@@ -62,10 +79,14 @@ function personnagePublic(p, dossier) {
  * @param {object} [variantes] contenu de profils/<id>/variantes.json
  * @param {object} [communs] contenu de communs/personnages.json ({ personnages: [...] }) :
  *   personnages generiques des roles comptable et joueur non portes par le profil.
- * Les chemins de portrait renvoyes sont relatifs a la racine des donnees
- * (ex. "profils/<id>/img/<fichier>.svg", "communs/img/comptable.svg").
+ * @param {object} [decors] contenu de communs/decors.json : { "chapitres": { "<id tronc>": "decors/x.webp" }, "titre": ... }
+ * Les chemins de portrait et de decor renvoyes sont relatifs a la racine des donnees
+ * (ex. "profils/<id>/img/<fichier>.svg", "communs/img/comptable.svg", "communs/decors/archives.webp").
+ * Decor d'une scene (EX-150) : `decor` de la scene, sinon `decors["<id chapitre>"]` du profil, sinon le
+ * decor par defaut du tronc (communs/decors.json), sinon aucun (null). Le moteur transmet le chemin ;
+ * l'interface l'affiche.
  */
-export function assembler(tronc, profil, variantes = {}, communs = { personnages: [] }) {
+export function assembler(tronc, profil, variantes = {}, communs = { personnages: [] }, decors = { chapitres: {}, titre: null }) {
   if (!tronc || !Array.isArray(tronc.chapitres)) throw erreur('tronc sans tableau "chapitres"');
   if (!profil || typeof profil.id !== 'string') throw erreur('profil sans "id"');
   const dossierProfil = `profils/${profil.id}`;
@@ -88,12 +109,19 @@ export function assembler(tronc, profil, variantes = {}, communs = { personnages
       const g = generiques.find((p) => p.role === role);
       parRole[role] = g
         ? personnagePublic(g, 'communs')
-        : { id: role, role, nom: null, description: null, portrait: null };
+        : { id: role, role, nom: null, description: null, portrait: null, repli: null };
     } else {
       throw erreur(`profil "${profil.id}" : role "${role}" porte par aucun personnage`);
     }
   }
   const parId = Object.fromEntries(personnagesProfil.map((p) => [p.id, personnagePublic(p, dossierProfil)]));
+
+  // Decors (EX-150) : chapitre du profil, puis defaut du tronc (chapitres du tronc seulement).
+  const estObjet = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
+  const decorsProfil = estObjet(profil.decors) ? profil.decors : {};
+  const decorsTronc = estObjet(decors?.chapitres) ? decors.chapitres : {};
+  const decorChapitre = (id, duTronc) => cheminDecor(dossierProfil, decorsProfil[id])
+    ?? (duTronc ? cheminDecor('communs', decorsTronc[id]) : null);
 
   const chapitresTronc = new Map(tronc.chapitres.map((c) => [c.id, c]));
   const chapitresProfil = new Map((profil.chapitres ?? []).map((c) => [c.id, c]));
@@ -105,22 +133,26 @@ export function assembler(tronc, profil, variantes = {}, communs = { personnages
       const id = entree.slice(PREFIXE_TRONC.length);
       const ch = chapitresTronc.get(id);
       if (!ch) throw erreur(`profil "${profil.id}" : chapitre du tronc "${id}" introuvable`);
+      const decor = decorChapitre(id, true);
       return {
         id: entree,
         origine: 'tronc',
         titre: ch.titre,
-        scenes: ch.scenes.map((s) => sceneTronc(s, variantes?.[s.id], parRole)),
+        decor,
+        scenes: ch.scenes.map((s) => ({ ...sceneTronc(s, variantes?.[s.id], parRole), decor: cheminDecor('communs', s.decor) ?? decor })),
       };
     }
     if (typeof entree === 'string' && entree.startsWith(PREFIXE_PROFIL)) {
       const id = entree.slice(PREFIXE_PROFIL.length);
       const ch = chapitresProfil.get(id);
       if (!ch) throw erreur(`profil "${profil.id}" : chapitre du profil "${id}" introuvable`);
+      const decor = decorChapitre(id, false);
       return {
         id: entree,
         origine: 'profil',
         titre: ch.titre,
-        scenes: ch.scenes.map((s) => sceneProfil(s, parId, profil.id)),
+        decor,
+        scenes: ch.scenes.map((s) => ({ ...sceneProfil(s, parId, profil.id), decor: cheminDecor(dossierProfil, s.decor) ?? decor })),
       };
     }
     throw erreur(`profil "${profil.id}" : entree de parcours "${entree}" invalide (attendu "tronc:<id>" ou "profil:<id>")`);

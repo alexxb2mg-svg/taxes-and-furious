@@ -1,0 +1,6 @@
+{
+  "regle": "decors par defaut du tronc sur des chapitres du tronc (EX-150)",
+  "couverture": false,
+  "modifs": [{ "fichier": "communs/decors.json", "chemin": ["chapitres", "caisse"], "valeur": "decors/bureau.webp" }],
+  "attendu": ["communs/decors.json : chapitre \"caisse\", champ \"chapitres\" : chapitre inconnu du tronc"]
+}

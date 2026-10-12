@@ -1,0 +1,6 @@
+{
+  "regle": "decor de 1280 a 1600 px de large (EX-153)",
+  "couverture": false,
+  "modifs": [{ "fichier": "communs/decors/bureau.webp", "copier": "tests/donnees/art/decor-800.webp" }],
+  "attendu": ["communs/decors/bureau.webp : decor de 800 px de large : de 1280 a 1600 px (EX-153)"]
+}

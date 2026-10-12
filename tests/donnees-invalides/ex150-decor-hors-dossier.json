@@ -1,0 +1,6 @@
+{
+  "regle": "decor relatif au dossier du profil, sans remontee (EX-150)",
+  "couverture": false,
+  "modifs": [{ "fichier": "profils/demo-fleuriste/profil.json", "chemin": ["decors", "caisse"], "valeur": "../demo-glacier/decors/boutique.webp" }],
+  "attendu": ["decor du chapitre \"caisse\", champ \"decors\" : chemin \"../demo-glacier/decors/boutique.webp\" invalide"]
+}
