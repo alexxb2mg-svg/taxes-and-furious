@@ -40,10 +40,11 @@ export const SUITES_FINS = {
     'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'especes-s1-b', 'especes-s2-b', 'fec-s1-b'],
   },
   galeriste: {
-    'galeriste-fin-chef-oeuvre': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'oeuvres-s1-a', 'oeuvres-s2-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'campagne-s1-a', 'campagne-s2-a', 'rectification-s1-a', 'rectification-s2-a', 'rectification-s3-a'],
-    'galeriste-fin-vente-forcee': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'oeuvres-s1-b', 'oeuvres-s2-a', 'fec-s1-b', 'fec-s2-a', 'fec-s3-a', 'campagne-s1-b', 'campagne-s2-a', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
-    'fin-sereine': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'oeuvres-s1-a', 'oeuvres-s2-a', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'campagne-s1-a', 'campagne-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
-    'fin-defaut': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'oeuvres-s1-b', 'oeuvres-s2-b', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'campagne-s1-a', 'campagne-s2-b', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
-    'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'oeuvres-s1-b', 'oeuvres-s2-b', 'fec-s1-b'],
+    'galeriste-fin-livre-or': ['vernissage-s1-b', 'vernissage-s2-a', 'avis-s1-a', 'avis-s2-a', 'avis-s3-a', 'avis-s4-a', 'oeuvres-s1-a', 6, 'oeuvres-s3-a', 'fec-s1-c', 'fec-s2-c', 'fec-s3-b', 'campagne-s1-b', 'campagne-s2-a', 'rectification-s1-d', 'rectification-s2-a', 'rectification-s3-c'],
+    'galeriste-fin-chef-oeuvre': ['vernissage-s1-d', 'vernissage-s2-a', 'avis-s1-a', 'avis-s2-c', 'avis-s3-a', 'avis-s4-a', 'oeuvres-s1-a', 6, 'oeuvres-s3-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'campagne-s1-a', 'campagne-s2-a', 'rectification-s1-a', 'rectification-s2-a', 'rectification-s3-a'],
+    'galeriste-fin-vente-forcee': ['vernissage-s1-c', 'vernissage-s2-b', 'avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'oeuvres-s1-b', 1, 'oeuvres-s3-c', 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'campagne-s1-a', 'campagne-s2-c', 'rectification-s1-b', 'rectification-s2-c', 'rectification-s3-b'],
+    'fin-sereine': ['vernissage-s1-a', 'vernissage-s2-d', 'avis-s1-a', 'avis-s2-a', 'avis-s3-a', 'avis-s4-a', 'oeuvres-s1-a', 6, 'oeuvres-s3-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'campagne-s1-a', 'campagne-s2-a', 'rectification-s1-a', 'rectification-s2-b', 'rectification-s3-a'],
+    'fin-defaut': ['vernissage-s1-a', 'vernissage-s2-a', 'avis-s1-a', 'avis-s2-a', 'avis-s3-a', 'avis-s4-a', 'oeuvres-s1-a', 4, 'oeuvres-s3-d', 'fec-s1-a', 'fec-s2-a', 'fec-s3-c', 'campagne-s1-c', 'campagne-s2-b', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-patience': ['vernissage-s1-b', 'vernissage-s2-c', 'avis-s1-c', 'avis-s2-b', 'avis-s3-c', 'avis-s4-c', 'oeuvres-s1-c', 2, 'oeuvres-s3-b', 'fec-s1-b'],
   },
 };

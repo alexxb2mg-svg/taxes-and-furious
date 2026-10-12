@@ -1,25 +1,159 @@
 {
-  "avis-s2": {
-    "texte": "M. Lucien Poney s'arrête dans l'entrée, devant une toile : « Magnifique. » Puis il ouvre son cartable : « Bien. Commençons. »",
+  "avis-s1": {
+    "texte": "Lundi matin, entre deux caisses de toiles, le facteur dépose une lettre recommandée à la galerie : avis de vérification de comptabilité. Sur l'enveloppe, quelqu'un a griffonné un petit ballon de foot.",
     "choix": {
+      "avis-s1-a": {
+        "texte": "Lire l'avis en entier, petites lignes comprises, comme un cartel d'œuvre.",
+        "reaction": "Vous lisez tout : les années contrôlées, l'assistance d'un conseil. Presque aussi captivant qu'un catalogue de vente."
+      },
+      "avis-s1-b": {
+        "texte": "La glisser sous la pile de cartons d'invitation du dernier vernissage.",
+        "reaction": "La pile glisse. L'avis atterrit au pied d'une sculpture, bien en évidence, comme une œuvre de plus."
+      },
+      "avis-s1-c": {
+        "texte": "Garder la lettre pour vous, sans en parler à votre comptable, pour ne pas l'inquiéter.",
+        "reaction": "La lettre finit dans le tiroir des cartels inutilisés. Votre comptable l'apprendra trois semaines plus tard, et soupirera devant toute la galerie."
+      }
+    }
+  },
+  "avis-s2": {
+    "texte": "M. Lucien Poney entre, l'écharpe de son club autour du cou, et s'arrête devant une toile : « Magnifique. » Puis il ouvre son cartable : « Bien. Coup d'envoi quand vous voulez. Enfin, quand la loi le veut. »",
+    "choix": {
+      "avis-s2-a": {
+        "texte": "Lui demander combien de temps va durer le match.",
+        "reaction": "« Bonne question. Pour une galerie de votre taille, il y a un temps réglementaire. Pas de prolongations à rallonge. »"
+      },
       "avis-s2-b": {
         "texte": "Annoncer un départ urgent pour une foire d'art à l'étranger.",
         "reaction": "« Je connais cette foire. Elle dure trois jours. Le contrôle, lui, sera encore là à votre retour. »"
+      },
+      "avis-s2-c": {
+        "texte": "Promettre le FEC « après la saison des ventes, sans faute ».",
+        "reaction": "« Après la saison ? Le chronomètre, lui, attendra tranquillement que le fichier arrive. »"
+      }
+    }
+  },
+  "avis-s3": {
+    "texte": "Votre comptable relit l'avis entre deux sculptures emballées : « Ils regardent quelles années, déjà ? Pas celles de vos débuts à la brocante, j'espère. »",
+    "choix": {
+      "avis-s3-a": {
+        "reaction": "« Parfait, je sors les bons classeurs. Pas ceux de l'époque où la galerie vendait des cadres vides. »"
+      },
+      "avis-s3-b": {
+        "texte": "« Tout depuis l'ouverture, par sécurité. Même le cahier de la brocante. »",
+        "reaction": "Votre comptable disparaît derrière une pile de catalogues jaunis. On entend un faible « au secours » du côté des natures mortes."
+      },
+      "avis-s3-c": {
+        "reaction": "Votre comptable sort un seul classeur, très fin. M. Poney en réclamera deux autres, très épais."
+      }
+    }
+  },
+  "avis-s4": {
+    "texte": "M. Poney ajuste son écharpe : « Avant le coup d'envoi : vous avez reçu la charte du contribuable vérifié, et vous pouvez vous faire assister d'un conseil. Vous voulez quelqu'un dans votre équipe ? »",
+    "choix": {
+      "avis-s4-a": {
+        "reaction": "« Très bien, on joue à deux. C'est réglementaire. » Votre comptable ajuste sa cravate devant un miroir baroque."
+      },
+      "avis-s4-b": {
+        "texte": "Plier la charte en avion et viser la corbeille, entre deux sculptures.",
+        "reaction": "L'avion frôle une sculpture et se pose aux pieds de M. Poney. Il le déplie, le lisse et vous le rend. « Hors-jeu. »"
+      },
+      "avis-s4-c": {
+        "reaction": "« Comme vous voudrez. Un contre un, alors. » Votre comptable, vexé, range sa cravate dans le tiroir à cadres."
       }
     }
   },
   "fec-s1": {
+    "texte": "M. Poney pose son cartable sur un socle vide. « Le fichier des écritures comptables, s'il vous plaît. Le FEC. Pas le catalogue. »",
     "choix": {
+      "fec-s1-a": {
+        "reaction": "« Un fichier qui s'ouvre du premier coup ! C'est beau comme un but en lucarne. »"
+      },
       "fec-s1-b": {
         "texte": "Lui tendre un catalogue d'exposition en expliquant que « tout est dedans, en filigrane ».",
         "reaction": "M. Poney feuillette le catalogue à la loupe. Il admire les reproductions. Il ne trouve aucune écriture."
+      },
+      "fec-s1-c": {
+        "texte": "Lui envoyer un diaporama des œuvres « avec les chiffres en légende ».",
+        "reaction": "M. Poney fait défiler les diapositives. Les toiles sont superbes. Les chiffres, en tout petit sous chaque cadre, sont illisibles."
+      }
+    }
+  },
+  "fec-s2": {
+    "texte": "En relisant les comptes de la galerie, vous tombez sur une erreur : une toile vendue deux fois dans le grand livre, et livrée une seule. Une vraie erreur, avec des chiffres dedans.",
+    "choix": {
+      "fec-s2-a": {
+        "reaction": "M. Poney hoche la tête : « Vous jouez le jeu. Voilà qui simplifie la partie. »"
+      },
+      "fec-s2-b": {
+        "reaction": "Il la voit. Il l'entoure. En rouge, comme un carton."
+      },
+      "fec-s2-c": {
+        "texte": "Corriger la ligne en douce dans le logiciel, sans rien dire.",
+        "reaction": "M. Poney compare deux versions du grand livre, comme on repasse un ralenti. Il lève un sourcil, puis l'autre."
+      }
+    }
+  },
+  "fec-s3": {
+    "texte": "M. Poney s'arrête sur une série d'achats de « cadres dorés », réglés chaque semaine au même fournisseur. Le silence devient si épais qu'on pourrait l'encadrer.",
+    "choix": {
+      "fec-s3-a": {
+        "reaction": "Les factures défilent, une par cadre. M. Poney les compte comme des passes décisives. Le silence se décroche du mur."
+      },
+      "fec-s3-b": {
+        "texte": "Inventer un encadreur au nom très convaincant.",
+        "reaction": "« Et cet encadreur, il a un atelier ? Un téléphone ? Une existence ? »"
+      },
+      "fec-s3-c": {
+        "texte": "« Ça ? C'est le stagiaire. Il est parti avec les factures, et avec un cadre. »",
+        "reaction": "« Le stagiaire a bon dos. Et il a laissé une adresse, ce stagiaire, ou seulement un clou au mur ? »"
+      }
+    }
+  },
+  "rectification-s1": {
+    "texte": "Quelques semaines plus tard, une enveloppe épaisse arrive à la galerie, glissée entre deux catalogues : la proposition de rectification.",
+    "choix": {
+      "rectification-s1-a": {
+        "reaction": "Chaque rehaussement est expliqué, comme une notice d'œuvre. Vous savez au moins à quoi répondre."
+      },
+      "rectification-s1-b": {
+        "reaction": "Accordé. Votre comptable respire à nouveau, et range ses arguments par ordre de taille, comme des cadres."
+      },
+      "rectification-s1-c": {
+        "texte": "S'en servir pour caler un socle bancal.",
+        "reaction": "Le socle ne boite plus, la sculpture non plus. Le délai, lui, continue de courir."
+      },
+      "rectification-s1-d": {
+        "reaction": "Votre banquière vous appelle, inquiète. Votre comptable n'a même pas eu le temps de lire la première page, ni la légende."
+      }
+    }
+  },
+  "rectification-s2": {
+    "texte": "M. Poney revient, l'écharpe un peu de travers : « J'ai lu vos observations. Je maintiens une partie des rectifications. Le score n'est pas encore définitif. »",
+    "choix": {
+      "rectification-s2-a": {
+        "reaction": "« C'est votre droit. On passe à l'arbitrage. Je transmets. »"
+      },
+      "rectification-s2-b": {
+        "texte": "Répondre par un manifeste artistique de douze pages sur l'injustice du monde.",
+        "reaction": "« Le manifeste est joli, la typographie aussi. Les arguments, introuvables. »"
+      },
+      "rectification-s2-c": {
+        "reaction": "« Très bien, je note votre accord. » Votre comptable, lui, note surtout les points que vous auriez pu gagner."
       }
     }
   },
   "rectification-s3": {
+    "texte": "Votre comptable referme le dossier : « Bon. Reste la question qui fâche : on paie quand ? Et avant que vous proposiez de payer en tableaux : non. »",
     "choix": {
       "rectification-s3-a": {
-        "reaction": "Votre comptable, soulagé, propose d'accrocher l'échéancier dans l'entrée. Comme une œuvre."
+        "reaction": "Votre comptable range enfin ses classeurs. Il fredonne, et propose d'accrocher l'échéancier dans l'entrée. Comme une œuvre."
+      },
+      "rectification-s3-b": {
+        "reaction": "Votre comptable vous regarde comme une toile qu'on vient de découvrir fausse."
+      },
+      "rectification-s3-c": {
+        "reaction": "Votre comptable fait le calcul de tête et pâlit doucement, jusqu'au gris galerie."
       }
     }
   }

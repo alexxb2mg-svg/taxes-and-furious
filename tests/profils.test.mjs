@@ -65,7 +65,11 @@ for (const id of IDS) {
   });
 
   test(`${id} : exploration exhaustive, toutes les fins sont atteignables`, () => {
+    // Avec 3 ou 4 choix par scene (EX-142), le nombre de chemins explose : deux etats a la meme
+    // position avec les memes jauges menent aux memes fins (la fin ne depend que des jauges et de
+    // `anticipee`), on n'explore donc chacun qu'une fois.
     const atteintes = new Set();
+    const vus = new Set();
     const pile = [nouvellePartie(scenario)];
     let parties = 0;
     while (pile.length) {
@@ -75,6 +79,9 @@ for (const id of IDS) {
         atteintes.add(fin(e).id);
         continue;
       }
+      const cle = JSON.stringify([e.chapitre, e.scene, e.jauges]);
+      if (vus.has(cle)) continue;
+      vus.add(cle);
       for (const x of etapesPossibles(sceneCourante(e))) pile.push(resoudre(e, x));
     }
     assert.ok(parties > 0);
