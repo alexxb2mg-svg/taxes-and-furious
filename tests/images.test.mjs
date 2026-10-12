@@ -9,7 +9,7 @@ import { tmpdir } from 'node:os';
 import { join, resolve, basename } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { assembler, portraitRepli, decorTitre } from '../js/moteur.js';
-import { valider, dimensionsWebp, IMAGES } from '../outils/valider.mjs';
+import { valider, dimensionsWebp, estIllustration, IMAGES } from '../outils/valider.mjs';
 import { DEPOT, DONNEES, DONNEES_DEMO, chargerScenario, copieTemporaire, lireJson } from './aides.mjs';
 
 const ART = join(DEPOT, 'tests', 'donnees', 'art');
@@ -98,20 +98,74 @@ test('EX-153 : poids et dimensions mesures sur tous les .webp de data/ et des do
       const dim = dimensionsWebp(readFileSync(join(racine, f)));
       if (parties.includes('decors')) {
         assert.ok(octets <= IMAGES.decorMaxOctets, `${f} : ${octets} octets`);
-        assert.ok(dim.largeur >= 1280 && dim.largeur <= 1600, `${f} : ${dim.largeur} px`);
+        assert.ok(dim.largeur >= 1024 && dim.largeur <= 1600, `${f} : ${dim.largeur} px`);
+      } else if (parties.includes('img') && estIllustration(f)) {
+        assert.ok(octets <= IMAGES.illustrationMaxOctets, `${f} : ${octets} octets`);
+        assert.deepEqual(dim, { largeur: 768, hauteur: 1024 }, f);
       } else if (parties.includes('img')) {
         assert.ok(octets <= IMAGES.portraitMaxOctets, `${f} : ${octets} octets`);
         assert.deepEqual(dim, { largeur: 512, hauteur: 512 }, f);
       }
     }
-    assert.ok(total <= 6 * 1024 * 1024, `${racine} : ${total} octets de WebP`);
+    assert.ok(total <= 12 * 1024 * 1024, `${racine} : ${total} octets de WebP`);
   }
   assert.equal(IMAGES.decorMaxOctets, 250 * 1024);
+  assert.deepEqual(IMAGES.decorLargeur, [1024, 1600]);
   assert.equal(IMAGES.portraitMaxOctets, 80 * 1024);
-  assert.equal(IMAGES.totalMaxOctets, 6 * 1024 * 1024);
+  assert.equal(IMAGES.illustrationMaxOctets, 150 * 1024);
+  assert.equal(IMAGES.totalMaxOctets, 12 * 1024 * 1024);
+  assert.equal(IMAGES.accueilMaxOctets, 2 * 1024 * 1024);
 });
 
-test('EX-153 : le validateur refuse un decor de plus de 250 Ko et plus de 6 Mo d\'images au total', () => {
+test('EX-153 : le validateur accepte un decor de 1024 a 1600 px et refuse 1023 et 1601 px', () => {
+  const copie = copieTemporaire();
+  try {
+    const decor = join(copie.racine, 'communs', 'decors', 'bureau.webp');
+    for (const l of [1024, 1600]) {
+      writeFileSync(decor, webpSynthetique(l, Math.round(l * 9 / 16), 10 * 1024));
+      assert.deepEqual(valider({ racine: copie.racine, couverture: false }).erreurs, [], `${l} px`);
+    }
+    for (const l of [1023, 1601]) {
+      writeFileSync(decor, webpSynthetique(l, 576, 10 * 1024));
+      assert.deepEqual(valider({ racine: copie.racine, couverture: false }).erreurs,
+        [`communs/decors/bureau.webp : decor de ${l} px de large : de 1024 a 1600 px (EX-153)`]);
+    }
+  } finally {
+    copie.nettoyer();
+  }
+});
+
+test('EX-153 / EX-156 : illustration en pied img/<perso>-situation.webp controlee en 768x1024 et <= 150 Ko', () => {
+  assert.equal(estIllustration('profils/x/img/pistil-situation.webp'), true);
+  assert.equal(estIllustration('profils/x/img/pistil-situation.WEBP'), true);
+  assert.equal(estIllustration('profils/x/img/pistil.webp'), false);
+  assert.equal(estIllustration(undefined), false);
+  const copie = copieTemporaire();
+  try {
+    const img = join(copie.racine, 'profils', 'demo-fleuriste', 'img');
+    const ill = join(img, 'pistil-situation.webp');
+    const rel = 'profils/demo-fleuriste/img/pistil-situation.webp';
+    // Pile au plafond : acceptee (et pas confondue avec un portrait).
+    writeFileSync(ill, webpSynthetique(768, 1024, 150 * 1024));
+    assert.deepEqual(valider({ racine: copie.racine, couverture: false }).erreurs, []);
+    // Temoins negatifs : trop lourde, mauvais format.
+    writeFileSync(ill, webpSynthetique(768, 1024, 150 * 1024 + 1));
+    assert.deepEqual(valider({ racine: copie.racine, couverture: false }).erreurs,
+      [`${rel} : illustration de 151 Ko : plafond 150 Ko (EX-153)`]);
+    writeFileSync(ill, webpSynthetique(512, 512, 10 * 1024));
+    assert.deepEqual(valider({ racine: copie.racine, couverture: false }).erreurs,
+      [`${rel} : illustration de 512x512 px : 768x1024 attendu (EX-156)`]);
+    // Un portrait (sans suffixe) en 768x1024 reste refuse comme portrait.
+    writeFileSync(ill, webpSynthetique(768, 1024, 10 * 1024));
+    writeFileSync(join(img, 'autre.webp'), webpSynthetique(768, 1024, 10 * 1024));
+    assert.deepEqual(valider({ racine: copie.racine, couverture: false }).erreurs,
+      ['profils/demo-fleuriste/img/autre.webp : portrait de 768x1024 px : carre 512x512 attendu (EX-152)']);
+  } finally {
+    copie.nettoyer();
+  }
+});
+
+test('EX-153 : le validateur refuse un decor de plus de 250 Ko et plus de 12 Mo d\'images au total', () => {
   const copie = copieTemporaire();
   try {
     const decors = join(copie.racine, 'communs', 'decors');
@@ -121,10 +175,10 @@ test('EX-153 : le validateur refuse un decor de plus de 250 Ko et plus de 6 Mo d
     assert.ok(valider({ racine: copie.racine, couverture: false }).erreurs
       .some((e) => e === 'communs/decors/bureau.webp : decor de 251 Ko : plafond 250 Ko (EX-153)'));
     writeFileSync(join(decors, 'bureau.webp'), webpSynthetique(1280, 720, 200 * 1024));
-    for (let i = 0; i < 31; i += 1) writeFileSync(join(decors, `extra-${i}.webp`), webpSynthetique(1600, 900, 200 * 1024));
+    for (let i = 0; i < 61; i += 1) writeFileSync(join(decors, `extra-${i}.webp`), webpSynthetique(1600, 900, 200 * 1024));
     const { erreurs } = valider({ racine: copie.racine, couverture: false });
     assert.equal(erreurs.length, 1, erreurs.join('\n'));
-    assert.match(erreurs[0], /^\*\*\/\*\.webp : 6\.\d\d Mo d'images WebP au total : plafond 6 Mo \(EX-153\)$/);
+    assert.match(erreurs[0], /^\*\*\/\*\.webp : 12\.\d\d Mo d'images WebP au total : plafond 12 Mo \(EX-153\)$/);
   } finally {
     copie.nettoyer();
   }
@@ -188,19 +242,68 @@ test('EX-155 : portrait d\'essai -> WebP carre 512, <= 80 Ko, coins transparents
   }
 });
 
-test('EX-155 : decor d\'essai -> WebP 16:9 de 1280 a 1600 px, <= 250 Ko ; largeur hors bornes refusee', () => {
+test('EX-155 : decor d\'essai -> WebP 16:9 de 1024 a 1600 px, <= 250 Ko ; largeur hors bornes refusee', () => {
   const t = dossierTemp();
   try {
-    for (const largeur of [1280, 1600]) {
+    for (const largeur of [1024, 1280, 1600]) {
       const sortie = join(t.d, `decor-${largeur}.webp`);
       const r = outil('decor', join(ART, 'decor-essai.png'), sortie, '--largeur', String(largeur));
       assert.equal(r.status, 0, r.stderr);
       assert.deepEqual(dimensionsWebp(readFileSync(sortie)), { largeur, hauteur: Math.round(largeur * 9 / 16) });
       assert.ok(statSync(sortie).size <= 250 * 1024);
     }
-    const r = outil('decor', join(ART, 'decor-essai.png'), join(t.d, 'x.webp'), '--largeur', '800');
-    assert.notEqual(r.status, 0);
-    assert.match(r.stderr, /largeur 800 hors de 1280 a 1600 px/);
+    for (const largeur of ['800', '1023', '1601']) {
+      const r = outil('decor', join(ART, 'decor-essai.png'), join(t.d, 'x.webp'), '--largeur', largeur);
+      assert.notEqual(r.status, 0);
+      assert.match(r.stderr, new RegExp(`largeur ${largeur} hors de 1024 a 1600 px`));
+    }
+  } finally {
+    t.nettoyer();
+  }
+});
+
+test('EX-155 / EX-152 : portrait --fond-conserve -> carre 512 opaque (la toise reste), <= 80 Ko, sans detourage', () => {
+  const t = dossierTemp();
+  try {
+    // decor-essai.png : fond colore jusqu'aux coins ; le detourage par defaut le refuse.
+    const refus = outil('portrait', join(ART, 'decor-essai.png'), join(t.d, 'refus.webp'));
+    assert.notEqual(refus.status, 0);
+    assert.match(refus.stderr, /aucun fond blanc touchant les coins .*--fond-conserve/);
+    const sortie = join(t.d, 'mugshot.webp');
+    const r = outil('portrait', join(ART, 'decor-essai.png'), sortie, '--fond-conserve');
+    assert.equal(r.status, 0, r.stderr);
+    assert.match(r.stdout, /512x512, \d+ octets/);
+    assert.ok(statSync(sortie).size <= 80 * 1024, `${statSync(sortie).size} octets`);
+    const lu = pixels(sortie, [[0, 0], [511, 0], [0, 511], [511, 511], [256, 256]]);
+    assert.equal(lu.format, 'WEBP');
+    assert.deepEqual(lu.taille, [512, 512]);
+    lu.pixels.forEach((p, i) => assert.equal(p[3], 255, `point ${i} opaque`));
+    // Le fond n'est pas remplace : le coin garde la teinte de la source (beige, pas blanc ni transparent).
+    const [r0, g0, b0] = lu.pixels[0];
+    assert.ok(Math.abs(r0 - 216) < 24 && Math.abs(g0 - 195) < 24 && Math.abs(b0 - 160) < 24, JSON.stringify(lu.pixels[0]));
+    // Un portrait detoure classique reste possible sur fond blanc.
+    assert.equal(outil('portrait', join(ART, 'portrait-essai.png'), join(t.d, 'detoure.webp'), '--fond-conserve').status, 0);
+  } finally {
+    t.nettoyer();
+  }
+});
+
+test('EX-155 / EX-156 : illustration -> WebP 768x1024 <= 150 Ko, nom <perso>-situation.webp exige', () => {
+  const t = dossierTemp();
+  try {
+    const sortie = join(t.d, 'img', 'pistil-situation.webp');
+    const r = outil('illustration', join(ART, 'decor-essai.png'), sortie);
+    assert.equal(r.status, 0, r.stderr);
+    assert.match(r.stdout, /768x1024, \d+ octets/);
+    assert.deepEqual(dimensionsWebp(readFileSync(sortie)), { largeur: 768, hauteur: 1024 });
+    assert.ok(statSync(sortie).size <= 150 * 1024, `${statSync(sortie).size} octets`);
+    const mauvais = outil('illustration', join(ART, 'decor-essai.png'), join(t.d, 'img', 'pistil.webp'));
+    assert.notEqual(mauvais.status, 0);
+    assert.match(mauvais.stderr, /se nomme <perso>-situation\.webp/);
+    // verifier reconnait l'illustration (pas un portrait) : 0 ecart.
+    const v = outil('verifier', t.d);
+    assert.equal(v.status, 0, v.stderr);
+    assert.match(v.stdout, /img\/pistil-situation\.webp : 768x1024/);
   } finally {
     t.nettoyer();
   }
@@ -216,10 +319,13 @@ test('EX-155 : verifier controle les poids d\'EX-153 (0 sur les donnees de demon
     mkdirSync(join(t.d, 'decors'));
     writeFileSync(join(t.d, 'img', 'lourd.webp'), readFileSync(join(ART, 'portrait-lourd.webp')));
     writeFileSync(join(t.d, 'decors', 'etroit.webp'), readFileSync(join(ART, 'decor-800.webp')));
+    // Illustration au mauvais format (le decor de 800x450 renomme) : signalee comme illustration.
+    writeFileSync(join(t.d, 'img', 'faux-situation.webp'), readFileSync(join(ART, 'decor-800.webp')));
     r = outil('verifier', t.d);
     assert.equal(r.status, 1);
     assert.match(r.stderr, /img\/lourd\.webp : portrait de 126 Ko \(plafond 80 Ko\)/);
-    assert.match(r.stderr, /decors\/etroit\.webp : decor de 800 px de large/);
+    assert.match(r.stderr, /decors\/etroit\.webp : decor de 800 px de large \(de 1024 a 1600 px\)/);
+    assert.match(r.stderr, /img\/faux-situation\.webp : illustration de 800x450 px \(768x1024 attendu\)/);
   } finally {
     t.nettoyer();
   }

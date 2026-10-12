@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import { DEPOT, DONNEES, DONNEES_DEMO, chargerScenario, copieTemporaire, appliquerModifs } from './aides.mjs';
 import { lancerNavigateur, servir, trouverChrome } from './navigateur.mjs';
 import { ENTETES } from '../outils/construire.mjs';
+import { IMAGES } from '../outils/valider.mjs';
 import { tolerance404Variantes, ecran, allerAuChoix, etapesPossibles, jouerEtape } from './partie.mjs';
 
 const montages = {};
@@ -252,7 +253,7 @@ test('EX-152 : portrait .webp affiche ; 404 -> SVG de repli ; sans SVG -> initia
 
 // ------------------------------------------------------------------ EX-153
 
-test('EX-153 : la page d\'accueil ne charge que la couverture et les portraits de l\'ecran de choix (< 1,2 Mo transferes)', async () => {
+test('EX-153 : la page d\'accueil ne charge que la couverture et les images de l\'ecran de choix (< 2 Mo transferes)', async () => {
   for (const donnees of ['data', 'tests/donnees']) {
     const p = await page();
     await ouvrir(p, donnees);
@@ -266,7 +267,7 @@ test('EX-153 : la page d\'accueil ne charge que la couverture et les portraits d
     const portraits = new Set(await p.eval(`[...document.querySelectorAll('#liste-profils .carte-portrait')].map((i) => i.src)`));
     for (const u of images.filter((x) => !x.includes('/decors/'))) assert.ok(portraits.has(u), `${donnees} : image ${u} hors ecran de choix`);
     const octets = p.transferts.reduce((s, t) => s + t.octets, 0);
-    assert.ok(octets < 1.2 * 1024 * 1024, `${donnees} : ${octets} octets transferes`);
+    assert.ok(octets < IMAGES.accueilMaxOctets, `${donnees} : ${octets} octets transferes`);
     assert.ok(p.transferts.length > 0);
   }
 });

@@ -6,18 +6,26 @@ Outil local : il demande Pillow (pip install pillow), qui n'est PAS une dependan
 (le jeu reste statique, sans dependance). Usage :
 
   python outils/preparer-images.py decor <image> <sortie.webp> [--largeur 1600]
-      Recadre au format 16:9 (centre), redimensionne a la largeur demandee (1280 a 1600 px),
+      Recadre au format 16:9 (centre), redimensionne a la largeur demandee (1024 a 1600 px),
       encode en WebP a la meilleure qualite qui tient sous 250 Ko.
 
-  python outils/preparer-images.py portrait <image> <sortie.webp> [--tolerance 24] [--marge 0.04]
-      Detoure le fond blanc par remplissage depuis les 4 coins (les blancs entoures par le
-      personnage restent opaques : pas de seuil global), recadre sur le personnage, le centre
-      dans un carre transparent de 512 px, encode en WebP sous 80 Ko.
+  python outils/preparer-images.py portrait <image> <sortie.webp> [--fond-conserve]
+                                   [--tolerance 24] [--marge 0.04]
+      Par defaut, detoure le fond blanc par remplissage depuis les 4 coins (les blancs entoures
+      par le personnage restent opaques : pas de seuil global), recadre sur le personnage, le
+      centre dans un carre transparent de 512 px, encode en WebP sous 80 Ko.
+      --fond-conserve : portrait facon photo d'identite judiciaire (EX-152), dont le fond (la
+      toise) fait partie de l'image : recadrage carre au centre, 512 px, aucun detourage.
+
+  python outils/preparer-images.py illustration <image> <sortie-situation.webp>
+      Illustration en pied (EX-156) : recadrage 3:4 au centre, 768x1024 px, WebP sous 150 Ko.
+      Le fichier se nomme <perso>-situation.webp, dans le dossier img/ du personnage.
 
   python outils/preparer-images.py verifier [<dossier de donnees>]
       Controle d'EX-153 sur tous les .webp du dossier (data/ par defaut) : decor (dossier
-      decors/) <= 250 Ko et 1280 a 1600 px de large, portrait (dossier img/) carre 512 px
-      <= 80 Ko, total <= 6 Mo. Code de sortie 1 au premier ecart.
+      decors/) <= 250 Ko et 1024 a 1600 px de large ; dans un dossier img/, illustration en
+      pied (<perso>-situation.webp) 768x1024 px <= 150 Ko, portrait (autres fichiers) carre
+      512 px <= 80 Ko ; total <= 12 Mo. Code de sortie 1 au moindre ecart.
 """
 
 import argparse
@@ -29,11 +37,15 @@ RACINE_DEPOT = Path(__file__).resolve().parent.parent
 
 # EX-153 (memes valeurs que outils/valider.mjs).
 DECOR_MAX_OCTETS = 250 * 1024
-DECOR_LARGEUR_MIN = 1280
+DECOR_LARGEUR_MIN = 1024
 DECOR_LARGEUR_MAX = 1600
 PORTRAIT_COTE = 512
 PORTRAIT_MAX_OCTETS = 80 * 1024
-TOTAL_MAX_OCTETS = 6 * 1024 * 1024
+ILLUSTRATION_LARGEUR = 768
+ILLUSTRATION_HAUTEUR = 1024
+ILLUSTRATION_MAX_OCTETS = 150 * 1024
+ILLUSTRATION_SUFFIXE = "-situation.webp"
+TOTAL_MAX_OCTETS = 12 * 1024 * 1024
 QUALITES = (90, 86, 82, 78, 74, 70, 65, 60, 55, 50, 45, 40)
 
 
@@ -65,26 +77,47 @@ def ecrire(sortie, octets):
     sortie.write_bytes(octets)
 
 
+def recadrer(image, rl, rh):
+    """Recadrage centre au rapport rl:rh."""
+    l, h = image.size
+    if l * rh > h * rl:
+        nl = h * rl // rh
+        return image.crop(((l - nl) // 2, 0, (l - nl) // 2 + nl, h))
+    if l * rh < h * rl:
+        nh = l * rh // rl
+        return image.crop((0, (h - nh) // 2, l, (h - nh) // 2 + nh))
+    return image
+
+
+def resultat(sortie, image, octets, q):
+    l, h = image.size
+    return {"sortie": str(sortie), "largeur": l, "hauteur": h, "octets": len(octets), "qualite": q}
+
+
 # ------------------------------------------------------------------ decor
 
 def preparer_decor(entree, sortie, largeur=DECOR_LARGEUR_MAX):
     Image, _, _, _ = charger_pillow()
     if not DECOR_LARGEUR_MIN <= largeur <= DECOR_LARGEUR_MAX:
         raise SystemExit(f"preparer-images : largeur {largeur} hors de {DECOR_LARGEUR_MIN} a {DECOR_LARGEUR_MAX} px")
-    image = Image.open(entree).convert("RGB")
-    l, h = image.size
-    # Recadrage 16:9 centre.
-    if l * 9 > h * 16:
-        nl = h * 16 // 9
-        image = image.crop(((l - nl) // 2, 0, (l - nl) // 2 + nl, h))
-    elif l * 9 < h * 16:
-        nh = l * 9 // 16
-        image = image.crop((0, (h - nh) // 2, l, (h - nh) // 2 + nh))
-    hauteur = round(largeur * 9 / 16)
-    image = image.resize((largeur, hauteur), Image.LANCZOS)
+    image = recadrer(Image.open(entree).convert("RGB"), 16, 9)
+    image = image.resize((largeur, round(largeur * 9 / 16)), Image.LANCZOS)
     octets, q = encoder_sous_plafond(image, DECOR_MAX_OCTETS)
     ecrire(sortie, octets)
-    return {"sortie": str(sortie), "largeur": largeur, "hauteur": hauteur, "octets": len(octets), "qualite": q}
+    return resultat(sortie, image, octets, q)
+
+
+# ------------------------------------------------------------------ illustration en pied (EX-156)
+
+def preparer_illustration(entree, sortie):
+    Image, _, _, _ = charger_pillow()
+    if not Path(sortie).name.lower().endswith(ILLUSTRATION_SUFFIXE):
+        raise SystemExit(f"preparer-images : une illustration en pied se nomme <perso>{ILLUSTRATION_SUFFIXE} ({sortie})")
+    image = recadrer(Image.open(entree).convert("RGB"), 3, 4)
+    image = image.resize((ILLUSTRATION_LARGEUR, ILLUSTRATION_HAUTEUR), Image.LANCZOS)
+    octets, q = encoder_sous_plafond(image, ILLUSTRATION_MAX_OCTETS)
+    ecrire(sortie, octets)
+    return resultat(sortie, image, octets, q)
 
 
 # ------------------------------------------------------------------ portrait
@@ -108,12 +141,23 @@ def masque_fond(image, tolerance):
     return candidats.point(lambda v: 255 if v == 128 else 0)
 
 
+def preparer_portrait_fond_conserve(entree, sortie):
+    """Portrait EX-152 dont le fond (la toise) fait partie de l'image : carre centre 512 px, opaque."""
+    Image, _, _, _ = charger_pillow()
+    image = recadrer(Image.open(entree).convert("RGB"), 1, 1)
+    image = image.resize((PORTRAIT_COTE, PORTRAIT_COTE), Image.LANCZOS)
+    octets, q = encoder_sous_plafond(image, PORTRAIT_MAX_OCTETS)
+    ecrire(sortie, octets)
+    return resultat(sortie, image, octets, q)
+
+
 def preparer_portrait(entree, sortie, tolerance=24, marge=0.04):
     Image, ImageChops, _, ImageFilter = charger_pillow()
     image = Image.open(entree).convert("RGBA")
     fond = masque_fond(image, tolerance)
     if fond.getbbox() is None:
-        raise SystemExit("preparer-images : aucun fond blanc touchant les coins (fond blanc uni attendu, charte 9.1)")
+        raise SystemExit("preparer-images : aucun fond blanc touchant les coins (fond blanc uni attendu ; "
+                         "--fond-conserve pour un portrait dont le fond fait partie de l'image)")
     # Alpha : 0 sur le fond ; liseré d'1 px autour du personnage adouci (pas de halo blanc dur).
     alpha_origine = image.getchannel("A")
     opaque = ImageChops.invert(fond)
@@ -132,7 +176,7 @@ def preparer_portrait(entree, sortie, tolerance=24, marge=0.04):
     carre = carre.resize((PORTRAIT_COTE, PORTRAIT_COTE), Image.LANCZOS)
     octets, q = encoder_sous_plafond(carre, PORTRAIT_MAX_OCTETS, alpha_quality=90, exact=False)
     ecrire(sortie, octets)
-    return {"sortie": str(sortie), "largeur": PORTRAIT_COTE, "hauteur": PORTRAIT_COTE, "octets": len(octets), "qualite": q}
+    return resultat(sortie, carre, octets, q)
 
 
 # ------------------------------------------------------------------ verification EX-153
@@ -157,19 +201,25 @@ def verifier(racine):
             erreurs.append(f"{rel} : illisible ({e})")
             continue
         parties = f.relative_to(racine).parts
+        ko = -(-taille // 1024)
         if "decors" in parties:
             if taille > DECOR_MAX_OCTETS:
-                erreurs.append(f"{rel} : decor de {-(-taille // 1024)} Ko (plafond {DECOR_MAX_OCTETS // 1024} Ko)")
+                erreurs.append(f"{rel} : decor de {ko} Ko (plafond {DECOR_MAX_OCTETS // 1024} Ko)")
             if not DECOR_LARGEUR_MIN <= l <= DECOR_LARGEUR_MAX:
                 erreurs.append(f"{rel} : decor de {l} px de large (de {DECOR_LARGEUR_MIN} a {DECOR_LARGEUR_MAX} px)")
+        elif "img" in parties and f.name.lower().endswith(ILLUSTRATION_SUFFIXE):
+            if taille > ILLUSTRATION_MAX_OCTETS:
+                erreurs.append(f"{rel} : illustration de {ko} Ko (plafond {ILLUSTRATION_MAX_OCTETS // 1024} Ko)")
+            if (l, h) != (ILLUSTRATION_LARGEUR, ILLUSTRATION_HAUTEUR):
+                erreurs.append(f"{rel} : illustration de {l}x{h} px ({ILLUSTRATION_LARGEUR}x{ILLUSTRATION_HAUTEUR} attendu)")
         elif "img" in parties:
             if taille > PORTRAIT_MAX_OCTETS:
-                erreurs.append(f"{rel} : portrait de {-(-taille // 1024)} Ko (plafond {PORTRAIT_MAX_OCTETS // 1024} Ko)")
+                erreurs.append(f"{rel} : portrait de {ko} Ko (plafond {PORTRAIT_MAX_OCTETS // 1024} Ko)")
             if (l, h) != (PORTRAIT_COTE, PORTRAIT_COTE):
                 erreurs.append(f"{rel} : portrait de {l}x{h} px (carre {PORTRAIT_COTE}x{PORTRAIT_COTE} attendu)")
         print(f"{rel} : {l}x{h}, {taille} octets")
     if total > TOTAL_MAX_OCTETS:
-        erreurs.append(f"total des .webp : {total} octets (plafond {TOTAL_MAX_OCTETS} octets, 6 Mo)")
+        erreurs.append(f"total des .webp : {total} octets (plafond {TOTAL_MAX_OCTETS} octets, {TOTAL_MAX_OCTETS // 1024 // 1024} Mo)")
     for e in erreurs:
         print(e, file=sys.stderr)
     print(f"{len(fichiers)} fichier(s) .webp, total {total} octets ; {len(erreurs)} ecart(s)")
@@ -183,20 +233,29 @@ def principal(argv=None):
     d.add_argument("entree")
     d.add_argument("sortie")
     d.add_argument("--largeur", type=int, default=DECOR_LARGEUR_MAX)
-    p = sous.add_parser("portrait", help="portrait detoure, carre 512 px, WebP <= 80 Ko")
+    p = sous.add_parser("portrait", help="portrait carre 512 px, WebP <= 80 Ko (detoure, ou fond conserve)")
     p.add_argument("entree")
     p.add_argument("sortie")
+    p.add_argument("--fond-conserve", action="store_true",
+                   help="recadrage carre sans detourage (le fond, ex. la toise, fait partie de l'image)")
     p.add_argument("--tolerance", type=int, default=24, help="ecart au blanc pur accepte pour le fond (0 a 80)")
     p.add_argument("--marge", type=float, default=0.04, help="marge transparente autour du personnage (part du cote)")
+    i = sous.add_parser("illustration", help="illustration en pied 768x1024, WebP <= 150 Ko")
+    i.add_argument("entree")
+    i.add_argument("sortie")
     v = sous.add_parser("verifier", help="controle des poids et formats d'EX-153")
     v.add_argument("racine", nargs="?", default=str(RACINE_DEPOT / "data"))
     a = parseur.parse_args(argv)
     if a.commande == "decor":
         r = preparer_decor(a.entree, a.sortie, a.largeur)
+    elif a.commande == "portrait" and a.fond_conserve:
+        r = preparer_portrait_fond_conserve(a.entree, a.sortie)
     elif a.commande == "portrait":
         if not 0 <= a.tolerance <= 80:
             raise SystemExit("preparer-images : --tolerance de 0 a 80")
         r = preparer_portrait(a.entree, a.sortie, a.tolerance, a.marge)
+    elif a.commande == "illustration":
+        r = preparer_illustration(a.entree, a.sortie)
     else:
         return verifier(a.racine)
     print(f"{r['sortie']} : {r['largeur']}x{r['hauteur']}, {r['octets']} octets (qualite {r['qualite']})")

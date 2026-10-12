@@ -40,9 +40,10 @@ Si la référence change la date de vérification (`date_verification`) ou une �
 
 Les décors et portraits illustrés sont des fichiers WebP rangés dans les données :
 
-- un décor : `data/communs/decors/<nom>.webp` (tronc, écran titre) ou `data/profils/<id>/decors/<nom>.webp` (profil), 16:9, de 1280 à 1600 px de large, 250 Ko au plus ;
-- un portrait : `data/profils/<id>/img/<perso>.webp` ou `data/communs/img/<perso>.webp`, carré de 512 px, fond transparent, 80 Ko au plus ; à côté, le SVG de même nom sert de repli ;
-- au total, 6 Mo au plus pour tous les `data/**/*.webp`.
+- un décor : `data/communs/decors/<nom>.webp` (tronc, écran titre) ou `data/profils/<id>/decors/<nom>.webp` (profil), 16:9, de 1024 à 1600 px de large, 250 Ko au plus ;
+- un portrait façon photo d'identité judiciaire : `data/profils/<id>/img/<perso>.webp` ou `data/communs/img/<perso>.webp`, carré de 512 px, 80 Ko au plus ; le fond est conservé (la toise fait partie de l'image) ; à côté, le SVG de même nom sert de repli ;
+- une illustration en pied (personnage en situation) : `<perso>-situation.webp` dans le même dossier `img/` que le portrait, 768x1024 px (3:4), 150 Ko au plus ;
+- au total, 12 Mo au plus pour tous les `data/**/*.webp` ; la page d'accueil transfère moins de 2 Mo.
 
 Où le décor s'affiche (le validateur vérifie que le fichier existe, qu'il est en `.webp` et que le chapitre existe) :
 
@@ -68,18 +69,24 @@ python -m pip install --require-hashes -r outils/preparer-images.requirements.tx
 Puis :
 
 ```bash
-# Décor : recadrage 16:9 au centre, largeur 1280 à 1600 px (1600 par défaut), WebP sous 250 Ko
+# Décor : recadrage 16:9 au centre, largeur 1024 à 1600 px (1600 par défaut), WebP sous 250 Ko
 python outils/preparer-images.py decor source.png data/profils/<id>/decors/salle.webp --largeur 1600
 
-# Portrait : détourage du fond blanc depuis les 4 coins (les blancs entourés par le personnage,
-# yeux ou col, restent opaques), personnage centré dans un carré transparent de 512 px, WebP sous 80 Ko
+# Portrait façon photo d'identité judiciaire (fond et toise conservés) : recadrage carré au centre, 512 px, WebP sous 80 Ko
+python outils/preparer-images.py portrait mugshot.png data/profils/<id>/img/<perso>.webp --fond-conserve
+
+# Portrait détouré (sans --fond-conserve) : détourage du fond blanc depuis les 4 coins (les blancs
+# entourés par le personnage, yeux ou col, restent opaques), personnage centré dans un carré transparent de 512 px
 python outils/preparer-images.py portrait fiche.png data/profils/<id>/img/<perso>.webp
+
+# Illustration en pied : recadrage 3:4 au centre, 768x1024 px, WebP sous 150 Ko (nom <perso>-situation.webp exigé)
+python outils/preparer-images.py illustration scene.png data/profils/<id>/img/<perso>-situation.webp
 
 # Contrôle des poids et dimensions de tous les .webp de data/ (code 1 au moindre écart)
 python outils/preparer-images.py verifier
 ```
 
-Le portrait source doit avoir un fond blanc uni qui touche les coins ; `--tolerance` (24 par défaut) règle l'écart au blanc pur accepté pour le fond, `--marge` la marge transparente autour du personnage. Regardez toujours le résultat sur un fond coloré avant de le garder : une image hors charte est rejetée, pas retouchée à la main. `node outils/valider.mjs` refait les mêmes contrôles de poids et de dimensions.
+Pour le détourage, le portrait source doit avoir un fond blanc uni qui touche les coins ; `--tolerance` (24 par défaut) règle l'écart au blanc pur accepté pour le fond, `--marge` la marge transparente autour du personnage. Regardez toujours le résultat sur un fond coloré avant de le garder : une image hors charte est rejetée, pas retouchée à la main. `node outils/valider.mjs` refait les mêmes contrôles de poids et de dimensions (un `.webp` d'un dossier `img/` est une illustration en pied s'il se termine par `-situation.webp`, un portrait sinon).
 
 ## Ajouter un profil
 

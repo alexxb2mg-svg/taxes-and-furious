@@ -238,11 +238,19 @@ function verifierPortrait(racine, dossierRel, fichier, contexte, personnage, rap
 // EX-153 : plafonds de poids et formats (memes valeurs que outils/preparer-images.py).
 export const IMAGES = Object.freeze({
   decorMaxOctets: 250 * 1024,
-  decorLargeur: Object.freeze([1280, 1600]),
+  decorLargeur: Object.freeze([1024, 1600]),
   portraitCote: 512,
   portraitMaxOctets: 80 * 1024,
-  totalMaxOctets: 6 * 1024 * 1024,
+  illustrationLargeur: 768,
+  illustrationHauteur: 1024,
+  illustrationMaxOctets: 150 * 1024,
+  illustrationSuffixe: '-situation.webp',
+  totalMaxOctets: 12 * 1024 * 1024,
+  accueilMaxOctets: 2 * 1024 * 1024,
 });
+
+/** Un .webp d'un dossier img/ est une illustration en pied (EX-156) s'il se nomme `<perso>-situation.webp`. */
+export const estIllustration = (chemin) => typeof chemin === 'string' && chemin.toLowerCase().endsWith(IMAGES.illustrationSuffixe);
 
 /**
  * Dimensions d'un fichier WebP lues dans son en-tete (VP8, VP8L ou VP8X), sans dependance ;
@@ -316,11 +324,15 @@ function fichiersWebp(dossier, rel = '') {
 
 /**
  * EX-152 / EX-153 sur tous les .webp du dossier de donnees : un fichier d'un dossier `decors/` est un
- * decor (<= 250 Ko, 1280 a 1600 px de large), d'un dossier `img/` un portrait (carre 512 px, <= 80 Ko) ;
- * total <= 6 Mo.
+ * decor (<= 250 Ko, 1024 a 1600 px de large) ; d'un dossier `img/`, une illustration en pied s'il se
+ * nomme `<perso>-situation.webp` (768x1024 px, <= 150 Ko), un portrait sinon (carre 512 px, <= 80 Ko) ;
+ * total <= 12 Mo.
  */
 function verifierImages(racine, rapport) {
-  const { decorMaxOctets, decorLargeur: [lmin, lmax], portraitCote, portraitMaxOctets, totalMaxOctets } = IMAGES;
+  const {
+    decorMaxOctets, decorLargeur: [lmin, lmax], portraitCote, portraitMaxOctets,
+    illustrationLargeur, illustrationHauteur, illustrationMaxOctets, totalMaxOctets,
+  } = IMAGES;
   let total = 0;
   for (const { rel, octets } of fichiersWebp(racine)) {
     total += octets;
@@ -337,6 +349,14 @@ function verifierImages(racine, rapport) {
     if (decor) {
       if (octets > decorMaxOctets) rapport.erreur(rel, null, null, `decor de ${ko(octets)} : plafond ${ko(decorMaxOctets)} (EX-153)`);
       if (dim.largeur < lmin || dim.largeur > lmax) rapport.erreur(rel, null, null, `decor de ${dim.largeur} px de large : de ${lmin} a ${lmax} px (EX-153)`);
+    } else if (estIllustration(rel)) {
+      if (octets > illustrationMaxOctets) {
+        rapport.erreur(rel, null, null, `illustration de ${ko(octets)} : plafond ${ko(illustrationMaxOctets)} (EX-153)`);
+      }
+      if (dim.largeur !== illustrationLargeur || dim.hauteur !== illustrationHauteur) {
+        rapport.erreur(rel, null, null,
+          `illustration de ${dim.largeur}x${dim.hauteur} px : ${illustrationLargeur}x${illustrationHauteur} attendu (EX-156)`);
+      }
     } else {
       if (octets > portraitMaxOctets) rapport.erreur(rel, null, null, `portrait de ${ko(octets)} : plafond ${ko(portraitMaxOctets)} (EX-153)`);
       if (dim.largeur !== portraitCote || dim.hauteur !== portraitCote) {
@@ -345,7 +365,7 @@ function verifierImages(racine, rapport) {
     }
   }
   if (total > totalMaxOctets) {
-    rapport.erreur('**/*.webp', null, null, `${(total / 1024 / 1024).toFixed(2)} Mo d'images WebP au total : plafond 6 Mo (EX-153)`);
+    rapport.erreur('**/*.webp', null, null, `${(total / 1024 / 1024).toFixed(2)} Mo d'images WebP au total : plafond ${totalMaxOctets / 1024 / 1024} Mo (EX-153)`);
   }
 }
 
