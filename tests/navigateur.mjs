@@ -72,6 +72,7 @@ const TYPES = {
   '.json': 'application/json; charset=utf-8',
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
+  '.webp': 'image/webp',
 };
 
 /**
@@ -246,6 +247,8 @@ export class Page {
     this.targetId = targetId;
     this.sessionId = sessionId;
     this.requetes = [];
+    this.urlsRequetes = new Map();
+    this.transferts = [];
     this.erreurs = [];
     this.avertissements = [];
     this.chargements = 0;
@@ -255,6 +258,11 @@ export class Page {
       switch (msg.method) {
         case 'Network.requestWillBeSent':
           this.requetes.push(p.request.url);
+          this.urlsRequetes.set(p.requestId, p.request.url);
+          break;
+        case 'Network.loadingFinished':
+          // Octets réellement transférés (en-têtes compris), pour les budgets de poids (EX-153).
+          this.transferts.push({ url: this.urlsRequetes.get(p.requestId) ?? '', octets: p.encodedDataLength });
           break;
         case 'Runtime.exceptionThrown':
           this.erreurs.push(`exception : ${p.exceptionDetails?.exception?.description ?? p.exceptionDetails?.text}`);

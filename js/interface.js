@@ -2,7 +2,7 @@
 // scène est délégué aux modules de js/types/ (EX-111) ; aucun texte de contenu ici : les libellés
 // sont dans index.html, le contenu dans les JSON de données.
 // Dossier de données : `data/` par défaut, ou `?donnees=<chemin relatif>` (tests, copies).
-import { assembler, nouvellePartie, resoudre, estTerminee, fin, sceneCourante, trouverChoix, typeDe, sorties } from './moteur.js';
+import { assembler, nouvellePartie, resoudre, estTerminee, fin, sceneCourante, trouverChoix, typeDe, sorties, decorTitre } from './moteur.js';
 import * as modulesTypes from './types/index.js';
 import { ANIMATIONS, CLASSES_ANIMATIONS } from './animations.js';
 
@@ -63,6 +63,16 @@ async function lireVariantes(id) {
   }
 }
 
+/** communs/decors.json est facultatif (EX-150) : absent = aucun décor par défaut. */
+async function lireDecors() {
+  try {
+    return await lireJson('communs/decors.json');
+  } catch (e) {
+    if (e.status === 404) return { chapitres: {}, titre: null };
+    throw e;
+  }
+}
+
 /** Contrôles minimaux à l'exécution (EX-054) : ce qui ferait planter l'affichage. */
 function verifierScenario(scenario) {
   for (const ch of scenario.chapitres) {
@@ -89,30 +99,32 @@ function verifierScenario(scenario) {
   if (!scenario.fins.length || !scenario.personnages.roles.verificateur?.nom) throw new Error('fins ou verificateur absents');
 }
 
-async function chargerProfil(id, tronc, communs) {
+async function chargerProfil(id, tronc, communs, decors) {
   const profil = await lireJson(`profils/${id}/profil.json`);
   if (profil?.id !== id) throw new Error(`profils/${id}/profil.json : id "${profil?.id}" different du dossier`);
   if (profil.actif !== true) return null;
   const variantes = await lireVariantes(id);
-  const scenario = assembler(tronc, profil, variantes, communs);
+  const scenario = assembler(tronc, profil, variantes, communs, decors);
   verifierScenario(scenario);
   return { id, scenario };
 }
 
 async function charger() {
   app.donnees = dossierDonnees();
-  const [references, tronc, communs, index] = await Promise.all([
+  const [references, tronc, communs, index, decors] = await Promise.all([
     lireJson('references.json'),
     lireJson('tronc.json'),
     lireJson('communs/personnages.json'),
     lireJson('profils/index.json'),
+    lireDecors(),
   ]);
   if (!Array.isArray(index)) throw new Error('profils/index.json : tableau attendu');
   app.references = new Map((references.references ?? []).map((r) => [r.id, r]));
   app.dateVerification = references.date_verification;
   app.titre = tronc.titre;
+  app.decorTitre = decorTitre(decors);
 
-  const resultats = await Promise.all(index.map((id) => chargerProfil(id, tronc, communs).then(
+  const resultats = await Promise.all(index.map((id) => chargerProfil(id, tronc, communs, decors).then(
     (p) => ({ p }),
     (erreur) => ({ erreur, id }),
   )));
@@ -163,17 +175,111 @@ function cheminDonnee(rel) {
   return rel ? url(rel) : null;
 }
 
+const CIVILITES = new Set(['m', 'mme', 'mlle', 'me', 'dr', 'pr']);
+
+/** Initiales d'un nom pour le disque de repli (EX-152) : « Mme Démo Pistil » -> « DP ». */
+function initiales(nom) {
+  const mots = String(nom ?? '').split(/[\s-]+/).filter((m) => m && !CIVILITES.has(m.replace(/\.$/, '').toLowerCase()));
+  const lettres = mots.length > 1 ? [mots[0], mots[mots.length - 1]] : mots;
+  return lettres.map((m) => m[0].toLocaleUpperCase('fr-FR')).join('') || '?';
+}
+
+/** Dernier repli d'un portrait (EX-152) : les initiales dans un disque, même rôle et même nom accessible. */
+function remplacerParInitiales(img, personnage) {
+  const disque = document.createElement('span');
+  disque.className = `${img.className} portrait-initiales`;
+  disque.setAttribute('role', 'img');
+  disque.setAttribute('aria-label', personnage.nom ?? '');
+  disque.dataset.repli = 'initiales';
+  disque.textContent = initiales(personnage.nom);
+  img.replaceWith(disque);
+}
+
+/**
+ * Portrait d'un personnage (EX-034, EX-152) : image illustrée `.webp`, puis le SVG de même nom si elle
+ * manque ou échoue, puis les initiales dans un disque. role="img" et aria-label = nom dans tous les cas.
+ */
 function portrait(img, personnage) {
-  img.src = cheminDonnee(personnage.portrait);
   img.alt = personnage.nom ?? '';
   img.setAttribute('role', 'img');
   img.setAttribute('aria-label', personnage.nom ?? '');
+  img.onerror = () => {
+    if (personnage.repli && img.dataset.repli !== 'svg') {
+      img.dataset.repli = 'svg';
+      img.src = cheminDonnee(personnage.repli);
+    } else {
+      img.onerror = null;
+      remplacerParInitiales(img, personnage);
+    }
+  };
+  img.src = cheminDonnee(personnage.portrait);
+}
+
+// ------------------------------------------------------------------ décor (EX-150, EX-151)
+
+const decor = { courant: null, precharges: new Set() };
+
+/**
+ * Décor de fond (chemin relatif aux données, ou null = fond uni). Deux images superposées : la nouvelle
+ * apparaît en fondu (CSS, <= 300 ms, coupé sous prefers-reduced-motion) une fois chargée.
+ */
+function afficherDecor(rel) {
+  const src = rel ? url(rel) : null;
+  if (src === decor.courant) return;
+  decor.courant = src;
+  const conteneur = $('#decor');
+  conteneur.dataset.decor = rel ?? '';
+  document.body.classList.toggle('avec-decor', src !== null);
+  const images = $$('.decor-image', conteneur);
+  const visible = images.find((i) => i.classList.contains('decor-visible')) ?? null;
+  if (src === null) {
+    for (const i of images) i.classList.remove('decor-visible');
+    return;
+  }
+  const suivante = images.find((i) => i !== visible);
+  const montrer = () => {
+    if (decor.courant !== src) return;
+    suivante.classList.add('decor-visible');
+    visible?.classList.remove('decor-visible');
+  };
+  suivante.onload = montrer;
+  suivante.onerror = () => {
+    if (decor.courant === src) visible?.classList.remove('decor-visible'); // fond uni plutôt qu'un décor périmé
+  };
+  if (suivante.getAttribute('src') === src && suivante.complete && suivante.naturalWidth > 0) montrer();
+  else suivante.src = src;
+}
+
+/** Précharge une image (décor de la scène suivante) sans l'afficher. */
+function precharger(rel) {
+  const src = rel ? url(rel) : null;
+  if (!src || src === decor.courant || decor.precharges.has(src)) return;
+  decor.precharges.add(src);
+  const i = new Image();
+  i.decoding = 'async';
+  i.src = src;
+}
+
+/** Décors des scènes qui peuvent suivre la scène courante (EX-151 : décor suivant préchargé). */
+function prechargerSuivants(scene) {
+  const scenario = app.courant.scenario;
+  const chapitre = scenario.chapitres[app.etat.chapitre];
+  for (const s of sorties(scene)) {
+    const cible = s.suivant
+      ? chapitre.scenes.find((x) => x.id === s.suivant)
+      : scenario.chapitres[app.etat.chapitre + 1]?.scenes[0];
+    if (cible?.decor && cible.decor !== scene.decor) precharger(cible.decor);
+  }
 }
 
 function afficherEcran(id) {
   for (const s of $$('.ecran')) s.hidden = s.id !== id;
   $('#chargement').hidden = true;
   document.body.dataset.ecran = id;
+  // Titre et choix du profil : couverture (EX-153 : seule image de décor chargée avant la partie).
+  // Partie : décor de la scène (afficherScene) ; fin : le dernier décor reste ; erreur : fond uni.
+  if (id === 'ecran-titre' || id === 'ecran-choix') afficherDecor(app.decorTitre);
+  else if (id === 'ecran-erreur') afficherDecor(null);
   window.scrollTo(0, 0);
 }
 
@@ -282,6 +388,8 @@ function afficherScene() {
   const scenario = app.courant.scenario;
   const scene = sceneCourante(app.etat);
   $('#partie-chapitre').textContent = scenario.chapitres[app.etat.chapitre].titre ?? '';
+  afficherDecor(scene.decor ?? null);
+  prechargerSuivants(scene);
   majJauges(app.etat.jauges);
   const art = $('#scene');
   art.dataset.scene = scene.id;
