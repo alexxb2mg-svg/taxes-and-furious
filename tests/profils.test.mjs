@@ -67,9 +67,16 @@ for (const id of IDS) {
   test(`${id} : exploration exhaustive, toutes les fins sont atteignables`, () => {
     const atteintes = new Set();
     const pile = [nouvellePartie(scenario)];
+    // La suite d'une partie ne depend que de la position et des jauges : deux etats identiques sur ces
+    // points menent aux memes fins. Les explorer une seule fois garde le test rapide avec 16 a 24 scenes
+    // a 3 ou 4 choix (EX-142, EX-143), ou le nombre de parties possibles depasse le milliard.
+    const vus = new Set();
     let parties = 0;
     while (pile.length) {
       const e = pile.pop();
+      const cle = JSON.stringify([e.chapitre, e.scene, e.jauges, e.terminee, e.anticipee]);
+      if (vus.has(cle)) continue;
+      vus.add(cle);
       if (estTerminee(e)) {
         parties += 1;
         atteintes.add(fin(e).id);
