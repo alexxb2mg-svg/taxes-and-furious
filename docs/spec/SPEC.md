@@ -275,3 +275,33 @@ But : un contributeur ajoute un pan d'experience (mini-jeu, nouvelle mecanique, 
 *Verification* : `git grep -n -i -E "fisc ?& ?fiction|fisc-et-fiction" -- . ':!docs/spec'` vide ; test d'interface : le titre de l'ecran titre vaut "Taxes & Furious".
 
 Hors perimetre lot 3 : nom de domaine personnalise, statistiques de visite, son.
+
+## 8. Lot 4 - profondeur de jeu et confort (retours du porteur apres la premiere partie en ligne, 12/10/2026)
+
+Constats verifies sur `main` (17e8786) : tous les profils commencent par le chapitre `avis` du tronc ; les variantes ne reecrivent que 3 a 5 des 10 scenes du tronc, donc les premieres questions sont identiques d'un profil a l'autre ; 9 scenes du tronc sur 10 et la plupart des scenes de profil n'ont que 2 choix ; aucun moyen de revenir a l'accueil en cours de partie ; dans l'encadre apres un choix, "Ce que dit vraiment la loi" apparait deux fois (titre de l'encadre et debut de chaque `explication`) et l'explication repete souvent le resume d'article affiche juste dessous.
+
+Toute evolution passe par une pull request sur `main` ; la verification `tests` doit etre verte.
+
+### 8.1 Confort et lisibilite
+
+**EX-130 - Retour a l'accueil.** Pendant une partie (ecran de scene et encadre apres choix), un bouton "Accueil" visible en permanence (en-tete), atteignable au clavier. Il ouvre une confirmation accessible (`<dialog>` natif, focus place dans la boite, Echap = annuler) : "Quitter la partie ? Elle ne sera pas enregistree." avec "Quitter" et "Continuer la partie". "Quitter" ramene a l'ecran titre (avertissement EX-004 visible) sans modifier le meilleur score ; "Continuer" referme sans rien changer. Sur l'ecran de fin, "Accueil" ramene directement a l'ecran titre (rien a perdre).
+*Verification* : test d'interface : en pleine partie, Accueil puis Continuer -> meme scene, memes jauges ; Accueil puis Quitter -> ecran titre, cle `fiscfiction.meilleur` inchangee ; Echap ferme la boite ; parcours au clavier ; 375x740 sans defilement horizontal ; aucune erreur CSP (pas de style ni script en ligne).
+
+**EX-131 - Encadre de la loi sans doublon.** Le titre "Ce que dit vraiment la loi" n'apparait qu'une fois (titre de l'encadre). Les champs `explication` ne commencent plus par ce libelle. L'explication dit ce qui s'applique AU CAS JOUE (une ou deux phrases) ; le resume de l'article, affiche dessous avec son numero, reste la reference generale. Les deux ne doivent pas reprendre la meme phrase.
+*Verification* : `git grep -c "Ce que dit vraiment la loi" -- data` = 0 ; le validateur rejette une explication qui commence par ce libelle (temoin) ; test d'interface : le libelle apparait 1 fois dans l'encadre ; le validateur signale (avertissement) une explication dont plus de 60 % des mots (hors mots de moins de 4 lettres) figurent dans le resume d'une reference citee, et `node outils/valider.mjs` sur `data/` sort 0 avertissement de ce type.
+
+### 8.2 Profondeur de jeu
+
+**EX-140 - Ouverture propre a chaque profil.** Chaque profil commence par un chapitre a lui (1 a 2 scenes : la situation du metier avant l'arrivee du controle), avant `tronc:avis`. Le validateur exige que la premiere entree du parcours d'un profil soit `profil:<id>`.
+*Verification* : validateur (temoin : parcours qui commence par `tronc:`) ; test : les textes de la premiere scene des 6 profils sont tous differents.
+
+**EX-141 - Tronc entierement habille.** Chaque profil fournit une variante pour CHAQUE scene du tronc (texte de scene et reaction de chaque choix), dans son univers et avec ses personnages. Les effets, `juste`, explications et references restent ceux du tronc.
+*Verification* : validateur : pour un profil de `index.json`, toute scene du tronc sans variante = erreur, tout choix du tronc sans `reaction` de variante = erreur (le modele `_modele` et les donnees de test peuvent etre exemptes par une option documentee) ; test : pour chaque scene du tronc, les 6 textes affiches sont deux a deux differents.
+
+**EX-142 - Plus de choix.** Toute scene de type `choix` (tronc et profils) propose 3 ou 4 choix, dont au moins un `juste` et au moins un mauvais reflexe credible (pas seulement l'absurde) ; les mauvais choix ont des effets differents entre eux (pas deux choix aux effets identiques dans une scene). La limite du format reste 2 a 4 (EX-020) pour les profils externes ; la regle 3 a 4 s'applique a `data/`.
+*Verification* : test sur `data/` : nombre de choix par scene dans [3, 4] ; aucune paire de choix d'une meme scene avec effets identiques ; validateur toujours vert.
+
+**EX-143 - Profondeur.** Chaque profil compte au moins 2 chapitres propres en plus de l'ouverture (EX-140) et au moins 3 fins propres, dont une atteignable seulement par un choix fait dans un chapitre de profil (consequence differee : une issue ou un choix pose un effet que seule une fin du profil exploite, par ex. via un seuil de jauge). Parcours total par profil : 16 a 24 scenes.
+*Verification* : test : comptage chapitres/fins/scenes par profil ; pour chaque profil, une suite de choix atteint chaque fin propre (exploration existante) ; REVIEWER relit le ton (section 2.1) et la justesse juridique de chaque nouvelle explication (references existantes uniquement ; besoin d'une notion nouvelle = demande a SPEC avec l'article).
+
+Hors perimetre lot 4 : nouveaux profils, nouveaux mini-jeux, son.
