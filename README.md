@@ -115,3 +115,4 @@ En ouvrant une pull request, vous acceptez que votre contribution soit publiée 
 ## Avertissement
 
 Jeu humoristique. Ce n'est pas un conseil fiscal. Les explications résument des textes officiels à la date de vérification affichée dans le jeu ; pour une situation réelle, adressez-vous à un professionnel ou à l'administration fiscale. Entreprises et personnages sont entièrement fictifs.
+
