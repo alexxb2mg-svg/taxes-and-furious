@@ -13,7 +13,7 @@ import { pathToFileURL } from 'node:url';
 import { nouvellePartie, resoudre, sceneCourante } from '../js/moteur.js';
 import { DEPOT, DONNEES, chargerScenario } from './aides.mjs';
 import { lancerNavigateur, servir, trouverChrome } from './navigateur.mjs';
-import { allerAuChoix, ecran } from './partie.mjs';
+import { allerAuChoix, ecran, passerFiche } from './partie.mjs';
 import { SUITES_FINS } from './suites-fins.mjs';
 
 let nav;
@@ -50,9 +50,10 @@ async function lancer(id, { largeur, hauteur, reduit } = {}) {
 /** Joue (clics) les choix de `suite` jusqu'a atteindre la scene `idScene` ; renvoie l'etat du moteur. */
 async function allerA(p, scenario, suite, idScene) {
   let etat = nouvellePartie(scenario);
+  const presentes = new Set(); // fiches de presentation (EX-156) fermees au passage
   for (const x of suite) {
     const scene = sceneCourante(etat);
-    await p.attendre(`document.querySelector('#scene').dataset.scene === ${JSON.stringify(scene.id)} && !document.querySelector('#scene').hidden`, `scene ${scene.id}`);
+    await passerFiche(p, scene, presentes);
     if (scene.id === idScene) return etat;
     await p.cliquer(`#scene-choix .choix[data-choix="${x}"]`);
     await p.attendre(`!document.querySelector('#encadre').hidden`, `encadre ${x}`);

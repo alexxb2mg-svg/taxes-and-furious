@@ -1,0 +1,6 @@
+{
+  "regle": "role embleme reserve a communs/personnages.json (EX-157)",
+  "couverture": false,
+  "modifs": [{ "fichier": "profils/demo-fleuriste/profil.json", "chemin": ["personnages", 1, "role"], "valeur": "embleme" }],
+  "attendu": ["personnage \"bilan\", champ \"role\" : \"embleme\" est reserve au controleur emblematique de communs/personnages.json (EX-157)"]
+}

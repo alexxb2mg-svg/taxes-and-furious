@@ -79,6 +79,70 @@ export async function jaugesAffichees(p) {
     [e.dataset.jauge, { attr: Number(e.dataset.valeur), texte: Number(e.querySelector('.jauge-valeur').textContent.replace(/\\D/g, '')) }]))`);
 }
 
+/** Clé d'un personnage pour la fiche de présentation (même règle que js/interface.js). */
+const clePersonnage = (perso) => `${perso.id}|${perso.portrait ?? ''}`;
+
+/** La fiche de présentation (EX-156) est attendue avant la scène : personnage illustré, pas encore présenté. */
+export const ficheAttendue = (perso, presentes) => perso.role !== 'narrateur' && !!perso.illustration && !presentes.has(clePersonnage(perso));
+
+/** Contenu affiché de la fiche de présentation. */
+export const etatFiche = (p) => p.eval(`(() => {
+  const f = document.querySelector('#fiche');
+  const illu = f.querySelector('.fiche-illustration');
+  const portrait = f.querySelector('.fiche-portrait');
+  return {
+    visible: !f.hidden && f.getClientRects().length > 0, scene: f.dataset.scene ?? null, personnage: f.dataset.personnage ?? null,
+    nom: f.querySelector('#fiche-nom').textContent, description: f.querySelector('#fiche-description').textContent,
+    illustration: illu && { src: illu.getAttribute('src'), charge: illu.complete && illu.naturalWidth > 0, cache: illu.getAttribute('aria-hidden') },
+    portrait: portrait && { src: portrait.getAttribute('src'), role: portrait.getAttribute('role'), label: portrait.getAttribute('aria-label'), charge: portrait.tagName !== 'IMG' || (portrait.complete && portrait.naturalWidth > 0) },
+    focus: document.activeElement?.id ?? null,
+  };
+})()`);
+
+/**
+ * Attend la scène `scene` ; si sa fiche de présentation (EX-156) s'affiche d'abord, la vérifie
+ * (illustration + portrait + nom + description) puis la ferme par « Suivant ». `presentes` (Set,
+ * modifié) suit les personnages déjà présentés : la fiche doit apparaître exactement à leur première
+ * réplique. Renvoie true si une fiche a été fermée.
+ */
+export async function passerFiche(p, scene, presentes = new Set()) {
+  const id = JSON.stringify(scene.id);
+  const pret = `document.querySelector('#scene').dataset.scene === ${id} && !document.querySelector('#scene').hidden`;
+  const fiche = `!document.querySelector('#fiche').hidden && document.querySelector('#fiche').dataset.scene === ${id}`;
+  await p.attendre(`(${pret}) || (${fiche})`, `scene ${scene.id} ou sa fiche`);
+  const montree = await p.eval(fiche);
+  const perso = scene.personnage;
+  assert.equal(montree, ficheAttendue(perso, presentes), `${scene.id} : fiche de presentation de ${perso.id} (EX-156)`);
+  if (!montree) return false;
+  presentes.add(clePersonnage(perso));
+  await p.attendre(`(() => { const i = document.querySelector('#fiche .fiche-illustration'); return !!i && i.complete; })()`, `${scene.id} : illustration de la fiche`);
+  const f = await etatFiche(p);
+  assert.equal(f.personnage, perso.id);
+  assert.equal(f.nom, perso.nom ?? '', `${scene.id} : nom sur la fiche`);
+  assert.equal(f.description, perso.description ?? '', `${scene.id} : description sur la fiche`);
+  assert.ok(f.illustration?.src.endsWith(perso.illustration), `${scene.id} : illustration ${f.illustration?.src}, attendu ${perso.illustration}`);
+  assert.equal(f.illustration.charge, true, `${scene.id} : illustration chargee`);
+  if (perso.portrait) {
+    assert.ok(f.portrait, `${scene.id} : portrait sur la fiche`);
+    assert.equal(f.portrait.role, 'img');
+    assert.equal(f.portrait.label, perso.nom, `${scene.id} : aria-label du portrait = nom (EX-034)`);
+  }
+  assert.equal(f.focus, 'fiche-nom', `${scene.id} : focus sur le nom de la fiche`);
+  await p.cliquer('#bouton-fiche-suivant');
+  await p.attendre(pret, `scene ${scene.id} apres la fiche`);
+  return true;
+}
+
+/**
+ * Image attendue sur la carte d'un profil (EX-156 a) : illustration du personnage `joueur` du profil,
+ * sinon portrait du vérificateur (aria-label = nom du personnage montré).
+ */
+export function imageCarte(scenario) {
+  const joueur = scenario.personnages.roles.joueur;
+  const verif = scenario.personnages.roles.verificateur;
+  return joueur?.illustration ? { src: joueur.illustration, label: joueur.nom, classe: 'carte-illustration' } : { src: verif.portrait, label: verif.nom, classe: 'carte-portrait' };
+}
+
 export async function verifierJauges(p, etat, contexte) {
   const aff = await jaugesAffichees(p);
   for (const j of ['redressement', 'patience', 'stress']) {
@@ -104,11 +168,12 @@ export async function jouerPartie(p, racine, id, suite, { references, largeurMax
   await p.cliquer(`.carte-profil[data-profil="${id}"]`);
   await p.attendre(`['ecran-partie', 'ecran-fin'].includes(document.body.dataset.ecran)`, 'debut de partie');
   let etat = nouvellePartie(scenario);
-  const vus = { narrateur: 0, roles: {} };
+  const vus = { narrateur: 0, roles: {}, fiches: [] };
+  const presentes = new Set();
   for (const idChoix of suite) {
     const scene = sceneCourante(etat);
     const estChoix = typeDe(scene) === 'choix';
-    await p.attendre(`document.querySelector('#scene').dataset.scene === ${JSON.stringify(scene.id)} && !document.querySelector('#scene').hidden`, `scene ${scene.id}`);
+    if (await passerFiche(p, scene, presentes)) vus.fiches.push(scene.personnage.id);
     assert.equal(await texte(p, '#scene-texte'), scene.texte.trim(), `${scene.id} : texte`);
     await verifierJauges(p, etat, `${scene.id} avant choix`);
     await p.attendre(`(() => { const i = document.querySelector('#scene-orateur img'); return !i || i.complete; })()`, `${scene.id} : chargement du portrait`);
@@ -172,6 +237,15 @@ export async function jouerPartie(p, racine, id, suite, { references, largeurMax
   assert.equal(Number(await texte(p, '[data-score="bons"]')), resultat.bonsReflexes);
   assert.equal(Number(await texte(p, '[data-score="scenes"]')), resultat.scenesJouees);
   assert.equal(await visible(p, '#fin-anticipee'), resultat.anticipee);
+  // EX-156 c : illustration en pied du vérificateur du profil, sinon son portrait.
+  const verif = scenario.personnages.roles.verificateur;
+  await p.attendre(`(() => { const i = document.querySelector('#fin-verificateur img'); return !i || i.complete; })()`, 'image de fin');
+  const imgFin = await p.eval(`(() => { const i = document.querySelector('#fin-verificateur [role="img"]');
+    return i && { src: i.getAttribute('src'), label: i.getAttribute('aria-label'), illustration: i.classList.contains('fin-illustration') }; })()`);
+  assert.ok(imgFin, "image du verificateur a l'ecran de fin");
+  assert.equal(imgFin.label, verif.nom, 'fin : aria-label = nom du verificateur');
+  assert.equal(imgFin.illustration, !!verif.illustration, 'fin : illustration si declaree, sinon portrait');
+  if (imgFin.src !== null) assert.ok(imgFin.src.endsWith(verif.illustration ?? verif.portrait), `fin : ${imgFin.src}`);
   await largeur('fin');
   return { etat, resultat, vus, scenario };
 }

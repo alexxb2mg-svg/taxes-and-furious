@@ -13,7 +13,7 @@ import { nouvellePartie, choisir } from '../js/moteur.js';
 import { valider } from '../outils/valider.mjs';
 import { DEPOT, DONNEES, DONNEES_DEMO, chargerScenario, copieTemporaire, appliquerModifs, lireJson } from './aides.mjs';
 import { lancerNavigateur, servir, trouverChrome } from './navigateur.mjs';
-import { tolerance404Variantes, ecran, texte, visible, avertissementAttendu, allerAuChoix, cartes, verifierJauges, jouerPartie, suiteDe } from './partie.mjs';
+import { tolerance404Variantes, ecran, texte, visible, avertissementAttendu, allerAuChoix, cartes, verifierJauges, jouerPartie, suiteDe, imageCarte } from './partie.mjs';
 
 const CLE = 'fiscfiction.meilleur';
 const montages = {}; // préfixe -> dossier, modifiable d'un test à l'autre
@@ -124,13 +124,14 @@ test('EX-050 : cartes des profils actifs dans l\'ordre de index.json (portrait, 
   assert.deepEqual(vues.map((c) => c.id), index);
   for (const c of vues) {
     const { scenario, profil } = chargerScenario(DONNEES_DEMO, c.id);
-    const verif = scenario.personnages.roles.verificateur;
     assert.equal(c.nom, profil.nom);
     assert.equal(c.entreprise, profil.entreprise);
     assert.equal(c.accroche, profil.accroche);
-    assert.equal(c.portrait, `tests/donnees/${verif.portrait}`);
+    // EX-156 a : illustration du joueur du profil, sinon portrait du verificateur.
+    const attendu = imageCarte(scenario);
+    assert.equal(c.portrait, `tests/donnees/${attendu.src}`);
     assert.equal(c.role, 'img');
-    assert.equal(c.label, verif.nom);
+    assert.equal(c.label, attendu.label);
     assert.equal(c.charge, true, `portrait de ${c.id} charge`);
   }
   assert.equal(await visible(p, '#profils-indisponibles'), false);

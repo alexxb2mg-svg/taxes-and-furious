@@ -2,7 +2,7 @@
 // scène est délégué aux modules de js/types/ (EX-111) ; aucun texte de contenu ici : les libellés
 // sont dans index.html, le contenu dans les JSON de données.
 // Dossier de données : `data/` par défaut, ou `?donnees=<chemin relatif>` (tests, copies).
-import { assembler, nouvellePartie, resoudre, estTerminee, fin, sceneCourante, trouverChoix, typeDe, sorties, decorTitre } from './moteur.js';
+import { assembler, nouvellePartie, resoudre, estTerminee, fin, sceneCourante, trouverChoix, typeDe, sorties, decorTitre, embleme } from './moteur.js';
 import * as modulesTypes from './types/index.js';
 import { ANIMATIONS, CLASSES_ANIMATIONS } from './animations.js';
 
@@ -20,6 +20,8 @@ const app = {
   indisponibles: 0,
   courant: null, // { id, scenario }
   etat: null,
+  embleme: null, // contrôleur emblématique de l'écran titre (EX-157), ou null
+  presentes: new Set(), // personnages déjà présentés par leur fiche dans la partie en cours (EX-156)
 };
 
 // ------------------------------------------------------------------ données
@@ -123,6 +125,7 @@ async function charger() {
   app.dateVerification = references.date_verification;
   app.titre = tronc.titre;
   app.decorTitre = decorTitre(decors);
+  app.embleme = embleme(communs);
 
   const resultats = await Promise.all(index.map((id) => chargerProfil(id, tronc, communs, decors).then(
     (p) => ({ p }),
@@ -213,6 +216,45 @@ function portrait(img, personnage) {
     }
   };
   img.src = cheminDonnee(personnage.portrait);
+}
+
+/** Image neuve d'un emplacement de portrait ou d'illustration (le repli par initiales remplace l'élément). */
+function nouvelleImage(classe) {
+  const img = $('#gabarit-portrait').content.firstElementChild.cloneNode(true);
+  img.className = classe;
+  return img;
+}
+
+/**
+ * Illustration en pied d'un personnage (EX-156), sinon portrait : sans illustration, ou si elle ne se
+ * charge pas, l'interface ne montre que le portrait de `repli` (le personnage lui-même par défaut).
+ * role="img" et aria-label = nom du personnage affiché dans les deux cas. Renvoie true si l'illustration est demandée.
+ */
+function illustrationOuPortrait(img, personnage, { classeIllustration, classePortrait, repli = personnage }) {
+  const [largeur, hauteur] = [img.width, img.height];
+  const versPortrait = () => {
+    img.onerror = null;
+    delete img.dataset.illustration;
+    img.className = classePortrait;
+    img.width = largeur;
+    img.height = hauteur;
+    portrait(img, repli);
+  };
+  if (!personnage?.illustration) {
+    versPortrait();
+    return false;
+  }
+  img.className = classeIllustration;
+  img.dataset.illustration = 'oui';
+  img.alt = personnage.nom ?? '';
+  img.setAttribute('role', 'img');
+  img.setAttribute('aria-label', personnage.nom ?? '');
+  img.width = 768;
+  img.height = 1024;
+  img.decoding = 'async';
+  img.onerror = versPortrait;
+  img.src = cheminDonnee(personnage.illustration);
+  return true;
 }
 
 // ------------------------------------------------------------------ décor (EX-150, EX-151)
@@ -328,8 +370,11 @@ function ecranChoix() {
     const li = $('#gabarit-carte').content.firstElementChild.cloneNode(true);
     const bouton = $('.carte-profil', li);
     bouton.dataset.profil = id;
+    // Carte (EX-156) : illustration du personnage `joueur` du profil ; sans elle, portrait du vérificateur.
     const verif = scenario.personnages.roles.verificateur;
-    portrait($('.carte-portrait', li), verif);
+    illustrationOuPortrait($('.carte-portrait', li), scenario.personnages.roles.joueur, {
+      classeIllustration: 'carte-illustration', classePortrait: 'carte-portrait portrait', repli: verif,
+    });
     $('.carte-nom', li).textContent = scenario.profil.nom ?? id;
     $('.carte-entreprise', li).textContent = scenario.profil.entreprise ?? '';
     $('.carte-accroche', li).textContent = scenario.profil.accroche ?? '';
@@ -354,6 +399,7 @@ function ecranChoix() {
 function commencer(id) {
   app.courant = app.profils.find((p) => p.id === id);
   app.etat = nouvellePartie(app.courant.scenario);
+  app.presentes = new Set();
   $('#partie-profil').textContent = [app.courant.scenario.profil.nom, app.courant.scenario.profil.entreprise].filter(Boolean).join(' · ');
   afficherEcran('ecran-partie');
   if (estTerminee(app.etat)) {
@@ -384,6 +430,53 @@ function dossierScene() {
   return ch.origine === 'profil' ? `profils/${app.courant.id}` : '';
 }
 
+/** Clé d'un personnage pour la fiche de présentation : un même personnage n'est présenté qu'une fois par partie. */
+const clePersonnage = (p) => `${p.id}|${p.portrait ?? ''}`;
+
+/**
+ * Fiche de présentation (EX-156) : illustration + portrait + nom + une ligne de description, avant la
+ * première réplique d'un personnage illustré. Fermée par « Suivant » ou Échap ; la scène s'affiche ensuite.
+ */
+function presenter(personnage, idScene) {
+  app.presentes.add(clePersonnage(personnage));
+  const fiche = $('#fiche');
+  fiche.dataset.personnage = personnage.id;
+  fiche.dataset.scene = idScene;
+  const images = $('#fiche-images');
+  const illu = nouvelleImage('fiche-illustration');
+  illu.alt = '';
+  illu.removeAttribute('role');
+  illu.setAttribute('aria-hidden', 'true'); // décrite par le portrait et le nom de la fiche
+  illu.width = 768;
+  illu.height = 1024;
+  illu.decoding = 'async';
+  illu.onerror = () => illu.remove(); // illustration introuvable : la fiche garde le portrait
+  illu.src = cheminDonnee(personnage.illustration);
+  const cadre = document.createElement('span');
+  cadre.className = 'fiche-portrait-cadre';
+  if (personnage.portrait) {
+    const img = nouvelleImage('fiche-portrait portrait');
+    cadre.append(img);
+    portrait(img, personnage);
+  }
+  images.replaceChildren(illu, cadre);
+  $('#fiche-nom').textContent = personnage.nom ?? '';
+  const desc = $('#fiche-description');
+  desc.textContent = personnage.description ?? '';
+  desc.hidden = !personnage.description;
+  $('#scene').hidden = true;
+  $('#encadre').hidden = true;
+  fiche.hidden = false;
+  window.scrollTo(0, 0);
+  focaliser($('#fiche-nom'));
+}
+
+function fermerFiche() {
+  if ($('#fiche').hidden) return;
+  $('#fiche').hidden = true;
+  afficherScene();
+}
+
 function afficherScene() {
   const scenario = app.courant.scenario;
   const scene = sceneCourante(app.etat);
@@ -391,6 +484,12 @@ function afficherScene() {
   afficherDecor(scene.decor ?? null);
   prechargerSuivants(scene);
   majJauges(app.etat.jauges);
+  const orateur = scene.personnage;
+  if (orateur.role !== 'narrateur' && orateur.illustration && !app.presentes.has(clePersonnage(orateur))) {
+    presenter(orateur, scene.id);
+    return;
+  }
+  $('#fiche').hidden = true;
   const art = $('#scene');
   art.dataset.scene = scene.id;
   art.dataset.type = typeDe(scene);
@@ -417,7 +516,7 @@ function afficherScene() {
 }
 
 function jouer(resultat) {
-  if (!$('#encadre').hidden) return;
+  if (!$('#encadre').hidden || !$('#fiche').hidden) return;
   const scene = sceneCourante(app.etat);
   app.etat = resoudre(app.etat, resultat);
   const choix = trouverChoix(app.etat, app.etat.dernierChoix);
@@ -468,6 +567,12 @@ function ecranFin() {
   $('#fin-titre').textContent = resultat.titre ?? '';
   $('#fin-texte').textContent = resultat.texte ?? '';
   $('#fin-anticipee').hidden = !resultat.anticipee;
+  // Vérificateur du profil (EX-156) : son illustration en pied, sinon son portrait.
+  const img = nouvelleImage('fin-portrait portrait');
+  $('#fin-verificateur').replaceChildren(img);
+  illustrationOuPortrait(img, app.courant.scenario.personnages.roles.verificateur, {
+    classeIllustration: 'fin-illustration', classePortrait: 'fin-portrait portrait',
+  });
   $('[data-score="redressement"]').textContent = nombre.format(resultat.redressement);
   $('[data-score="bons"]').textContent = String(resultat.bonsReflexes);
   $('[data-score="scenes"]').textContent = String(resultat.scenesJouees);
@@ -517,12 +622,28 @@ function remplirTextesCommuns() {
   $('#titre-jeu').textContent = app.titre ?? '';
   const avert = $('#gabarit-avertissement').content.textContent.trim().replace('{date}', dateFr(app.dateVerification));
   for (const p of $$('[data-avertissement]')) p.textContent = avert;
+  // Contrôleur emblématique (EX-157) : illustration en pied héroïque, sinon portrait ; rien s'il n'est pas déclaré.
+  const fig = $('#titre-embleme');
+  fig.hidden = app.embleme === null;
+  if (app.embleme) {
+    const img = nouvelleImage('embleme-portrait portrait');
+    fig.replaceChildren(img);
+    illustrationOuPortrait(img, app.embleme, { classeIllustration: 'embleme-illustration', classePortrait: 'embleme-portrait portrait' });
+  }
 }
 
 async function demarrer() {
   $('#bouton-commencer').addEventListener('click', ecranChoix);
   $('#bouton-retour-titre').addEventListener('click', ecranTitre);
   $('#bouton-suivant').addEventListener('click', suivant);
+  $('#bouton-fiche-suivant').addEventListener('click', fermerFiche);
+  // Échap ferme la fiche de présentation (sauf si la boîte de confirmation, modale, est ouverte).
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !$('#fiche').hidden && !$('#confirmer-accueil').open) {
+      e.preventDefault();
+      fermerFiche();
+    }
+  });
   $('#bouton-rejouer').addEventListener('click', () => commencer(app.courant.id));
   $('#bouton-changer').addEventListener('click', ecranChoix);
   $('#bouton-accueil').addEventListener('click', demanderAccueil);
