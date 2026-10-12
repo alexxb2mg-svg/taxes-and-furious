@@ -65,11 +65,18 @@ for (const id of IDS) {
   });
 
   test(`${id} : exploration exhaustive, toutes les fins sont atteignables`, () => {
+    // Etats deja explores ignores : la suite de la partie et la fin retenue ne dependent que de la
+    // position (chapitre, scene), des jauges et de l'etat terminee/anticipee. Sans ce regroupement,
+    // un parcours de 16 a 24 scenes a 3 ou 4 choix (lot 4) depasse des centaines de millions de parties.
     const atteintes = new Set();
+    const vus = new Set();
     const pile = [nouvellePartie(scenario)];
     let parties = 0;
     while (pile.length) {
       const e = pile.pop();
+      const cle = JSON.stringify([e.chapitre, e.scene, e.terminee, e.anticipee, e.jauges]);
+      if (vus.has(cle)) continue;
+      vus.add(cle);
       if (estTerminee(e)) {
         parties += 1;
         atteintes.add(fin(e).id);
