@@ -1,28 +1,153 @@
 {
   "avis-s1": {
-    "texte": "Entre deux colis de marques, une lettre recommandée : avis de vérification de comptabilité. Vous la prenez en photo par réflexe, puis vous renoncez à la publier."
+    "texte": "7 h 30, lumière parfaite pour la story « routine du matin ». Le facteur interrompt la prise : lettre recommandée, avis de vérification de comptabilité. Sous le ring light, l'enveloppe brille comme un placement de produit.",
+    "choix": {
+      "avis-s1-a": {
+        "reaction": "Vous lisez tout, petites lignes comprises, avec la concentration d'un tutoriel de maquillage. Années contrôlées, droit à un conseil : vous prenez des notes."
+      },
+      "avis-s1-b": {
+        "texte": "La glisser sous la pile de colis de marques pas encore ouverts.",
+        "reaction": "La pile s'effondre au premier déballage. L'avis réapparaît au sommet, bien en évidence, comme s'il attendait son tour d'être filmé."
+      },
+      "avis-s1-c": {
+        "reaction": "Vous rangez la lettre dans la boîte à bijoux. Votre comptable la découvrira trois semaines plus tard, floutée à l'arrière-plan d'une de vos stories."
+      }
+    }
   },
   "avis-s2": {
-    "texte": "M. Jean-Marc Story se présente, sourire poli : « Je vous suis depuis deux ans. Aujourd'hui, c'est un peu plus officiel. »",
+    "texte": "M. Jean-Marc Story se présente, tablette sous le bras et sourire poli : « Enchanté. Enfin, nous nous connaissons un peu : j'ai vu toutes vos recettes de smoothies. Nous commencerons quand la loi le voudra. »",
     "choix": {
+      "avis-s2-a": {
+        "reaction": "« Bonne question. Pour une entreprise de votre taille, il y a une limite. Plus courte qu'une saison de télé-réalité, rassurez-vous. »"
+      },
       "avis-s2-b": {
         "texte": "Annoncer en story un départ immédiat pour une « retraite créative » à l'autre bout du monde.",
         "reaction": "M. Story regarde la story, puis vous, assise juste en face. « Bonne retraite. Le contrôle, lui, ne prend pas de vacances. »"
+      },
+      "avis-s2-c": {
+        "reaction": "« Quelques mois ? Vous publiez trois vidéos par jour, mais un fichier vous demanderait des mois ? »"
+      }
+    }
+  },
+  "avis-s3": {
+    "texte": "Votre comptable relit l'avis entre deux messages vocaux de votre part : « Ils regardent quelles années, déjà ? Et cette fois, répondez-moi sans émoji. »",
+    "choix": {
+      "avis-s3-a": {
+        "reaction": "« Parfait, je sors les dossiers de ces années-là. Pas l'album du lancement de la chaîne. »"
+      },
+      "avis-s3-b": {
+        "texte": "« Tout, depuis le tout premier selfie. Par sécurité. »",
+        "reaction": "Votre comptable disparaît sous une avalanche de captures d'écran imprimées. On entend un faible « au secours », suivi d'un aboiement."
+      },
+      "avis-s3-c": {
+        "reaction": "Votre comptable sort un seul dossier, très fin, intitulé « Année du thé détox ». M. Story en réclamera deux autres, très épais."
+      }
+    }
+  },
+  "avis-s4": {
+    "texte": "« Avant de commencer : vous avez reçu la charte du contribuable vérifié, et vous pouvez vous faire assister d'un conseil. » Le manager lève aussitôt la main. M. Story précise : « Un conseil. Pas un manager. »",
+    "choix": {
+      "avis-s4-a": {
+        "reaction": "« Très bien. » Le manager, vexé, quitte la pièce en téléphonant. Votre comptable s'installe avec un carnet et un stylo qui fonctionne."
+      },
+      "avis-s4-b": {
+        "reaction": "L'avion rate la corbeille et atterrit dans la gamelle du chihuahua. M. Story le récupère, le sèche avec soin et vous le rend."
+      },
+      "avis-s4-c": {
+        "texte": "« Non merci, je me défendrai seule : ma communauté me soutient. »",
+        "reaction": "« Comme vous voudrez. Votre communauté, en revanche, n'assistera pas aux rendez-vous. »"
       }
     }
   },
   "fec-s1": {
+    "texte": "M. Story pose sa tablette : « Vos vidéos, je les ai déjà vues. Maintenant, il me faudrait votre fichier des écritures comptables. Le FEC. Sans montage. »",
     "choix": {
+      "fec-s1-a": {
+        "reaction": "« Merveilleux. Un fichier brut, sans filtre ni musique d'ambiance. C'est presque reposant. »"
+      },
       "fec-s1-b": {
         "texte": "Lui envoyer un carrousel de 40 captures d'écran de vos virements, avec filtre pastel.",
         "reaction": "M. Story fait défiler. Le filtre pastel n'adoucit rien."
+      },
+      "fec-s1-c": {
+        "reaction": "M. Story fait défiler, comme un fil d'actualité sans fin. Il referme l'ordinateur avec douceur : « Le fichier, s'il vous plaît. Pas le PDF. »"
       }
     }
   },
   "fec-s2": {
-    "texte": "En relisant vos comptes, vous tombez sur une erreur. Une vraie, avec des chiffres dedans, et aucun filtre ne l'embellit."
+    "texte": "En relisant vos comptes, vous tombez sur une erreur. Une vraie, avec des chiffres dedans, et aucun filtre ne l'embellit.",
+    "choix": {
+      "fec-s2-a": {
+        "reaction": "M. Story hoche la tête : « Voilà qui simplifie les choses. Vous voyez, pas besoin de retouche. »"
+      },
+      "fec-s2-b": {
+        "reaction": "Il la voit. Il l'entoure en rouge, deux fois, puis la prend en photo. Il a appris de vous."
+      },
+      "fec-s2-c": {
+        "reaction": "M. Story compare deux versions du même fichier, comme un « avant / après ». Il lève un sourcil, puis l'autre."
+      }
+    }
+  },
+  "fec-s3": {
+    "texte": "M. Story s'arrête sur une série de virements tous libellés « collab ». Le silence devient si épais que le chihuahua cesse de mâchonner son coussin.",
+    "choix": {
+      "fec-s3-a": {
+        "reaction": "Contrats, factures, courriels des marques : les justificatifs défilent comme un carrousel bien rangé. M. Story suit sans décrocher."
+      },
+      "fec-s3-b": {
+        "texte": "Inventer une agence de « coaching en lumière naturelle » au nom très convaincant.",
+        "reaction": "« Et cette agence, elle a une adresse ? Un site ? Une seule publication ? » Pour une fois, personne ne trouve de compte à montrer."
+      },
+      "fec-s3-c": {
+        "reaction": "« Le stagiaire ? Celui de la story du 3 mars, qui portait les colis ? Et il a laissé une adresse, ce stagiaire ? »"
+      }
+    }
+  },
+  "rectification-s1": {
+    "texte": "Quelques semaines plus tard, une enveloppe épaisse arrive : la proposition de rectification. Pour une fois, vous ne filmez pas l'ouverture du colis.",
+    "choix": {
+      "rectification-s1-a": {
+        "reaction": "Chaque rehaussement est expliqué, ligne par ligne. Vous savez à quoi répondre, et ce ne sera pas en commentaire."
+      },
+      "rectification-s1-b": {
+        "reaction": "Accordé. Votre comptable respire à nouveau, et le chihuahua aussi, par solidarité."
+      },
+      "rectification-s1-c": {
+        "texte": "S'en servir pour caler le trépied du ring light.",
+        "reaction": "Le trépied ne penche plus. Le délai, lui, continue de courir."
+      },
+      "rectification-s1-d": {
+        "reaction": "Votre banquière appelle, inquiète : « Encore un achat sur un coup de tête ? » Votre comptable n'a même pas eu le temps de lire la première page."
+      }
+    }
   },
   "rectification-s2": {
-    "texte": "M. Story a lu vos observations, avec la même attention que vos stories : « Je maintiens une partie des rectifications. »"
+    "texte": "M. Story a lu vos observations, avec la même attention que vos stories : « Je maintiens une partie des rectifications. »",
+    "choix": {
+      "rectification-s2-a": {
+        "reaction": "« C'est votre droit. Je transmets. » Vous résistez de justesse à l'envie d'annoncer la nouvelle en direct."
+      },
+      "rectification-s2-b": {
+        "texte": "Répondre par une vidéo de douze minutes, ralentis et musique triste, sur l'injustice du monde.",
+        "reaction": "« Le montage est soigné. Les arguments, introuvables. »"
+      },
+      "rectification-s2-c": {
+        "reaction": "« Très bien, je note votre accord. » Votre comptable, hors champ, note surtout les points que vous auriez pu gagner."
+      }
+    }
+  },
+  "rectification-s3": {
+    "texte": "Votre comptable referme son ordinateur : « Bon. Reste la question qui fâche, et elle ne se règle pas avec un code promo : on paie quand ? »",
+    "choix": {
+      "rectification-s3-a": {
+        "reaction": "Votre comptable range enfin ses dossiers. Le chihuahua remue la queue, pour la première fois depuis le début du contrôle."
+      },
+      "rectification-s3-b": {
+        "reaction": "Votre comptable vous regarde comme une vidéo à zéro vue."
+      },
+      "rectification-s3-c": {
+        "reaction": "Votre comptable fait le calcul de tête et pâlit doucement, malgré la lumière pourtant très flatteuse du ring light."
+      }
+    }
   }
 }

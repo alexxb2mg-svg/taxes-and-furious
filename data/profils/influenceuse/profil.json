@@ -40,6 +40,7 @@
     }
   ],
   "parcours": [
+    "profil:tournage",
     "tronc:avis",
     "profil:partenariats",
     "tronc:fec",
@@ -52,6 +53,122 @@
     "R-1729"
   ],
   "chapitres": [
+    {
+      "id": "tournage",
+      "titre": "Une matinée de tournage",
+      "scenes": [
+        {
+          "id": "tournage-s1",
+          "personnage": "manager",
+          "texte": "Matinée de tournage. Le manager déboule, oreillette vissée : « Trois marques envoient des colis, une quatrième propose un virement pour une vidéo. On dit oui à tout ? Et on range ça où, dans les comptes ? »",
+          "choix": [
+            {
+              "id": "tournage-s1-a",
+              "texte": "« Oui, et chaque partenariat payé part dans le tableau du comptable, le jour même. »",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -5
+              },
+              "reaction": "Le manager note, perplexe : « Un tableau. D'accord. Ça se partage en story, un tableau ? »",
+              "explication": "Un partenariat payé est un profit comme un autre : noté le jour même, il rejoindra sans effort ce que vous déclarez chaque année.",
+              "references": [
+                "R-92"
+              ],
+              "suivant": "tournage-s2"
+            },
+            {
+              "id": "tournage-s1-b",
+              "texte": "« Oui, et on encaisse sur mon compte perso : moins de paperasse. »",
+              "juste": false,
+              "effets": {
+                "redressement": 2000,
+                "patience": 0,
+                "stress": -5
+              },
+              "reaction": "Le virement tombe entre l'abonnement de streaming et la note du toiletteur. Plus personne ne saura le retrouver, sauf peut-être un contrôleur.",
+              "explication": "Changer de compte ne change pas la nature de l'argent : ce que rapporte un partenariat reste un profit de votre activité, quel que soit le compte où il arrive.",
+              "references": [
+                "R-92"
+              ],
+              "suivant": "tournage-s2"
+            },
+            {
+              "id": "tournage-s1-c",
+              "texte": "« On fait facturer le chihuahua. Lui, il n'a jamais rien déclaré. »",
+              "juste": false,
+              "effets": {
+                "redressement": 1000,
+                "patience": -5,
+                "stress": 10
+              },
+              "reaction": "Le chihuahua regarde le contrat, puis vous, puis s'allonge dessus. Il refuse de s'engager.",
+              "explication": "Les partenariats viennent de votre travail : les mettre au nom de votre chien ne les fait pas sortir de vos propres bénéfices.",
+              "references": [
+                "R-92"
+              ],
+              "suivant": "tournage-s2"
+            }
+          ]
+        },
+        {
+          "id": "tournage-s2",
+          "personnage": "manager",
+          "texte": "Le manager baisse la voix : « Ton adresse à Dubaï, c'est l'appartement prêté par l'ami d'un ami. Tu n'y as jamais dormi, et toutes tes stories sont tournées ici. On fait quoi, avant que ça se voie ? »",
+          "choix": [
+            {
+              "id": "tournage-s2-a",
+              "texte": "« Cette année, on déclare l'adresse d'ici : c'est là que je vis. »",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -10
+              },
+              "reaction": "Le manager soupire : « Adieu, couchers de soleil sur la marina. » Le chihuahua, lui, retourne dormir sur son coussin d'ici.",
+              "explication": "Mieux vaut déclarer l'adresse où vous vivez vraiment : une fausse domiciliation à l'étranger donne au fisc 10 ans pour revenir sur vos impôts, au lieu de 3.",
+              "references": [
+                "R-L169"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "tournage-s2-b",
+              "texte": "« On garde Dubaï : sur le papier, ça tient très bien. »",
+              "juste": false,
+              "effets": {
+                "redressement": 20000,
+                "patience": 0,
+                "stress": -15
+              },
+              "reaction": "Le manager lève le pouce. Vous vous sentez légère, presque en vacances. Quelque part, sans bruit, un compteur s'est mis à tourner.",
+              "explication": "Sur le papier seulement : si l'adresse à l'étranger est fausse, le contrôle peut remonter 10 ans en arrière, et chaque année de plus s'ajoute à la note.",
+              "references": [
+                "R-L169"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "tournage-s2-c",
+              "texte": "« On poste une photo de chameau par jour, ça vaudra justificatif. »",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -5,
+                "stress": 10
+              },
+              "reaction": "Le chameau du jour est une peluche posée sur le canapé. Vos abonnés l'ont remarqué avant vous.",
+              "explication": "Une photo de chameau ne fait pas une adresse : en cas de fausse domiciliation à l'étranger, le délai de reprise passe de 3 à 10 ans.",
+              "references": [
+                "R-L169"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "partenariats",
       "titre": "Les partenariats",
@@ -88,6 +205,22 @@
               },
               "reaction": "M. Story ouvre une publication où vous annoncez « un partenariat très rémunérateur ». Il la pose entre vous, sans un mot.",
               "explication": "L'amour de la communauté n'est pas une case de la déclaration : un partenariat rémunéré rapporte un profit, imposé en bénéfices non commerciaux.",
+              "references": [
+                "R-92"
+              ],
+              "suivant": "partenariats-s2"
+            },
+            {
+              "id": "partenariats-s1-c",
+              "texte": "Ne déclarer que les gros partenariats : les petits « ne comptent pas vraiment ».",
+              "juste": false,
+              "effets": {
+                "redressement": 4000,
+                "patience": -5,
+                "stress": 5
+              },
+              "reaction": "M. Story fait défiler les « petits » partenariats. Il y en a quarante. Mis bout à bout, ils ne sont plus si petits.",
+              "explication": "Petit ou gros, chaque partenariat payé rapporte un profit : c'est leur total qui forme vos bénéfices, pas seulement les plus visibles.",
               "references": [
                 "R-92"
               ],
@@ -131,6 +264,22 @@
                 "R-1729"
               ],
               "suivant": "partenariats-s3"
+            },
+            {
+              "id": "partenariats-s2-c",
+              "texte": "Expliquer que ce sont des cadeaux d'amis, sans préciser que les « amis » sont des marques.",
+              "juste": false,
+              "effets": {
+                "redressement": 2000,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "M. Story lit l'étiquette d'un colis : « Votre amie s'appelle Service Marketing ? Elle vous écrit souvent. »",
+              "explication": "Présenter sciemment des envois de marques comme des cadeaux d'amis, c'est un manquement délibéré : 40 % de majoration sur les droits rappelés.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": "partenariats-s3"
             }
           ]
         },
@@ -170,6 +319,22 @@
                 "R-1729"
               ],
               "suivant": null
+            },
+            {
+              "id": "partenariats-s3-c",
+              "texte": "« Pas de contrat. On dira juste que les colis étaient pour un concours d'abonnés. »",
+              "juste": false,
+              "effets": {
+                "redressement": 2500,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "M. Story cherche le concours sur votre compte. Il trouve un seul gagnant : le chihuahua.",
+              "explication": "Une histoire montée après coup pour couvrir ce que vous saviez reste un manquement délibéré : 40 % de majoration.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
             }
           ]
         }
@@ -182,7 +347,7 @@
         {
           "id": "residence-s1",
           "personnage": "story",
-          "texte": "« Vous déclarez résider à Dubaï. Pourtant, vos stories montrent tous les matins la même boulangerie de quartier, à 7 h 02, sous la pluie. »",
+          "texte": "« Depuis deux ans, vous déclarez résider à Dubaï. Pourtant, vos stories montrent tous les matins la même boulangerie de quartier, à 7 h 02, sous la pluie. »",
           "choix": [
             {
               "id": "residence-s1-a",
@@ -198,7 +363,7 @@
               "references": [
                 "R-L169"
               ],
-              "suivant": "residence-s2"
+              "suivant": "residence-tri"
             },
             {
               "id": "residence-s1-b",
@@ -211,6 +376,117 @@
               },
               "reaction": "M. Story met un cœur à la story. Puis il note l'heure, et la pluie qui ruisselle sur la vitre derrière le fond vert.",
               "explication": "Un fond vert ne fait pas une résidence : en cas de fausse domiciliation à l'étranger, le fisc peut remonter 10 ans en arrière, pas seulement 3.",
+              "references": [
+                "R-L169"
+              ],
+              "suivant": "residence-tri"
+            },
+            {
+              "id": "residence-s1-c",
+              "texte": "Expliquer que vous vivez à Dubaï « en pensée », et ici seulement « pour le travail ».",
+              "juste": false,
+              "effets": {
+                "redressement": 6000,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "« En pensée. » M. Story note l'expression. « Et la carte de fidélité de la boulangerie, elle est en pensée, elle aussi ? »",
+              "explication": "Vivre ici tout en déclarant une adresse lointaine, c'est le cas de la fausse domiciliation : le contrôle peut alors porter sur 10 ans, et non sur 3.",
+              "references": [
+                "R-L169"
+              ],
+              "suivant": "residence-tri"
+            }
+          ]
+        },
+        {
+          "id": "residence-tri",
+          "type": "tri",
+          "personnage": "story",
+          "texte": "M. Story étale sur la table ce qu'il a trouvé dans vos publications : « Faisons le tri, voulez-vous. D'un côté, ce qui montre que vous vivez ici. De l'autre, ce qui ne prouve rien du tout. »",
+          "parametres": {
+            "bacs": [
+              "Vie ici",
+              "Ne prouve rien"
+            ],
+            "pieces": [
+              {
+                "texte": "Carte de fidélité de la boulangerie du quartier, pleine de tampons",
+                "bac_attendu": "Vie ici"
+              },
+              {
+                "texte": "Abonnement à la salle de sport de la rue d'à côté, utilisé tous les matins",
+                "bac_attendu": "Vie ici"
+              },
+              {
+                "texte": "Facture d'électricité de l'appartement d'ici, chauffage allumé tout l'hiver",
+                "bac_attendu": "Vie ici"
+              },
+              {
+                "texte": "Photo de dunes prise devant un fond vert",
+                "bac_attendu": "Ne prouve rien"
+              },
+              {
+                "texte": "Boîte postale à Dubaï, jamais relevée",
+                "bac_attendu": "Ne prouve rien"
+              }
+            ]
+          },
+          "issues": [
+            {
+              "id": "residence-tri-parfait",
+              "si": [
+                {
+                  "op": ">=",
+                  "valeur": 5
+                }
+              ],
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -10
+              },
+              "animation": "tampon",
+              "reaction": "M. Story aligne les deux piles. « Impeccable. Vous auriez fait une excellente vérificatrice. » Le chihuahua aboie, fier de vous.",
+              "explication": "Vous l'avez montré vous-même : votre vie est ici. Une adresse à l'étranger qui ne repose sur rien ouvre au fisc un délai de 10 ans au lieu de 3.",
+              "references": [
+                "R-L169"
+              ],
+              "suivant": "residence-s2"
+            },
+            {
+              "id": "residence-tri-presque",
+              "si": [
+                {
+                  "op": ">=",
+                  "valeur": 3
+                }
+              ],
+              "juste": false,
+              "effets": {
+                "redressement": 2000,
+                "patience": -5,
+                "stress": 5
+              },
+              "reaction": "M. Story déplace une ou deux pièces d'une pile à l'autre, sans un mot. Le chihuahua détourne le regard.",
+              "explication": "Presque. Ces pièces racontent une vie ici, et une adresse de façade n'y change rien : la reprise peut alors remonter jusqu'à 10 ans.",
+              "references": [
+                "R-L169"
+              ],
+              "suivant": "residence-s2"
+            },
+            {
+              "id": "residence-tri-rate",
+              "juste": false,
+              "effets": {
+                "redressement": 5000,
+                "patience": -10,
+                "stress": 10
+              },
+              "animation": "secousse",
+              "reaction": "« Le fond vert prouve que vous vivez à Dubaï ? » M. Story range tout dans son cartable. « Je terminerai le tri moi-même. »",
+              "explication": "Quand les traces de votre vie ici s'accumulent, l'adresse lointaine ne tient plus : avec une fausse domiciliation, le contrôle peut porter sur 10 ans, et non 3.",
               "references": [
                 "R-L169"
               ],
@@ -254,6 +530,22 @@
                 "R-1729"
               ],
               "suivant": null
+            },
+            {
+              "id": "residence-s2-c",
+              "texte": "Répondre, mais garder sous le coude les partenariats de l'an dernier, « pour plus tard ».",
+              "juste": false,
+              "effets": {
+                "redressement": 5000,
+                "patience": -10,
+                "stress": 15
+              },
+              "reaction": "« Pour plus tard ? » M. Story pose son stylo. « Aujourd'hui me convient très bien. »",
+              "explication": "Garder de côté des revenus que vous savez devoir montrer, c'est glisser vers le manquement délibéré, majoré de 40 %.",
+              "references": [
+                "R-1729"
+              ],
+              "suivant": null
             }
           ]
         }
@@ -261,6 +553,23 @@
     }
   ],
   "fins": [
+    {
+      "id": "influenceuse-fin-dix-ans",
+      "titre": "Dix ans de stories",
+      "texte": "Le contrôle s'est déroulé dans la bonne humeur, et M. Story vous quitte avec un sourire sincère. Puis l'adresse de Dubaï, gardée « sur le papier », ramène sur la table toutes les années d'avant, jusqu'à votre toute première vidéo, un rouge à lèvres testé sous une lampe de bureau. Le chihuahua n'était même pas né.",
+      "conditions": [
+        {
+          "jauge": "redressement",
+          "op": ">=",
+          "valeur": 40000
+        },
+        {
+          "jauge": "patience",
+          "op": ">=",
+          "valeur": 80
+        }
+      ]
+    },
     {
       "id": "influenceuse-fin-sans-filtre",
       "titre": "Sans filtre",
