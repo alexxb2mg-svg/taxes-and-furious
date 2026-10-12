@@ -64,12 +64,20 @@ for (const id of IDS) {
     }
   });
 
+  // Exploration exhaustive memoisee : la fin retenue ne depend que de la position dans le parcours,
+  // de la fin anticipee et des jauges ; deux parties qui arrivent au meme point avec les memes jauges
+  // ont donc exactement les memes fins possibles, et un seul exemplaire est explore. Sans cela,
+  // 16 a 24 scenes a 3 ou 4 choix (EX-142, EX-143) donneraient des milliards de parties.
   test(`${id} : exploration exhaustive, toutes les fins sont atteignables`, () => {
     const atteintes = new Set();
+    const vus = new Set();
     const pile = [nouvellePartie(scenario)];
     let parties = 0;
     while (pile.length) {
       const e = pile.pop();
+      const cle = JSON.stringify([e.chapitre, e.scene, e.terminee, e.anticipee, e.jauges]);
+      if (vus.has(cle)) continue;
+      vus.add(cle);
       if (estTerminee(e)) {
         parties += 1;
         atteintes.add(fin(e).id);
