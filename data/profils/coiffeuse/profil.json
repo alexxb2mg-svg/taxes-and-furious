@@ -122,7 +122,7 @@
                 "stress": 15
               },
               "reaction": "Mme Frange a vu le clin d'œil. Les clientes aussi. Tout le quartier le saura avant midi.",
-              "explication": "Un clin d'œil devant Mme Frange, c'est une recette qui risque de ne jamais entrer en caisse. Or la caisse doit tout garder, et sans attestation l'amende est de 7 500 €.",
+              "explication": "Un clin d'œil devant Mme Frange, c'est une recette qui risque de ne jamais entrer en caisse. Or le logiciel de caisse doit tout enregistrer sans rien effacer, et ne pas pouvoir présenter son attestation coûte 7 500 € d'amende.",
               "references": [
                 "R-286",
                 "R-1770DUO"
