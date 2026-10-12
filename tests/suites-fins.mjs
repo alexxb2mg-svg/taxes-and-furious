@@ -26,11 +26,12 @@ export const SUITES_FINS = {
     'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'devis-s1-c', 'devis-s2-b', 5, 'fec-s1-b'],
   },
   consultant: {
-    'consultant-fin-pivot': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'train-de-vie-s1-a', 'train-de-vie-s2-a', 6, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'remuneration-s1-a', 'remuneration-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
-    'consultant-fin-burn': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'train-de-vie-s1-b', 'train-de-vie-s2-b', 6, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'remuneration-s1-b', 'remuneration-s2-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-b'],
-    'fin-sereine': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'train-de-vie-s1-a', 'train-de-vie-s2-a', 6, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'remuneration-s1-a', 'remuneration-s2-a', 'rectification-s1-b', 'rectification-s2-b', 'rectification-s3-a'],
-    'fin-defaut': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'train-de-vie-s1-b', 'train-de-vie-s2-b', 6, 'fec-s1-a', 'fec-s2-b', 'fec-s3-a', 'remuneration-s1-a', 'remuneration-s2-a', 'rectification-s1-c', 'rectification-s2-a', 'rectification-s3-a'],
-    'fin-patience': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'train-de-vie-s1-b', 'train-de-vie-s2-b', 6, 'fec-s1-b'],
+    'consultant-fin-burn': ['kick-off-s1-a', 'kick-off-s2-a', 'avis-s1-a', 'avis-s2-a', 'avis-s3-a', 'avis-s4-a', 'train-de-vie-s1-a', 'train-de-vie-s2-a', 0, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'remuneration-s1-a', 'remuneration-s2-b', 'rectification-s1-c', 'rectification-s2-c', 'rectification-s3-b'],
+    'consultant-fin-pivot': ['kick-off-s1-a', 'kick-off-s2-a', 'avis-s1-c', 'avis-s2-b', 'avis-s3-b', 'avis-s4-b', 'train-de-vie-s1-a', 'train-de-vie-s2-a', 6, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'remuneration-s1-a', 'remuneration-s2-a', 'rectification-s1-a', 'rectification-s2-a', 'rectification-s3-a'],
+    'consultant-fin-dictionnaire': ['kick-off-s1-b', 'kick-off-s2-b', 'avis-s1-b', 'avis-s3-c', 'avis-s4-c', 'train-de-vie-s1-a', 'train-de-vie-s2-a', 4, 'fec-s1-c', 'fec-s2-b', 'fec-s3-c', 'remuneration-s1-a', 'remuneration-s2-a', 'rectification-s1-b', 'rectification-s2-b', 'rectification-s3-c'],
+    'fin-sereine': ['kick-off-s1-a', 'kick-off-s2-a', 'avis-s1-a', 'avis-s2-c', 'avis-s3-a', 'avis-s4-a', 'train-de-vie-s1-a', 'train-de-vie-s2-a', 6, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'remuneration-s1-a', 'remuneration-s2-a', 'rectification-s1-d', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-defaut': ['kick-off-s1-a', 'kick-off-s2-a', 'avis-s1-a', 'avis-s2-a', 'avis-s3-a', 'avis-s4-a', 'train-de-vie-s1-a', 'train-de-vie-s2-c', 5, 'fec-s1-b', 'fec-s2-c', 'fec-s3-b', 'remuneration-s1-a', 'remuneration-s2-a', 'rectification-s1-a', 'rectification-s2-a', 'rectification-s3-a'],
+    'fin-patience': ['kick-off-s1-c', 'kick-off-s2-c', 'avis-s1-b', 'avis-s3-a', 'avis-s4-a', 'train-de-vie-s1-b', 'train-de-vie-s2-b', 1, 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'remuneration-s1-b', 'remuneration-s2-c'],
   },
   coiffeuse: {
     'coiffeuse-fin-brushing': ['avis-s1-b', 'avis-s3-b', 'avis-s4-b', 'especes-s1-b', 'especes-s2-a', 'fec-s1-a', 'fec-s2-a', 'fec-s3-a', 'salon-s1-a', 'salon-s2-a', 'salon-s3-a', 'rectification-s1-b', 'rectification-s2-a', 'rectification-s3-a'],
