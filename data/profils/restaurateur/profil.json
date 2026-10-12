@@ -33,6 +33,7 @@
     }
   ],
   "parcours": [
+    "profil:coup-de-feu",
     "tronc:avis",
     "profil:caisse",
     "tronc:fec",
@@ -48,6 +49,123 @@
     "R-L8221-5"
   ],
   "chapitres": [
+    {
+      "id": "coup-de-feu",
+      "titre": "Samedi soir, coup de feu",
+      "scenes": [
+        {
+          "id": "coup-de-feu-s1",
+          "personnage": "saucier",
+          "texte": "Samedi, dix-neuf heures, la salle se remplit. Entre deux casseroles, le chef saucier vous tend la carte d'un représentant passé l'après-midi : « Il vend un module pour la caisse, le \"Mode fantôme\". Les ventes en espèces ne remontent plus dans le total. Il dit que tout le monde l'a. »",
+          "choix": [
+            {
+              "id": "coup-de-feu-s1-a",
+              "texte": "Refuser, et garder la caisse actuelle avec l'attestation de l'éditeur bien rangée au classeur.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -5
+              },
+              "reaction": "Le chef saucier jette la carte du représentant dans le feu sous le bouillon. « Tant mieux. Je n'aime pas les sauces qui disparaissent. »",
+              "explication": "Votre caisse encaisse des repas sans facture : elle doit garder chaque vente telle quelle, et l'attestation de l'éditeur le prouve. Un module qui escamote les espèces vous ferait perdre tout cela d'un coup.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": "coup-de-feu-s2"
+            },
+            {
+              "id": "coup-de-feu-s1-b",
+              "texte": "Installer le « Mode fantôme », juste pour voir ce que ça donne.",
+              "juste": false,
+              "effets": {
+                "redressement": 30000,
+                "patience": 0,
+                "stress": -10
+              },
+              "reaction": "Le module s'installe sans bruit. Pendant des semaines, les fins de mois paraissent étrangement légères et personne ne remarque rien. Pour l'instant.",
+              "explication": "Un logiciel conçu pour effacer des ventes est l'exact contraire de la caisse exigée, qui doit les garder intactes. Et dissimuler des recettes avec un outil prévu pour cela relève des manœuvres frauduleuses, majorées de 80 %.",
+              "references": [
+                "R-286",
+                "R-1729"
+              ],
+              "suivant": "coup-de-feu-s2"
+            },
+            {
+              "id": "coup-de-feu-s1-c",
+              "texte": "Ne rien acheter, mais laisser l'attestation de l'éditeur « quelque part dans la réserve », on verra bien.",
+              "juste": false,
+              "effets": {
+                "redressement": 1000,
+                "patience": 0,
+                "stress": 10
+              },
+              "reaction": "Le chef saucier soulève un sac de farine, puis un deuxième. « Quelque part, c'est grand, dans la réserve. »",
+              "explication": "Avoir la bonne caisse ne suffit pas : il faut pouvoir montrer son attestation. Si elle reste introuvable le jour du contrôle, l'amende est de 7 500 € par système de caisse.",
+              "references": [
+                "R-1770DUO"
+              ],
+              "suivant": "coup-de-feu-s2"
+            }
+          ]
+        },
+        {
+          "id": "coup-de-feu-s2",
+          "personnage": "belle-soeur",
+          "texte": "La belle-sœur noue son tablier et s'installe derrière la caisse : « Comme chaque samedi. Tu me donnes mon enveloppe à la fin du service, comme d'habitude ? »",
+          "choix": [
+            {
+              "id": "coup-de-feu-s2-a",
+              "texte": "Faire enfin sa déclaration préalable à l'embauche et lui remettre un bulletin de paie chaque mois.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 5,
+                "stress": -10
+              },
+              "reaction": "« Un bulletin de paie ? À mon nom ? » Elle le fait encadrer et l'accroche au-dessus de la caisse.",
+              "explication": "Elle travaille pour vous chaque samedi : la déclarer avant l'embauche et lui remettre ses bulletins de paie, c'est ce qui la sort du travail dissimulé.",
+              "references": [
+                "R-L8221-5"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "coup-de-feu-s2-b",
+              "texte": "« Oui, l'enveloppe, comme d'habitude : entre nous, pas besoin de papiers. »",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": 0,
+                "stress": 10
+              },
+              "reaction": "L'enveloppe change de main derrière le comptoir. La belle-sœur la glisse dans son tablier en sifflotant.",
+              "explication": "Une enveloppe chaque samedi sans déclaration d'embauche ni bulletin de paie, c'est du travail dissimulé, même en famille et même pour quelques heures.",
+              "references": [
+                "R-L8221-5"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "coup-de-feu-s2-c",
+              "texte": "La payer en repas et en pourboires : « comme ça, ce n'est pas vraiment un salaire ».",
+              "juste": false,
+              "effets": {
+                "redressement": 2000,
+                "patience": 0,
+                "stress": 5
+              },
+              "reaction": "« Des repas ? Je mange déjà ici tous les jours. » Elle repart vers la caisse, pas très convaincue.",
+              "explication": "Payer en assiettes plutôt qu'en euros ne change rien : si elle travaille pour vous comme salariée, sans déclaration d'embauche ni bulletin de paie, c'est du travail dissimulé.",
+              "references": [
+                "R-L8221-5"
+              ],
+              "suivant": null
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "caisse",
       "titre": "La caisse magique",
@@ -110,11 +228,66 @@
         },
         {
           "id": "caisse-s2",
-          "personnage": "belle-soeur",
-          "texte": "La belle-sœur, à la caisse depuis « un bon moment », chuchote en dénouant son tablier : « Je file me cacher dans la réserve, derrière les sacs de farine ? »",
+          "personnage": "addition",
+          "texte": "Mme Addition pose son propre ticket du midi à côté du total de la journée : « Je cherche mon déjeuner dans votre journal de caisse. Il a dû partir en cuisine. »",
           "choix": [
             {
               "id": "caisse-s2-a",
+              "texte": "Faire défiler le journal de la caisse : chaque ticket du jour y est, le sien compris, à la minute près.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -5
+              },
+              "reaction": "« Blanquette, carafe d'eau, café. Douze heures cinquante-deux. » Elle coche une case, presque à regret.",
+              "explication": "Votre journal garde chaque vente telle qu'elle a été saisie, la sienne comprise : c'est la preuve concrète que la caisse joue son rôle de mémoire fidèle.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": "caisse-s3"
+            },
+            {
+              "id": "caisse-s2-b",
+              "texte": "« Les tickets du midi, on les regroupe le soir à la main : c'est plus lisible. »",
+              "juste": false,
+              "effets": {
+                "redressement": 4000,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "Elle feuillette le cahier du soir. Son déjeuner y figure, à moitié prix. « Lisible, en effet. »",
+              "explication": "Recopier les ventes à la main le soir, c'est justement ce que la caisse doit rendre inutile : chaque vente sans facture s'enregistre une fois, sans retouche possible ensuite.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": "caisse-s3"
+            },
+            {
+              "id": "caisse-s2-c",
+              "texte": "Accuser le terminal de carte bancaire : « il fait des siennes depuis l'orage ».",
+              "juste": false,
+              "effets": {
+                "redressement": 2000,
+                "patience": -15,
+                "stress": 15
+              },
+              "reaction": "« J'ai payé en espèces. » Le terminal, vexé, choisit ce moment pour imprimer un ticket de test.",
+              "explication": "Orage ou pas, la caisse doit conserver chaque vente : si un ticket manque à l'appel, c'est qu'elle ne garantit pas ce que la loi lui demande.",
+              "references": [
+                "R-286"
+              ],
+              "suivant": "caisse-s3"
+            }
+          ]
+        },
+        {
+          "id": "caisse-s3",
+          "personnage": "belle-soeur",
+          "texte": "Mme Addition demande qui tient la caisse le samedi soir. La belle-sœur, tablier dénoué, chuchote : « Je file me cacher dans la réserve, derrière les sacs de farine ? »",
+          "choix": [
+            {
+              "id": "caisse-s3-a",
               "texte": "Lui demander de rester et régulariser : déclaration préalable à l'embauche et bulletins de paie.",
               "juste": true,
               "effets": {
@@ -130,7 +303,7 @@
               "suivant": null
             },
             {
-              "id": "caisse-s2-b",
+              "id": "caisse-s3-b",
               "texte": "« Oui, derrière la farine, et pas un bruit. »",
               "juste": false,
               "effets": {
@@ -140,6 +313,22 @@
               },
               "reaction": "Un éternuement enfariné résonne dans la réserve. Mme Addition lève un sourcil, puis son stylo.",
               "explication": "Cacher la belle-sœur derrière la farine n'efface pas son travail : sans déclaration ni bulletin de paie, c'est du travail dissimulé, qu'on la voie ou non.",
+              "references": [
+                "R-L8221-5"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "caisse-s3-c",
+              "texte": "« Elle ? C'est une cliente fidèle qui aime bien rendre la monnaie. »",
+              "juste": false,
+              "effets": {
+                "redressement": 3000,
+                "patience": -15,
+                "stress": 10
+              },
+              "reaction": "« Une cliente avec un tablier à votre nom et les clés de la caisse ? Quelle fidélité. »",
+              "explication": "Le titre de cliente ne trompe personne : si elle tient la caisse pour vous sans déclaration d'embauche ni bulletin de paie, c'est du travail dissimulé.",
               "references": [
                 "R-L8221-5"
               ],
@@ -184,10 +373,27 @@
                 "stress": 10
               },
               "reaction": "Mme Addition, de sa table, sans lever les yeux : « La boîte en carton ne change pas la recette. »",
-              "explication": "Le taux de 5,5 % vise les denrées alimentaires destinées à la consommation humaine ; mais les produits alimentaires préparés en vue d'une consommation immédiate relèvent du taux de 10 %, à emporter comme sur place.",
+              "explication": "La boîte en carton ne change rien : votre plat du jour sort de la cuisine prêt à être mangé, il reste à 10 % comme en salle. Le 5,5 % vaut pour les denrées que le client cuisinera ou mangera plus tard, pas pour un plat prêt à manger.",
               "references": [
                 "R-278-0B-A1",
                 "R-279-MN"
+              ],
+              "suivant": "carte-s2"
+            },
+            {
+              "id": "carte-s1-c",
+              "texte": "« 20 %, par prudence : avec le carton, on ne sait jamais. »",
+              "juste": false,
+              "effets": {
+                "redressement": 0,
+                "patience": -5,
+                "stress": 5
+              },
+              "reaction": "Mme Addition relève les yeux : « Vous payez trop. C'est rare, mais ce n'est pas plus juste. »",
+              "explication": "Prudence mal placée : le plat du jour emporté reste un repas prêt à manger, à 10 %. Le taux normal de 20 % ne le concerne pas, et vous le facturez trop cher à vos clients.",
+              "references": [
+                "R-279-MN",
+                "R-278"
               ],
               "suivant": "carte-s2"
             }
@@ -214,7 +420,7 @@
                 "R-279-MN",
                 "R-278-0B-A1"
               ],
-              "suivant": null
+              "suivant": "carte-s3"
             },
             {
               "id": "carte-s2-b",
@@ -231,7 +437,7 @@
                 "R-279-MN",
                 "R-278"
               ],
-              "suivant": null
+              "suivant": "carte-s3"
             },
             {
               "id": "carte-s2-c",
@@ -248,6 +454,64 @@
                 "R-278",
                 "R-279-MN"
               ],
+              "suivant": "carte-s3"
+            }
+          ]
+        },
+        {
+          "id": "carte-s3",
+          "personnage": "saucier",
+          "texte": "Pour l'étagère d'épicerie, le chef saucier a mis sa sauce maison en bocaux, et la pâtissière a ensaché ses caramels. Il brandit les étiquettes vierges : « Même taux pour tout le monde ? »",
+          "choix": [
+            {
+              "id": "carte-s3-a",
+              "texte": "5,5 % pour les bocaux de sauce, qu'on cuisine chez soi, et 20 % pour les caramels.",
+              "juste": true,
+              "effets": {
+                "redressement": 0,
+                "patience": 10,
+                "stress": -10
+              },
+              "reaction": "Le chef saucier colle les étiquettes avec une application de chirurgien. Mme Addition goûte un caramel. Pour vérifier, bien sûr.",
+              "explication": "La sauce en bocal part pour être cuisinée plus tard à la maison : 5,5 %. Les caramels, eux, sont des confiseries, laissées hors du taux réduit : 20 %, même faits maison.",
+              "references": [
+                "R-278-0B-A1",
+                "R-278"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "carte-s3-b",
+              "texte": "5,5 % pour tout : « un caramel, c'est de l'alimentation comme une autre ».",
+              "juste": false,
+              "effets": {
+                "redressement": 2000,
+                "patience": -10,
+                "stress": 10
+              },
+              "reaction": "Mme Addition déballe un caramel, le regarde longuement, puis le remballe. « Comme une autre, vraiment ? »",
+              "explication": "Le caramel a beau se manger, il fait partie des confiseries que le taux de 5,5 % laisse de côté : il reste à 20 %, comme au rayon bonbons.",
+              "references": [
+                "R-278-0B-A1",
+                "R-278"
+              ],
+              "suivant": null
+            },
+            {
+              "id": "carte-s3-c",
+              "texte": "10 % pour tout, « comme au restaurant ».",
+              "juste": false,
+              "effets": {
+                "redressement": 1000,
+                "patience": -5,
+                "stress": 5
+              },
+              "reaction": "« Au restaurant, on mange sur place. Vos bocaux, eux, partent dormir dans un placard. »",
+              "explication": "Le taux de 10 % vise ce qui est préparé pour être mangé tout de suite ; un bocal rangé au placard n'en relève pas. La sauce passe à 5,5 %, et les caramels restent au taux normal.",
+              "references": [
+                "R-279-MN",
+                "R-278-0B-A1"
+              ],
               "suivant": null
             }
           ]
@@ -256,6 +520,18 @@
     }
   ],
   "fins": [
+    {
+      "id": "restaurateur-fin-fantome",
+      "titre": "Le fantôme de la caisse",
+      "texte": "En remontant le journal de la caisse, Mme Paulette Addition retrouve le « Mode fantôme » et toutes les ventes qu'il avait fait disparaître. Les tickets fantômes reviennent un par un, avec la note. Le chef saucier propose de rebaptiser la maison « La Casserole Hantée ».",
+      "conditions": [
+        {
+          "jauge": "redressement",
+          "op": ">=",
+          "valeur": 45000
+        }
+      ]
+    },
     {
       "id": "restaurateur-fin-etoile",
       "titre": "Une étoile au guide du contrôle",
