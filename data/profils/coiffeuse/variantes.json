@@ -38,7 +38,7 @@
         "reaction": "« Parfait, je sors les bons classeurs. Pas ceux de l'époque des mises en plis. »"
       },
       "avis-s3-b": {
-        "texte": "« Tout depuis l'ouverture du salon, par sécurité. Même le cahier de la première permanente. »",
+        "texte": "« Tout depuis l'ouverture du salon, par sécurité. Même le carnet de 1998. »",
         "reaction": "Votre expert-comptable disparaît sous une avalanche de cartons et de vieux casques séchoirs. On entend un faible « au secours »."
       },
       "avis-s3-c": {
@@ -53,8 +53,8 @@
         "reaction": "« Très bien, nous fixerons les rendez-vous ensemble, hors samedi. » Votre expert-comptable recoiffe sa mèche, satisfait."
       },
       "avis-s4-b": {
-        "texte": "Rouler la charte en bigoudi géant.",
-        "reaction": "Le bigoudi tient mal. Mme Frange le déroule, le lisse du plat de la main et vous le rend, sans un pli."
+        "texte": "Plier la charte en cocotte et la poser sur la tablette du bac à shampoing.",
+        "reaction": "La cocotte prend l'eau. Mme Frange la déplie, la lisse du plat de la main et vous la rend, encore humide."
       },
       "avis-s4-c": {
         "reaction": "« Comme vous voudrez. » Les clientes du samedi, elles, se proposent comme avocates. Vous déclinez aussi."
@@ -117,8 +117,8 @@
         "reaction": "Accordé. Votre expert-comptable respire à nouveau, et vous propose même de vous rafraîchir la nuque."
       },
       "rectification-s1-c": {
-        "texte": "S'en servir pour caler le fauteuil 2, qui penche depuis des années.",
-        "reaction": "Le fauteuil 2 ne penche plus. Le délai, lui, continue de courir."
+        "texte": "S'en servir pour caler la table bancale de la salle d'attente.",
+        "reaction": "La table aux magazines ne penche plus. Le délai, lui, continue de courir."
       },
       "rectification-s1-d": {
         "reaction": "Votre banquière vous appelle, inquiète. Votre expert-comptable n'a même pas eu le temps d'ouvrir l'enveloppe."
@@ -132,8 +132,8 @@
         "reaction": "« C'est votre droit. Je transmets. » Elle range son dossier sans froisser une mèche."
       },
       "rectification-s2-b": {
-        "texte": "Répondre par une chanson de douze couplets, reprise en chœur par les clientes du samedi.",
-        "reaction": "« Le refrain est entraînant. Les arguments, introuvables. »"
+        "texte": "Répondre par un poème de douze pages sur l'injustice du monde, lu à voix haute aux clientes du samedi.",
+        "reaction": "Les clientes applaudissent sous les casques. Le vérificateur, lui, cherche toujours les chiffres entre les rimes."
       },
       "rectification-s2-c": {
         "reaction": "« Très bien, je note votre accord. » Votre expert-comptable, lui, note surtout les points que vous auriez pu gagner."

@@ -67,7 +67,7 @@
                 "stress": -10
               },
               "reaction": "Les clientes hochent la tête sous les casques. « Une caisse avec un papier officiel ! On se croirait à la mairie. »",
-              "explication": "Toutes vos coupes sont payées sans facture : elles doivent donc passer par une caisse sécurisée, et avoir sa preuve de conformité sous la main vous évitera de la chercher le jour où on vous la demandera.",
+              "explication": "Vos coupes sont payées sans facture et vous les enregistrez dans une caisse : celle-ci doit donc être sécurisée, et avoir sa preuve de conformité sous la main vous évitera de la chercher le jour où on vous la demandera.",
               "references": [
                 "R-286"
               ],
@@ -99,7 +99,7 @@
                 "stress": 10
               },
               "reaction": "« Votre mémoire ? Vous m'avez appelée Monique pendant dix ans », glisse la cliente du fauteuil 2.",
-              "explication": "Une mémoire, aussi bonne soit-elle, n'est pas un logiciel de caisse : vos coupes payées sans facture ne laissent alors aucune trace inaltérable, et rien ne prouve ce que vous avez encaissé.",
+              "explication": "Une mémoire, aussi bonne soit-elle, ne laisse aucune trace : vos coupes payées sans facture ne sont enregistrées nulle part, et rien ne prouve ce que vous avez encaissé.",
               "references": [
                 "R-286"
               ],
