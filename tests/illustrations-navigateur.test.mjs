@@ -298,8 +298,12 @@ test('EX-156 : illustration declaree mais introuvable (404) -> portrait sur la c
   await sansDefilement(p, ['#fiche', '#bouton-fiche-suivant'], 'fiche sans illustration');
   await p.cliquer('#bouton-fiche-suivant');
   for (const x of ['avis-s2-a', 'avis-s3-a', 'caisse-s1-a', 'caisse-s2-a', 'fec-s1-a']) await jouerChoix(p, x);
-  await p.attendre(`!document.querySelector('#fiche').hidden`, 'fiche du joueur');
+  await p.attendre(`!document.querySelector('#fiche').hidden && document.querySelector('#fiche').dataset.scene === 'fec-s2'`, 'fiche du joueur');
+  // Attendre le 404 de l'illustration du joueur AVANT de cliquer : son retrait remonte « Suivant »
+  // (~120 px en 375x740) ; un clic calcule avant le retrait tombe a cote et la fiche reste ouverte.
+  await p.attendre(`!document.querySelector('#fiche .fiche-illustration')`, 'illustration du joueur retiree');
   await p.cliquer('#bouton-fiche-suivant');
+  await p.attendre(`document.querySelector('#scene').dataset.scene === 'fec-s2' && !document.querySelector('#scene').hidden && document.querySelector('#fiche').hidden`, 'scene fec-s2 apres la fiche du joueur');
   for (const x of ['fec-s2-a', 'fec-s3-a', 'rectification-s1-a', 'rectification-s2-a', 'rectification-s3-a']) await jouerChoix(p, x);
   await p.attendre(`document.body.dataset.ecran === 'ecran-fin'`, 'fin');
   await p.attendre(`(() => { const i = document.querySelector('#fin-verificateur [role="img"]'); return i.classList.contains('fin-portrait') && i.complete && i.naturalWidth > 0; })()`, 'repli portrait a la fin');
