@@ -1,0 +1,6 @@
+{
+  "regle": "illustration en pied <perso>-situation.webp en 768x1024 (EX-156)",
+  "couverture": false,
+  "modifs": [{ "fichier": "profils/demo-fleuriste/img/pistil-situation.webp", "copier": "tests/donnees/art/decor-800.webp" }],
+  "attendu": ["profils/demo-fleuriste/img/pistil-situation.webp : illustration de 800x450 px : 768x1024 attendu (EX-156)"]
+}

@@ -75,8 +75,10 @@ test('assembler : variantes appliquees sur texte et reaction, effets et explicat
 test('assembler : roles resolus (profil, generiques de communs, narrateur sans portrait)', () => {
   const fl = chargerScenario(DONNEES_DEMO, 'demo-fleuriste').scenario;
   assert.equal(fl.personnages.roles.verificateur.id, 'pistil');
-  assert.equal(fl.personnages.roles.verificateur.portrait, 'profils/demo-fleuriste/img/pistil.svg');
+  assert.equal(fl.personnages.roles.verificateur.portrait, 'profils/demo-fleuriste/img/pistil.webp');
+  assert.equal(fl.personnages.roles.verificateur.repli, 'profils/demo-fleuriste/img/pistil.svg', 'EX-152 : repli SVG de meme nom');
   assert.equal(fl.personnages.roles.comptable.id, 'bilan', 'comptable porte par le profil');
+  assert.equal(fl.personnages.roles.comptable.repli, null, 'portrait SVG : pas de repli');
   assert.equal(fl.personnages.roles.joueur.portrait, 'communs/img/joueur.svg', 'joueur generique');
 
   const { scenario: gl, communs } = chargerScenario(DONNEES_DEMO, 'demo-glacier');

@@ -26,6 +26,7 @@ TYPES = {
     ".json": "application/json; charset=utf-8",
     ".svg": "image/svg+xml",
     ".png": "image/png",
+    ".webp": "image/webp",
     ".md": "text/plain; charset=utf-8",
 }
 

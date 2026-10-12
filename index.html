@@ -9,6 +9,11 @@
   <script type="module" src="js/interface.js"></script>
 </head>
 <body>
+  <!-- Décor illustré de fond (EX-151) : décoratif, rempli par le script ; deux images pour le fondu. -->
+  <div id="decor" class="decor" aria-hidden="true">
+    <img class="decor-image" alt="" decoding="async">
+    <img class="decor-image" alt="" decoding="async">
+  </div>
   <!-- Libellés d'interface seulement : tout le contenu du jeu (scènes, personnages, fins,
        références) vient des fichiers JSON du dossier de données. -->
   <main id="jeu" aria-live="polite">

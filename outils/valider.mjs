@@ -192,16 +192,24 @@ function decoderXml(s) {
     .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 }
 
-/** Portrait present sur disque, dans le dossier, avec role="img" et aria-label = nom (EX-034). */
+/** Portrait present sur disque, dans le dossier : SVG avec role="img" et aria-label = nom (EX-034), ou WebP (EX-152). */
 function verifierPortrait(racine, dossierRel, fichier, contexte, personnage, rapport) {
   const portrait = personnage.portrait;
   if (!estTexte(portrait)) {
-    rapport.erreur(fichier, contexte, 'portrait', 'portrait obligatoire (chemin d\'un fichier SVG du dossier)');
+    rapport.erreur(fichier, contexte, 'portrait', 'portrait obligatoire (chemin d\'un fichier SVG ou WebP du dossier)');
+    return;
+  }
+  if (portrait.toLowerCase().endsWith('.webp')) {
+    // Portrait illustre (EX-152) : range dans img/, format et poids controles avec toutes les images (verifierImages).
+    if (verifierCheminImage(racine, dossierRel, portrait, fichier, contexte, 'portrait', rapport, 'portrait')
+      && !normalize(portrait).split(sep).includes('img')) {
+      rapport.erreur(fichier, contexte, 'portrait', `"${portrait}" : un portrait illustre se range dans le dossier img/ (EX-152)`);
+    }
     return;
   }
   const rel = normalize(portrait);
   if (isAbsolute(portrait) || rel.startsWith('..') || !portrait.toLowerCase().endsWith('.svg')) {
-    rapport.erreur(fichier, contexte, 'portrait', `chemin "${portrait}" invalide (fichier .svg relatif au dossier, sans "..")`);
+    rapport.erreur(fichier, contexte, 'portrait', `chemin "${portrait}" invalide (fichier .svg ou .webp relatif au dossier, sans "..")`);
     return;
   }
   const chemin = join(racine, ...dossierRel.split('/'), rel);
@@ -222,6 +230,192 @@ function verifierPortrait(racine, dossierRel, fichier, contexte, personnage, rap
   if (label === undefined || decoderXml(label) !== personnage.nom) {
     rapport.erreur(fichier, contexte, 'portrait',
       `"${dossierRel}/${portrait}" : aria-label ${label === undefined ? 'absent' : `"${decoderXml(label)}" different du nom`} (attendu "${personnage.nom}")`);
+  }
+}
+
+// ---------------------------------------------------------------- images (EX-150, EX-152, EX-153)
+
+// EX-153 : plafonds de poids et formats (memes valeurs que outils/preparer-images.py).
+export const IMAGES = Object.freeze({
+  decorMaxOctets: 250 * 1024,
+  decorLargeur: Object.freeze([1024, 1600]),
+  portraitCote: 512,
+  portraitMaxOctets: 80 * 1024,
+  illustrationLargeur: 768,
+  illustrationHauteur: 1024,
+  illustrationMaxOctets: 150 * 1024,
+  illustrationSuffixe: '-situation.webp',
+  totalMaxOctets: 12 * 1024 * 1024,
+  accueilMaxOctets: 2 * 1024 * 1024,
+});
+
+/** Un .webp d'un dossier img/ est une illustration en pied (EX-156) s'il se nomme `<perso>-situation.webp`. */
+export const estIllustration = (chemin) => typeof chemin === 'string' && chemin.toLowerCase().endsWith(IMAGES.illustrationSuffixe);
+
+/**
+ * Dimensions d'un fichier WebP lues dans son en-tete (VP8, VP8L ou VP8X), sans dependance ;
+ * null si le contenu n'est pas un WebP.
+ * @param {Buffer} b
+ * @returns {{ largeur: number, hauteur: number } | null}
+ */
+export function dimensionsWebp(b) {
+  if (!Buffer.isBuffer(b) || b.length < 30) return null;
+  if (b.toString('latin1', 0, 4) !== 'RIFF' || b.toString('latin1', 8, 12) !== 'WEBP') return null;
+  const bloc = b.toString('latin1', 12, 16);
+  if (bloc === 'VP8X') return { largeur: 1 + b.readUIntLE(24, 3), hauteur: 1 + b.readUIntLE(27, 3) };
+  if (bloc === 'VP8L') {
+    if (b[20] !== 0x2f) return null;
+    const v = b.readUInt32LE(21);
+    return { largeur: 1 + (v & 0x3fff), hauteur: 1 + ((v >>> 14) & 0x3fff) };
+  }
+  if (bloc === 'VP8 ') {
+    if (b[23] !== 0x9d || b[24] !== 0x01 || b[25] !== 0x2a) return null;
+    return { largeur: b.readUInt16LE(26) & 0x3fff, hauteur: b.readUInt16LE(28) & 0x3fff };
+  }
+  return null;
+}
+
+/**
+ * Chemin d'image `.webp` (decor ou portrait illustre) relatif a `dossierRel`, sans "..", present
+ * sur disque. Le format et le poids sont controles par verifierImages (tous les .webp du dossier).
+ */
+function verifierCheminImage(racine, dossierRel, chemin, fichier, contexte, champ, rapport, quoi) {
+  if (!estTexte(chemin)) {
+    rapport.erreur(fichier, contexte, champ, `chemin du ${quoi} attendu (fichier .webp relatif a ${dossierRel}/)`);
+    return false;
+  }
+  const rel = normalize(chemin);
+  if (isAbsolute(chemin) || rel.startsWith('..') || /^[a-z]+:/i.test(chemin)) {
+    rapport.erreur(fichier, contexte, champ, `chemin "${chemin}" invalide (relatif a ${dossierRel}/, sans "..")`);
+    return false;
+  }
+  if (!chemin.toLowerCase().endsWith('.webp')) {
+    rapport.erreur(fichier, contexte, champ, `"${chemin}" : extension .webp attendue pour un ${quoi} (EX-150, EX-152)`);
+    return false;
+  }
+  const absolu = join(racine, ...dossierRel.split('/'), rel);
+  if (!existsSync(absolu) || !statSync(absolu).isFile()) {
+    rapport.erreur(fichier, contexte, champ, `fichier "${dossierRel}/${chemin}" introuvable`);
+    return false;
+  }
+  return true;
+}
+
+/** Decor (EX-150) : chemin .webp present, range dans un dossier decors/ relatif a `dossierRel`. */
+function verifierDecor(racine, dossierRel, chemin, fichier, contexte, champ, rapport) {
+  if (!verifierCheminImage(racine, dossierRel, chemin, fichier, contexte, champ, rapport, 'decor')) return false;
+  if (!normalize(chemin).split(sep).includes('decors')) {
+    rapport.erreur(fichier, contexte, champ, `"${chemin}" : un decor se range dans le dossier decors/ (EX-150)`);
+    return false;
+  }
+  return true;
+}
+
+function fichiersWebp(dossier, rel = '') {
+  const liste = [];
+  for (const n of readdirSync(join(dossier, rel))) {
+    const r = rel ? `${rel}/${n}` : n;
+    const st = statSync(join(dossier, r));
+    if (st.isDirectory()) liste.push(...fichiersWebp(dossier, r));
+    else if (n.toLowerCase().endsWith('.webp')) liste.push({ rel: r, octets: st.size });
+  }
+  return liste;
+}
+
+/**
+ * EX-152 / EX-153 sur tous les .webp du dossier de donnees : un fichier d'un dossier `decors/` est un
+ * decor (<= 250 Ko, 1024 a 1600 px de large) ; d'un dossier `img/`, une illustration en pied s'il se
+ * nomme `<perso>-situation.webp` (768x1024 px, <= 150 Ko), un portrait sinon (carre 512 px, <= 80 Ko) ;
+ * total <= 12 Mo.
+ */
+function verifierImages(racine, rapport) {
+  const {
+    decorMaxOctets, decorLargeur: [lmin, lmax], portraitCote, portraitMaxOctets,
+    illustrationLargeur, illustrationHauteur, illustrationMaxOctets, totalMaxOctets,
+  } = IMAGES;
+  let total = 0;
+  for (const { rel, octets } of fichiersWebp(racine)) {
+    total += octets;
+    const dossiers = rel.split('/').slice(0, -1);
+    const decor = dossiers.includes('decors');
+    const portrait = !decor && dossiers.includes('img');
+    if (!decor && !portrait) continue;
+    const dim = dimensionsWebp(readFileSync(join(racine, ...rel.split('/'))));
+    if (!dim) {
+      rapport.erreur(rel, null, null, 'contenu illisible : ce n\'est pas un fichier WebP');
+      continue;
+    }
+    const ko = (n) => `${Math.ceil(n / 1024)} Ko`;
+    if (decor) {
+      if (octets > decorMaxOctets) rapport.erreur(rel, null, null, `decor de ${ko(octets)} : plafond ${ko(decorMaxOctets)} (EX-153)`);
+      if (dim.largeur < lmin || dim.largeur > lmax) rapport.erreur(rel, null, null, `decor de ${dim.largeur} px de large : de ${lmin} a ${lmax} px (EX-153)`);
+    } else if (estIllustration(rel)) {
+      if (octets > illustrationMaxOctets) {
+        rapport.erreur(rel, null, null, `illustration de ${ko(octets)} : plafond ${ko(illustrationMaxOctets)} (EX-153)`);
+      }
+      if (dim.largeur !== illustrationLargeur || dim.hauteur !== illustrationHauteur) {
+        rapport.erreur(rel, null, null,
+          `illustration de ${dim.largeur}x${dim.hauteur} px : ${illustrationLargeur}x${illustrationHauteur} attendu (EX-156)`);
+      }
+    } else {
+      if (octets > portraitMaxOctets) rapport.erreur(rel, null, null, `portrait de ${ko(octets)} : plafond ${ko(portraitMaxOctets)} (EX-153)`);
+      if (dim.largeur !== portraitCote || dim.hauteur !== portraitCote) {
+        rapport.erreur(rel, null, null, `portrait de ${dim.largeur}x${dim.hauteur} px : carre ${portraitCote}x${portraitCote} attendu (EX-152)`);
+      }
+    }
+  }
+  if (total > totalMaxOctets) {
+    rapport.erreur('**/*.webp', null, null, `${(total / 1024 / 1024).toFixed(2)} Mo d'images WebP au total : plafond ${totalMaxOctets / 1024 / 1024} Mo (EX-153)`);
+  }
+}
+
+/** communs/decors.json (EX-150, facultatif) : { "chapitres": { "<id tronc>": "decors/x.webp" }, "titre": "decors/y.webp" | null }. */
+function verifierDecorsCommuns(racine, decors, tronc, rapport) {
+  const F = 'communs/decors.json';
+  if (!estObjet(decors)) {
+    rapport.erreur(F, null, null, 'objet { "chapitres": { ... }, "titre": ... } attendu');
+    return;
+  }
+  for (const cle of Object.keys(decors)) {
+    if (!['chapitres', 'titre'].includes(cle)) rapport.erreur(F, null, cle, 'cle inconnue (chapitres, titre)');
+  }
+  if (decors.titre !== undefined && decors.titre !== null) verifierDecor(racine, 'communs', decors.titre, F, null, 'titre', rapport);
+  if (decors.chapitres === undefined) return;
+  if (!estObjet(decors.chapitres)) {
+    rapport.erreur(F, null, 'chapitres', 'objet { "<id chapitre du tronc>": "decors/<fichier>.webp" } attendu');
+    return;
+  }
+  const chTronc = new Set((estObjet(tronc) && Array.isArray(tronc.chapitres) ? tronc.chapitres : []).map((c) => c?.id));
+  for (const [id, chemin] of Object.entries(decors.chapitres)) {
+    if (!chTronc.has(id)) rapport.erreur(F, `chapitre "${id}"`, 'chapitres', 'chapitre inconnu du tronc');
+    verifierDecor(racine, 'communs', chemin, F, `chapitre "${id}"`, 'chapitres', rapport);
+  }
+}
+
+/** `decor` facultatif des scenes d'un fichier (EX-150), relatif a `dossierRel`. */
+function verifierDecorsScenes(racine, dossierRel, chapitres, fichier, rapport) {
+  for (const s of idsScenes(chapitres)) {
+    if (s.decor !== undefined) verifierDecor(racine, dossierRel, s.decor, fichier, `scene "${s.id}"`, 'decor', rapport);
+  }
+}
+
+/** `decors` d'un profil (EX-150) : { "<id chapitre du tronc ou du profil>": "decors/<fichier>.webp" }. */
+function verifierDecorsProfil(racine, id, profil, tronc, F, rapport) {
+  if (profil.decors === undefined) return;
+  if (!estObjet(profil.decors)) {
+    rapport.erreur(F, null, 'decors', 'objet { "<id chapitre>": "decors/<fichier>.webp" } attendu');
+    return;
+  }
+  const chTronc = new Set((estObjet(tronc) && Array.isArray(tronc.chapitres) ? tronc.chapitres : []).map((c) => c?.id));
+  const chProfil = new Set((Array.isArray(profil.chapitres) ? profil.chapitres : []).map((c) => c?.id));
+  for (const [ch, chemin] of Object.entries(profil.decors)) {
+    const ctx = `decor du chapitre "${ch}"`;
+    if (!chTronc.has(ch) && !chProfil.has(ch)) {
+      rapport.erreur(F, ctx, 'decors', 'chapitre inconnu (id d\'un chapitre du tronc ou du profil)');
+    } else if (chTronc.has(ch) && chProfil.has(ch)) {
+      rapport.erreur(F, ctx, 'decors', 'id porte a la fois par un chapitre du tronc et du profil : decor ambigu');
+    }
+    verifierDecor(racine, `profils/${id}`, chemin, F, ctx, 'decors', rapport);
   }
 }
 
@@ -507,6 +701,8 @@ function verifierTronc(tronc, refs, rapport, racine) {
   } else {
     const roleValide = (r) => (ROLES_TRONC.includes(r) ? null : `role "${r}" inconnu (attendu : ${ROLES_TRONC.join(', ')})`);
     for (const ch of tronc.chapitres) verifierChapitre(ch, F, roleValide, refs, rapport, (rel) => existsSync(join(racine, ...rel.split('/'))));
+    // EX-150 : decor d'une scene du tronc, relatif a communs/ (comme communs/decors.json).
+    verifierDecorsScenes(racine, 'communs', tronc.chapitres, F, rapport);
     signalerDoublons(tronc.chapitres.filter(estObjet).map((c) => c.id), F, 'chapitre', rapport);
     signalerDoublons(idsScenes(tronc.chapitres).map((s) => s.id), F, 'scene', rapport);
     signalerDoublons(idsChoix(tronc.chapitres), F, 'choix', rapport);
@@ -781,7 +977,7 @@ function verifierLot4Profil(profil, variantes, tronc, F, FV, rapport) {
 function verifierProfil(racine, id, ctxGlobal, rapport, couverture, lot4 = false) {
   const dossier = `profils/${id}`;
   const F = `${dossier}/profil.json`;
-  const { tronc, communs, refs, troncValide } = ctxGlobal;
+  const { tronc, communs, decors, refs, troncValide } = ctxGlobal;
   const avant = rapport.erreurs.length;
   if (!existsSync(join(racine, 'profils', id))) {
     rapport.erreur(`${dossier}/`, null, null, 'dossier du profil introuvable');
@@ -828,8 +1024,10 @@ function verifierProfil(racine, id, ctxGlobal, rapport, couverture, lot4 = false
     const existe = (rel) => existsSync(join(racine, 'profils', id, ...rel.split('/')));
     for (const ch of profil.chapitres) verifierChapitre(ch, F, persoValide, refs, rapport, existe);
     signalerDoublons(profil.chapitres.filter(estObjet).map((c) => c.id), F, 'chapitre', rapport);
+    verifierDecorsScenes(racine, dossier, profil.chapitres, F, rapport);
   }
   verifierParcours(profil, F, tronc, rapport);
+  verifierDecorsProfil(racine, id, profil, tronc, F, rapport);
 
   // Fins
   const fins = verifierFins(profil.fins, F, rapport);
@@ -903,7 +1101,7 @@ function verifierProfil(racine, id, ctxGlobal, rapport, couverture, lot4 = false
   // Assemblage par le moteur, seulement si tout le reste est propre.
   if (rapport.erreurs.length === avant && troncValide && communs !== undefined) {
     try {
-      nouvellePartie(assembler(tronc, profil, variantes ?? {}, communs));
+      nouvellePartie(assembler(tronc, profil, variantes ?? {}, communs, decors));
     } catch (e) {
       rapport.erreur(F, null, null, `assemblage impossible : ${e.message}`);
     }
@@ -939,8 +1137,20 @@ export function valider({ racine = RACINE_DEFAUT, profil = null, couverture = tr
   const communs = lireJson(racine, 'communs/personnages.json', rapport);
   verifierCommuns(racine, communs, rapport);
 
+  // EX-150 : decors par defaut du tronc et de l'ecran titre (fichier facultatif : absent = aucun decor).
+  let decors = { chapitres: {}, titre: null };
+  if (existsSync(join(racine, 'communs', 'decors.json'))) {
+    const lu = lireJson(racine, 'communs/decors.json', rapport);
+    if (lu !== undefined) {
+      verifierDecorsCommuns(racine, lu, tronc, rapport);
+      if (estObjet(lu)) decors = lu;
+    }
+  }
+  // EX-152 / EX-153 : format et poids de toutes les images WebP du dossier.
+  verifierImages(racine, rapport);
+
   const ids = profil ? [profil] : lireIndex(racine, rapport);
-  for (const id of ids) verifierProfil(racine, id, { tronc, communs, refs, troncValide }, rapport, couverture, exigencesLot4);
+  for (const id of ids) verifierProfil(racine, id, { tronc, communs, decors, refs, troncValide }, rapport, couverture, exigencesLot4);
   if (couverture && !profil) verifierCouvertureTronc(tronc, rapport);
   if (exigencesLot4 && estObjet(tronc)) verifierProfondeurScenes(tronc.chapitres, 'tronc.json', rapport);
 
