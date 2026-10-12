@@ -305,3 +305,53 @@ Toute evolution passe par une pull request sur `main` ; la verification `tests` 
 *Verification* : test : comptage chapitres/fins/scenes par profil ; pour chaque profil, une suite de choix atteint chaque fin propre (exploration existante) ; REVIEWER relit le ton (section 2.1) et la justesse juridique de chaque nouvelle explication (references existantes uniquement ; besoin d'une notion nouvelle = demande a SPEC avec l'article).
 
 Hors perimetre lot 4 : nouveaux profils, nouveaux mini-jeux, son.
+
+## 9. Lot 5 - identite graphique illustree (demande du porteur, 12/10/2026)
+
+But : donner au jeu une identite visuelle forte et coherente : un decor illustre par lieu (bureau du verificateur, restaurant, villa d'influenceuse...) et des personnages illustres, generes par IA (Gemini) puis selectionnes et integres a la main. Les portraits SVG actuels restent comme solution de repli.
+
+### 9.1 Direction artistique (fait foi pour toute image)
+
+- Style : bande dessinee franco-belge, ligne claire, contours noirs nets, aplats, ombres simples ; palette chaude facon papier kraft (ocres, rouge brique, vert bouteille, creme) ; lumiere de fin d'apres-midi ; humour de situation dans les details du decor.
+- Preambule commun a TOUS les prompts (copie exacte, puis la description propre a l'image) : "Illustration pour un jeu web humoristique francais sur le controle fiscal, style bande dessinee franco-belge (ligne claire), couleurs chaudes facon papier kraft, aplats, contours noirs nets."
+- Decors : format horizontal 16:9, sans personnage, sans texte lisible (pas de marque, pas de logo, pas de nom propre ; un mot generique flou est tolere), centre de l'image calme et degage (le jeu pose dessus un panneau de texte).
+- Personnages : buste ou plein pied, de trois quarts, fond blanc uni, une expression lisible ; caricature de fonction (le verificateur, l'influenceuse...), jamais le visage d'une personne reelle ni d'une celebrite ; pas de prompt citant le nom d'une personne reelle ou d'un acteur.
+- Coherence : une image de reference par personnage (fiche personnage) est jointe aux generations suivantes du meme personnage ; toutes les images d'un lot sont relues cote a cote avant integration (meme trait, meme palette).
+- Ecart a la charte = image rejetee, pas retouchee a la main.
+
+### 9.2 Inventaire
+
+| Lieu / personnage | Usage | Fichier |
+|---|---|---|
+| Bureau du verificateur (piles de dossiers, tampon, thermos, calculatrice a rouleau) | chapitres `avis` et `rectification` par defaut | `data/communs/decors/bureau-verificateur.webp` |
+| Salle d'archives / poste informatique avec cartons | chapitre `fec` par defaut | `data/communs/decors/archives.webp` |
+| Couverture : guichet des impots facon affiche de film d'action (vitesse, flammes de papier) | ecran titre | `data/communs/decors/couverture.webp` |
+| Restaurateur : salle de bistrot en fin de service ; cuisine en coup de feu | chapitres du profil | `data/profils/restaurateur/decors/*.webp` |
+| Influenceuse : villa avec piscine a debordement ; studio de tournage avec anneau lumineux | idem | `data/profils/influenceuse/decors/*.webp` |
+| Plombier : salle de bains en chantier ; camionnette atelier | idem | `data/profils/plombier/decors/*.webp` |
+| Consultant : open space de start-up (baby-foot, post-it) ; parking avec voiture de sport | idem | `data/profils/consultant/decors/*.webp` |
+| Coiffeuse : salon de quartier ; arriere-boutique (stock de shampoings) | idem | `data/profils/coiffeuse/decors/*.webp` |
+| Galeriste : galerie aux murs blancs et cadres vides ; maison de campagne | idem | `data/profils/galeriste/decors/*.webp` |
+| Personnages nommes de chaque profil + personnages generiques | portraits | `data/profils/<id>/img/<perso>.webp`, `data/communs/img/*.webp` |
+
+### 9.3 Exigences
+
+**EX-150 - Decors dans les donnees.** `profil.json` accepte `decors` : `{ "<id chapitre (tronc ou profil)>": "decors/<fichier>.webp" }` ; `data/communs/decors.json` donne les decors par defaut des chapitres du tronc et celui de l'ecran titre. Une scene peut surcharger avec `decor`. Ordre : decor de la scene, puis du chapitre dans le profil, puis decor par defaut du tronc, puis aucun (fond uni actuel). Le moteur reste pur : il transmet le chemin, l'interface l'affiche.
+*Verification* : tests du moteur (resolution dans les 4 cas) ; validateur : fichier present, extension `.webp`, chapitre existant (temoins negatifs).
+
+**EX-151 - Affichage lisible.** Le decor occupe le fond de l'ecran de partie (`object-fit: cover`, decoratif : `alt=""` et `aria-hidden`), le texte et les choix restent sur un panneau opaque ; contraste texte/panneau >= 4,5:1 calcule sur la couleur du panneau. Changement de decor en fondu <= 300 ms, coupe sous `prefers-reduced-motion`. Chargement : decor suivant prechargé, `decoding="async"`. Aucune image en ligne (`data:`) ni style en ligne (CSP inchangee).
+*Verification* : test d'interface en 1280x800 et 375x740 : decor attendu pour une scene de chaque cas d'EX-150, panneau lisible (contraste calcule), 0 erreur CSP, 0 requete externe ; captures jointes.
+
+**EX-152 - Portraits illustres.** Un personnage peut declarer `portrait` en `.webp` (ou `.svg`, repli). Format : carre 512 px, fond transparent (detourage depuis le fond blanc), le personnage centre. Si l'image manque ou echoue au chargement, l'interface affiche le portrait SVG s'il existe, sinon les initiales dans un disque. `role="img"` et `aria-label` = nom, inchanges.
+*Verification* : validateur (presence, taille carree 512) ; test d'interface du repli (image 404 simulee -> SVG affiche, 0 erreur non interceptee).
+
+**EX-153 - Poids.** Decor <= 250 Ko (largeur 1280 a 1600 px), portrait <= 80 Ko, total `data/**/*.webp` <= 6 Mo ; la page d'accueil ne charge que la couverture et les portraits de l'ecran de choix (< 1,2 Mo transferes).
+*Verification* : test qui mesure les fichiers ; test d'interface qui somme les octets transferes a l'ecran de choix.
+
+**EX-154 - Provenance et licence.** Les images generees sont sous la licence du contenu (CC BY 4.0) ; `LICENSE-CONTENU.md` et le README indiquent "illustrations generees avec l'aide de Gemini (Google), puis selectionnees et retouchees" ; `docs/art/PROMPTS.md` liste, pour chaque fichier, le prompt exact utilise (preambule compris) et la date. Pas de filigrane visible tiers dans les images publiees.
+*Verification* : test : chaque `.webp` de `data/` a une entree dans `docs/art/PROMPTS.md` et inversement ; relecture REVIEWER des images (charte 9.1, pas de visage reel, pas de texte lisible, pas de marque).
+
+**EX-155 - Outil de preparation.** `outils/preparer-images.mjs` ou `.py` (sans dependance ajoutee au depot ; Pillow autorise en outil local, documente) : conversion WebP, redimensionnement, detourage du fond blanc des portraits (remplissage depuis les coins, pas de seuil global qui mangerait les blancs du personnage), controle des poids d'EX-153.
+*Verification* : test sur une image d'essai fournie dans `tests/donnees/art/` : sortie aux bonnes dimensions, poids sous le plafond, coins transparents et centre opaque pour un portrait.
+
+Hors perimetre lot 5 : animation des personnages, sons, image par scene (au plus un decor par chapitre, sauf exception justifiee).
